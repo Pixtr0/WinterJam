@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SpriteSheetClass;
 using System.Collections.Generic;
+using System.Numerics;
 using WinterJam.Players;
 
 namespace WinterJam
@@ -37,13 +38,21 @@ namespace WinterJam
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            _grid = new Grid(new Vector2(_graphics.PreferredBackBufferWidth / 2, 50),
-                new List<Texture2D>() {
-                    Content.Load<Texture2D>("Graphics/Blocks/grass_01"),
-                    Content.Load<Texture2D>("Graphics/Blocks/grass_02"),
-                    Content.Load<Texture2D>("Graphics/Blocks/grass_03"),
-                    Content.Load<Texture2D>("Graphics/Blocks/grass_04"),
-                });
+            _grid = new Grid(new Vector2(_graphics.PreferredBackBufferWidth / 2, 50)
+            , new List<Texture2D>() {
+                Content.Load<Texture2D>("Graphics/Blocks/grass_01"),
+                Content.Load<Texture2D>("Graphics/Blocks/grass_02"),
+                Content.Load<Texture2D>("Graphics/Blocks/grass_03"),
+                Content.Load<Texture2D>("Graphics/Blocks/grass_04"),
+            }, new List<Texture2D>()
+            {
+                Content.Load<Texture2D>("Graphics/Blocks/bush_01"),
+                Content.Load<Texture2D>("Graphics/Blocks/bush_02"),
+                Content.Load<Texture2D>("Graphics/Blocks/rocks_01"),
+                Content.Load<Texture2D>("Graphics/Blocks/rocks_02"),
+                Content.Load<Texture2D>("Graphics/Blocks/rocks_03"),
+                Content.Load<Texture2D>("Graphics/Blocks/stump"),
+            });
 
             GameSettings.Grid = _grid;
             Vector2 playerStart = new Vector2(4, 4);
