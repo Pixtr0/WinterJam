@@ -121,6 +121,18 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Blocks/rocks_03.png
 
+#begin Graphics/Blocks/stump_01.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphics/Blocks/stump_01.png
+
 #begin Graphics/Blocks/stump_02.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -132,18 +144,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Graphics/Blocks/stump_02.png
-
-#begin Graphics/Blocks/stump.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Graphics/Blocks/stump.png;Graphics/Blocks/stump_01.png
 
 #begin Graphics/Blocks/water_flow_01.png
 /importer:TextureImporter
@@ -216,4 +216,9 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Graphics/Player/Player.webp
+
+#begin Graphics/Player/Player.xnb
+/importer:
+/processor:
+/build:Graphics/Player/Player.xnb
 

@@ -54,17 +54,16 @@ namespace WinterJam
             Vector2 playerStart = new Vector2(4, 4);
             _player = new Player(playerStart,
                 new SpriteSheet(
-                    Content.Load<Texture2D>("Graphics/Player/Player"),
+                    Content.Load<Texture2D>("Graphics/Blocks/rocks_02"),
                     GameSettings.Grid.GetPlayerPosition(playerStart),
-                    new Vector2(100, 100),
+                    new Vector2(20, 20),
                     0,
                     1,
                     1,
                     1,
                     false
                     )
-                ); 
-            // TODO: use this.Content to load your game content here
+                );
         }
 
         protected override void Update(GameTime gameTime)
@@ -75,14 +74,6 @@ namespace WinterJam
             GameSettings.Grid.Update();
             UserInput.Update();
 
-
-
-
-
-
-
-
-            _player.Update(gameTime);
             base.Update(gameTime);
         }
 

@@ -1,5 +1,6 @@
 ﻿using Isometric_Thingy;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -17,5 +18,16 @@ namespace WinterJam
         public static int Rows { get; set; } = 14;
         public static Grid Grid { get; set; }
         public static (Keys left, Keys right, Keys up, Keys down) ControlKeys { get; set; } = (Keys.A, Keys.D, Keys.W, Keys.S);    
+
+
+
+        public static Texture2D Squirrel_Up { get; set; }
+        public static Texture2D Squirrel_Down { get; set; }
+        public static Texture2D Squirrel_Left { get; set; }
+        public static Texture2D Squirrel_Right { get; set; }
+        public static Texture2D Squirrel_Up_Right { get; set; }
+        public static Texture2D Squirrel_Up_Left { get; set; }
+        public static Texture2D Squirrel_Down_Right { get; set; }
+        public static Texture2D Squirrel_Down_Left { get; set; }
     }
 }
