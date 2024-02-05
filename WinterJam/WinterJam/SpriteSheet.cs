@@ -5,6 +5,10 @@ namespace SpriteSheetClass
 {
     public class SpriteSheet
     {
+        private Texture2D texture2D;
+        private Vector2 vector2;
+        private object value;
+
         public Texture2D Texture { get; set; }
         public Vector2 CenterPosition { get; set; }
         public Vector2 Size { get; set; }
@@ -46,6 +50,13 @@ namespace SpriteSheetClass
             CurrentSpriteIndex = currentSpriteIndex;
             Loop = loop;
          }
+
+        public SpriteSheet(Texture2D texture2D, Vector2 vector2, object value)
+        {
+            this.texture2D = texture2D;
+            this.vector2 = vector2;
+            this.value = value;
+        }
 
         public virtual void Update()
         {

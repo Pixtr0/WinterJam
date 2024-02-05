@@ -4,10 +4,16 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Blocks/bush_01.png</File>
+    <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Blocks/bush_02.png</File>
     <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Blocks/grass_01.png</File>
     <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Blocks/grass_02.png</File>
     <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Blocks/grass_03.png</File>
     <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Blocks/grass_04.png</File>
+    <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Blocks/rocks_01.png</File>
+    <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Blocks/rocks_02.png</File>
+    <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Blocks/rocks_03.png</File>
+    <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Blocks/stump.png</File>
     <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Blocks/water_flow_01.png</File>
     <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Blocks/water_flow_02.png</File>
     <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Blocks/water_flow_03.png</File>
@@ -15,6 +21,12 @@
     <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Enemy/Directions.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

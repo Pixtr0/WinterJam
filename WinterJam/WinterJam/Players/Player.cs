@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using SpriteSheetClass;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace WinterJam.Players
         public List<Item> Inventory {get; set;} = new List<Item>();
         public Vector2 CurrentPosition { get; set; }
 
-        public Player(Vector2 currentPosition)
+        public Player(Vector2 currentPosition, SpriteSheet visualisation)
         {
             CurrentPosition = currentPosition;
         }
