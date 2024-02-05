@@ -126,7 +126,7 @@ namespace Isometric_Thingy
         public Vector2 GetPlayerPosition(Vector2 index)
         {
             float x = (int)Position.X + index.X * TileSize.X / 2 - index.Y * TileSize.X / 2;
-            float y = (int)Position.Y + index.Y * TileSize.Y / 5f + index.X * TileSize.Y / 5f - TileSize.Y / 2 + HeightOffsets[(int)index.X, (int)index.Y];
+            float y = (int)Position.Y + index.Y * TileSize.Y / 6f + index.X * TileSize.Y / 6f + HeightOffsets[(int)index.X, (int)index.Y];
             return new Vector2(x, y);
         }
         public void SetNewPositions()

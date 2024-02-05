@@ -217,8 +217,3 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Player/Player.webp
 
-#begin Graphics/Player/Player.xnb
-/importer:
-/processor:
-/build:Graphics/Player/Player.xnb
-

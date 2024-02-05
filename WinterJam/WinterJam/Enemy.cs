@@ -101,13 +101,7 @@ namespace WinterJam
             return false;
         }
 
-        public static Enemy Spawn()
-        {
-            return new Enemy(new List<SpriteSheet>()
-            {
-                new SpriteSheet()
-            });
-        }
+        
 
     }
 }
