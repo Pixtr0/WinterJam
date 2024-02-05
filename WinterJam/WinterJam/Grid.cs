@@ -14,21 +14,23 @@ namespace Isometric_Thingy
         private int[,] TileSelected { get; set; } = new int[15, 15];
         private Vector2 Position { get; set; }
         private List<Texture2D> Tiles { get; set; }
-        private List<Texture2D> Obstacles { get; set; }
         
-        private Vector2 TileSize { get; set; } = new Vector2(24, 31);
+        private Vector2 TileSize { get; set; } = new Vector2(24, 36);
         public Vector2 StartTilePos { get; set; }
         public Vector2 EndTilePos { get; set; }
 
-        public Vector2[] BlockedTiles { get; set; } = new Vector2[4];
-        public Grid(Vector2 position, List<Texture2D> tiles)
+        public Vector2[] BlockedTiles { get; set; } = new Vector2[6];
+        public int[] ObstaclesIndexes { get; set; } = new int[6];
+        private List<Texture2D> Obstacles { get; set; }
+        public Grid(Vector2 position, List<Texture2D> tiles, List<Texture2D> obstacles)
         {
             Tiles = tiles;
+            Obstacles = obstacles;
             GenerateRandomTiles();
             CreateHeightOffsets();
             SetNewPositions();
-            TileSize =  TileSize  * (TileSize.Y / 6f);
-            Position = position - new Vector2(TileSize.X / 2f, TileSize.Y/5f) ;
+            TileSize =  TileSize  * 5;
+            Position = position - new Vector2(TileSize.X / 2f, TileSize.Y/6f) ;
         }
 
         private void GenerateRandomTiles()
@@ -39,6 +41,10 @@ namespace Isometric_Thingy
                 {
                     TileSelected[i, j] = Random.Shared.Next(0, Tiles.Count);
                 }
+            }
+            for (int i = 0; i < ObstaclesIndexes.Length; i++)
+            {
+                ObstaclesIndexes[i] = Random.Shared.Next(0, ObstaclesIndexes.Length);
             }
         }
 
@@ -58,22 +64,23 @@ namespace Isometric_Thingy
 
         public void Draw(SpriteBatch sb)
         {
-            
+
             for (int x = 0; x < Size.X; x++)
             {
                 for (int y = 0; y < Size.Y; y++)
                 {
-                    Texture2D tileTexture = Tiles[TileSelected[x,y]];
-                    for (int i = 0; i < BlockedTiles.Length; i++)
-                    {
-                        if (BlockedTiles[i].X == x && BlockedTiles[i].Y == y)
-                        {
+                    Texture2D tileTexture = Tiles[TileSelected[x, y]];
 
-                            sb.Draw(tileTexture, new Rectangle((int)(Position.X + x * TileSize.X / 2 - y * TileSize.X / 2), (int)(Position.Y + y * (TileSize.Y / 5f) + x * (TileSize.Y / 5f)) + HeightOffsets[x, y], (int)TileSize.X, (int)TileSize.Y), Color.White);
-                        }
-                    }
-                    sb.Draw(tileTexture, new Rectangle((int)(Position.X + x * TileSize.X / 2 - y * TileSize.X /2) , (int)(Position.Y + y * (TileSize.Y / 5f) + x * (TileSize.Y / 5f)) + HeightOffsets[x,y], (int)TileSize.X, (int)TileSize.Y), Color.White);
+                    sb.Draw(tileTexture, new Rectangle((int)(Position.X + x * TileSize.X / 2 - y * TileSize.X / 2), (int)(Position.Y + y * (TileSize.Y / 5f) + x * (TileSize.Y / 5f)) + HeightOffsets[x, y], (int)TileSize.X, (int)TileSize.Y), Color.White);
+                    
                 }
+            }
+            
+            for (int i = 0; i < BlockedTiles.Length; i++)
+            {
+                
+                sb.Draw(Obstacles[ObstaclesIndexes[i]], new Rectangle((int)(Position.X + BlockedTiles[i].X * TileSize.X / 2 - BlockedTiles[i].Y * TileSize.X / 2), (int)(Position.Y + BlockedTiles[i].Y * (TileSize.Y / 5f) + BlockedTiles[i].X * (TileSize.Y / 5f)) - 4, (int)TileSize.X, (int)TileSize.Y), Color.White);
+                
             }
         }
         public Vector2 GetPlayerPosition(Vector2 index)
