@@ -32,18 +32,21 @@ namespace WinterJam
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-
             _grid = new Grid(new Vector2(_graphics.PreferredBackBufferWidth / 2, 50)
-                ,new List<Texture2D>() { 
-                    Content.Load<Texture2D>("Graphics/Blocks/grass_01"), 
+                , new List<Texture2D>() {
+                    Content.Load<Texture2D>("Graphics/Blocks/grass_01"),
                     Content.Load<Texture2D>("Graphics/Blocks/grass_02"),
                     Content.Load<Texture2D>("Graphics/Blocks/grass_03"),
                     Content.Load<Texture2D>("Graphics/Blocks/grass_04"),
-                },new List<Texture2D>()
+                }, new List<Texture2D>()
                 {
-                    Content.Load<Texture2D>("Graphics/Blocks/bsu"),
+                    Content.Load<Texture2D>("Graphics/Blocks/bush_01"),
+                    Content.Load<Texture2D>("Graphics/Blocks/bush_02"),
+                    Content.Load<Texture2D>("Graphics/Blocks/rocks_01"),
+                    Content.Load<Texture2D>("Graphics/Blocks/rocks_02"),
+                    Content.Load<Texture2D>("Graphics/Blocks/rocks_03"),
+                    Content.Load<Texture2D>("Graphics/Blocks/stump"),
                 });
-
             // TODO: use this.Content to load your game content here
         }
 
@@ -51,9 +54,6 @@ namespace WinterJam
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
-            // TODO: Add your update logic here
-
             base.Update(gameTime);
         }
 
