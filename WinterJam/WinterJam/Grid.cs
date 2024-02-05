@@ -8,23 +8,36 @@ namespace Isometric_Thingy
 {
     internal class Grid
     {
-        private Vector2 Size { get; set; } = Vector2.One * 25;
-        private int[,] HeightOffsets { get; set; } = new int[25, 25];
+        private Vector2 Size { get; set; } = Vector2.One * 15;
+        private int[,] HeightOffsets { get; set; } = new int[15, 15];
+        private int[,] TileSelected { get; set; } = new int[15, 15];
         private Vector2 Position { get; set; }
         private List<Texture2D> Tiles { get; set; }
         
-        private int TileSize { get; set; } = 30;
+        private int TileSize { get; set; } = 80;
         public Vector2 StartTilePos { get; set; }
         public Vector2 EndTilePos { get; set; }
 
         public Vector2[] BlockedTiles { get; set; } = new Vector2[4];
         public Grid(Vector2 position, List<Texture2D> tiles)
         {
-            Position = position;
+            Position = position - Vector2.One * TileSize /2;
             Tiles = tiles;
+            GenerateRandomTiles();
             CreateHeightOffsetsWithNoise();
             SetNewPositions();
             
+        }
+
+        private void GenerateRandomTiles()
+        {
+            for (int i = 0; i < TileSelected.GetLength(0); i++)
+            {
+                for (int j = 0; j < TileSelected.GetLength(1); j++)
+                {
+                    TileSelected[i, j] = Random.Shared.Next(0, Tiles.Count);
+                }
+            }
         }
 
         private void CreateHeightOffsetsWithNoise()
@@ -46,7 +59,7 @@ namespace Isometric_Thingy
             {
                 for (int y = 0; y < Size.Y; y++)
                 {
-                    Texture2D tileTexture = Tile;
+                    Texture2D tileTexture = Tiles[TileSelected[x,y]];
                     //if (StartTilePos.X == x && StartTilePos.Y == y)
                     //    tileTexture = StartTile;
                     //if (EndTilePos.X == x && EndTilePos.Y == y)

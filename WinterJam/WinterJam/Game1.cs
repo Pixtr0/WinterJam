@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
+using System.Collections.Generic;
 namespace WinterJam
 {
     public class Game1 : Game
@@ -17,6 +17,9 @@ namespace WinterJam
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            _graphics.PreferredBackBufferWidth = 1920;
+            _graphics.PreferredBackBufferHeight = 1080;
+            _graphics.IsFullScreen = true;
         }
 
         protected override void Initialize()
@@ -30,7 +33,12 @@ namespace WinterJam
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             _grid = new Grid(new Vector2(_graphics.PreferredBackBufferWidth / 2, 50)
-                , Content.Load<Texture2D>("Graphics/Blocks/Tile"));
+                ,new List<Texture2D>() { 
+                    Content.Load<Texture2D>("Graphics/Blocks/grass_01"), 
+                    Content.Load<Texture2D>("Graphics/Blocks/grass_02"),
+                    Content.Load<Texture2D>("Graphics/Blocks/grass_03"),
+                    Content.Load<Texture2D>("Graphics/Blocks/grass_04"),
+                });
             // TODO: use this.Content to load your game content here
         }
 
