@@ -11,19 +11,17 @@ namespace Isometric_Thingy
         private Vector2 Size { get; set; } = Vector2.One * 25;
         private int[,] HeightOffsets { get; set; } = new int[25, 25];
         private Vector2 Position { get; set; }
-        private Texture2D Tile { get; set; }
-        private Texture2D StartTile { get; set; }
-        private Texture2D EndTile { get; set; }
-        private Texture2D BlockedTile { get; set; }
+        private List<Texture2D> Tiles { get; set; }
+        
         private int TileSize { get; set; } = 30;
         public Vector2 StartTilePos { get; set; }
         public Vector2 EndTilePos { get; set; }
 
         public Vector2[] BlockedTiles { get; set; } = new Vector2[4];
-        public Grid(Vector2 position, Texture2D tile)
+        public Grid(Vector2 position, List<Texture2D> tiles)
         {
             Position = position;
-            Tile = tile;
+            Tiles = tiles;
             CreateHeightOffsetsWithNoise();
             SetNewPositions();
             
