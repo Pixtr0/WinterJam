@@ -17,11 +17,10 @@ namespace WinterJam.Players
         public UserInput UserInput { get; set; }
         public List<Item> Inventory {get; set;} = new List<Item>();
         public Vector2 CurrentPosition { get; set; }
+        public Vector2 NextPosition { get; set; } = Vector2.Zero;
         public float Speed { get; set; } = 4f;
-        public bool IsMoving { get; set; } = false;
         public Vector2 CurrentTopLeftPosition { get; set; }
-        public Vector2 NextTopLeftPosition { get; set; }
-
+        public Vector2 NextTopLeftPosition { get; set; } 
         public Player(Vector2 currentPosition, SpriteSheet visualisation)
         {
             UserInput = new UserInput();
@@ -36,54 +35,62 @@ namespace WinterJam.Players
             UpdatePlayerPosition();
             base.Update(gameTime);
         }
-
         private void UpdatePlayerPosition()
         {
-            Vector2 nextPosition = CurrentPosition;
 
-            MovePlayer();
-            if (!IsMoving) 
+            if (TopLeftPosition != NextTopLeftPosition && NextTopLeftPosition != Vector2.Zero)
+            {
+                Vector2 target = NextTopLeftPosition - TopLeftPosition;
+                float length = target.Length();
+                Vector2 movement = target;
+                if (length > 0)
+                    movement.Normalize();
+
+                movement *= MathF.Min(Speed, length);
+
+                TopLeftPosition += movement;
+            }
+            else
             {
                 if (UserInput.IsKeyDown)
                 {
+                    if (NextPosition != Vector2.Zero)
+                        CurrentPosition = NextPosition;
+
                     //cardinal directions
                     if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.left))
                     {
-                        nextPosition = CurrentPosition + new Vector2(-1, 1);
+
+                        NextPosition = CurrentPosition + new Vector2(-1, 1);
                     }
                     if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.right))
                     {
-                        nextPosition = CurrentPosition + new Vector2(1, -1);
+                        NextPosition = CurrentPosition + new Vector2(1, -1);
                     }
                     if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.up))
                     {
-                        nextPosition = CurrentPosition + new Vector2(-1, -1);
+                        NextPosition = CurrentPosition + new Vector2(-1, -1);
                     }
                     if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.down))
                     {
-                        nextPosition = CurrentPosition + new Vector2(1, 1);
+                        NextPosition = CurrentPosition + new Vector2(1, 1);
                     }
 
-                    NextTopLeftPosition = GameSettings.Grid.GetPlayerPosition(nextPosition);
+                    float clampedX = MathHelper.Clamp(NextPosition.X, 0, GameSettings.Grid.Size.X - 1);
+                    float clampedY = MathHelper.Clamp(NextPosition.Y, 0, GameSettings.Grid.Size.Y - 1);
                     
-                }
+                    NextPosition = new Vector2(clampedX, clampedY);
+
+                    NextTopLeftPosition = GameSettings.Grid.GetPlayerPosition(NextPosition);
+            }
+   
             }
             
         }
 
         private void MovePlayer()
         {
-            if (CurrentTopLeftPosition != NextTopLeftPosition)
-            {
-                CurrentTopLeftPosition += (NextTopLeftPosition - CurrentTopLeftPosition) 
-                    / ((Visualisation.Rows * Visualisation.Cols) - Visualisation.CurrentSpriteIndex);
-                IsMoving = true;
-            }
-            else
-            {
-                IsMoving = false;
-            }
-
+            
         }
 
         public override void Draw(SpriteBatch spriteBatch)
