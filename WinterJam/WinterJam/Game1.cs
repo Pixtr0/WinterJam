@@ -12,7 +12,6 @@ namespace WinterJam
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-
         private Player _player;
 
         public Game1()
@@ -20,8 +19,8 @@ namespace WinterJam
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-            _graphics.PreferredBackBufferWidth = 1920;
-            _graphics.PreferredBackBufferHeight = 1080;
+            _graphics.PreferredBackBufferWidth = (int)GameSettings.ScreenSize.X;
+            _graphics.PreferredBackBufferHeight = (int)GameSettings.ScreenSize.Y;
             _graphics.IsFullScreen = false;
         }
 
@@ -36,7 +35,7 @@ namespace WinterJam
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            GameSettings.Grid = new Grid(new Vector2(_graphics.PreferredBackBufferWidth / 2, 50)
+            GameSettings.Grid = new Grid(new Vector2(_graphics.PreferredBackBufferWidth / 2, 0)
             , new List<Texture2D>() {
                 Content.Load<Texture2D>("Graphics/Blocks/grass_01"),
                 Content.Load<Texture2D>("Graphics/Blocks/grass_02"),
@@ -49,7 +48,8 @@ namespace WinterJam
                 Content.Load<Texture2D>("Graphics/Blocks/rocks_01"),
                 Content.Load<Texture2D>("Graphics/Blocks/rocks_02"),
                 Content.Load<Texture2D>("Graphics/Blocks/rocks_03"),
-                Content.Load<Texture2D>("Graphics/Blocks/stump"),
+                Content.Load<Texture2D>("Graphics/Blocks/stump_01"),
+                Content.Load<Texture2D>("Graphics/Blocks/stump_02")
             });
             Vector2 playerStart = new Vector2(4, 4);
             _player = new Player(playerStart,
@@ -92,7 +92,7 @@ namespace WinterJam
 
             _spriteBatch.Begin();
             GameSettings.Grid.Draw(_spriteBatch);
-            _player.Draw(_spriteBatch);
+            //_player.Draw(_spriteBatch);
             _spriteBatch.End();
 
             base.Draw(gameTime);

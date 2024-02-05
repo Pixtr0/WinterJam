@@ -10,7 +10,8 @@ namespace Isometric_Thingy
 {
     public class Grid
     {
-        private int size = 15;
+        private int size = 18;
+        private float ScaleFactor {  get; set; }
         public Vector2 Size { get; set; }
         private int[,] HeightOffsets { get; set; }
         private int[,] TileSelected { get; set; }
@@ -18,11 +19,8 @@ namespace Isometric_Thingy
         private List<Texture2D> Tiles { get; set; }
         
         private Vector2 TileSize { get; set; } = new Vector2(24, 36);
-        public Vector2 StartTilePos { get; set; }
-        public Vector2 EndTilePos { get; set; }
-
-        public Vector2[] BlockedTiles { get; set; } = new Vector2[8];
-        public int[] ObstaclesIndexes { get; set; } = new int[8];
+        public Vector2[] BlockedTiles { get; set; } = new Vector2[10];
+        public int[] ObstaclesIndexes { get; set; } = new int[10];
         private List<Texture2D> Obstacles { get; set; }
         public Grid(Vector2 position, List<Texture2D> tiles, List<Texture2D> obstacles)
         {
@@ -30,11 +28,12 @@ namespace Isometric_Thingy
             Obstacles = obstacles;
             
             TileSize.Normalize();
-            Size = Vector2.One * 15;
+            Size = Vector2.One * size;
             HeightOffsets = new int[size, size];
             TileSelected = new int[size, size];
-            TileSize *= GameSettings.ScreenSize.Y / (13 * Size.Length());
-            Position = position - new Vector2(TileSize.X / 2f, TileSize.Y/6f) ;
+            ScaleFactor = GameSettings.ScreenSize.Y / (10 * Size.Length());
+            TileSize *= ScaleFactor;
+            Position = position - new Vector2(TileSize.X / 2f, TileSize.Y/6f - 40);
 
             GenerateRandomTiles();
             CreateHeightOffsets();
@@ -50,7 +49,7 @@ namespace Isometric_Thingy
                     TileSelected[i, j] = Random.Shared.Next(0, Tiles.Count);
                 }
             }
-
+            int log = 5;
             int bush = 0;
             int rock = 2;
             for (int i = 0; i < ObstaclesIndexes.Length; i++)
@@ -58,8 +57,12 @@ namespace Isometric_Thingy
                 int value = Random.Shared.Next(0,3);
                 if(value == 0)
                 {
-                    ObstaclesIndexes[i] = 5;
-                } else if(value == 1)
+                    ObstaclesIndexes[i] = log;
+                    log++;
+                    if (log > 6)
+                        log = 5;
+                } 
+                else if(value == 1)
                 {
                     ObstaclesIndexes[i] = rock;
                     rock++;
@@ -108,7 +111,7 @@ namespace Isometric_Thingy
                 {
                     Texture2D tileTexture = Tiles[TileSelected[x, y]];
 
-                    sb.Draw(tileTexture, new Rectangle((int)(Position.X + x * TileSize.X / 2 - y * TileSize.X / 2), (int)(Position.Y + y * (TileSize.Y / 5f) + x * (TileSize.Y / 5f)) + HeightOffsets[x, y], (int)TileSize.X, (int)TileSize.Y), Color.White);
+                    sb.Draw(tileTexture, new Rectangle((int)(Position.X + x * TileSize.X / 2 - y * TileSize.X / 2), (int)(Position.Y + y * (TileSize.Y / 6f) + x * (TileSize.Y / 6f)) + HeightOffsets[x, y], (int)TileSize.X, (int)TileSize.Y), Color.White);
                     
                 }
             }
@@ -116,7 +119,7 @@ namespace Isometric_Thingy
             for (int i = 0; i < BlockedTiles.Length; i++)
             {
                 
-                sb.Draw(Obstacles[ObstaclesIndexes[i]], new Rectangle((int)(Position.X + BlockedTiles[i].X * TileSize.X / 2 - BlockedTiles[i].Y * TileSize.X / 2), (int)(Position.Y + BlockedTiles[i].Y * (TileSize.Y / 5f) + BlockedTiles[i].X * (TileSize.Y / 5f)) - 4, (int)TileSize.X, (int)TileSize.Y), Color.White);
+                sb.Draw(Obstacles[ObstaclesIndexes[i]], new Rectangle((int)(Position.X + BlockedTiles[i].X * TileSize.X / 2 - BlockedTiles[i].Y * TileSize.X / 2), (int)(Position.Y + BlockedTiles[i].Y * (TileSize.Y / 6f) + BlockedTiles[i].X * (TileSize.Y / 6f)) - 4, (int)TileSize.X, (int)TileSize.Y), Color.White);
                 
             }
         }
@@ -128,21 +131,25 @@ namespace Isometric_Thingy
         }
         public void SetNewPositions()
         {
-            StartTilePos = new Vector2(Random.Shared.Next(0, (int)Size.X), Random.Shared.Next(0, (int)Size.Y));
-            do
-            {
-                EndTilePos = new Vector2(Random.Shared.Next(0, (int)Size.X), Random.Shared.Next(0, (int)Size.Y));
-            } while (StartTilePos == EndTilePos);
             for (int i = 0; i < BlockedTiles.Length; i++)
             {
                 Vector2 newPos;
                 do
                 {
                     newPos = new Vector2(Random.Shared.Next(0, (int)Size.X), Random.Shared.Next(0, (int)Size.Y));
-
-                } while (IsIn3x3Range(newPos) || BlockedTiles.Contains(newPos) || newPos == EndTilePos || newPos == StartTilePos);
+                } while (IsIn3x3Range(newPos) || BlockedTiles.Contains(newPos));
                 BlockedTiles[i] = newPos;
             }
+        }
+
+        public Vector2 GetRandomSpawnPos()
+        {
+            Vector2 newPos;
+            do
+            {
+                newPos = new Vector2(Random.Shared.Next(0, 2) == 0 ? 0 : size - 1, Random.Shared.Next(0, 2) == 0 ? 0 : size - 1);
+            } while (IsIn3x3Range(newPos) || BlockedTiles.Contains(newPos));
+            return newPos;
         }
 
         private bool IsIn3x3Range(Vector2 newPos)

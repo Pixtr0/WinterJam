@@ -46,7 +46,10 @@
     <None Update="Content\Graphics\Blocks\rocks_03.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Content\Graphics\Blocks\stump.xnb">
+    <None Update="Content\Graphics\Blocks\stump_01.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Graphics\Blocks\stump_02.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Content\Graphics\Enemy\Directions.xnb">
