@@ -10,8 +10,8 @@ namespace WinterJam
 {
     public class UserInput
     {
-        static MouseState _currentMouseState, _previousMouseState;
-        static KeyboardState _currentKeyboardSate, _previousKeyboardSate;
+        public static MouseState _currentMouseState, _previousMouseState;
+        public static KeyboardState _currentKeyboardSate, _previousKeyboardSate;
 
         public void Update()
         {
@@ -39,6 +39,13 @@ namespace WinterJam
             {
                 return _currentKeyboardSate.GetPressedKeyCount() == 1 &&
                     _previousKeyboardSate.GetPressedKeyCount() == 0;
+            }
+        }
+        public bool IsKeyDown
+        {
+            get
+            {
+                return _currentKeyboardSate.GetPressedKeyCount() >= 1;
             }
         }
         public Keys PressedKey

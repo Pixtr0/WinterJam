@@ -77,6 +77,14 @@ namespace WinterJam
 
             // TODO: Add your update logic here
 
+
+
+
+
+
+
+
+            _player.Update(gameTime);
             base.Update(gameTime);
         }
 
