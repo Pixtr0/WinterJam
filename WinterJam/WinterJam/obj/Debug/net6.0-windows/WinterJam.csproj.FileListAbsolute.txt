@@ -102,3 +102,5 @@ C:\Users\scutt\OneDrive\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug
 C:\Users\scutt\OneDrive\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Blocks\rocks_03.xnb
 C:\Users\scutt\OneDrive\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Blocks\stump.xnb
 C:\Users\scutt\OneDrive\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Blocks\bush_01.xnb
+C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Blocks\stump_01.xnb
+C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Blocks\stump_02.xnb
