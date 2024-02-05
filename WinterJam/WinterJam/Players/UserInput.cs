@@ -8,10 +8,10 @@ using System.Text;
 
 namespace WinterJam
 {
-    internal class UserInput
+    public class UserInput
     {
-        protected MouseState _currentMouseState, _previousMouseState;
-        protected KeyboardState _currentKeyboardSate, _previousKeyboardSate;
+        static MouseState _currentMouseState, _previousMouseState;
+        static KeyboardState _currentKeyboardSate, _previousKeyboardSate;
 
         public void Update()
         {
