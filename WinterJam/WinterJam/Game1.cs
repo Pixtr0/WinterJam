@@ -16,6 +16,8 @@ namespace WinterJam
 
         private List<Enemy> Enemies = new List<Enemy>();
 
+        private House _house;
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -74,7 +76,10 @@ namespace WinterJam
             GameSettings.Squirrel_Up_Right = Content.Load<Texture2D>("Graphics/Enemy/up_right");
             GameSettings.Squirrel_Down_Left = Content.Load<Texture2D>("Graphics/Enemy/down_left");
             GameSettings.Squirrel_Down_Right = Content.Load<Texture2D>("Graphics/Enemy/down_right");
+            _house = new House(Content.Load<Texture2D>("Graphics/Blocks/spritesheet_house"));
 
+
+            Enemies.Add(Enemy.Spawn());
         }
 
         protected override void Update(GameTime gameTime)
@@ -95,7 +100,7 @@ namespace WinterJam
             {
                 Enemies[i].Update(gameTime);
             }
-
+            _house.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -104,12 +109,15 @@ namespace WinterJam
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _spriteBatch.Begin();
-            GameSettings.Grid.Draw(_spriteBatch);
+            GameSettings.Grid.DrawGrass(_spriteBatch);
             _player.Draw(_spriteBatch);
             for (int i = 0; i < Enemies.Count; i++)
             {
                 Enemies[i].Draw(_spriteBatch);
             }
+
+            GameSettings.Grid.DrawObstacles(_spriteBatch);
+            _house.Draw(_spriteBatch);
             _spriteBatch.End();
 
             base.Draw(gameTime);

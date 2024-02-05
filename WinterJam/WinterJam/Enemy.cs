@@ -14,7 +14,7 @@ namespace WinterJam
     {
         private Vector2 SpawnPosition { get; set; }
         private Vector2 CurrentPosition { get; set; }
-        private Vector2 TargetLocation { get; set; } = new Vector2(9, 9);
+        private Vector2 TargetLocation { get; set; } = new Vector2(9, 7);
 
         private SpriteSheet CurrentSpriteSheet { get; set; }
         public static List<SpriteSheet> Animations { get; set; } = new List<SpriteSheet>();
@@ -36,20 +36,19 @@ namespace WinterJam
             Vector2 newNextPos = CurrentPosition;
             List<Vector2> possibilities = new List<Vector2>();
             possibilities.Add(CurrentPosition + new Vector2(-1, -1));
-            possibilities.Add(CurrentPosition + new Vector2(0, -1));
-            possibilities.Add(CurrentPosition + new Vector2(1, -1));
-            possibilities.Add(CurrentPosition + new Vector2(1, 0));
-            possibilities.Add(CurrentPosition + new Vector2(1, 1));
-            possibilities.Add(CurrentPosition + new Vector2(0, 1));
-            possibilities.Add(CurrentPosition + new Vector2(-1, 1));
-            possibilities.Add(CurrentPosition + new Vector2(-1, 0));
-
+            possibilities.Add(CurrentPosition + new Vector2( 0, -1));
+            possibilities.Add(CurrentPosition + new Vector2( 1, -1));
+            possibilities.Add(CurrentPosition + new Vector2( 1,  0));
+            possibilities.Add(CurrentPosition + new Vector2( 1,  1));
+            possibilities.Add(CurrentPosition + new Vector2( 0,  1));
+            possibilities.Add(CurrentPosition + new Vector2(-1,  1));
+            possibilities.Add(CurrentPosition + new Vector2(-1,  0));
 
             float shortestDistance = 1000;
             int shortestIndex = 0;
             for (int i = 0; i < possibilities.Count; i++)
             {
-                if (!GameSettings.Grid.BlockedTiles.Contains(possibilities[i]) && !IsBlockOffMap(possibilities[i]))
+                if (!GameSettings.Grid.HouseTiles.Contains(possibilities[i]) && !GameSettings.Grid.BlockedTiles.Contains(possibilities[i]) && !IsBlockOffMap(possibilities[i]))
                 {
                     float distance = Vector2.Distance(TargetLocation, possibilities[i]);
                     if (distance < shortestDistance)
@@ -61,49 +60,6 @@ namespace WinterJam
             }
             newNextPos = possibilities[shortestIndex];
             CurrentSpriteSheet = Animations[shortestIndex];
-            //if (includesBlockedTiles(possibilities))
-            //{
-            //    float shortestDistance = 1000;
-            //    int shortestIndex = 0;
-            //    for (int i = 0; i < possibilities.Count; i++)
-            //    {
-            //        if (!GameSettings.Grid.BlockedTiles.Contains(possibilities[i]) && !IsBlockOffMap(possibilities[i]))
-            //        {
-            //            float distance = Vector2.Distance(TargetLocation, possibilities[i]);
-            //            if (distance < shortestDistance)
-            //            {
-            //                shortestDistance = distance;
-            //                shortestIndex = i;
-            //            }
-            //        }
-            //    }
-
-            //    newNextPos = possibilities[shortestIndex];
-            //    CurrentSpriteSheet = Animations[shortestIndex];
-            //}
-            //else
-            //{
-            //    if (CurrentPosition.Y > TargetLocation.Y)
-            //    {
-            //        newNextPos = CurrentPosition - new Vector2(0, 1);
-            //        CurrentSpriteSheet = Animations[1];
-            //    }
-            //    else if (CurrentPosition.Y < TargetLocation.Y)
-            //    {
-            //        newNextPos = CurrentPosition + new Vector2(0, 1);
-            //        CurrentSpriteSheet = Animations[5];
-            //    }
-            //    else if (CurrentPosition.X > TargetLocation.X)
-            //    {
-            //        newNextPos = CurrentPosition - new Vector2(1, 0);
-            //        CurrentSpriteSheet = Animations[7];
-            //    }
-            //    else if (CurrentPosition.X < TargetLocation.X)
-            //    {
-            //        newNextPos = CurrentPosition + new Vector2(1, 0);
-            //        CurrentSpriteSheet = Animations[3];
-            //    }
-            //}
 
             return newNextPos;
         }
@@ -151,14 +107,14 @@ namespace WinterJam
         {
             return new Enemy(new List<SpriteSheet>()
             {
-                new SpriteSheet(GameSettings.Squirrel_Up,Vector2.Zero,new Vector2(26,13) * GameSettings.Grid.ScaleFactor,0,1,1,0,true),
-                new SpriteSheet(GameSettings.Squirrel_Up_Right,Vector2.Zero,new Vector2(26,13) * GameSettings.Grid.ScaleFactor,0,1,1,0,true),
-                new SpriteSheet(GameSettings.Squirrel_Right,Vector2.Zero,new Vector2(26,13) * GameSettings.Grid.ScaleFactor,0,1,1,0,true),
-                new SpriteSheet(GameSettings.Squirrel_Down_Right,Vector2.Zero,new Vector2(26,13) * GameSettings.Grid.ScaleFactor,0,1,1,0,true),
-                new SpriteSheet(GameSettings.Squirrel_Down,Vector2.Zero,new Vector2(26,13) * GameSettings.Grid.ScaleFactor,0,1,1,0,true),
-                new SpriteSheet(GameSettings.Squirrel_Down_Left,Vector2.Zero,new Vector2(26,13) * GameSettings.Grid.ScaleFactor,0,1,1,0,true),
-                new SpriteSheet(GameSettings.Squirrel_Left,Vector2.Zero,new Vector2(26,13) * GameSettings.Grid.ScaleFactor,0,1,1,0,true),
-                new SpriteSheet(GameSettings.Squirrel_Up_Left,Vector2.Zero,new Vector2(26,13) * GameSettings.Grid.ScaleFactor,0,1,1,0,true),
+                new SpriteSheet(GameSettings.Squirrel_Up,Vector2.Zero,new Vector2(21,17) * GameSettings.Grid.ScaleFactor,0,1,2,0,true),
+                new SpriteSheet(GameSettings.Squirrel_Up_Right,Vector2.Zero,new Vector2(21,17) * GameSettings.Grid.ScaleFactor,0,1,2,0,true),
+                new SpriteSheet(GameSettings.Squirrel_Right,Vector2.Zero,new Vector2(21,17) * GameSettings.Grid.ScaleFactor,0,1,2,0,true),
+                new SpriteSheet(GameSettings.Squirrel_Down_Right,Vector2.Zero,new Vector2(21,17) * GameSettings.Grid.ScaleFactor,0,1,2,0,true),
+                new SpriteSheet(GameSettings.Squirrel_Down,Vector2.Zero,new Vector2(21,17) * GameSettings.Grid.ScaleFactor,0,1,2,0,true),
+                new SpriteSheet(GameSettings.Squirrel_Down_Left,Vector2.Zero,new Vector2(21,17) * GameSettings.Grid.ScaleFactor,0,1,2,0,true),
+                new SpriteSheet(GameSettings.Squirrel_Left,Vector2.Zero,new Vector2(21,17) * GameSettings.Grid.ScaleFactor,0,1,2,0,true),
+                new SpriteSheet(GameSettings.Squirrel_Up_Left,Vector2.Zero,new Vector2(21,17) * GameSettings.Grid.ScaleFactor,0,1,2,0,true),
             });
         }
 

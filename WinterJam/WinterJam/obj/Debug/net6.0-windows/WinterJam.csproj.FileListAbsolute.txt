@@ -95,7 +95,6 @@ C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\De
 C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Blocks\rocks_01.xnb
 C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Blocks\rocks_02.xnb
 C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Blocks\rocks_03.xnb
-C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Blocks\stump.xnb
 C:\Users\scutt\OneDrive\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Blocks\bush_02.xnb
 C:\Users\scutt\OneDrive\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Blocks\rocks_01.xnb
 C:\Users\scutt\OneDrive\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Blocks\rocks_02.xnb
@@ -124,3 +123,5 @@ C:\Users\scutt\OneDrive\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug
 C:\Users\scutt\OneDrive\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Enemy\Up_Left.xnb
 C:\Users\scutt\OneDrive\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Enemy\Up_Right.xnb
 C:\Users\scutt\OneDrive\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Blocks\house.xnb
+C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Blocks\house.xnb
+C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Blocks\spritesheet_house.xnb

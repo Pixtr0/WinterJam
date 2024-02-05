@@ -87,7 +87,7 @@ namespace WinterJam.Players
                 movement.Normalize();
 
             TopLeftPosition += movement * Speed;
-            CurrentPosition = GameSettings.Grid.GetGridPosition(TopLeftPosition);
+            CurrentPosition = GameSettings.Grid.GetPlayerPosition(TopLeftPosition);
         }
 
         private void GridMovement()
