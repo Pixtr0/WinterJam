@@ -75,6 +75,14 @@ namespace WinterJam
             GameSettings.Grid.Update();
             UserInput.Update();
 
+
+
+
+
+
+
+
+            _player.Update(gameTime);
             base.Update(gameTime);
         }
 

@@ -41,6 +41,13 @@ namespace WinterJam
                     _previousKeyboardSate.GetPressedKeyCount() == 0;
             }
         }
+        public bool IsKeyDown
+        {
+            get
+            {
+                return _currentKeyboardSate.GetPressedKeyCount() >= 1;
+            }
+        }
         public Keys PressedKey
         {
             get
