@@ -29,8 +29,11 @@ namespace WinterJam
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            _grid = new Grid(new Vector2(_graphics.PreferredBackBufferWidth / 2, 50)
-                , Content.Load<Texture2D>("Graphics/Blocks/Tile"));
+       
+
+
+            //Default values for ControlKeys. For Testing purposes only
+            GameSettings.ControlKeys = (Keys.A, Keys.D, Keys.W, Keys.S);
             // TODO: use this.Content to load your game content here
         }
 
