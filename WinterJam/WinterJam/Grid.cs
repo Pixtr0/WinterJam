@@ -11,7 +11,7 @@ namespace Isometric_Thingy
     public class Grid
     {
         private int size = 18;
-        private float ScaleFactor {  get; set; }
+        public float ScaleFactor {  get; set; }
         public Vector2 Size { get; set; }
         private int[,] HeightOffsets { get; set; }
         private int[,] TileSelected { get; set; }
@@ -87,20 +87,18 @@ namespace Isometric_Thingy
             {
                 for (int j = 0; j < HeightOffsets.GetLength(1) -1; j++)
                 {
-                    
-                        HeightOffsets[i, j] = Random.Shared.Next(-7, 8);
-                    
+                     HeightOffsets[i, j] = Random.Shared.Next(-7, 8);
                 }
             }
         }
         public void Update()
         {
-            if (UserInput._currentKeyboardSate.IsKeyDown(Keys.Space) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Space))
-            {
-                GenerateRandomTiles();
-                SetNewPositions();
-                CreateHeightOffsets();
-            }
+            //if (UserInput._currentKeyboardSate.IsKeyDown(Keys.Space) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Space))
+            //{
+            //    GenerateRandomTiles();
+            //    SetNewPositions();
+            //    CreateHeightOffsets();
+            //}
         }
         public void Draw(SpriteBatch sb)
         {
@@ -119,14 +117,14 @@ namespace Isometric_Thingy
             for (int i = 0; i < BlockedTiles.Length; i++)
             {
                 
-                sb.Draw(Obstacles[ObstaclesIndexes[i]], new Rectangle((int)(Position.X + BlockedTiles[i].X * TileSize.X / 2 - BlockedTiles[i].Y * TileSize.X / 2), (int)(Position.Y + BlockedTiles[i].Y * (TileSize.Y / 6f) + BlockedTiles[i].X * (TileSize.Y / 6f)) - 4, (int)TileSize.X, (int)TileSize.Y), Color.White);
+                sb.Draw(Obstacles[ObstaclesIndexes[i]], new Rectangle((int)(Position.X + BlockedTiles[i].X * TileSize.X / 2 - BlockedTiles[i].Y * TileSize.X / 2), (int)(Position.Y + BlockedTiles[i].Y * (TileSize.Y / 6f) + BlockedTiles[i].X * (TileSize.Y / 6f)), (int)TileSize.X, (int)TileSize.Y), Color.White);
                 
             }
         }
         public Vector2 GetPlayerPosition(Vector2 index)
         {
             float x = (int)Position.X + index.X * TileSize.X / 2 - index.Y * TileSize.X / 2;
-            float y = (int)Position.Y + index.Y * TileSize.Y / 5f + index.X * TileSize.Y / 5f - TileSize.Y / 2 + HeightOffsets[(int)index.X, (int)index.Y];
+            float y = (int)Position.Y + index.Y * TileSize.Y / 6f + index.X * TileSize.Y / 6f + HeightOffsets[(int)index.X, (int)index.Y];
             return new Vector2(x, y);
         }
         public void SetNewPositions()
@@ -137,18 +135,32 @@ namespace Isometric_Thingy
                 do
                 {
                     newPos = new Vector2(Random.Shared.Next(0, (int)Size.X), Random.Shared.Next(0, (int)Size.Y));
-                } while (IsIn3x3Range(newPos) || BlockedTiles.Contains(newPos));
+                } while (BlockedTiles.Contains(newPos));
                 BlockedTiles[i] = newPos;
             }
         }
 
-        public Vector2 GetRandomSpawnPos()
+
+
+        public Vector2 GetRandomBorderPos()
         {
             Vector2 newPos;
             do
             {
-                newPos = new Vector2(Random.Shared.Next(0, 2) == 0 ? 0 : size - 1, Random.Shared.Next(0, 2) == 0 ? 0 : size - 1);
+                int x = Random.Shared.Next(0, 2) == 0 ? 0 : size - 1;
+                int y = Random.Shared.Next(0, size);
+                if (Random.Shared.Next(0, 2) == 0)
+                {
+                    
+                    newPos = new Vector2(x, y);
+                } else
+                {
+                    newPos = new Vector2(y, x);
+                }
+                
+                
             } while (IsIn3x3Range(newPos) || BlockedTiles.Contains(newPos));
+
             return newPos;
         }
 

@@ -14,6 +14,8 @@ namespace WinterJam
         private SpriteBatch _spriteBatch;
         private Player _player;
 
+        private List<Enemy> Enemies = new List<Enemy>();
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -64,6 +66,15 @@ namespace WinterJam
                     false
                     )
                 );
+            GameSettings.Squirrel_Up = Content.Load<Texture2D>("Graphics/Enemy/up");
+            GameSettings.Squirrel_Down = Content.Load<Texture2D>("Graphics/Enemy/down");
+            GameSettings.Squirrel_Left = Content.Load<Texture2D>("Graphics/Enemy/left");
+            GameSettings.Squirrel_Right = Content.Load<Texture2D>("Graphics/Enemy/right");
+            GameSettings.Squirrel_Up_Left = Content.Load<Texture2D>("Graphics/Enemy/up_left");
+            GameSettings.Squirrel_Up_Right = Content.Load<Texture2D>("Graphics/Enemy/up_right");
+            GameSettings.Squirrel_Down_Left = Content.Load<Texture2D>("Graphics/Enemy/down_left");
+            GameSettings.Squirrel_Down_Right = Content.Load<Texture2D>("Graphics/Enemy/down_right");
+
         }
 
         protected override void Update(GameTime gameTime)
@@ -73,6 +84,16 @@ namespace WinterJam
 
             GameSettings.Grid.Update();
             UserInput.Update();
+
+            if(UserInput._currentKeyboardSate.IsKeyDown(Keys.Enter) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Enter))
+            {
+                Enemies.Add(Enemy.Spawn());
+            }
+
+            for (int i = 0; i < Enemies.Count; i++)
+            {
+                Enemies[i].Update(gameTime);
+            }
 
             base.Update(gameTime);
         }
@@ -84,6 +105,10 @@ namespace WinterJam
             _spriteBatch.Begin();
             GameSettings.Grid.Draw(_spriteBatch);
             //_player.Draw(_spriteBatch);
+            for (int i = 0; i < Enemies.Count; i++)
+            {
+                Enemies[i].Draw(_spriteBatch);
+            }
             _spriteBatch.End();
 
             base.Draw(gameTime);

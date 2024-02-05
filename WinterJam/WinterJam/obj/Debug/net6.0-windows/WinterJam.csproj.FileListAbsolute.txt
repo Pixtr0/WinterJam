@@ -104,3 +104,12 @@ C:\Users\scutt\OneDrive\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug
 C:\Users\scutt\OneDrive\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Blocks\bush_01.xnb
 C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Blocks\stump_01.xnb
 C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Blocks\stump_02.xnb
+C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Player\Player.xnb
+C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Enemy\Down.xnb
+C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Enemy\Down_Left.xnb
+C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Enemy\Down_Right.xnb
+C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Enemy\Left.xnb
+C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Enemy\Right.xnb
+C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Enemy\Up.xnb
+C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Enemy\Up_Left.xnb
+C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Enemy\Up_Right.xnb
