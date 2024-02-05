@@ -19,11 +19,11 @@ namespace WinterJam
         {
             get
             {
-                return Visualisation.TopLeftPosition;
+                return Visualisation.CenterPosition;
             }
             set
             {
-                Visualisation.TopLeftPosition = value;
+                Visualisation.CenterPosition = value;
             }
         }
         public Vector2 Size
@@ -43,24 +43,6 @@ namespace WinterJam
                 Visualisation.Draw(spriteBatch);
             }
         }
-        public Vector2 CenterGridPosition
-        {
-            get
-            {
-               return GameSettings.grid.GetGridPosition(TopLeftPosition);
-            }
-            set
-            {
-                TopLeftPosition = new Vector2(value.X * GameSettings.Cellsize, value.Y * GameSettings.Cellsize);
-            }
-        }
-        public bool IsAtGridPosition(Vector2 position)
-        {
-            return CenterGridPosition.Equals(position);
-        }
-        public override string ToString()
-        {
-            return $"{CenterGridPosition}";
-        }
+        
     }
 }
