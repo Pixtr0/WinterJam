@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SpriteSheetClass;
 using System.Collections.Generic;
-using System.Numerics;
 using WinterJam.Players;
 
 namespace WinterJam
@@ -58,7 +57,7 @@ namespace WinterJam
             Vector2 playerStart = new Vector2(4, 4);
             _player = new Player(playerStart,
                 new SpriteSheet(
-                    Content.Load<Texture2D>("Graphics/Blocks/Rock_02"),
+                    Content.Load<Texture2D>("Graphics/Blocks/Rocks_02"),
                     GameSettings.Grid.GetPlayerPosition(playerStart),
                     new Vector2(20, 20),
                     0,
@@ -87,6 +86,7 @@ namespace WinterJam
 
             _spriteBatch.Begin();
             _grid.Draw(_spriteBatch);
+            _player.Draw(_spriteBatch);
             _spriteBatch.End();
 
             base.Draw(gameTime);

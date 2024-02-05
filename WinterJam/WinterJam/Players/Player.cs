@@ -25,6 +25,7 @@ namespace WinterJam.Players
         public Player(Vector2 currentPosition, SpriteSheet visualisation)
         {
             CurrentPosition = currentPosition;
+            Visualisation = visualisation;
         }
 
         public override void Update(GameTime gameTime)
@@ -38,6 +39,7 @@ namespace WinterJam.Players
         {
             if (UserInput.IsKeyPressed)
             {
+                //cardinal directions
                 if (UserInput.PressedKey == GameSettings.ControlKeys.left)
                     CurrentPosition += new Vector2(-1, 0);
                 if (UserInput.PressedKey == GameSettings.ControlKeys.right)
@@ -47,7 +49,7 @@ namespace WinterJam.Players
                 if (UserInput.PressedKey == GameSettings.ControlKeys.down)
                     CurrentPosition += new Vector2(0, 1);
 
-
+                //diagonal direction
                 if (UserInput.PressedKey == GameSettings.ControlKeys.left
                     && UserInput.PressedKey == GameSettings.ControlKeys.up)
                     CurrentPosition += new Vector2(-1, -1);
@@ -65,6 +67,8 @@ namespace WinterJam.Players
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            spriteBatch.Draw(Visualisation.Texture, Visualisation.CenterPosition,
+                Visualisation.SourceRectangle, Color.White);
             base.Draw(spriteBatch);
         }
     }
