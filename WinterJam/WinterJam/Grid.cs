@@ -42,9 +42,30 @@ namespace Isometric_Thingy
                     TileSelected[i, j] = Random.Shared.Next(0, Tiles.Count);
                 }
             }
+
+            int bush = 0;
+            int rock = 2;
             for (int i = 0; i < ObstaclesIndexes.Length; i++)
             {
-                ObstaclesIndexes[i] = Random.Shared.Next(0, ObstaclesIndexes.Length);
+                int value = Random.Shared.Next(0,3);
+                if(value == 0)
+                {
+                    ObstaclesIndexes[i] = 5;
+                } else if(value == 1)
+                {
+                    ObstaclesIndexes[i] = rock;
+                    rock++;
+                    if (rock > 4)
+                        rock = 2;
+                }
+                else
+                {
+                    ObstaclesIndexes[i] = bush;
+                    bush++;
+                    if (bush > 1)
+                        bush = 0;
+                }
+                
             }
         }
 
