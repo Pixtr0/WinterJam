@@ -32,12 +32,39 @@ namespace WinterJam.Players
         {
             //Receives the next grid position based on user input
             UserInput.Update();
+            UpdateInventory();
             UpdatePlayerPosition();
             base.Update(gameTime);
         }
-        private void UpdatePlayerPosition()
+
+        private void UpdateInventory()
         {
 
+        }
+
+        private void UpdatePlayerPosition()
+        {
+            //GridMovement(); // lags
+            Vector2 movement = Vector2.Zero;
+
+            if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.left))
+                movement += new Vector2(-1, 0);
+            if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.right))
+                movement += new Vector2(1, 0);
+            if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.up))
+                movement += new Vector2(0, -1);
+            if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.down))
+                movement += new Vector2(0, 1);
+            
+            if (movement != Vector2.Zero)
+                movement.Normalize();
+
+            TopLeftPosition += movement * Speed;
+            CurrentPosition = GameSettings.Grid.GetGridPosition(TopLeftPosition);
+        }
+
+        private void GridMovement()
+        {
             if (TopLeftPosition != NextTopLeftPosition && NextTopLeftPosition != Vector2.Zero)
             {
                 Vector2 target = NextTopLeftPosition - TopLeftPosition;
@@ -60,7 +87,6 @@ namespace WinterJam.Players
                     //cardinal directions
                     if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.left))
                     {
-
                         NextPosition = CurrentPosition + new Vector2(-1, 1);
                     }
                     if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.right))
@@ -76,22 +102,39 @@ namespace WinterJam.Players
                         NextPosition = CurrentPosition + new Vector2(1, 1);
                     }
 
+                    //Diagonal Directions
+                    if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.right) &&
+                        UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.up))
+                    {
+                        NextPosition = CurrentPosition + new Vector2(0, -1);
+                    }
+                    if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.left) &&
+                        UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.down))
+                    {
+                        NextPosition = CurrentPosition + new Vector2(0, 1);
+                    }
+                    if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.down)
+                        && UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.right))
+                    {
+                        NextPosition = CurrentPosition + new Vector2(1, 0);
+                    }
+                    if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.up)
+                        && UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.left))
+                    {
+                        NextPosition = CurrentPosition + new Vector2(-1, 0);
+                    }
+
                     float clampedX = MathHelper.Clamp(NextPosition.X, 0, GameSettings.Grid.Size.X - 1);
                     float clampedY = MathHelper.Clamp(NextPosition.Y, 0, GameSettings.Grid.Size.Y - 1);
-                    
+
                     NextPosition = new Vector2(clampedX, clampedY);
 
                     NextTopLeftPosition = GameSettings.Grid.GetPlayerPosition(NextPosition);
+                }
+
             }
-   
-            }
-            
         }
 
-        private void MovePlayer()
-        {
-            
-        }
 
         public override void Draw(SpriteBatch spriteBatch)
         {

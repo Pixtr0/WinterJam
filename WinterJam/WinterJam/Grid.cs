@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using WinterJam;
 
 namespace Isometric_Thingy
@@ -173,6 +174,28 @@ namespace Isometric_Thingy
             }
             return false;
         }
-        
+
+        //broken
+        public Vector2 GetGridPosition(Vector2 PositionVector)
+        {
+            int offset = (int) ((GameSettings.ScreenSize.X) / 2 * TileSize.X - Size.X / 2); // I don't know what this does
+
+            Vector2 gridPosition = new Vector2((int)(PositionVector.X + Size.Y / 2) / (int)Size.X - 5,
+                    (int)(PositionVector.Y + Size.Y / 2) / (int)Size.Y); // I don't know how this should work
+
+            //I don't know why I need this
+            if (PositionVector.X < offset)
+            {
+                gridPosition.X--;
+            }
+            if (PositionVector.Y < 0)
+            {
+                gridPosition.Y--;
+            }
+
+            return gridPosition;
+        }
+
+
     }
 }
