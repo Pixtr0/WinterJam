@@ -1,17 +1,19 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using WinterJam;
 
 namespace Isometric_Thingy
 {
     public class Grid
     {
-
-        private Vector2 Size { get; set; } = Vector2.One * 15;
-        private int[,] HeightOffsets { get; set; } = new int[15, 15];
-        private int[,] TileSelected { get; set; } = new int[15, 15];
+        private int size = 15;
+        public Vector2 Size { get; set; }
+        private int[,] HeightOffsets { get; set; }
+        private int[,] TileSelected { get; set; }
         private Vector2 Position { get; set; }
         private List<Texture2D> Tiles { get; set; }
         
@@ -19,21 +21,27 @@ namespace Isometric_Thingy
         public Vector2 StartTilePos { get; set; }
         public Vector2 EndTilePos { get; set; }
 
-        public Vector2[] BlockedTiles { get; set; } = new Vector2[6];
-        public int[] ObstaclesIndexes { get; set; } = new int[6];
+        public Vector2[] BlockedTiles { get; set; } = new Vector2[8];
+        public int[] ObstaclesIndexes { get; set; } = new int[8];
         private List<Texture2D> Obstacles { get; set; }
         public Grid(Vector2 position, List<Texture2D> tiles, List<Texture2D> obstacles)
         {
             Tiles = tiles;
             Obstacles = obstacles;
+            
+            TileSize.Normalize();
+            Size = Vector2.One * 15;
+            HeightOffsets = new int[size, size];
+            TileSelected = new int[size, size];
+            TileSize *= GameSettings.ScreenSize.Y / (13 * Size.Length());
+            Position = position - new Vector2(TileSize.X / 2f, TileSize.Y/6f) ;
+
             GenerateRandomTiles();
             CreateHeightOffsets();
             SetNewPositions();
-            TileSize =  TileSize  * 5;
-            Position = position - new Vector2(TileSize.X / 2f, TileSize.Y/6f) ;
         }
 
-        private void GenerateRandomTiles()
+        public void GenerateRandomTiles()
         {
             for (int i = 0; i < TileSelected.GetLength(0); i++)
             {
@@ -82,7 +90,15 @@ namespace Isometric_Thingy
                 }
             }
         }
-
+        public void Update()
+        {
+            if (UserInput._currentKeyboardSate.IsKeyDown(Keys.Space) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Space))
+            {
+                GenerateRandomTiles();
+                SetNewPositions();
+                CreateHeightOffsets();
+            }
+        }
         public void Draw(SpriteBatch sb)
         {
 

@@ -11,6 +11,7 @@ namespace WinterJam
 {
     public static class GameSettings
     {
+        public static Vector2 ScreenSize = new Vector2(1920, 1080);
         public static int Cellsize { get; set; } = 60;
         public static int Columns { get; set; } = 11;
         public static int Rows { get; set; } = 14;

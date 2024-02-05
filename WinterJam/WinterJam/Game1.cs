@@ -52,21 +52,19 @@ namespace WinterJam
                 Content.Load<Texture2D>("Graphics/Blocks/rocks_03"),
                 Content.Load<Texture2D>("Graphics/Blocks/stump"),
             });
-
-            GameSettings.Grid = _grid;
             Vector2 playerStart = new Vector2(4, 4);
-            _player = new Player(playerStart,
-                new SpriteSheet(
-                    Content.Load<Texture2D>("Graphics/Blocks/rocks_02"),
-                    GameSettings.Grid.GetPlayerPosition(playerStart),
-                    new Vector2(20, 20),
-                    0,
-                    1,
-                    1,
-                    1,
-                    false
-                    )
-                ); 
+            //_player = new Player(playerStart,
+            //    new SpriteSheet(
+            //        Content.Load<Texture2D>("Graphics/Blocks/rocks_02"),
+            //        GameSettings.Grid.GetPlayerPosition(playerStart),
+            //        new Vector2(20, 20),
+            //        0,
+            //        1,
+            //        1,
+            //        1,
+            //        false
+            //        )
+            //    ); 
             // TODO: use this.Content to load your game content here
         }
 
@@ -75,7 +73,8 @@ namespace WinterJam
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            _grid.Update();
+            UserInput.Update();
 
             base.Update(gameTime);
         }
@@ -86,7 +85,7 @@ namespace WinterJam
 
             _spriteBatch.Begin();
             _grid.Draw(_spriteBatch);
-            _player.Draw(_spriteBatch);
+            //_player.Draw(_spriteBatch);
             _spriteBatch.End();
 
             base.Draw(gameTime);
