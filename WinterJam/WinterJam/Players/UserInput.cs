@@ -13,11 +13,11 @@ namespace WinterJam
         public static MouseState _currentMouseState, _previousMouseState;
         public static KeyboardState _currentKeyboardSate, _previousKeyboardSate;
 
-        public void Update()
+        public static void Update()
         {
             UpdateStates();
         }
-        private void UpdateStates()
+        private static void UpdateStates()
         {
             _previousKeyboardSate = _currentKeyboardSate;
             _previousMouseState = _currentMouseState;
