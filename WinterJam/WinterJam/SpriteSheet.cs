@@ -6,13 +6,13 @@ namespace SpriteSheetClass
     public class SpriteSheet
     {
         public Texture2D Texture { get; set; }
-        public Vector2 TopLeftPosition { get; set; }
+        public Vector2 CenterPosition { get; set; }
         public Vector2 Size { get; set; }
         public float Rotation { get; set; }
         public Color Color { get; set; } = Color.White;
         public virtual Rectangle DestinationRectangle { get
             {
-                return new Rectangle(TopLeftPosition.ToPoint(), Size.ToPoint());
+                return new Rectangle(CenterPosition.ToPoint(), Size.ToPoint());
             } 
         }
         public virtual Rectangle Hitbox { get
@@ -38,7 +38,7 @@ namespace SpriteSheetClass
         public SpriteSheet(Texture2D texture, Vector2 topLeftPos, Vector2 size, float rotation, int rows, int cols, int currentSpriteIndex, bool loop)
         {
             Texture = texture;
-            TopLeftPosition = topLeftPos;
+            CenterPosition = topLeftPos + Size / 2;
             Size = size;
             Rotation = rotation;
             Rows = rows;

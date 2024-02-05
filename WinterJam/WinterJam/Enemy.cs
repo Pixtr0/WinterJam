@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SpriteSheetClass;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,9 @@ namespace WinterJam
         private Vector2 SpawnPosition {  get; set; }
         private Vector2 TargetLocation { get; set; }
 
-        private 
+        private SpriteSheet  CurrentSpriteSheet { get; set; }
+        public static List<SpriteSheet> Animations { get; set; } = new List<SpriteSheet>();
+
 
         public Enemy(Vector2 Spawn)
         {
