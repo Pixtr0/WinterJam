@@ -20,7 +20,6 @@ namespace WinterJam.Players
         public Vector2 CurrentPosition { get; set; }
         public Vector2 NextPosition { get; set; } = Vector2.Zero;
         public float Speed { get; set; } = 4f;
-        public Vector2 CurrentTopLeftPosition { get; set; }
         public Vector2 NextTopLeftPosition { get; set; } 
         public Player(Vector2 currentPosition, SpriteSheet visualisation)
         {
@@ -71,7 +70,7 @@ namespace WinterJam.Players
             //FreeMovement();
         }
 
-        private void FreeMovement()
+        private void FreeMovement()//currently clipping allowed, GetGridPosition Logic broken
         {
             Vector2 movement = Vector2.Zero;
 
