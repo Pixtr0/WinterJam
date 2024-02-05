@@ -19,7 +19,6 @@ namespace WinterJam
         public static Grid Grid { get; set; }
         public static (Keys left, Keys right, Keys up, Keys down) ControlKeys { get; set; } = (Keys.A, Keys.D, Keys.W, Keys.S);    
 
-        public static House House { get; set; }
 
         public static Texture2D Squirrel_Up { get; set; }
         public static Texture2D Squirrel_Down { get; set; }

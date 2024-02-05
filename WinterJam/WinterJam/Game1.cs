@@ -56,9 +56,9 @@ namespace WinterJam
             Vector2 playerStart = new Vector2(4, 4);
             _player = new Player(playerStart,
                 new SpriteSheet(
-                    Content.Load<Texture2D>("Graphics/Blocks/rocks_02"),
+                    Content.Load<Texture2D>("Graphics/Player/Player"),
                     GameSettings.Grid.GetPlayerPosition(playerStart),
-                    new Vector2(20, 20),
+                    new Vector2(80, 80),
                     0,
                     1,
                     1,
@@ -84,6 +84,7 @@ namespace WinterJam
 
             GameSettings.Grid.Update();
             UserInput.Update();
+            _player.Update(gameTime);
 
             if(UserInput._currentKeyboardSate.IsKeyDown(Keys.Enter) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Enter))
             {
@@ -104,7 +105,7 @@ namespace WinterJam
 
             _spriteBatch.Begin();
             GameSettings.Grid.Draw(_spriteBatch);
-            //_player.Draw(_spriteBatch);
+            _player.Draw(_spriteBatch);
             for (int i = 0; i < Enemies.Count; i++)
             {
                 Enemies[i].Draw(_spriteBatch);

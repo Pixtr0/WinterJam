@@ -5,6 +5,7 @@ using SharpDX.Direct3D11;
 using SpriteSheetClass;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -32,19 +33,46 @@ namespace WinterJam.Players
         {
             //Receives the next grid position based on user input
             UserInput.Update();
-            UpdateInventory();
+
+            AddRemoveItem();
             UpdatePlayerPosition();
             base.Update(gameTime);
         }
 
-        private void UpdateInventory()
+        private void AddRemoveItem()
         {
+                if(UserInput._currentKeyboardSate.IsKeyDown(Keys.E) && UserInput._previousKeyboardSate.IsKeyUp(Keys.E))
+                {
+                Item shovel = new Item(20)
+                {
+                    Visualisation = new SpriteSheet(
+                        GameSettings.Squirrel_Down,
+                        TopLeftPosition,
+                        Size / 2,
+                        0,
+                        1,
+                        1,
+                        1,
+                        false
+                    )
+                };
+                    Inventory.Add(shovel);
+                }
 
+                if (UserInput._currentKeyboardSate.IsKeyDown(Keys.F) && UserInput._previousKeyboardSate.IsKeyUp(Keys.F))
+                {
+                    Inventory.RemoveAt(Inventory.Count);
+                }
         }
 
         private void UpdatePlayerPosition()
         {
-            //GridMovement(); // lags
+            GridMovement(); // lags
+            //FreeMovement();
+        }
+
+        private void FreeMovement()
+        {
             Vector2 movement = Vector2.Zero;
 
             if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.left))
@@ -55,7 +83,7 @@ namespace WinterJam.Players
                 movement += new Vector2(0, -1);
             if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.down))
                 movement += new Vector2(0, 1);
-            
+
             if (movement != Vector2.Zero)
                 movement.Normalize();
 
@@ -83,7 +111,7 @@ namespace WinterJam.Players
                 {
                     if (NextPosition != Vector2.Zero)
                         CurrentPosition = NextPosition;
-
+                    
                     //cardinal directions
                     if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.left))
                     {
@@ -128,6 +156,15 @@ namespace WinterJam.Players
                     float clampedY = MathHelper.Clamp(NextPosition.Y, 0, GameSettings.Grid.Size.Y - 1);
 
                     NextPosition = new Vector2(clampedX, clampedY);
+
+                    for (int i = 0; i < GameSettings.Grid.ObstaclesIndexes.Count(); i++)
+                    {
+                        if (GameSettings.Grid.BlockedTiles.Contains(NextPosition))
+                        {
+                            NextPosition = CurrentPosition;
+                            return;
+                        }
+                    }
 
                     NextTopLeftPosition = GameSettings.Grid.GetPlayerPosition(NextPosition);
                 }
