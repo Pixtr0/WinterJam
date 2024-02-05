@@ -32,8 +32,6 @@ namespace WinterJam
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-       
-
 
             _grid = new Grid(new Vector2(_graphics.PreferredBackBufferWidth / 2, 50)
                 ,new List<Texture2D>() { 

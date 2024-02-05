@@ -48,26 +48,8 @@ namespace WinterJam
                 return _currentKeyboardSate.GetPressedKeys()[0];
             }
         }
-        public Vector2 GetNextPosition(Vector2 currentPosition)
-        {
-            Vector2 nextPosition = currentPosition;
-            if (IsKeyPressed)
-            {
-                if (PressedKey == Keys.W || PressedKey == Keys.Up)
-                    nextPosition -= new Vector2(0, 1);
-                if (PressedKey == Keys.A || PressedKey == Keys.Left)
-                    nextPosition -= new Vector2(1, 0);
-                if (PressedKey == Keys.S || PressedKey == Keys.Down)
-                    nextPosition += new Vector2(0, 1);
-                if (PressedKey == Keys.D || PressedKey == Keys.Right)
-                    nextPosition += new Vector2(1, 0);
-            }
-            if (nextPosition.X < 0 || nextPosition.Y < 0 || nextPosition.Y > Grid.Rows - 1 || nextPosition.X > Grid.Columns - 1)
-            {
-                return currentPosition;
-            }
-            else { return nextPosition; }
+        
         }
     }
-}
+
 
