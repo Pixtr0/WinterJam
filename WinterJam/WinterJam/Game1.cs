@@ -19,7 +19,7 @@ namespace WinterJam
             IsMouseVisible = true;
             _graphics.PreferredBackBufferWidth = 1920;
             _graphics.PreferredBackBufferHeight = 1080;
-            _graphics.IsFullScreen = true;
+            _graphics.IsFullScreen = false;
         }
 
         protected override void Initialize()
@@ -39,6 +39,9 @@ namespace WinterJam
                     Content.Load<Texture2D>("Graphics/Blocks/grass_02"),
                     Content.Load<Texture2D>("Graphics/Blocks/grass_03"),
                     Content.Load<Texture2D>("Graphics/Blocks/grass_04"),
+                },new List<Texture2D>()
+                {
+                    Content.Load<Texture2D>("Graphics/Blocks/bsu"),
                 });
 
             // TODO: use this.Content to load your game content here
