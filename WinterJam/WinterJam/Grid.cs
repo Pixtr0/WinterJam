@@ -20,13 +20,10 @@ namespace Isometric_Thingy
         public Vector2 EndTilePos { get; set; }
 
         public Vector2[] BlockedTiles { get; set; } = new Vector2[4];
-        public Grid(Vector2 position, Texture2D tile, Texture2D startTile, Texture2D endTilem, Texture2D blockedTile)
+        public Grid(Vector2 position, Texture2D tile)
         {
             Position = position;
             Tile = tile;
-            StartTile = startTile;
-            EndTile = endTilem;
-            BlockedTile = blockedTile;
             CreateHeightOffsetsWithNoise();
             SetNewPositions();
             
@@ -39,7 +36,7 @@ namespace Isometric_Thingy
             {
                 for (int j = 0; j < HeightOffsets.GetLength(1); j++)
                 {
-                    HeightOffsets[i, j] = 
+                    HeightOffsets[i, j] = Random.Shared.Next(-2, 3); 
                 }
             }
         }
@@ -52,25 +49,25 @@ namespace Isometric_Thingy
                 for (int y = 0; y < Size.Y; y++)
                 {
                     Texture2D tileTexture = Tile;
-                    if (StartTilePos.X == x && StartTilePos.Y == y)
-                        tileTexture = StartTile;
-                    if (EndTilePos.X == x && EndTilePos.Y == y)
-                        tileTexture = EndTile;
-                    for (int i = 0; i < BlockedTiles.Length; i++)
-                    {
-                        if (BlockedTiles[i].X == x && BlockedTiles[i].Y == y)
-                        {
-                            tileTexture = BlockedTile;
-                        }
-                    }
-                    sb.Draw(tileTexture, new Rectangle((int)(Position.X + x * TileSize / 2 - y * TileSize /2) , (int)(Position.Y + y * (TileSize / 3.8f) + x * (TileSize / 3.8f)), TileSize, TileSize), Color.White);
+                    //if (StartTilePos.X == x && StartTilePos.Y == y)
+                    //    tileTexture = StartTile;
+                    //if (EndTilePos.X == x && EndTilePos.Y == y)
+                    //    tileTexture = EndTile;
+                    //for (int i = 0; i < BlockedTiles.Length; i++)
+                    //{
+                    //    if (BlockedTiles[i].X == x && BlockedTiles[i].Y == y)
+                    //    {
+                    //        tileTexture = BlockedTile;
+                    //    }
+                    //}
+                    sb.Draw(tileTexture, new Rectangle((int)(Position.X + x * TileSize / 2 - y * TileSize /2) , (int)(Position.Y + y * (TileSize / 3.8f) + x * (TileSize / 3.8f)) + HeightOffsets[x,y], TileSize, TileSize), Color.White);
                 }
             }
         }
         public Vector2 GetPlayerPosition(Vector2 index)
         {
             float x = (int)Position.X + index.X * TileSize / 2 - index.Y * TileSize / 2;
-            float y = (int)Position.Y + index.Y * TileSize / 3.8f + index.X * TileSize / 3.8f - TileSize / 2;
+            float y = (int)Position.Y + index.Y * TileSize / 3.8f + index.X * TileSize / 3.8f - TileSize / 2 + HeightOffsets[(int)index.X, (int)index.Y];
             return new Vector2(x, y);
         }
         public void SetNewPositions()

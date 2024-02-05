@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Isometric_Thingy;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -8,6 +9,8 @@ namespace WinterJam
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+
+        private Grid _grid;
 
         public Game1()
         {
@@ -26,7 +29,8 @@ namespace WinterJam
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            _grid = new Grid(new Vector2(_graphics.PreferredBackBufferWidth / 2, 50)
+                , Content.Load<Texture2D>("Graphics/Blocks/Tile"));
             // TODO: use this.Content to load your game content here
         }
 
@@ -44,7 +48,9 @@ namespace WinterJam
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            _spriteBatch.Begin();
+            _grid.Draw(_spriteBatch);
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }
