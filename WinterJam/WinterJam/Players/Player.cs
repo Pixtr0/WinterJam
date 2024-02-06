@@ -81,16 +81,14 @@ namespace WinterJam.Players
                 HeldItem = Inventory[Inventory.Count - 1];
                 HeldItem.Visualisation.TopLeftPosition = anchorPoint + new Vector2(-HeldItem.Size.X/2, -Size.Y - 10 - HeldItem.Size.Y - ItemOffset * 4);
                 HeldItem.Update();
-
-                Debug.WriteLine(HeldItem.Visualisation.TopLeftPosition);
             }
         }
         private void AddRemoveItem()
         {
-            if(UserInput._currentKeyboardSate.IsKeyDown(Keys.E) && UserInput._previousKeyboardSate.IsKeyUp(Keys.E))
+            if(UserInput._currentKeyboardSate.IsKeyDown(Keys.E))
             {
-                Item shovel = new Item(20, GameSettings.ScreenTexture, this);
-                Inventory.Add(shovel);
+                Item item = new Item(20, GameSettings.ScreenTexture, new Vector2(40,40) ,this);
+                Inventory.Add(item);
             }
 
             if (UserInput._currentKeyboardSate.IsKeyDown(Keys.F) && UserInput._previousKeyboardSate.IsKeyUp(Keys.F))
@@ -163,8 +161,9 @@ namespace WinterJam.Players
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-            
-            HeldItem.Draw(spriteBatch);
+
+            if (HeldItem != null)
+                HeldItem.Draw(spriteBatch);
                 
         }
     }
