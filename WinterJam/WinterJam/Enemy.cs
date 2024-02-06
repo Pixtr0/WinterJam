@@ -20,7 +20,7 @@ namespace WinterJam
        
         public static List<SpriteSheet> Animations { get; set; } = new List<SpriteSheet>();
 
-        private const float _delay = 0.05f; // seconds
+        private const float _delay = 0.07f; // seconds
         private float _remainingDelay = _delay;
 
         public Enemy(List<SpriteSheet> animations)
@@ -112,7 +112,7 @@ namespace WinterJam
                     }
                     NextPosition = getNextPosition();
                 }
-                TopLeftPosition = GameSettings.Grid.GetPlayerPosition(CurrentPosition);
+                TopLeftPosition = GameSettings.Grid.GetPlayerPosition(CurrentPosition) + new Vector2(0,6 * GameSettings.Grid.ScaleFactor);
                 //if (CurrentPosition != TargetLocation)
                 //{
                 //    NextPosition = getNextPosition();

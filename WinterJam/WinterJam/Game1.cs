@@ -158,6 +158,10 @@ namespace WinterJam
             {
                 _enemies.Add(Enemy.Spawn());
             }
+            if(UserInput._currentKeyboardSate.IsKeyDown(Keys.Space) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Space))
+            {
+                GenerateRandomTiles();
+            }
 
             foreach (var gameObject in _allObjects)
             {
@@ -165,6 +169,11 @@ namespace WinterJam
                 {
                     Enemy enemy = gameObject as Enemy;
                     enemy.Update(gameTime);
+                }
+                if (gameObject is House)
+                {
+                    House house = gameObject as House;
+                    house.Update(gameTime);
                 }
             }
                     
@@ -231,7 +240,7 @@ namespace WinterJam
             do
             {
                 newPos = new Vector2(Random.Shared.Next(0, (int)GameSettings.Grid.Size.X), Random.Shared.Next(0, (int)GameSettings.Grid.Size.Y));
-            } while (ExistsInObjects(newPos) || House.HouseTiles.Contains(newPos));
+            } while (ExistsInObjects(newPos) || House.HouseTiles.Contains(newPos) || House.SurroundingTiles.Contains(newPos));
             return newPos;
             
         }
