@@ -24,6 +24,7 @@ namespace WinterJam.Players
         public Vector2 NextPosition { get; set; } = Vector2.Zero;
         public float Speed { get; set; } = 4f;
         public Vector2 NextTopLeftPosition { get; set; }
+        public static List<SpriteSheet> Animations {  get; set; } = new List<SpriteSheet>();
 
         private const float _delay = 0.2f; // seconds
         private float _remainingDelay = _delay;
@@ -34,8 +35,6 @@ namespace WinterJam.Players
             CurrentPosition = currentPosition;
             Visualisation = visualisation;
 
-            Item shovel = new Item(20, GameSettings.ScreenTexture, this);
-            Inventory.Add(shovel);
         }
         public override void Update(GameTime gameTime)
         {
@@ -157,6 +156,7 @@ namespace WinterJam.Players
             base.Draw(spriteBatch);
 
             HeldItem.Draw(spriteBatch);
+                
         }
     }
 }

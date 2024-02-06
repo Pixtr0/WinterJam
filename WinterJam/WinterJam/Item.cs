@@ -21,7 +21,6 @@ namespace WinterJam
             MaxDurability = durability;
 
 
-            Visualisation = new SpriteSheet(texture, Vector2.Zero, parent.Size / 2, 0, 1, 1, 0, false);
         }
         public virtual void Update()
         {
