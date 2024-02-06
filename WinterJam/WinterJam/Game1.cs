@@ -57,19 +57,7 @@ namespace WinterJam
                 Content.Load<Texture2D>("Graphics/Blocks/grass_03"),
                 Content.Load<Texture2D>("Graphics/Blocks/grass_04"),
             });
-            Vector2 playerStart = new Vector2(4, 4);
-            _player = new Player(playerStart,
-            new SpriteSheet(
-                Content.Load<Texture2D>("Graphics/Player/Player"),
-                GameSettings.Grid.GetPlayerPosition(playerStart),
-                new Vector2(80, 80),
-                0,
-                1,
-                1,
-                1,
-                false
-                )
-            );
+            
             GameSettings.Font = Content.Load<SpriteFont>("Graphics/Fonts/Font");
             _obstacleTextures = new List<Texture2D>()
             {
@@ -82,10 +70,12 @@ namespace WinterJam
                 Content.Load<Texture2D>("Graphics/Blocks/stump_02"),
                 Content.Load<Texture2D>("Graphics/Blocks/log")
             };
-            Player.Animations.Add(new SpriteSheet(Content.Load<Texture2D>("Graphics/Player/up"),Vector2.Zero,new Vector2(36,32) * GameSettings.Grid.ScaleFactor,0,1,4,0,false));
-            Player.Animations.Add(new SpriteSheet(Content.Load<Texture2D>("Graphics/Player/right"), Vector2.Zero, new Vector2(36, 32) * GameSettings.Grid.ScaleFactor, 0, 1, 4, 0, false));
-            Player.Animations.Add(new SpriteSheet(Content.Load<Texture2D>("Graphics/Player/down"), Vector2.Zero, new Vector2(36, 32) * GameSettings.Grid.ScaleFactor, 0, 1, 4, 0, false));
-            Player.Animations.Add(new SpriteSheet(Content.Load<Texture2D>("Graphics/Player/left"), Vector2.Zero, new Vector2(36, 32) * GameSettings.Grid.ScaleFactor, 0, 1, 4, 0, false));
+            Player.Animations.Add(new SpriteSheet(Content.Load<Texture2D>("Graphics/Player/Up"),Vector2.Zero,new Vector2(36,32) * GameSettings.Grid.ScaleFactor,0,1,4,0, true));
+            Player.Animations.Add(new SpriteSheet(Content.Load<Texture2D>("Graphics/Player/Right"), Vector2.Zero, new Vector2(36, 32) * GameSettings.Grid.ScaleFactor, 0, 1, 4, 0, true));
+            Player.Animations.Add(new SpriteSheet(Content.Load<Texture2D>("Graphics/Player/Down"), Vector2.Zero, new Vector2(36, 32) * GameSettings.Grid.ScaleFactor, 0, 1, 4, 0, true));
+            Player.Animations.Add(new SpriteSheet(Content.Load<Texture2D>("Graphics/Player/Left"), Vector2.Zero, new Vector2(36, 32) * GameSettings.Grid.ScaleFactor, 0, 1, 4, 0, true));
+            Vector2 playerStart = new Vector2(8, 9);
+            _player = new Player(playerStart, Player.Animations[3]);
             GameSettings.Squirrel_Up = Content.Load<Texture2D>("Graphics/Enemy/up");
             GameSettings.Squirrel_Down = Content.Load<Texture2D>("Graphics/Enemy/down");
             GameSettings.Squirrel_Left = Content.Load<Texture2D>("Graphics/Enemy/left");
