@@ -177,6 +177,11 @@ namespace WinterJam
                     Player player = gameObject as Player;
                     player.Update(gameTime);
                 }
+                if (gameObject is Obstacle)
+                {
+                    Obstacle obstacle = gameObject as Obstacle;
+                    obstacle.Update(gameTime);
+                }
             }
 
             _allObjects = SortedObjects();
@@ -206,7 +211,7 @@ namespace WinterJam
             int rock = 2;
 
             Texture2D texture;
-
+            _obstacles.Clear();
             for (int i = 0; i < _amountOfObstacles; i++)
             {
                 int value = Random.Shared.Next(0, 3);
@@ -233,7 +238,7 @@ namespace WinterJam
                 }
                 _obstacles.Add(new Obstacle(texture, GetRandomPositionOnGrid()));
             }
-            //CheckForLogFormations();
+            CheckForLogFormations();
         }
 
         private void CheckForLogFormations()
@@ -243,30 +248,41 @@ namespace WinterJam
                 Vector2 topleft = _obstacles[i].indexPosition - new Vector2(1, 0);
                 Vector2 topright = _obstacles[i].indexPosition - new Vector2(0, 1);
 
-                Obstacle obstacle = ObstaclesContain(topleft);
-                if (obstacle != new Obstacle())
+                Obstacle obstacle = GetObstacleOn(topleft);
+                if (obstacle != null)
                 {
                     obstacle.IsActive = false;
                     _obstacles[i].Visualisation.Texture = _obstacleTextures[7];
                     _obstacles[i].Visualisation.IsFlipped = true;
-                } 
-                obstacle = ObstaclesContain(topright);
-                if (obstacle != new Obstacle())
+                    _obstacles[i].Size = new Vector2(48, 36) * GameSettings.Grid.ScaleFactor / 1.5f;
+                    _obstacles[i].TopLeftPosition -= new Vector2(10, 2) * GameSettings.Grid.ScaleFactor;
+                    _obstacles[i].IsLog = true;
+                }
+                obstacle = GetObstacleOn(topright);
+                if (obstacle != null)
                 {
                     obstacle.IsActive = false;
                     _obstacles[i].Visualisation.Texture = _obstacleTextures[7];
+                    _obstacles[i].Size = new Vector2(48, 36) * GameSettings.Grid.ScaleFactor / 1.5f;
+                    _obstacles[i].TopLeftPosition -= new Vector2(0, 1) * GameSettings.Grid.ScaleFactor;
+                    _obstacles[i].IsLog = true;
                 }
+                //obstacle = GetObstacleOn(topright);
+                //if (obstacle != new Obstacle())
+                //{
+                //    obstacle.IsActive = false;
+                //    _obstacles[i].Visualisation.Texture = _obstacleTextures[7];
+                //}
             }
         }
 
-        private Obstacle ObstaclesContain(Vector2 pos)
+        private Obstacle GetObstacleOn(Vector2 pos)
         {
-
             for (int i = 0; i < _obstacles.Count; i++)
             {
-                if (_obstacles[i].indexPosition == pos) { return _obstacles[i]; }
+                if (_obstacles[i].IsActive && _obstacles[i].indexPosition == pos) { return _obstacles[i]; }
             }
-            return new Obstacle();
+            return null;
         }
 
         private Vector2 GetRandomPositionOnGrid()
