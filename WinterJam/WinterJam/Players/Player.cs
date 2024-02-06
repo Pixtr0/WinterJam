@@ -27,7 +27,6 @@ namespace WinterJam.Players
         public static List<SpriteSheet> Animations { get; set; } = new List<SpriteSheet>();
 
         private const float _delay = 0.2f; // seconds
-        private float _remainingDelay = _delay;
 
         private const float _playerDelay = 0.08f; // seconds
         private float _remainingPlayerDelay = _delay;
@@ -59,28 +58,10 @@ namespace WinterJam.Players
         }
         private void UpdateItems(GameTime gameTime)
         {
-            var timer = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            _remainingDelay -= timer;
-
-            if (_remainingDelay <= 0)
-            {
-                ItemAngle++;
-
-                if (ItemAngle >= 360f)
-                    ItemAngle = 1f;
-
-                _remainingDelay = _delay;
-            }
-             
-
-
-            ItemOffset = (float) Math.Sin(ItemAngle);
-
             if (Inventory.Count > 0)
             {
                 HeldItem = Inventory[Inventory.Count - 1];
-                HeldItem.Visualisation.TopLeftPosition = anchorPoint + new Vector2(-HeldItem.Size.X/2, -Size.Y - 10 - HeldItem.Size.Y - ItemOffset * 4);
-                HeldItem.Update();
+                HeldItem.Update(gameTime, anchorPoint);
             }
         }
         private void AddRemoveItem()
