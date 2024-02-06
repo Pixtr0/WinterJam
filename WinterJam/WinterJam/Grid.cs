@@ -4,14 +4,13 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using WinterJam;
 
 namespace Isometric_Thingy
 {
     public class Grid
     {
-        private int size = 18;
+        private int size = 16;
         public float ScaleFactor {  get; set; }
         public Vector2 Size { get; set; }
         private int[,] HeightOffsets { get; set; }
@@ -20,25 +19,23 @@ namespace Isometric_Thingy
         private List<Texture2D> Tiles { get; set; }
         
         private Vector2 TileSize { get; set; } = new Vector2(24, 36);
-        public Vector2[] BlockedTiles { get; set; } = new Vector2[10];
-        public int[] ObstaclesIndexes { get; set; } = new int[10];
-        private List<Texture2D> Obstacles { get; set; }
-        public Grid(Vector2 position, List<Texture2D> tiles, List<Texture2D> obstacles)
+        public Vector2[] BlockedTiles { get; set; } = new Vector2[8];
+        public int[] ObstaclesIndexes { get; set; } = new int[8];
+        
+        public Grid(Vector2 position, List<Texture2D> tiles)
         {
             Tiles = tiles;
-            Obstacles = obstacles;
-            
             TileSize.Normalize();
             Size = Vector2.One * size;
             HeightOffsets = new int[size, size];
             TileSelected = new int[size, size];
             ScaleFactor = GameSettings.ScreenSize.Y / (10 * Size.Length());
+            //ScaleFactor = 8;
             TileSize *= ScaleFactor;
             Position = position - new Vector2(TileSize.X / 2f, TileSize.Y/6f - 40);
 
             GenerateRandomTiles();
             CreateHeightOffsets();
-            SetNewPositions();
         }
 
         public void GenerateRandomTiles()
@@ -50,40 +47,10 @@ namespace Isometric_Thingy
                     TileSelected[i, j] = Random.Shared.Next(0, Tiles.Count);
                 }
             }
-            int log = 5;
-            int bush = 0;
-            int rock = 2;
-            for (int i = 0; i < ObstaclesIndexes.Length; i++)
-            {
-                int value = Random.Shared.Next(0,3);
-                if(value == 0)
-                {
-                    ObstaclesIndexes[i] = log;
-                    log++;
-                    if (log > 6)
-                        log = 5;
-                } 
-                else if(value == 1)
-                {
-                    ObstaclesIndexes[i] = rock;
-                    rock++;
-                    if (rock > 4)
-                        rock = 2;
-                }
-                else
-                {
-                    ObstaclesIndexes[i] = bush;
-                    bush++;
-                    if (bush > 1)
-                        bush = 0;
-                }
-                
-            }
         }
 
         private void CreateHeightOffsets()
         {
-            float scale = 0.1f;
             for (int i = 0; i < HeightOffsets.GetLength(0) -1; i++)
             {
                 for (int j = 0; j < HeightOffsets.GetLength(1) -1; j++)
@@ -94,14 +61,13 @@ namespace Isometric_Thingy
         }
         public void Update()
         {
-            //if (UserInput._currentKeyboardSate.IsKeyDown(Keys.Space) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Space))
-            //{
-            //    GenerateRandomTiles();
-            //    SetNewPositions();
-            //    CreateHeightOffsets();
-            //}
+            if (UserInput._currentKeyboardSate.IsKeyDown(Keys.Space) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Space))
+            {
+                GenerateRandomTiles();
+                CreateHeightOffsets();
+            }
         }
-        public void Draw(SpriteBatch sb)
+        public void DrawGrass(SpriteBatch sb)
         {
 
             for (int x = 0; x < Size.X; x++)
@@ -114,13 +80,6 @@ namespace Isometric_Thingy
                     
                 }
             }
-            
-            for (int i = 0; i < BlockedTiles.Length; i++)
-            {
-                
-                sb.Draw(Obstacles[ObstaclesIndexes[i]], new Rectangle((int)(Position.X + BlockedTiles[i].X * TileSize.X / 2 - BlockedTiles[i].Y * TileSize.X / 2), (int)(Position.Y + BlockedTiles[i].Y * (TileSize.Y / 6f) + BlockedTiles[i].X * (TileSize.Y / 6f)), (int)TileSize.X, (int)TileSize.Y), Color.White);
-                
-            }
         }
         public Vector2 GetPlayerPosition(Vector2 index)
         {
@@ -128,21 +87,6 @@ namespace Isometric_Thingy
             float y = (int)Position.Y + index.Y * TileSize.Y / 6f + index.X * TileSize.Y / 6f + HeightOffsets[(int)index.X, (int)index.Y];
             return new Vector2(x, y);
         }
-        public void SetNewPositions()
-        {
-            for (int i = 0; i < BlockedTiles.Length; i++)
-            {
-                Vector2 newPos;
-                do
-                {
-                    newPos = new Vector2(Random.Shared.Next(0, (int)Size.X), Random.Shared.Next(0, (int)Size.Y));
-                } while (BlockedTiles.Contains(newPos));
-                BlockedTiles[i] = newPos;
-            }
-        }
-
-
-
         public Vector2 GetRandomBorderPos()
         {
             Vector2 newPos;
@@ -186,28 +130,6 @@ namespace Isometric_Thingy
             }
             return false;
         }
-
-        //broken
-        public Vector2 GetGridPosition(Vector2 PositionVector)
-        {
-            int offset = (int) ((GameSettings.ScreenSize.X) / 2 * TileSize.X - Size.X / 2); // I don't know what this does
-
-            Vector2 gridPosition = new Vector2((int)(PositionVector.X + Size.Y / 2) / (int)Size.X - 5,
-                    (int)(PositionVector.Y + Size.Y / 2) / (int)Size.Y); // I don't know how this should work
-
-            //I don't know why I need this
-            if (PositionVector.X < offset)
-            {
-                gridPosition.X--;
-            }
-            if (PositionVector.Y < 0)
-            {
-                gridPosition.Y--;
-            }
-
-            return gridPosition;
-        }
-
-
+        
     }
 }

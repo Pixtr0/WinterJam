@@ -15,15 +15,20 @@ namespace WinterJam
     {
         public SpriteSheet Visualisation { get; set; }
         public bool IsActive { get; set; } = true;
+        public virtual Vector2 anchorPoint { get
+            {
+                return TopLeftPosition + new Vector2(Size.X / 2, Size.Y);            
+            }
+        }
         public Vector2 TopLeftPosition
         {
             get
             {
-                return Visualisation.CenterPosition;
+                return Visualisation.TopLeftPosition;
             }
             set
             {
-                Visualisation.CenterPosition = value;
+                Visualisation.TopLeftPosition = value;
             }
         }
         public Vector2 Size

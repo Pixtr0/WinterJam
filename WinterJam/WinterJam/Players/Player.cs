@@ -28,13 +28,13 @@ namespace WinterJam.Players
             Visualisation = visualisation;
         }
 
-        public override void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, List<Obstacle> obstacles)
         {
             //Receives the next grid position based on user input
             UserInput.Update();
 
             AddRemoveItem();
-            UpdatePlayerPosition();
+            UpdatePlayerPosition(obstacles);
             base.Update(gameTime);
         }
 
@@ -64,9 +64,9 @@ namespace WinterJam.Players
                 }
         }
 
-        private void UpdatePlayerPosition()
+        private void UpdatePlayerPosition(List<Obstacle> obstacles)
         {
-            GridMovement(); // lags
+            GridMovement(obstacles); // lags
             //FreeMovement();
         }
 
@@ -87,10 +87,10 @@ namespace WinterJam.Players
                 movement.Normalize();
 
             TopLeftPosition += movement * Speed;
-            CurrentPosition = GameSettings.Grid.GetGridPosition(TopLeftPosition);
+            CurrentPosition = GameSettings.Grid.GetPlayerPosition(TopLeftPosition);
         }
 
-        private void GridMovement()
+        private void GridMovement(List<Obstacle> obstacles)
         {
             if (TopLeftPosition != NextTopLeftPosition && NextTopLeftPosition != Vector2.Zero)
             {
@@ -114,51 +114,31 @@ namespace WinterJam.Players
                     //cardinal directions
                     if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.left))
                     {
-                        NextPosition = CurrentPosition + new Vector2(-1, 1);
+                        NextPosition = CurrentPosition + new Vector2(-1, 0);
                     }
                     if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.right))
                     {
-                        NextPosition = CurrentPosition + new Vector2(1, -1);
+                        NextPosition = CurrentPosition + new Vector2(1, 0);
                     }
                     if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.up))
                     {
-                        NextPosition = CurrentPosition + new Vector2(-1, -1);
+                        NextPosition = CurrentPosition + new Vector2(0, -1);
                     }
                     if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.down))
                     {
-                        NextPosition = CurrentPosition + new Vector2(1, 1);
-                    }
-
-                    //Diagonal Directions
-                    if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.right) &&
-                        UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.up))
-                    {
-                        NextPosition = CurrentPosition + new Vector2(0, -1);
-                    }
-                    if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.left) &&
-                        UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.down))
-                    {
                         NextPosition = CurrentPosition + new Vector2(0, 1);
                     }
-                    if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.down)
-                        && UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.right))
-                    {
-                        NextPosition = CurrentPosition + new Vector2(1, 0);
-                    }
-                    if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.up)
-                        && UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.left))
-                    {
-                        NextPosition = CurrentPosition + new Vector2(-1, 0);
-                    }
 
+                    
                     float clampedX = MathHelper.Clamp(NextPosition.X, 0, GameSettings.Grid.Size.X - 1);
                     float clampedY = MathHelper.Clamp(NextPosition.Y, 0, GameSettings.Grid.Size.Y - 1);
 
                     NextPosition = new Vector2(clampedX, clampedY);
 
-                    for (int i = 0; i < GameSettings.Grid.ObstaclesIndexes.Count(); i++)
+                    //Check to see if the player will collide with an obstacle
+                    for (int i = 0; i < obstacles.Count; i++)
                     {
-                        if (GameSettings.Grid.BlockedTiles.Contains(NextPosition))
+                        if (obstacles[i].anchorPoint ==  GameSettings.Grid.GetPlayerPosition(NextPosition))
                         {
                             NextPosition = CurrentPosition;
                             return;
