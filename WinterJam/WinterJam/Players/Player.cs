@@ -79,7 +79,6 @@ namespace WinterJam.Players
         }
         private void UpdatePlayerPosition()
         {
-            
             //Vector2 movement = Vector2.Zero;
             int index = Visualisation.CurrentSpriteIndex;
             if (CurrentPosition != NextPosition)

@@ -48,9 +48,13 @@ namespace WinterJam
                 if (ItemAngle >= 360f)
                     ItemAngle = 1f;
 
+                ItemOffset = (float)
+                    Math.Sin(ItemAngle);
+
                 _remainingDelay = _delay;
             }
 
+            
             TopLeftPosition = parentAnchorPoint + new Vector2(-Size.X / 2, -ParentSize.Y - 10 - Size.Y - ItemOffset * 4);
         }
 
