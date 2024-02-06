@@ -14,6 +14,7 @@ namespace WinterJam
         private const float _delay = 0.14f; // seconds
         private float _remainingDelay = _delay;
         public override Vector2 anchorPoint { get { return base.anchorPoint - new Vector2(0, 14 * GameSettings.Grid.ScaleFactor); } }
+        public static Vector2[] SurroundingTiles { get; set; } = new Vector2[]{ new Vector2(6, 6), new Vector2(7, 6), new Vector2(8, 6), new Vector2(9, 6), new Vector2(6, 9), new Vector2(7, 9), new Vector2(8, 9), new Vector2(9, 9), new Vector2(6, 7), new Vector2(9, 7), new Vector2(6, 8), new Vector2(9, 8) };
         public static Vector2[] HouseTiles { get; set; } = new Vector2[] { new Vector2(7, 7), new Vector2(7, 8), new Vector2(8, 7), new Vector2(8, 8) };
 
         public House(Texture2D texture) {
