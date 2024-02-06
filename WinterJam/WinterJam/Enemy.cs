@@ -10,25 +10,26 @@ using System.Threading.Tasks;
 
 namespace WinterJam
 {
-    internal class Enemy
+    internal class Enemy : GameObject
     {
         private Vector2 SpawnPosition { get; set; }
         private Vector2 CurrentPosition { get; set; }
+        private Vector2 NextPosition { get; set; }
         private Vector2 TargetLocation { get; set; } = new Vector2(9, 7);
-
-        private SpriteSheet CurrentSpriteSheet { get; set; }
+        
+       
         public static List<SpriteSheet> Animations { get; set; } = new List<SpriteSheet>();
 
-        private const float _delay = 0.2f; // seconds
+        private const float _delay = 0.05f; // seconds
         private float _remainingDelay = _delay;
 
         public Enemy(List<SpriteSheet> animations)
         {
             Animations = animations;
-            CurrentSpriteSheet = Animations[0];
+            Visualisation = Animations[0];
             SpawnPosition = GameSettings.Grid.GetRandomBorderPos();
             CurrentPosition = SpawnPosition;
-            CurrentSpriteSheet.CenterPosition = GameSettings.Grid.GetPlayerPosition(CurrentPosition);
+            TopLeftPosition = GameSettings.Grid.GetPlayerPosition(CurrentPosition);
         }
 
         private Vector2 getNextPosition()
@@ -48,7 +49,7 @@ namespace WinterJam
             int shortestIndex = 0;
             for (int i = 0; i < possibilities.Count; i++)
             {
-                if (!GameSettings.Grid.HouseTiles.Contains(possibilities[i]) && !GameSettings.Grid.BlockedTiles.Contains(possibilities[i]) && !IsBlockOffMap(possibilities[i]))
+                if (!House.HouseTiles.Contains(possibilities[i]) && !IncludesObstacles(possibilities[i]) && !IsBlockOffMap(possibilities[i]))
                 {
                     float distance = Vector2.Distance(TargetLocation, possibilities[i]);
                     if (distance < shortestDistance)
@@ -56,15 +57,25 @@ namespace WinterJam
                         shortestDistance = distance;
                         shortestIndex = i;
                     }
-                }
+                } 
             }
             newNextPos = possibilities[shortestIndex];
-            CurrentSpriteSheet = Animations[shortestIndex];
+            Visualisation = Animations[shortestIndex];
 
             return newNextPos;
         }
+        private bool IncludesObstacles(Vector2 pos)
+        {
+            for (int i = 0;i < Game1._obstacles.Count;i++)
+            {
+                if (Game1._obstacles[i].indexPosition == pos)
+                {
+                    return true;
+                }
+            } return false;
+        }
 
-        private bool IsBlockOffMap(Vector2 pos)
+    private bool IsBlockOffMap(Vector2 pos)
         {
             if (pos.X >= 18 || pos.Y >= 18 || pos.X < 0 || pos.Y < 0)
             {
@@ -74,34 +85,49 @@ namespace WinterJam
         }
 
        
-        public void Update(GameTime gt)
+        public override void Update(GameTime gt)
         {
             var timer = (float)gt.ElapsedGameTime.TotalSeconds;
-
             _remainingDelay -= timer;
 
             if (_remainingDelay <= 0)
             {
-                if(CurrentPosition != TargetLocation)
+                
+                int index = Visualisation.CurrentSpriteIndex;
+                if (CurrentPosition != NextPosition)
                 {
-                    CurrentPosition = getNextPosition();
-                    CurrentSpriteSheet.CenterPosition = GameSettings.Grid.GetPlayerPosition(CurrentPosition);
-                    CurrentSpriteSheet.Update();
-                } else
-                {
-                    SpawnPosition = GameSettings.Grid.GetRandomBorderPos();
-                    CurrentPosition = SpawnPosition;
-                    CurrentSpriteSheet.CenterPosition = GameSettings.Grid.GetPlayerPosition(CurrentPosition);
+                    //+= (NextTopLeftPosition - CurrentTopLeftPosition) / (Visualisation.Cols - index);
+                    CurrentPosition += (NextPosition - CurrentPosition) / (Visualisation.Cols - index);
+                    base.Update(gt);
                 }
+                else
+                {
+                    
+
+                    if (CurrentPosition == TargetLocation)
+                    {
+                        SpawnPosition = GameSettings.Grid.GetRandomBorderPos();
+                        CurrentPosition = SpawnPosition;
+                        TopLeftPosition = GameSettings.Grid.GetPlayerPosition(CurrentPosition);
+                    }
+                    NextPosition = getNextPosition();
+                }
+                TopLeftPosition = GameSettings.Grid.GetPlayerPosition(CurrentPosition);
+                //if (CurrentPosition != TargetLocation)
+                //{
+                //    NextPosition = getNextPosition();
+                //    Visualisation.TopLeftPosition = GameSettings.Grid.GetPlayerPosition(CurrentPosition);
+                //    Visualisation.Update();
+                //}
+                //else
+                //{
+                //    SpawnPosition = GameSettings.Grid.GetRandomBorderPos();
+                //    CurrentPosition = SpawnPosition;
+                //    TopLeftPosition = GameSettings.Grid.GetPlayerPosition(CurrentPosition);
+                //}
                 _remainingDelay = _delay;
                
             }
-            
-            
-        }
-        public void Draw(SpriteBatch sb)
-        {
-            CurrentSpriteSheet.Draw(sb);
         }
         public static Enemy Spawn()
         {

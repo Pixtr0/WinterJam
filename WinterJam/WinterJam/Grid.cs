@@ -20,14 +20,11 @@ namespace Isometric_Thingy
         
         private Vector2 TileSize { get; set; } = new Vector2(24, 36);
         public Vector2[] BlockedTiles { get; set; } = new Vector2[8];
-        public Vector2[] HouseTiles { get; set; } = new Vector2[] { new Vector2(7, 7), new Vector2(7, 8), new Vector2(8, 7), new Vector2(8, 8)};
         public int[] ObstaclesIndexes { get; set; } = new int[8];
-        private List<Texture2D> Obstacles { get; set; }
-        public Grid(Vector2 position, List<Texture2D> tiles, List<Texture2D> obstacles)
+        
+        public Grid(Vector2 position, List<Texture2D> tiles)
         {
             Tiles = tiles;
-            Obstacles = obstacles;
-            
             TileSize.Normalize();
             Size = Vector2.One * size;
             HeightOffsets = new int[size, size];
@@ -39,7 +36,6 @@ namespace Isometric_Thingy
 
             GenerateRandomTiles();
             CreateHeightOffsets();
-            SetBlockedPositions();
         }
 
         public void GenerateRandomTiles()
@@ -50,35 +46,6 @@ namespace Isometric_Thingy
                 {
                     TileSelected[i, j] = Random.Shared.Next(0, Tiles.Count);
                 }
-            }
-            int log = 5;
-            int bush = 0;
-            int rock = 2;
-            for (int i = 0; i < ObstaclesIndexes.Length; i++)
-            {
-                int value = Random.Shared.Next(0,3);
-                if(value == 0)
-                {
-                    ObstaclesIndexes[i] = log;
-                    log++;
-                    if (log > 6)
-                        log = 5;
-                } 
-                else if(value == 1)
-                {
-                    ObstaclesIndexes[i] = rock;
-                    rock++;
-                    if (rock > 4)
-                        rock = 2;
-                }
-                else
-                {
-                    ObstaclesIndexes[i] = bush;
-                    bush++;
-                    if (bush > 1)
-                        bush = 0;
-                }
-                
             }
         }
 
@@ -97,7 +64,6 @@ namespace Isometric_Thingy
             if (UserInput._currentKeyboardSate.IsKeyDown(Keys.Space) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Space))
             {
                 GenerateRandomTiles();
-                SetBlockedPositions();
                 CreateHeightOffsets();
             }
         }
@@ -115,35 +81,12 @@ namespace Isometric_Thingy
                 }
             }
         }
-        public void DrawObstacles(SpriteBatch sb)
-        {
-            for (int i = 0; i < BlockedTiles.Length; i++)
-            {
-                sb.Draw(Obstacles[ObstaclesIndexes[i]], new Rectangle((int)(Position.X + BlockedTiles[i].X * TileSize.X / 2 - BlockedTiles[i].Y * TileSize.X / 2), (int)(Position.Y + BlockedTiles[i].Y * (TileSize.Y / 6f) + BlockedTiles[i].X * (TileSize.Y / 6f)), (int)TileSize.X, (int)TileSize.Y), Color.White);
-            }
-        }
         public Vector2 GetPlayerPosition(Vector2 index)
         {
             float x = (int)Position.X + index.X * TileSize.X / 2 - index.Y * TileSize.X / 2;
             float y = (int)Position.Y + index.Y * TileSize.Y / 6f + index.X * TileSize.Y / 6f + HeightOffsets[(int)index.X, (int)index.Y];
             return new Vector2(x, y);
         }
-        public void SetBlockedPositions()
-        {
-            for (int i = 0; i < BlockedTiles.Length; i++)
-            {
-                Vector2 newPos;
-                do
-                {
-                    newPos = new Vector2(Random.Shared.Next(0, (int)Size.X), Random.Shared.Next(0, (int)Size.Y));
-                } while (BlockedTiles.Contains(newPos) || HouseTiles.Contains(newPos));
-                BlockedTiles[i] = newPos;
-            }
-
-        }
-
-
-
         public Vector2 GetRandomBorderPos()
         {
             Vector2 newPos;
