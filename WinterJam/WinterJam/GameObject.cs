@@ -46,7 +46,6 @@ namespace WinterJam
             if (IsActive)
             {
                 Visualisation.Draw(spriteBatch);
-                //spriteBatch.DrawCircle((int)anchorPoint.X, (int)anchorPoint.Y, 3, Color.Red, Color.Transparent, 0);
             }
         }
     }

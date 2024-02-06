@@ -152,7 +152,7 @@ namespace WinterJam
 
             GameSettings.Grid.Update();
             UserInput.Update();
-            _player.Update(gameTime);
+            _player.Update(gameTime, _obstacles);
 
             if(UserInput._currentKeyboardSate.IsKeyDown(Keys.Enter) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Enter))
             {
