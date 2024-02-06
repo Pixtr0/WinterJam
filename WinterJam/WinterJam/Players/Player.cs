@@ -66,7 +66,7 @@ namespace WinterJam.Players
         }
         private void AddRemoveItem()
         {
-            if(UserInput._currentKeyboardSate.IsKeyDown(Keys.E))
+            if(UserInput._currentKeyboardSate.IsKeyDown(Keys.E) && UserInput._previousKeyboardSate.IsKeyUp(Keys.E)) //never true??
             {
                 Item item = new Item(20, GameSettings.ScreenTexture, new Vector2(40,40) ,this);
                 Inventory.Add(item);
