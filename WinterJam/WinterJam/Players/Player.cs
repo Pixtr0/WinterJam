@@ -138,7 +138,7 @@ namespace WinterJam.Players
                     //Check to see if the player will collide with an obstacle
                     for (int i = 0; i < obstacles.Count; i++)
                     {
-                        if (obstacles[i].anchorPoint ==  GameSettings.Grid.GetPlayerPosition(NextPosition))
+                        if (Game1._obstacles[i].indexPosition ==  NextPosition)
                         {
                             NextPosition = CurrentPosition;
                             return;
