@@ -11,6 +11,8 @@ namespace SpriteSheetClass
 
         public Texture2D Texture { get; set; }
         public Vector2 TopLeftPosition { get; set; }
+
+        public bool IsFlipped { get; set; } = false;
         public Vector2 Size { get; set; }
         public float Rotation { get; set; }
         public Color Color { get; set; } = Color.White;
@@ -81,7 +83,7 @@ namespace SpriteSheetClass
 
             Rectangle drMoved = new Rectangle(DestinationRectangle.X + DestinationRectangle.Width / 2, DestinationRectangle.Y + DestinationRectangle.Height / 2, DestinationRectangle.Width, DestinationRectangle.Height);
 
-            spriteBatch.Draw(Texture, drMoved, (Cols > 1 || Rows > 1) ? SourceRectangle : null, Color, Rotation,sourceOrigin, SpriteEffects.None, 0);
+            spriteBatch.Draw(Texture, drMoved, (Cols > 1 || Rows > 1) ? SourceRectangle : null, Color, Rotation,sourceOrigin, !IsFlipped ?SpriteEffects.None : SpriteEffects.FlipHorizontally, 0);
         }
         public void Play()
         {

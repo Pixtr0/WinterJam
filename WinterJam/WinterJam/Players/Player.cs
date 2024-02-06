@@ -21,6 +21,8 @@ namespace WinterJam.Players
         public Vector2 NextPosition { get; set; } = Vector2.Zero;
         public float Speed { get; set; } = 4f;
         public Vector2 NextTopLeftPosition { get; set; } 
+
+        public static List<SpriteSheet> Animations { get; set; } = new List<SpriteSheet>();
         public Player(Vector2 currentPosition, SpriteSheet visualisation)
         {
             UserInput = new UserInput();

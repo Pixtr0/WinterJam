@@ -12,24 +12,26 @@ namespace WinterJam
 {
     internal class Enemy : GameObject
     {
-        private Vector2 SpawnPosition { get; set; }
+        private Vector2 SpawnPosition { get { return GameSettings.Grid.GetRandomBorderPos();} }
         private Vector2 CurrentPosition { get; set; }
         private Vector2 NextPosition { get; set; }
         private Vector2 TargetLocation { get; set; } = new Vector2(9, 7);
+
+        private bool InSideHouse = false;
         
        
         public static List<SpriteSheet> Animations { get; set; } = new List<SpriteSheet>();
 
-        private const float _delay = 0.07f; // seconds
-        private float _remainingDelay = _delay;
+        private float _delay = 0.07f; // seconds
+        private float _remainingDelay;
 
         public Enemy(List<SpriteSheet> animations)
         {
             Animations = animations;
             Visualisation = Animations[0];
-            SpawnPosition = GameSettings.Grid.GetRandomBorderPos();
             CurrentPosition = SpawnPosition;
             TopLeftPosition = GameSettings.Grid.GetPlayerPosition(CurrentPosition);
+            _remainingDelay = _delay;
         }
 
         private Vector2 getNextPosition()
@@ -88,46 +90,65 @@ namespace WinterJam
         public override void Update(GameTime gt)
         {
             var timer = (float)gt.ElapsedGameTime.TotalSeconds;
+            
             _remainingDelay -= timer;
-
+            
             if (_remainingDelay <= 0)
             {
-                
+                if (_delay == 2f && InSideHouse)
+                    InSideHouse = false;
+                if (NextPosition == TargetLocation - new Vector2(0.3f, 0))
+                {
+                    InSideHouse = true;
+                    CurrentPosition = SpawnPosition;
+                    NextPosition = CurrentPosition;
+                }
+
                 int index = Visualisation.CurrentSpriteIndex;
+                
                 if (CurrentPosition != NextPosition)
                 {
                     //+= (NextTopLeftPosition - CurrentTopLeftPosition) / (Visualisation.Cols - index);
                     CurrentPosition += (NextPosition - CurrentPosition) / (Visualisation.Cols - index);
                     base.Update(gt);
+                    
                 }
                 else
                 {
-                    
-
                     if (CurrentPosition == TargetLocation)
                     {
-                        SpawnPosition = GameSettings.Grid.GetRandomBorderPos();
-                        CurrentPosition = SpawnPosition;
+                        NextPosition = TargetLocation - new Vector2(0.3f, 0);
                         TopLeftPosition = GameSettings.Grid.GetPlayerPosition(CurrentPosition);
+                        Visualisation = Animations[7];
+                    } else
+                    {
+                        NextPosition = getNextPosition();
                     }
-                    NextPosition = getNextPosition();
+                    
                 }
-                TopLeftPosition = GameSettings.Grid.GetPlayerPosition(CurrentPosition) + new Vector2(0,6 * GameSettings.Grid.ScaleFactor);
-                //if (CurrentPosition != TargetLocation)
-                //{
-                //    NextPosition = getNextPosition();
-                //    Visualisation.TopLeftPosition = GameSettings.Grid.GetPlayerPosition(CurrentPosition);
-                //    Visualisation.Update();
-                //}
-                //else
-                //{
-                //    SpawnPosition = GameSettings.Grid.GetRandomBorderPos();
-                //    CurrentPosition = SpawnPosition;
-                //    TopLeftPosition = GameSettings.Grid.GetPlayerPosition(CurrentPosition);
-                //}
-                _remainingDelay = _delay;
                
+                
+                
+                if (InSideHouse)
+                {
+                    
+                    _delay = 2f;
+                } else
+                {
+                    TopLeftPosition = GameSettings.Grid.GetPlayerPosition(CurrentPosition) + new Vector2(0, 6 * GameSettings.Grid.ScaleFactor);
+                    _delay = 0.07f;
+                }
+                _remainingDelay = _delay;
+                
             }
+        }
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            if (!InSideHouse)
+            {
+                base.Draw(spriteBatch);
+            }
+            
         }
         public static Enemy Spawn()
         {

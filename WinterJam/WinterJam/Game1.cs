@@ -79,8 +79,13 @@ namespace WinterJam
                 Content.Load<Texture2D>("Graphics/Blocks/rocks_02"),
                 Content.Load<Texture2D>("Graphics/Blocks/rocks_03"),
                 Content.Load<Texture2D>("Graphics/Blocks/stump_01"),
-                Content.Load<Texture2D>("Graphics/Blocks/stump_02")
+                Content.Load<Texture2D>("Graphics/Blocks/stump_02"),
+                Content.Load<Texture2D>("Graphics/Blocks/log")
             };
+            Player.Animations.Add(new SpriteSheet(Content.Load<Texture2D>("Graphics/Player/up"),Vector2.Zero,new Vector2(36,32) * GameSettings.Grid.ScaleFactor,0,1,4,0,false));
+            Player.Animations.Add(new SpriteSheet(Content.Load<Texture2D>("Graphics/Player/right"), Vector2.Zero, new Vector2(36, 32) * GameSettings.Grid.ScaleFactor, 0, 1, 4, 0, false));
+            Player.Animations.Add(new SpriteSheet(Content.Load<Texture2D>("Graphics/Player/down"), Vector2.Zero, new Vector2(36, 32) * GameSettings.Grid.ScaleFactor, 0, 1, 4, 0, false));
+            Player.Animations.Add(new SpriteSheet(Content.Load<Texture2D>("Graphics/Player/left"), Vector2.Zero, new Vector2(36, 32) * GameSettings.Grid.ScaleFactor, 0, 1, 4, 0, false));
             GameSettings.Squirrel_Up = Content.Load<Texture2D>("Graphics/Enemy/up");
             GameSettings.Squirrel_Down = Content.Load<Texture2D>("Graphics/Enemy/down");
             GameSettings.Squirrel_Left = Content.Load<Texture2D>("Graphics/Enemy/left");
@@ -183,7 +188,6 @@ namespace WinterJam
                     player.Update(gameTime);
                 }
             }
-                    
 
             _allObjects = SortedObjects();
 
@@ -239,6 +243,40 @@ namespace WinterJam
                 }
                 _obstacles.Add(new Obstacle(texture, GetRandomPositionOnGrid()));
             }
+            //CheckForLogFormations();
+        }
+
+        private void CheckForLogFormations()
+        {
+            for (int i = 0; i < _obstacles.Count; i++)
+            {
+                Vector2 topleft = _obstacles[i].indexPosition - new Vector2(1, 0);
+                Vector2 topright = _obstacles[i].indexPosition - new Vector2(0, 1);
+
+                Obstacle obstacle = ObstaclesContain(topleft);
+                if (obstacle != new Obstacle())
+                {
+                    obstacle.IsActive = false;
+                    _obstacles[i].Visualisation.Texture = _obstacleTextures[7];
+                    _obstacles[i].Visualisation.IsFlipped = true;
+                } 
+                obstacle = ObstaclesContain(topright);
+                if (obstacle != new Obstacle())
+                {
+                    obstacle.IsActive = false;
+                    _obstacles[i].Visualisation.Texture = _obstacleTextures[7];
+                }
+            }
+        }
+
+        private Obstacle ObstaclesContain(Vector2 pos)
+        {
+
+            for (int i = 0; i < _obstacles.Count; i++)
+            {
+                if (_obstacles[i].indexPosition == pos) { return _obstacles[i]; }
+            }
+            return new Obstacle();
         }
 
         private Vector2 GetRandomPositionOnGrid()

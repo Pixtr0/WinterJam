@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WinterJam.Players
+namespace WinterJam
 {
     internal class Item : GameObject
     {

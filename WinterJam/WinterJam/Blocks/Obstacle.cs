@@ -12,9 +12,10 @@ namespace WinterJam
 {
     internal class Obstacle : GameObject
     {
-        public override Vector2 anchorPoint { get { return base.anchorPoint - new Vector2(0, 16 * GameSettings.Grid.ScaleFactor); } }
+        public override Vector2 anchorPoint { get { return base.anchorPoint - new Vector2(0, 20 * GameSettings.Grid.ScaleFactor); } }
 
         public Vector2 indexPosition { get; set; }
+        public Obstacle() { }
         public Obstacle(Texture2D texture, Vector2 position )
         {
             indexPosition = position;

@@ -17,6 +17,8 @@ namespace WinterJam
         public static Vector2[] SurroundingTiles { get; set; } = new Vector2[]{ new Vector2(6, 6), new Vector2(7, 6), new Vector2(8, 6), new Vector2(9, 6), new Vector2(6, 9), new Vector2(7, 9), new Vector2(8, 9), new Vector2(9, 9), new Vector2(6, 7), new Vector2(9, 7), new Vector2(6, 8), new Vector2(9, 8) };
         public static Vector2[] HouseTiles { get; set; } = new Vector2[] { new Vector2(7, 7), new Vector2(7, 8), new Vector2(8, 7), new Vector2(8, 8) };
 
+        public static List<Item> Inventory {  get; set; }
+
         public House(Texture2D texture) {
             Vector2 size = new Vector2(58, 102) * GameSettings.Grid.ScaleFactor;
             Visualisation = new SpriteSheet(texture, GameSettings.Grid.GetPlayerPosition(HouseTiles[HouseTiles.Length - 1]) - new Vector2(12 * GameSettings.Grid.ScaleFactor,
