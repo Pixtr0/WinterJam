@@ -45,7 +45,7 @@ namespace WinterJam.Players
                 Item shovel = new Item(20)
                 {
                     Visualisation = new SpriteSheet(
-                        GameSettings.Squirrel_Down,
+                        GameSettings.Squirrel_Down, //placeholder
                         TopLeftPosition,
                         Size / 2,
                         0,
