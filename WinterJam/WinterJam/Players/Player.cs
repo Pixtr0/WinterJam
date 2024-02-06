@@ -17,46 +17,69 @@ namespace WinterJam.Players
     {
         public UserInput UserInput { get; set; }
         public List<Item> Inventory {get; set;} = new List<Item>();
+        public Item HeldItem { get; set; }
+        public Double ItemAngle { get; set; } = 0f;
+        public float ItemOffset { get; set; } = 0f;
         public Vector2 CurrentPosition { get; set; }
         public Vector2 NextPosition { get; set; } = Vector2.Zero;
         public float Speed { get; set; } = 4f;
-        public Vector2 NextTopLeftPosition { get; set; } 
+        public Vector2 NextTopLeftPosition { get; set; }
 
-        public static List<SpriteSheet> Animations { get; set; } = new List<SpriteSheet>();
+        private const float _delay = 0.2f; // seconds
+        private float _remainingDelay = _delay;
+
         public Player(Vector2 currentPosition, SpriteSheet visualisation)
         {
             UserInput = new UserInput();
             CurrentPosition = currentPosition;
             Visualisation = visualisation;
-        }
 
+            Item shovel = new Item(20, GameSettings.ScreenTexture, this);
+            Inventory.Add(shovel);
+        }
         public override void Update(GameTime gameTime)
         {
             //Receives the next grid position based on user input
-            UserInput.Update();
 
+            UserInput.Update();
+            UpdateItems(gameTime);
             AddRemoveItem();
             UpdatePlayerPosition();
             base.Update(gameTime);
         }
+        private void UpdateItems(GameTime gameTime)
+        {
+            var timer = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            _remainingDelay -= timer;
 
+            if (_remainingDelay <= 0)
+            {
+                ItemAngle++;
+
+                if (ItemAngle >= 360f)
+                    ItemAngle = 1f;
+
+                _remainingDelay = _delay;
+            }
+             
+
+
+            ItemOffset = (float) Math.Sin(ItemAngle);
+
+            if (Inventory.Count > 0)
+            {
+                HeldItem = Inventory[Inventory.Count - 1];
+                HeldItem.Visualisation.TopLeftPosition = anchorPoint + new Vector2(-HeldItem.Size.X/2, -Size.Y - 10 - HeldItem.Size.Y - ItemOffset * 4);
+                HeldItem.Update();
+
+                Debug.WriteLine(HeldItem.Visualisation.TopLeftPosition);
+            }
+        }
         private void AddRemoveItem()
         {
                 if(UserInput._currentKeyboardSate.IsKeyDown(Keys.E) && UserInput._previousKeyboardSate.IsKeyUp(Keys.E))
                 {
-                Item shovel = new Item(20)
-                {
-                    Visualisation = new SpriteSheet(
-                        GameSettings.Squirrel_Down, //placeholder
-                        TopLeftPosition,
-                        Size / 2,
-                        0,
-                        1,
-                        1,
-                        1,
-                        false
-                    )
-                };
+                    Item shovel = new Item(20, GameSettings.ScreenTexture, this);
                     Inventory.Add(shovel);
                 }
 
@@ -65,33 +88,10 @@ namespace WinterJam.Players
                     Inventory.RemoveAt(Inventory.Count);
                 }
         }
-
         private void UpdatePlayerPosition()
         {
-            GridMovement(); // lags
-            //FreeMovement();
+            GridMovement(); // lags, but we move, literally
         }
-
-        private void FreeMovement()//currently clipping allowed, GetGridPosition Logic broken
-        {
-            Vector2 movement = Vector2.Zero;
-
-            if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.left))
-                movement += new Vector2(-1, 0);
-            if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.right))
-                movement += new Vector2(1, 0);
-            if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.up))
-                movement += new Vector2(0, -1);
-            if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.down))
-                movement += new Vector2(0, 1);
-
-            if (movement != Vector2.Zero)
-                movement.Normalize();
-
-            TopLeftPosition += movement * Speed;
-            CurrentPosition = GameSettings.Grid.GetPlayerPosition(TopLeftPosition);
-        }
-
         private void GridMovement()
         {
             if (TopLeftPosition != NextTopLeftPosition && NextTopLeftPosition != Vector2.Zero)
@@ -152,17 +152,11 @@ namespace WinterJam.Players
 
             }
         }
-
-
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Visualisation.Texture,Visualisation.DestinationRectangle,Color.White);
+            base.Draw(spriteBatch);
 
-            foreach(Item item in Inventory)
-            {
-                item.Draw(spriteBatch);
-            }
-            //base.Draw(spriteBatch);
+            HeldItem.Draw(spriteBatch);
         }
     }
 }
