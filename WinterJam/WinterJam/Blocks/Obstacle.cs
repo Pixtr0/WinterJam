@@ -15,7 +15,7 @@ namespace WinterJam
         public override Vector2 anchorPoint { get { return base.anchorPoint - new Vector2(0, 16 * GameSettings.Grid.ScaleFactor); } }
 
         public Vector2 indexPosition { get; set; }
-        public Obstacle(Texture2D texture, Vector2 position)
+        public Obstacle(Texture2D texture, Vector2 position )
         {
             indexPosition = position;
             Visualisation = new SpriteSheet(texture, GameSettings.Grid.GetPlayerPosition(indexPosition), new Vector2(24, 36) * GameSettings.Grid.ScaleFactor, 0, 1, 1, 0, false);

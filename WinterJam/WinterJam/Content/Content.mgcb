@@ -97,6 +97,18 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Blocks/house.png
 
+#begin Graphics/Blocks/placeholder screen.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphics/Blocks/placeholder screen.png
+
 #begin Graphics/Blocks/rocks_01.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -324,6 +336,13 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Graphics/Enemy/Up.png
+
+#begin Graphics/Fonts/File.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Graphics/Fonts/File.spritefont
 
 #begin Graphics/Player/Player.webp
 /importer:TextureImporter

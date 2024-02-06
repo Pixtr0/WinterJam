@@ -48,6 +48,8 @@ namespace WinterJam
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            GameSettings.ScreenTexture = Content.Load<Texture2D>("Graphics/Blocks/placeholder Screen");
+
             GameSettings.Grid = new Grid(new Vector2(_graphics.PreferredBackBufferWidth / 2, 0)
             , new List<Texture2D>() {
                 Content.Load<Texture2D>("Graphics/Blocks/grass_01"),
@@ -68,6 +70,7 @@ namespace WinterJam
                 false
                 )
             );
+            GameSettings.Font = Content.Load<SpriteFont>("Graphics/Fonts/Font");
             _obstacleTextures = new List<Texture2D>()
             {
                 Content.Load<Texture2D>("Graphics/Blocks/bush_01"),
@@ -152,7 +155,6 @@ namespace WinterJam
 
             GameSettings.Grid.Update();
             UserInput.Update();
-            _player.Update(gameTime, _obstacles);
 
             if(UserInput._currentKeyboardSate.IsKeyDown(Keys.Enter) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Enter))
             {
@@ -165,6 +167,11 @@ namespace WinterJam
                 {
                     Enemy enemy = gameObject as Enemy;
                     enemy.Update(gameTime);
+                }
+                if (gameObject is Player)
+                {
+                    Player player = gameObject as Player;
+                    player.Update(gameTime);
                 }
             }
                     

@@ -28,13 +28,13 @@ namespace WinterJam.Players
             Visualisation = visualisation;
         }
 
-        public void Update(GameTime gameTime, List<Obstacle> obstacles)
+        public override void Update(GameTime gameTime)
         {
             //Receives the next grid position based on user input
             UserInput.Update();
 
             AddRemoveItem();
-            UpdatePlayerPosition(obstacles);
+            UpdatePlayerPosition();
             base.Update(gameTime);
         }
 
@@ -64,9 +64,9 @@ namespace WinterJam.Players
                 }
         }
 
-        private void UpdatePlayerPosition(List<Obstacle> obstacles)
+        private void UpdatePlayerPosition()
         {
-            GridMovement(obstacles); // lags
+            GridMovement(); // lags
             //FreeMovement();
         }
 
@@ -90,7 +90,7 @@ namespace WinterJam.Players
             CurrentPosition = GameSettings.Grid.GetPlayerPosition(TopLeftPosition);
         }
 
-        private void GridMovement(List<Obstacle> obstacles)
+        private void GridMovement()
         {
             if (TopLeftPosition != NextTopLeftPosition && NextTopLeftPosition != Vector2.Zero)
             {
@@ -136,7 +136,7 @@ namespace WinterJam.Players
                     NextPosition = new Vector2(clampedX, clampedY);
 
                     //Check to see if the player will collide with an obstacle
-                    for (int i = 0; i < obstacles.Count; i++)
+                    for (int i = 0; i < Game1._obstacles.Count; i++)
                     {
                         if (Game1._obstacles[i].indexPosition ==  NextPosition)
                         {
@@ -155,6 +155,11 @@ namespace WinterJam.Players
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Visualisation.Texture,Visualisation.DestinationRectangle,Color.White);
+
+            foreach(Item item in Inventory)
+            {
+                item.Draw(spriteBatch);
+            }
             //base.Draw(spriteBatch);
         }
     }

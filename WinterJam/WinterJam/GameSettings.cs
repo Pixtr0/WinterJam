@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WinterJam.Screens;
 
 namespace WinterJam
 {
@@ -17,9 +18,14 @@ namespace WinterJam
         public static int Columns { get; set; } = 11;
         public static int Rows { get; set; } = 14;
         public static Grid Grid { get; set; }
-        public static (Keys left, Keys right, Keys up, Keys down) ControlKeys { get; set; } = (Keys.A, Keys.D, Keys.W, Keys.S);    
+        public static (Keys left, Keys right, Keys up, Keys down) ControlKeys { get; set; } = (Keys.A, Keys.D, Keys.W, Keys.S);
+        public static Screen StartScreen { get; set; }
+        public static Screen PlayScreen { get; set; }
+        public static Screen GameOverScreen { get; set; }
+        public static Screen ActiveScreen { get; set; }
 
-
+        public static SpriteFont Font { get; set; }
+        public static Texture2D ScreenTexture { get; set; }
         public static Texture2D Squirrel_Up { get; set; }
         public static Texture2D Squirrel_Down { get; set; }
         public static Texture2D Squirrel_Left { get; set; }
