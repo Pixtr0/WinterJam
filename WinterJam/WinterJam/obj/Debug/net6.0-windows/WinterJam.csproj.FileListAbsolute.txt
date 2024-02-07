@@ -227,3 +227,5 @@ C:\Users\Samuel\Documents\GitHub\WinterJam\WinterJam\WinterJam\obj\Debug\net6.0-
 C:\Users\Samuel\Documents\GitHub\WinterJam\WinterJam\WinterJam\obj\Debug\net6.0-windows\WinterJam.pdb
 C:\Users\Samuel\Documents\GitHub\WinterJam\WinterJam\WinterJam\obj\Debug\net6.0-windows\WinterJam.genruntimeconfig.cache
 C:\Users\Samuel\Documents\GitHub\WinterJam\WinterJam\WinterJam\obj\Debug\net6.0-windows\ref\WinterJam.dll
+C:\Users\scutt\OneDrive\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Blocks\log_01.xnb
+C:\Users\scutt\OneDrive\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Blocks\log_02.xnb

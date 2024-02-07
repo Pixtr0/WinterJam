@@ -60,25 +60,44 @@ namespace WinterJam.Players
             {
                 if (Inventory.Count > 0)
                 {
-                    Inventory.RemoveAt(HeldItemIndex);
-
                     Item newPlacedItem = HeldItem;
+                    newPlacedItem.Size *= 0.5f;
+                    //newPlacedItem.CurrentPosition = CurrentPosition;
+                    //newPlacedItem.TopLeftPosition = anchorPoint - newPlacedItem.Size / 2;
 
                     if (Visualisation == Animations[0])
-                        
-
-                    if (Inventory.Count > 0)
                     {
-                        if (HeldItemIndex > 0)
+                        newPlacedItem.CurrentPosition = CurrentPosition + new Vector2(0, -1);
+                    }
+                    if (Visualisation == Animations[1])
+                    {
+                        newPlacedItem.CurrentPosition = CurrentPosition + new Vector2(1, 0);
+                    }
+                    if (Visualisation == Animations[2])
+                    {
+                        newPlacedItem.CurrentPosition = CurrentPosition + new Vector2(0, 1);
+                    }
+                    if (Visualisation == Animations[3])
+                    {
+                        newPlacedItem.CurrentPosition = CurrentPosition + new Vector2(-1, 0);
+                    }
+
+                    newPlacedItem.TopLeftPosition = GameSettings.Grid.GetGridPosition(newPlacedItem.CurrentPosition) 
+                        + new Vector2(6, 8)*GameSettings.Grid.ScaleFactor;
+
+                    if (HeldItemIndex > 0)
                         {
+                            Inventory.RemoveAt(HeldItemIndex);
                             HeldItemIndex--;
                             HeldItem = Inventory[HeldItemIndex];
                         }
                         else
                         {
-                            HeldItem = Inventory[HeldItemIndex];
+                            HeldItem.IsActive = false;
+                            Inventory.RemoveAt(0);
                         }
-                    }
+                        
+                        PlacedItems.Add(newPlacedItem);
 
                 }
                 else
@@ -112,12 +131,18 @@ namespace WinterJam.Players
 
                 HeldItem.Update(gameTime, anchorPoint);
             }
+
+            if (PlacedItems.Count > 0)
+            {
+                foreach (Item item in PlacedItems)
+                    item.Update(gameTime);
+            }
         }
         private void AddRemoveItem()
         {
             if (UserInput._currentKeyboardSate.IsKeyDown(Keys.E) && UserInput._previousKeyboardSate.IsKeyUp(Keys.E)) //never true??
             {
-                Item item = new Item(20, GameSettings.ScreenTexture, new Vector2(40,40) ,this);
+                Item item = new Item(20, GameSettings.ScreenTexture, new Vector2(18,19)*GameSettings.Grid.ScaleFactor ,this);
                 Inventory.Add(item);
 
                 if (Inventory.Count == 1)
@@ -202,11 +227,9 @@ namespace WinterJam.Players
                 HeldItem.Draw(spriteBatch);
 
             if (PlacedItems.Count > 0)
-            {
                 foreach(Item item in PlacedItems)
-                { item.Draw(spriteBatch); }
-            }
-                
+                    item.Draw(spriteBatch); 
+            
         }
     }
 }

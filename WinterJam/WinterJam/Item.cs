@@ -36,6 +36,13 @@ namespace WinterJam
         {
             //Durability--;
 
+            UpdateDelay(gametime);
+
+            TopLeftPosition = parentAnchorPoint + new Vector2(-Size.X / 2, -ParentSize.Y - 10 - Size.Y - ItemOffset * 4);
+        }
+
+        private void UpdateDelay(GameTime gametime)
+        {
             if (Durability <= 0)
                 IsActive = false;
 
@@ -54,9 +61,17 @@ namespace WinterJam
 
                 _remainingDelay = _delay;
             }
+        }
 
-            
-            TopLeftPosition = parentAnchorPoint + new Vector2(-Size.X / 2, -ParentSize.Y - 10 - Size.Y - ItemOffset * 4);
+        public override void Update(GameTime gameTime)
+        {
+            UpdateDelay(gameTime);
+
+            TopLeftPosition = GameSettings.Grid.GetGridPosition(CurrentPosition)
+                             + new Vector2(6, 8) * GameSettings.Grid.ScaleFactor 
+                             + new Vector2(-Size.X / 2, - ItemOffset * 4);
+
+            base.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)

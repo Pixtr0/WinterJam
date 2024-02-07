@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/Samuel/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Enemy/Up.png</SourceFile>
-  <SourceTime>2024-02-06T09:55:19.9634026+01:00</SourceTime>
-  <DestFile>C:/Users/Samuel/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/bin/Windows/Content/Graphics/Enemy/Up.xnb</DestFile>
-  <DestTime>2024-02-06T21:11:32.7513088+01:00</DestTime>
+  <SourceFile>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Enemy/Up.png</SourceFile>
+  <SourceTime>2024-02-06T13:16:27.83061+01:00</SourceTime>
+  <DestFile>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/bin/Windows/Content/Graphics/Enemy/Up.xnb</DestFile>
+  <DestTime>2024-02-07T14:54:30.796978+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T13:44:56+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
