@@ -57,26 +57,26 @@ namespace WinterJam.Players
 
         private void PlaceAnItem()
         {
-            if (UserInput._currentKeyboardSate.IsKeyDown(Keys.F) && UserInput._previousKeyboardSate.IsKeyUp(Keys.F))
+            if (UserInput._currentKeyboardSate.IsKeyDown(Keys.F) && UserInput._previousKeyboardSate.IsKeyUp(Keys.F) && HeldItem.IsActive)
             {
-                if (Inventory.Count > 0)
+                if (Inventory.Count > 0 && HeldItemIndex >= 0)
                 {
                     Item newPlacedItem = HeldItem;
                     newPlacedItem.Size *= 0.5f;
 
-                    if (Visualisation == Animations[0])
+                    if (this.Visualisation == Animations[0])
                     {
                         newPlacedItem.CurrentPosition = CurrentPosition + new Vector2(0, -1);
                     }
-                    if (Visualisation == Animations[1])
+                    if (this.Visualisation == Animations[1])
                     {
                         newPlacedItem.CurrentPosition = CurrentPosition + new Vector2(1, 0);
                     }
-                    if (Visualisation == Animations[2])
+                    if (this.Visualisation == Animations[2])
                     {
                         newPlacedItem.CurrentPosition = CurrentPosition + new Vector2(0, 1);
                     }
-                    if (Visualisation == Animations[3])
+                    if (this.Visualisation == Animations[3])
                     {
                         newPlacedItem.CurrentPosition = CurrentPosition + new Vector2(-1, 0);
                     }
@@ -84,7 +84,7 @@ namespace WinterJam.Players
                     newPlacedItem.TopLeftPosition = GameSettings.Grid.GetGridPosition(newPlacedItem.CurrentPosition) 
                         + new Vector2(6, 8)*GameSettings.Grid.ScaleFactor;
 
-                    if (HeldItemIndex > 0)
+                        if (HeldItemIndex > 0)
                         {
                             Inventory.RemoveAt(HeldItemIndex);
                             HeldItemIndex--;
@@ -93,7 +93,7 @@ namespace WinterJam.Players
                         else
                         {
                             HeldItem.IsActive = false;
-                            Inventory.RemoveAt(0);
+                            Inventory.RemoveAt(HeldItemIndex);
                         }
                         
                         PlacedItems.Add(newPlacedItem);
@@ -117,7 +117,6 @@ namespace WinterJam.Players
                         HeldItem = Inventory[HeldItemIndex + 1];
                         HeldItemIndex++;
                     }
-                        
                 }
                 if (UserInput._currentMouseState.ScrollWheelValue < UserInput._previousMouseState.ScrollWheelValue)
                 {
@@ -139,7 +138,7 @@ namespace WinterJam.Players
         }
         private void AddRemoveItem()
         {
-            if (UserInput._currentKeyboardSate.IsKeyDown(Keys.E) && UserInput._previousKeyboardSate.IsKeyUp(Keys.E)) //never true??
+            if (UserInput._currentKeyboardSate.IsKeyDown(Keys.E) && UserInput._previousKeyboardSate.IsKeyUp(Keys.E)) 
             {
                 Item item = new Item(20, GameSettings.ScreenTexture, new Vector2(18,19)*GameSettings.Grid.ScaleFactor ,this);
                 Inventory.Add(item);
@@ -168,7 +167,6 @@ namespace WinterJam.Players
             {
                 CurrentPosition += (NextPosition - CurrentPosition) / (Visualisation.Cols - index);
                 Visualisation.Update();
-
             }
             else
             {
@@ -223,7 +221,11 @@ namespace WinterJam.Players
             base.Draw(spriteBatch);
 
             if (HeldItem != null)
+            {
                 HeldItem.Draw(spriteBatch);
+                spriteBatch.DrawString(GameSettings.GameFont, $"{Inventory.Count}", HeldItem.TopLeftPosition + new Vector2(HeldItem.Size.X, 0), Color.Black);
+                spriteBatch.DrawString(GameSettings.GameFont, $"{HeldItemIndex}", anchorPoint  -HeldItem.Size/2, Color.Black);
+            }
 
             if (PlacedItems.Count > 0)
                 foreach(Item item in PlacedItems)
