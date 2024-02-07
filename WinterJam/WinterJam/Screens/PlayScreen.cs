@@ -13,7 +13,6 @@ namespace WinterJam.Screens
 {
     public class PlayScreen : Screen
     {
-        private SettingsScreen _settingsScreen;
         public static List<GameObject> _allObjects = new List<GameObject>();
         public static List<Enemy> _enemies = new List<Enemy>();
         public static House _house;
@@ -37,15 +36,20 @@ namespace WinterJam.Screens
             if (UserInput._currentMouseState.RightButton == ButtonState.Pressed && UserInput._previousMouseState.RightButton == ButtonState.Released)
             {
                 GameSettings.IsCloseButtonPressed = false;
-                GameSettings.IsSettingsScreenDrawn = true;
+                GameSettings.IsPauseScreenDrawn = true;
             }
 
-            if (GameSettings.IsSettingsScreenDrawn == true)
+            if (GameSettings.IsPauseScreenDrawn == true)
+            {
+                GameSettings.PauseScreen.Update(gameTime);
+            }
+
+            /*if (GameSettings.IsSettingsScreenDrawn == true)
             {
                 GameSettings.SettingsScreen.Update(gameTime);
-            }
+            }*/
 
-            if (GameSettings.IsSettingsScreenDrawn == false)
+            if (GameSettings.IsPauseScreenDrawn == false)
             {
                 if (UserInput._currentKeyboardSate.IsKeyDown(Keys.Enter) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Enter))
                 {
@@ -83,7 +87,6 @@ namespace WinterJam.Screens
                 _allObjects = SortedObjects();
             }
             
-
             base.Update(gameTime);
         }
 
@@ -98,7 +101,12 @@ namespace WinterJam.Screens
                 _allObjects[i].Draw(spriteBatch);
             }
 
-            if (GameSettings.IsSettingsScreenDrawn && GameSettings.IsCloseButtonPressed == false)
+            if (GameSettings.IsPauseScreenDrawn && !GameSettings.IsSettingsScreenDrawn)
+            {
+                GameSettings.PauseScreen.Draw(spriteBatch);
+            }
+
+            if (GameSettings.IsPauseScreenDrawn && GameSettings.IsSettingsScreenDrawn && GameSettings.IsCloseButtonPressed == false)
             {
                 GameSettings.SettingsScreen.Draw(spriteBatch);
             }

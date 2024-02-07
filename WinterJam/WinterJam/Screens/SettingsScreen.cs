@@ -16,11 +16,10 @@ namespace WinterJam.Screens
         private bool isAzertyButtonPressed;
         private bool isArrowsButtonPressed;
 
-
         private int buttonWidth = 200; // Adjusted button width
         private int buttonHeight = 50; // Adjusted button height
 
-        private SpriteFont _font;
+        private SpriteFont _font = GameSettings.GameFont;
 
         // Slider parameters
         private Vector2 sliderPosition;
@@ -28,7 +27,7 @@ namespace WinterJam.Screens
         private int sliderHeight = 20;
         private float sliderValue = 0.5f; // Initial volume level
 
-        private Rectangle _closeButtonBounds;
+        private Rectangle closeButtonBounds;
         private int closeButtonSize = 40;
 
         // Store current and previous mouse states
@@ -36,16 +35,16 @@ namespace WinterJam.Screens
 
         public SettingsScreen()
         {
-            _font = GameSettings.GameFont;
+            //_font = GameSettings.GameFont;
 
             // Calculate frame position to center it on the screen
-            framePosition = new Vector2((1920 - frameWidth) / 2, (1080 - frameHeight) / 2);
+            framePosition = new Vector2((GameSettings.ScreenSize.X - frameWidth) / 2, (GameSettings.ScreenSize.Y - frameHeight) / 2);
 
             // Calculate slider position relative to the frame
             sliderPosition = new Vector2((frameWidth - sliderWidth) / 2, frameHeight - 150); // Adjusted slider position
 
             // Calculate close button position relative to the frame
-            _closeButtonBounds = new Rectangle((int)framePosition.X + frameWidth - closeButtonSize - 10, (int)framePosition.Y + 10, closeButtonSize, closeButtonSize);
+            closeButtonBounds = new Rectangle((int)framePosition.X + frameWidth - closeButtonSize - 10, (int)framePosition.Y + 10, closeButtonSize, closeButtonSize);
         }
 
         public override void Update(GameTime gameTime)
@@ -63,10 +62,11 @@ namespace WinterJam.Screens
 
         private void CheckCloseButtonPressed()
         {
-            if (LeftMouseButtonPressed() && _closeButtonBounds.Contains(Mouse.GetState().Position))
+            if (LeftMouseButtonPressed() && closeButtonBounds.Contains(Mouse.GetState().Position))
             {
                 GameSettings.IsCloseButtonPressed = true;
                 GameSettings.IsSettingsScreenDrawn = false;
+                GameSettings.IsCloseButtonPressed = false;
             }
         }
 
@@ -127,7 +127,7 @@ namespace WinterJam.Screens
         public override void Draw(SpriteBatch spriteBatch)
         {
             // Draw frame
-            spriteBatch.Draw(GameSettings.ScreenTexture, new Rectangle((int)framePosition.X + (int)sliderPosition.X, (int)framePosition.Y + (int)sliderPosition.Y, sliderWidth, sliderHeight), Color.Gray);
+            spriteBatch.Draw(GameSettings.Button_Pressed_Orange, new Rectangle((int)framePosition.X, (int)framePosition.Y - frameHeight / 5, frameWidth, frameHeight * 4/3), new Color(128, 128, 128, 128));
 
             // Draw buttons
             DrawButton(new Vector2(framePosition.X + (frameWidth - buttonWidth) / 2, framePosition.Y + (frameHeight - buttonHeight * 4) / 2), buttonWidth, buttonHeight, "Qwerty", isQwertyButtonPressed, spriteBatch);
@@ -143,8 +143,8 @@ namespace WinterJam.Screens
 
         private void DrawCloseButton(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(GameSettings.ScreenTexture, _closeButtonBounds, Color.Blue);
-            spriteBatch.DrawString(_font, "X", new Vector2(framePosition.X + frameWidth - closeButtonSize, framePosition.Y + 12), Color.White);
+            spriteBatch.Draw(GameSettings.Button_Orange, closeButtonBounds, Color.White);
+            spriteBatch.DrawString(_font, "X", new Vector2(framePosition.X + frameWidth - closeButtonSize, framePosition.Y + 10), Color.White);
         }
 
         private void DrawSlider(SpriteBatch spriteBatch)
@@ -159,22 +159,36 @@ namespace WinterJam.Screens
         private void DrawButton(Vector2 position, int width, int height, string buttonText, bool buttonPressed, SpriteBatch spriteBatch)
         {
             Vector2 textPosition = new Vector2(position.X + (width - _font.MeasureString(buttonText).X) / 2, position.Y + (height - _font.MeasureString(buttonText).Y) / 2);
+            Vector2 pressedButtonTextPosition = new Vector2(textPosition.X, textPosition.Y - 7);
 
-            Color fillColor = GetFillColor(buttonPressed);
+            Texture2D buttonTexture = ButtonTexture(buttonPressed);
+            Vector2 buttonTextPosition = GetButtonTextPosition(textPosition, pressedButtonTextPosition, buttonPressed);
 
-            spriteBatch.Draw(GameSettings.ScreenTexture, new Rectangle((int)position.X, (int)position.Y, width, height), fillColor);
-            spriteBatch.DrawString(_font, buttonText, textPosition, Color.Black);
+            spriteBatch.Draw(buttonTexture, new Rectangle((int)position.X, (int)position.Y, width, height), Color.White);
+            spriteBatch.DrawString(_font, buttonText, buttonTextPosition, Color.Black);
         }
 
-        private Color GetFillColor(bool buttonPressed)
+        private Texture2D ButtonTexture(bool buttonPressed)
         {
             if (!buttonPressed)
             {
-                return Color.LightGoldenrodYellow;
+                return GameSettings.Button_Yellow;
             }
             else
             {
-                return Color.Goldenrod;
+                return GameSettings.Button_Pressed_Yellow;
+            }
+        }
+
+        private Vector2 GetButtonTextPosition (Vector2 textPosition, Vector2 pressedButtonTextPosition, bool buttonPressed)
+        {
+            if (buttonPressed)
+            {
+                return textPosition;
+            }
+            else
+            {
+                return pressedButtonTextPosition;
             }
         }
     }

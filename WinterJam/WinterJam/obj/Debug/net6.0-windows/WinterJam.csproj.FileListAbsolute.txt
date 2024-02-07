@@ -322,3 +322,15 @@ C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\obj\Debug\net6.0-w
 C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\obj\Debug\net6.0-windows\WinterJam.pdb
 C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\obj\Debug\net6.0-windows\WinterJam.genruntimeconfig.cache
 C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\obj\Debug\net6.0-windows\ref\WinterJam.dll
+C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Buttons\UI_button_01.xnb
+C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Buttons\UI_button_02.xnb
+C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Buttons\UI_button_pressed_01.xnb
+C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Buttons\UI_button_pressed_02.xnb
+C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\bin\Windows\Graphics\Buttons\UI_button_01.xnb
+C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\bin\Windows\Graphics\Buttons\UI_button_02.xnb
+C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\bin\Windows\Graphics\Buttons\UI_button_pressed_01.xnb
+C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\bin\Windows\Graphics\Buttons\UI_button_pressed_02.xnb
+C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Buttons\UI_button_01.png
+C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Buttons\UI_button_02.png
+C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Buttons\UI_button_pressed_01.png
+C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Buttons\UI_button_pressed_02.png
