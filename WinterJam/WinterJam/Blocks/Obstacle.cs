@@ -19,7 +19,7 @@ namespace WinterJam
         public Obstacle(Texture2D texture, Vector2 position)
         {
             indexPosition = position;
-            Visualisation = new SpriteSheet(texture, GameSettings.Grid.GetGridPositionNoHeight(indexPosition), new Vector2(24, 36) * GameSettings.Grid.ScaleFactor, 0, 1, 1, 0, false);
+            Visualisation = new SpriteSheet(texture, IsLog ? GameSettings.Grid.GetGridPosition(indexPosition) : GameSettings.Grid.GetGridPositionNoHeight(indexPosition), new Vector2(24, 36) * GameSettings.Grid.ScaleFactor, 0, 1, 1, 0, false);
         }
         
 
