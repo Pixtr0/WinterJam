@@ -56,6 +56,10 @@ namespace WinterJam
                 Content.Load<Texture2D>("Graphics/Blocks/grass_02"),
                 Content.Load<Texture2D>("Graphics/Blocks/grass_03"),
                 Content.Load<Texture2D>("Graphics/Blocks/grass_04"),
+            }, new List<Texture2D>() {
+                Content.Load<Texture2D>("Graphics/Blocks/flower_01"),
+                Content.Load<Texture2D>("Graphics/Blocks/flower_02"),
+                Content.Load<Texture2D>("Graphics/Blocks/flower_03"),
             });
             
             GameSettings.Font = Content.Load<SpriteFont>("Graphics/Fonts/Font");
@@ -68,7 +72,8 @@ namespace WinterJam
                 Content.Load<Texture2D>("Graphics/Blocks/rocks_03"),
                 Content.Load<Texture2D>("Graphics/Blocks/stump_01"),
                 Content.Load<Texture2D>("Graphics/Blocks/stump_02"),
-                Content.Load<Texture2D>("Graphics/Blocks/log")
+                Content.Load<Texture2D>("Graphics/Blocks/log_01"),
+                Content.Load<Texture2D>("Graphics/Blocks/log_02")
             };
             Player.Animations.Add(new SpriteSheet(Content.Load<Texture2D>("Graphics/Player/Up"),Vector2.Zero,new Vector2(36,32) * GameSettings.Grid.ScaleFactor,0,1,4,0, true));
             Player.Animations.Add(new SpriteSheet(Content.Load<Texture2D>("Graphics/Player/Right"), Vector2.Zero, new Vector2(36, 32) * GameSettings.Grid.ScaleFactor, 0, 1, 4, 0, true));
@@ -251,21 +256,21 @@ namespace WinterJam
                 Obstacle obstacle = GetObstacleOn(topleft);
                 if (obstacle != null)
                 {
-                    obstacle.IsActive = false;
+                    obstacle.Visualisation.Texture = _obstacleTextures[8];
+                    obstacle.Visualisation.IsFlipped = true;
+                    obstacle.IsLog = true;
                     _obstacles[i].Visualisation.Texture = _obstacleTextures[7];
                     _obstacles[i].Visualisation.IsFlipped = true;
-                    _obstacles[i].Size = new Vector2(48, 36) * GameSettings.Grid.ScaleFactor / 1.5f;
-                    _obstacles[i].TopLeftPosition -= new Vector2(10, 2) * GameSettings.Grid.ScaleFactor;
                     _obstacles[i].IsLog = true;
                 }
                 obstacle = GetObstacleOn(topright);
                 if (obstacle != null)
                 {
-                    obstacle.IsActive = false;
+                    obstacle.Visualisation.Texture = _obstacleTextures[8];
+                    obstacle.IsLog = true;
                     _obstacles[i].Visualisation.Texture = _obstacleTextures[7];
-                    _obstacles[i].Size = new Vector2(48, 36) * GameSettings.Grid.ScaleFactor / 1.5f;
-                    _obstacles[i].TopLeftPosition -= new Vector2(0, 1) * GameSettings.Grid.ScaleFactor;
                     _obstacles[i].IsLog = true;
+                    
                 }
                 //obstacle = GetObstacleOn(topright);
                 //if (obstacle != new Obstacle())
@@ -280,7 +285,7 @@ namespace WinterJam
         {
             for (int i = 0; i < _obstacles.Count; i++)
             {
-                if (_obstacles[i].IsActive && _obstacles[i].indexPosition == pos) { return _obstacles[i]; }
+                if (!_obstacles[i].IsLog && _obstacles[i].indexPosition == pos) { return _obstacles[i]; }
             }
             return null;
         }
@@ -300,7 +305,7 @@ namespace WinterJam
         {
             for (int i = 0; i < _obstacles.Count; i++)
             {
-                if (_obstacles[i].TopLeftPosition == GameSettings.Grid.GetPlayerPosition(newPos))
+                if (_obstacles[i].TopLeftPosition == GameSettings.Grid.GetGridPosition(newPos))
                 {
                     return true;
                 }
