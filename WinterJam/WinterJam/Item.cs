@@ -68,7 +68,7 @@ namespace WinterJam
             UpdateDelay(gameTime);
 
             TopLeftPosition = GameSettings.Grid.GetGridPosition(CurrentPosition)
-                             + new Vector2(6, 8) * GameSettings.Grid.ScaleFactor 
+                             + new Vector2(12, 8) * GameSettings.Grid.ScaleFactor 
                              + new Vector2(-Size.X / 2, - ItemOffset * 4);
 
             base.Update(gameTime);
