@@ -28,7 +28,7 @@ namespace WinterJam.Players
         public Vector2 NextTopLeftPosition { get; set; }
         public static List<SpriteSheet> Animations { get; set; } = new List<SpriteSheet>();
         private const float _delay = 0.2f; // seconds
-        private const float _playerDelay = 0.08f; // seconds
+        private const float _playerDelay = 0.04f; // seconds
         private float _remainingPlayerDelay = _delay;
         public Player(Vector2 currentPosition, SpriteSheet visualisation)
         {
@@ -63,8 +63,6 @@ namespace WinterJam.Players
                 {
                     Item newPlacedItem = HeldItem;
                     newPlacedItem.Size *= 0.5f;
-                    //newPlacedItem.CurrentPosition = CurrentPosition;
-                    //newPlacedItem.TopLeftPosition = anchorPoint - newPlacedItem.Size / 2;
 
                     if (Visualisation == Animations[0])
                     {
@@ -218,7 +216,7 @@ namespace WinterJam.Players
                     NextPosition = new Vector2(clampedX, clampedY);
 
             }
-            TopLeftPosition = GameSettings.Grid.GetGridPosition(CurrentPosition) + new Vector2(-5, -12f) * GameSettings.Grid.ScaleFactor;
+            TopLeftPosition = GameSettings.Grid.GetGridPositionNoHeight(CurrentPosition) + new Vector2(-5, -12f) * GameSettings.Grid.ScaleFactor;
         }
         public override void Draw(SpriteBatch spriteBatch)
         {

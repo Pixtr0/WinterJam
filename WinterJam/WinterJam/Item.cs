@@ -32,6 +32,7 @@ namespace WinterJam
             Visualisation = new SpriteSheet(texture, parent.anchorPoint - new Vector2(size.X/2, 0), size, 0, 1, 1, 1, false) ;
             Color = new Color(random.Next(0, 256), random.Next(0, 256), random.Next(0, 256));
         }
+        //Bob above gameobject
         public void Update(GameTime gametime, Vector2 parentAnchorPoint)
         {
             //Durability--;
@@ -62,13 +63,13 @@ namespace WinterJam
                 _remainingDelay = _delay;
             }
         }
-
+        //overload bobs around currentposition
         public override void Update(GameTime gameTime)
         {
             UpdateDelay(gameTime);
 
             TopLeftPosition = GameSettings.Grid.GetGridPosition(CurrentPosition)
-                             + new Vector2(6, 8) * GameSettings.Grid.ScaleFactor 
+                             + new Vector2(12, 8) * GameSettings.Grid.ScaleFactor 
                              + new Vector2(-Size.X / 2, - ItemOffset * 4);
 
             base.Update(gameTime);
