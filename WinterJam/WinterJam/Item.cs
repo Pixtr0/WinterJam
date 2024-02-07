@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace WinterJam
 {
-    internal class Item : GameObject
+    public class Item : GameObject
     {
         public Color Color { get; set; }
         public int MaxDurability { get; set; }

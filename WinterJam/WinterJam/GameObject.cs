@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace WinterJam
 {
-    abstract class GameObject
+    public class GameObject
     {
         public Vector2 CurrentPosition { get; set; }
         public SpriteSheet Visualisation { get; set; }
