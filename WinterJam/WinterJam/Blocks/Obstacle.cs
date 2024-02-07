@@ -10,7 +10,7 @@ using System.Diagnostics;
 
 namespace WinterJam
 {
-    internal class Obstacle : GameObject
+    public class Obstacle : GameObject
     {
         public override Vector2 anchorPoint { get { return base.anchorPoint - new Vector2(0,  18 * GameSettings.Grid.ScaleFactor); } }
 

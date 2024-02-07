@@ -23,6 +23,7 @@ namespace WinterJam
         public static Screen PlayScreen { get; set; }
         public static Screen GameOverScreen { get; set; }
         public static Screen ActiveScreen { get; set; }
+        public static Screen SettingsScreen { get; set; }
 
         public static SpriteFont GameFont { get; set; }
         public static SpriteFont UiFont { get; set; }

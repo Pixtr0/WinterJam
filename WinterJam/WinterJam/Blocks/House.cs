@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace WinterJam
 {
-    internal class House : GameObject
+    public class House : GameObject
     {
         private const float _delay = 0.14f; // seconds
         private float _remainingDelay = _delay;

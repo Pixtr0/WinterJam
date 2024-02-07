@@ -8,10 +8,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WinterJam.Screens;
 
 namespace WinterJam
 {
-    internal class Enemy : GameObject
+    public class Enemy : GameObject
     {
         private Vector2 SpawnPosition { get { return GameSettings.Grid.GetRandomBorderPos(1);} }
         public Vector2 CurrentPosition { get; set; }
@@ -78,9 +79,9 @@ namespace WinterJam
         }
         private bool IncludesObstacles(Vector2 pos)
         {
-            for (int i = 0;i < Game1._obstacles.Count;i++)
+            for (int i = 0;i < PlayScreen._obstacles.Count;i++)
             {
-                if (Game1._obstacles[i].indexPosition == pos)
+                if (PlayScreen._obstacles[i].indexPosition == pos)
                 {
                     return true;
                 }

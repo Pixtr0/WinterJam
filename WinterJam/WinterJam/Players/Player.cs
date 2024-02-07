@@ -11,10 +11,11 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using WinterJam.Screens;
 
 namespace WinterJam.Players
 {
-    internal class Player : GameObject
+    public class Player : GameObject
     {
         //Prioritise migration to PlayScreen when live
         public List<Item> PlacedItems { get; set; } = new List<Item>();
@@ -194,9 +195,9 @@ namespace WinterJam.Players
                         NextPosition = CurrentPosition + new Vector2(0, 1);
                         Visualisation = Animations[2];
                     }
-                    for (int i = 0; i < Game1._obstacles.Count; i++)
+                    for (int i = 0; i < PlayScreen._obstacles.Count; i++)
                     {
-                        if (Game1._obstacles[i].indexPosition == NextPosition)
+                        if (PlayScreen._obstacles[i].indexPosition == NextPosition)
                         {
                             NextPosition = CurrentPosition;
                         }

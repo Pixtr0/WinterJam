@@ -15,7 +15,7 @@ namespace WinterJam
         public override void Draw(SpriteBatch spriteBatch)
         {
             Rectangle dr = new Rectangle(0, 0, (int)GameSettings.ScreenSize.X, (int)GameSettings.ScreenSize.Y);
-            spriteBatch.Draw(Texture, dr, Color.White); 
+            spriteBatch.Draw(GameSettings.ScreenTexture, dr, Color.White); 
         }
     }
 }
