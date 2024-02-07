@@ -191,7 +191,6 @@ namespace WinterJam
             }
 
             _allObjects = SortedObjects();
-
             base.Update(gameTime);
         }
 
@@ -296,7 +295,7 @@ namespace WinterJam
             Vector2 newPos;
             do
             {
-                newPos = new Vector2(Random.Shared.Next(0, (int)GameSettings.Grid.Size.X), Random.Shared.Next(0, (int)GameSettings.Grid.Size.Y));
+                newPos = new Vector2(Random.Shared.Next(1, (int)GameSettings.Grid.playsize), Random.Shared.Next(1, GameSettings.Grid.playsize));
             } while (ExistsInObjects(newPos) || House.HouseTiles.Contains(newPos) || House.SurroundingTiles.Contains(newPos));
             return newPos;
             
