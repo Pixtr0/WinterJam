@@ -13,6 +13,7 @@ namespace WinterJam
 {
     abstract class GameObject
     {
+        public Vector2 CurrentPosition { get; set; }
         public SpriteSheet Visualisation { get; set; }
         public bool IsActive { get; set; } = true;
         public virtual Vector2 anchorPoint { get

@@ -27,6 +27,7 @@ namespace WinterJam
             Durability = durability;
             MaxDurability = durability;
             ParentSize = parent.Size;
+            CurrentPosition = parent.CurrentPosition;
 
             Visualisation = new SpriteSheet(texture, parent.anchorPoint - new Vector2(size.X/2, 0), size, 0, 1, 1, 1, false) ;
             Color = new Color(random.Next(0, 256), random.Next(0, 256), random.Next(0, 256));

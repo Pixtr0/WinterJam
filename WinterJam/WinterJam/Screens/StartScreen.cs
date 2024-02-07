@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,6 @@ namespace WinterJam.Screens
 {
     internal class StartScreen : TextureScreen
     {
-        public UserInput UserInput {  get; set; }
         public override void Update(GameTime gameTime)
         {
             UserInput.Update();
@@ -20,7 +20,7 @@ namespace WinterJam.Screens
 
         private void UpdateActiveScreen(GameTime gameTime)
         {
-            if (UserInput.IsleftMouseClicked)
+            if (UserInput._currentMouseState.LeftButton == ButtonState.Pressed)
             {
                 GameSettings.PlayScreen = new PlayScreen();
                 GameSettings.ActiveScreen = GameSettings.PlayScreen;
