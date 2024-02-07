@@ -13,7 +13,7 @@ namespace WinterJam.Screens
 {
     public class PlayScreen : Screen
     {
-        //private SettingsScreen _settingsScreen;
+        private SettingsScreen _settingsScreen;
         public static List<GameObject> _allObjects = new List<GameObject>();
         public static List<Enemy> _enemies = new List<Enemy>();
         public static House _house;
@@ -22,7 +22,6 @@ namespace WinterJam.Screens
         public static Player _player;
 
         public int _amountOfObstacles = 15;
-        public bool _isSettingsScreenDrawn = false;
         public PlayScreen()
         {
             GenerateRandomTiles();
@@ -37,71 +36,71 @@ namespace WinterJam.Screens
 
             if (UserInput._currentMouseState.RightButton == ButtonState.Pressed && UserInput._previousMouseState.RightButton == ButtonState.Released)
             {
-                _isSettingsScreenDrawn = !_isSettingsScreenDrawn;
+                GameSettings.IsCloseButtonPressed = false;
+                GameSettings.IsSettingsScreenDrawn = true;
             }
 
-            if (_isSettingsScreenDrawn)
+            if (GameSettings.IsSettingsScreenDrawn == true)
             {
                 GameSettings.SettingsScreen.Update(gameTime);
             }
 
-
-            if (UserInput._currentKeyboardSate.IsKeyDown(Keys.Enter) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Enter))
+            if (GameSettings.IsSettingsScreenDrawn == false)
             {
-                _enemies.Add(Enemy.Spawn());
-            }
-            if (UserInput._currentKeyboardSate.IsKeyDown(Keys.Space) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Space))
-            {
-                GenerateRandomTiles();
-            }
+                if (UserInput._currentKeyboardSate.IsKeyDown(Keys.Enter) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Enter))
+                {
+                    _enemies.Add(Enemy.Spawn());
+                }
+                if (UserInput._currentKeyboardSate.IsKeyDown(Keys.Space) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Space))
+                {
+                    GenerateRandomTiles();
+                }
 
-            foreach (var gameObject in _allObjects)
-            {
-                if (gameObject is Enemy)
+                foreach (var gameObject in _allObjects)
                 {
-                    Enemy enemy = gameObject as Enemy;
-                    enemy.Update(gameTime);
+                    if (gameObject is Enemy)
+                    {
+                        Enemy enemy = gameObject as Enemy;
+                        enemy.Update(gameTime);
+                    }
+                    if (gameObject is House)
+                    {
+                        House house = gameObject as House;
+                        house.Update(gameTime);
+                    }
+                    if (gameObject is Player)
+                    {
+                        Player player = gameObject as Player;
+                        player.Update(gameTime);
+                    }
+                    if (gameObject is Obstacle)
+                    {
+                        Obstacle obstacle = gameObject as Obstacle;
+                        obstacle.Update(gameTime);
+                    }
                 }
-                if (gameObject is House)
-                {
-                    House house = gameObject as House;
-                    house.Update(gameTime);
-                }
-                if (gameObject is Player)
-                {
-                    Player player = gameObject as Player;
-                    player.Update(gameTime);
-                }
-                if (gameObject is Obstacle)
-                {
-                    Obstacle obstacle = gameObject as Obstacle;
-                    obstacle.Update(gameTime);
-                }
-            }
 
-            _allObjects = SortedObjects();
+                _allObjects = SortedObjects();
+            }
+            
 
             base.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            
-
             // Your existing draw logic goes here
 
             GameSettings.Grid.DrawGrass(spriteBatch);
-            
 
             for (int i = 0; i < _allObjects.Count; i++)
             {
                 _allObjects[i].Draw(spriteBatch);
             }
 
-            if (_isSettingsScreenDrawn)
+            if (GameSettings.IsSettingsScreenDrawn && GameSettings.IsCloseButtonPressed == false)
             {
                 GameSettings.SettingsScreen.Draw(spriteBatch);
-                Debug.WriteLine("Settings DRAWN");
             }
 
             base.Draw(spriteBatch);

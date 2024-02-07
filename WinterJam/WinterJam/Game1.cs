@@ -88,6 +88,11 @@ namespace WinterJam
             {
                 Debug.WriteLine(Object.anchorPoint.Y);
             }
+
+            GameSettings.StartScreen = new StartScreen() { Texture = GameSettings.ScreenTexture };
+            GameSettings.PlayScreen = new PlayScreen();
+            GameSettings.SettingsScreen = new SettingsScreen();
+            GameSettings.ActiveScreen = GameSettings.StartScreen;
         }
 
         protected override void Update(GameTime gameTime)

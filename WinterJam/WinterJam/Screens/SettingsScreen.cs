@@ -2,11 +2,7 @@
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SharpDX.Direct3D9;
+using System.Diagnostics;
 
 namespace WinterJam.Screens
 {
@@ -16,20 +12,15 @@ namespace WinterJam.Screens
         private int frameWidth = 500;
         private int frameHeight = 500;
 
-        private bool isButtonPressed1;
-        private bool isButtonPressed2;
-        private bool isButtonPressed3 = true;
+        private bool isQwertyButtonPressed = true;
+        private bool isAzertyButtonPressed;
+        private bool isArrowsButtonPressed;
 
-        public bool isCloseButtonPressed = true;
 
-        private int buttonWidth = 100; // Adjusted button width
+        private int buttonWidth = 200; // Adjusted button width
         private int buttonHeight = 50; // Adjusted button height
 
-        private MouseState _cMouseState, _pMouseState;
         private SpriteFont _font;
-
-        private Vector2 circlePosition;
-        //private float circleSpeed = 5.0f;
 
         // Slider parameters
         private Vector2 sliderPosition;
@@ -37,32 +28,33 @@ namespace WinterJam.Screens
         private int sliderHeight = 20;
         private float sliderValue = 0.5f; // Initial volume level
 
-        private Keys pressedKey = Keys.None; // Add this field
+        private Rectangle _closeButtonBounds;
+        private int closeButtonSize = 40;
 
-        private Rectangle closeButtonBounds;
-        private int closeButtonSize = 30;
+        // Store current and previous mouse states
+        private MouseState _currentMouseState, _previousMouseState;
 
-        public SettingsScreen(SpriteFont font)
+        public SettingsScreen()
         {
-            _font = font;
+            _font = GameSettings.GameFont;
 
             // Calculate frame position to center it on the screen
             framePosition = new Vector2((1920 - frameWidth) / 2, (1080 - frameHeight) / 2);
-
-            // Calculate button position relative to the frame
-            Vector2 buttonStartPosition = new Vector2((frameWidth - buttonWidth) / 2, (frameHeight - buttonHeight * 4) / 2); // Adjusted button positioning
-            circlePosition = new Vector2(buttonStartPosition.X + buttonWidth / 2, buttonStartPosition.Y + buttonHeight / 2);
 
             // Calculate slider position relative to the frame
             sliderPosition = new Vector2((frameWidth - sliderWidth) / 2, frameHeight - 150); // Adjusted slider position
 
             // Calculate close button position relative to the frame
-            closeButtonBounds = new Rectangle((int)framePosition.X + frameWidth - closeButtonSize - 10, (int)framePosition.Y + 10, closeButtonSize, closeButtonSize);
+            _closeButtonBounds = new Rectangle((int)framePosition.X + frameWidth - closeButtonSize - 10, (int)framePosition.Y + 10, closeButtonSize, closeButtonSize);
         }
 
         public override void Update(GameTime gameTime)
         {
-            UpdateStates();
+            // Update mouse states
+            _previousMouseState = _currentMouseState;
+            _currentMouseState = Mouse.GetState();
+
+            // Check for button presses and slider updates
             CheckCloseButtonPressed();
             CheckButtonPresses();
             UpdateControlKeys();
@@ -71,12 +63,10 @@ namespace WinterJam.Screens
 
         private void CheckCloseButtonPressed()
         {
-            if (_cMouseState.LeftButton == ButtonState.Pressed && _pMouseState.LeftButton == ButtonState.Released)
+            if (LeftMouseButtonPressed() && _closeButtonBounds.Contains(Mouse.GetState().Position))
             {
-                if (closeButtonBounds.Contains(_cMouseState.Position))
-                {
-                    isCloseButtonPressed = !isCloseButtonPressed;
-                }
+                GameSettings.IsCloseButtonPressed = true;
+                GameSettings.IsSettingsScreenDrawn = false;
             }
         }
 
@@ -84,154 +74,86 @@ namespace WinterJam.Screens
         {
             Rectangle sliderHandleRect = new Rectangle((int)framePosition.X + (int)sliderPosition.X + (int)(sliderValue * sliderWidth) - 10, (int)framePosition.Y + (int)sliderPosition.Y - 5, 20, sliderHeight + 10);
 
-            if (UserInput._currentMouseState.LeftButton == ButtonState.Pressed && sliderHandleRect.Contains(Mouse.GetState().Position))
+            if (_currentMouseState.LeftButton == ButtonState.Pressed && sliderHandleRect.Contains(_currentMouseState.Position))
             {
                 // If the slider handle is clicked, adjust the slider value based on the mouse position
-                sliderValue = MathHelper.Clamp((Mouse.GetState().Position.X - framePosition.X - sliderPosition.X) / sliderWidth, 0f, 1f);
+                sliderValue = MathHelper.Clamp((_currentMouseState.Position.X - framePosition.X - sliderPosition.X) / sliderWidth, 0f, 1f);
             }
         }
+
         private void UpdateControlKeys()
         {
-            if (isButtonPressed1)
-                GameSettings.ControlKeys = (Keys.W, Keys.D, Keys.S, Keys.A);
-            else if (isButtonPressed2)
-                GameSettings.ControlKeys = (Keys.Z, Keys.D, Keys.S, Keys.Q);
-            else if (isButtonPressed3)
-                GameSettings.ControlKeys = (Keys.Up, Keys.Right, Keys.Down, Keys.Left);
-
-            pressedKey = GetPressedKey();
+            if (isQwertyButtonPressed)
+                GameSettings.ControlKeys = (Keys.A, Keys.D, Keys.W, Keys.S);
+            else if (isAzertyButtonPressed)
+                GameSettings.ControlKeys = (Keys.Q, Keys.D, Keys.Z, Keys.S);
+            else if (isArrowsButtonPressed)
+                GameSettings.ControlKeys = (Keys.Left, Keys.Right, Keys.Up, Keys.Down);
         }
-        private Keys GetPressedKey()
-        {
-            foreach (Keys key in Enum.GetValues(typeof(Keys)))
-            {
-                if (Keyboard.GetState().IsKeyDown(key))
-                {
-                    return key;
-                }
-            }
-
-            return Keys.None;
-        }
-
-        /*private void MoveCircleWithWASD()
-        {
-            if (Keyboard.GetState().IsKeyDown(Keys.W))
-                circlePosition.Y -= circleSpeed;
-            if (Keyboard.GetState().IsKeyDown(Keys.A))
-                circlePosition.X -= circleSpeed;
-            if (Keyboard.GetState().IsKeyDown(Keys.S))
-                circlePosition.Y += circleSpeed;
-            if (Keyboard.GetState().IsKeyDown(Keys.D))
-                circlePosition.X += circleSpeed;
-        }
-
-        private void MoveCircleWithZQSD()
-        {
-            if (Keyboard.GetState().IsKeyDown(Keys.Z))
-                circlePosition.Y -= circleSpeed;
-            if (Keyboard.GetState().IsKeyDown(Keys.Q))
-                circlePosition.X -= circleSpeed;
-            if (Keyboard.GetState().IsKeyDown(Keys.S))
-                circlePosition.Y += circleSpeed;
-            if (Keyboard.GetState().IsKeyDown(Keys.D))
-                circlePosition.X += circleSpeed;
-        }
-
-        private void MoveCircleWithArrows()
-        {
-            if (Keyboard.GetState().IsKeyDown(Keys.Up))
-                circlePosition.Y -= circleSpeed;
-            if (Keyboard.GetState().IsKeyDown(Keys.Left))
-                circlePosition.X -= circleSpeed;
-            if (Keyboard.GetState().IsKeyDown(Keys.Down))
-                circlePosition.Y += circleSpeed;
-            if (Keyboard.GetState().IsKeyDown(Keys.Right))
-                circlePosition.X += circleSpeed;
-        }*/
 
         private void CheckButtonPresses()
         {
             if (CheckButtonPressed(new Vector2(framePosition.X + (frameWidth - buttonWidth) / 2, framePosition.Y + (frameHeight - buttonHeight * 4) / 2), buttonWidth, buttonHeight))
             {
-                isButtonPressed1 = true;
-                isButtonPressed2 = false;
-                isButtonPressed3 = false;
+                isQwertyButtonPressed = true;
+                isAzertyButtonPressed = false;
+                isArrowsButtonPressed = false;
             }
             if (CheckButtonPressed(new Vector2(framePosition.X + (frameWidth - buttonWidth) / 2, framePosition.Y + (frameHeight - buttonHeight * 4) / 2 + buttonHeight + 10), buttonWidth, buttonHeight))
             {
-                isButtonPressed2 = true;
-                isButtonPressed1 = false;
-                isButtonPressed3 = false;
+                isAzertyButtonPressed = true;
+                isQwertyButtonPressed = false;
+                isArrowsButtonPressed = false;
             }
             if (CheckButtonPressed(new Vector2(framePosition.X + (frameWidth - buttonWidth) / 2, framePosition.Y + (frameHeight - buttonHeight * 4) / 2 + 2 * (buttonHeight + 10)), buttonWidth, buttonHeight))
             {
-                isButtonPressed3 = true;
-                isButtonPressed1 = false;
-                isButtonPressed2 = false;
+                isArrowsButtonPressed = true;
+                isQwertyButtonPressed = false;
+                isAzertyButtonPressed = false;
             }
-        }
-
-        private void UpdateStates()
-        {
-            _pMouseState = _cMouseState;
-            _cMouseState = Mouse.GetState();
         }
 
         private bool CheckButtonPressed(Vector2 position, int width, int height)
         {
             Rectangle newButton = new Rectangle((int)position.X, (int)position.Y, width, height);
-            return LeftMouseButtonPressed() && newButton.Contains(Mouse.GetState().Position);
+            return LeftMouseButtonPressed() && newButton.Contains(_currentMouseState.Position);
         }
 
         private bool LeftMouseButtonPressed()
         {
-            return _pMouseState.LeftButton == ButtonState.Pressed && _cMouseState.LeftButton == ButtonState.Released;
+            return _previousMouseState.LeftButton == ButtonState.Pressed && _currentMouseState.LeftButton == ButtonState.Released;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             // Draw frame
-            //spriteBatch.DrawRectangle((int)framePosition.X, (int)framePosition.Y, frameWidth, frameHeight, Color.Gray, Color.Black, 2);
             spriteBatch.Draw(GameSettings.ScreenTexture, new Rectangle((int)framePosition.X + (int)sliderPosition.X, (int)framePosition.Y + (int)sliderPosition.Y, sliderWidth, sliderHeight), Color.Gray);
 
             // Draw buttons
-            DrawButton(new Vector2(framePosition.X + (frameWidth - buttonWidth) / 2, framePosition.Y + (frameHeight - buttonHeight * 4) / 2), buttonWidth, buttonHeight, "Qwerty", isButtonPressed1, spriteBatch);
-            DrawButton(new Vector2(framePosition.X + (frameWidth - buttonWidth) / 2, framePosition.Y + (frameHeight - buttonHeight * 4) / 2 + buttonHeight + 10), buttonWidth, buttonHeight, "Azerty", isButtonPressed2, spriteBatch);
-            DrawButton(new Vector2(framePosition.X + (frameWidth - buttonWidth) / 2, framePosition.Y + (frameHeight - buttonHeight * 4) / 2 + 2 * (buttonHeight + 10)), buttonWidth, buttonHeight, "Arrows", isButtonPressed3, spriteBatch);
-
-            // Draw the circle
-            //spriteBatch.DrawCircle((int)circlePosition.X, (int)circlePosition.Y, 20, Color.Red, Color.Blue, 5);
-            spriteBatch.Draw(GameSettings.ScreenTexture, new Rectangle((int)circlePosition.X, (int)circlePosition.Y, 40, 40), Color.Red);
-
+            DrawButton(new Vector2(framePosition.X + (frameWidth - buttonWidth) / 2, framePosition.Y + (frameHeight - buttonHeight * 4) / 2), buttonWidth, buttonHeight, "Qwerty", isQwertyButtonPressed, spriteBatch);
+            DrawButton(new Vector2(framePosition.X + (frameWidth - buttonWidth) / 2, framePosition.Y + (frameHeight - buttonHeight * 4) / 2 + buttonHeight + 10), buttonWidth, buttonHeight, "Azerty", isAzertyButtonPressed, spriteBatch);
+            DrawButton(new Vector2(framePosition.X + (frameWidth - buttonWidth) / 2, framePosition.Y + (frameHeight - buttonHeight * 4) / 2 + 2 * (buttonHeight + 10)), buttonWidth, buttonHeight, "Arrows", isArrowsButtonPressed, spriteBatch);
 
             // Draw the slider
             DrawSlider(spriteBatch);
 
             // Draw the close button
             DrawCloseButton(spriteBatch);
-
-            // Draw pressed key info
-            spriteBatch.DrawString(_font, "Pressed Key: " + pressedKey.ToString(), new Vector2(framePosition.X + 10, framePosition.Y + frameHeight - 50), Color.White);
         }
 
         private void DrawCloseButton(SpriteBatch spriteBatch)
         {
-            //spriteBatch.DrawRectangle((int)framePosition.X + frameWidth - closeButtonSize - 10, (int)framePosition.Y + 10, closeButtonSize, closeButtonSize, Color.Red, Color.Red, 1);
-            spriteBatch.Draw(GameSettings.ScreenTexture, new Rectangle((int)framePosition.X + frameWidth - closeButtonSize - 10, (int)framePosition.Y + 10, closeButtonSize, closeButtonSize), Color.Red);
-            spriteBatch.DrawString(_font, "X", new Vector2(framePosition.X + frameWidth - closeButtonSize, framePosition.Y + 15), Color.White);
+            spriteBatch.Draw(GameSettings.ScreenTexture, _closeButtonBounds, Color.Blue);
+            spriteBatch.DrawString(_font, "X", new Vector2(framePosition.X + frameWidth - closeButtonSize, framePosition.Y + 12), Color.White);
         }
 
         private void DrawSlider(SpriteBatch spriteBatch)
         {
             // Draw slider track
-            //spriteBatch.DrawRectangle((int)framePosition.X + (int)sliderPosition.X, (int)framePosition.Y + (int)sliderPosition.Y, sliderWidth, sliderHeight, Color.Gray, Color.Black, 2);
             spriteBatch.Draw(GameSettings.ScreenTexture, new Rectangle((int)framePosition.X + (int)sliderPosition.X, (int)framePosition.Y + (int)sliderPosition.Y, sliderWidth, sliderHeight), Color.Gray);
-
 
             // Draw slider handle
             spriteBatch.Draw(GameSettings.ScreenTexture, new Rectangle((int)framePosition.X + (int)(sliderPosition.X + sliderValue * sliderWidth) - 10, (int)framePosition.Y + (int)sliderPosition.Y - 5, 20, sliderHeight + 10), Color.Yellow);
-            //spriteBatch.DrawRectangle((int)framePosition.X + (int)(sliderPosition.X + sliderValue * sliderWidth) - 10, (int)framePosition.Y + (int)sliderPosition.Y - 5, 20, sliderHeight + 10, Color.Gold, Color.Black, 2);
         }
 
         private void DrawButton(Vector2 position, int width, int height, string buttonText, bool buttonPressed, SpriteBatch spriteBatch)
@@ -240,7 +162,6 @@ namespace WinterJam.Screens
 
             Color fillColor = GetFillColor(buttonPressed);
 
-            //spriteBatch.DrawRectangle((int)position.X, (int)position.Y, width, height, fillColor, Color.Goldenrod, 5);
             spriteBatch.Draw(GameSettings.ScreenTexture, new Rectangle((int)position.X, (int)position.Y, width, height), fillColor);
             spriteBatch.DrawString(_font, buttonText, textPosition, Color.Black);
         }
@@ -255,11 +176,6 @@ namespace WinterJam.Screens
             {
                 return Color.Goldenrod;
             }
-        }
-
-        public void ToggleVisibility()
-        {
-            isCloseButtonPressed = !isCloseButtonPressed;
         }
     }
 }

@@ -36,5 +36,8 @@ namespace WinterJam
         public static Texture2D Squirrel_Up_Left { get; set; }
         public static Texture2D Squirrel_Down_Right { get; set; }
         public static Texture2D Squirrel_Down_Left { get; set; }
+
+        public static bool IsCloseButtonPressed { get; set; }
+        public static bool IsSettingsScreenDrawn { get; set; }
     }
 }
