@@ -21,7 +21,7 @@ namespace WinterJam
 
         public House(Texture2D texture) {
             Vector2 size = new Vector2(58, 102) * GameSettings.Grid.ScaleFactor;
-            Visualisation = new SpriteSheet(texture, GameSettings.Grid.GetPlayerPosition(HouseTiles[HouseTiles.Length - 1]) - new Vector2(12 * GameSettings.Grid.ScaleFactor,
+            Visualisation = new SpriteSheet(texture, GameSettings.Grid.GetGridPosition(HouseTiles[HouseTiles.Length - 1]) - new Vector2(12 * GameSettings.Grid.ScaleFactor,
                size.Y - 24 * GameSettings.Grid.ScaleFactor), size, 0,10,10,0,true);
         }
 

@@ -17,6 +17,7 @@ namespace WinterJam.Players
     {
         public UserInput UserInput { get; set; }
         public List<Item> Inventory {get; set;} = new List<Item>();
+        public override Vector2 anchorPoint { get { return base.anchorPoint - new Vector2(0, 2 * GameSettings.Grid.ScaleFactor); } }
         public Item HeldItem { get; set; }
         public Double ItemAngle { get; set; } = 0f;
         public float ItemOffset { get; set; } = 0f;
@@ -137,7 +138,7 @@ namespace WinterJam.Players
 
                 }
             }
-            TopLeftPosition = GameSettings.Grid.GetPlayerPosition(CurrentPosition) + new Vector2(-6,-10.5f) * GameSettings.Grid.ScaleFactor;
+            TopLeftPosition = GameSettings.Grid.GetGridPosition(CurrentPosition) + new Vector2(-6,-10.5f) * GameSettings.Grid.ScaleFactor;
         }
         public override void Draw(SpriteBatch spriteBatch)
         {

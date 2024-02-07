@@ -15,20 +15,24 @@ namespace Isometric_Thingy
         public Vector2 Size { get; set; }
         private int[,] HeightOffsets { get; set; }
         private int[,] TileSelected { get; set; }
+        private int[,] FlowerTiles { get; set; }
         private Vector2 Position { get; set; }
         private List<Texture2D> Tiles { get; set; }
+        private List<Texture2D> FlowerTextures { get; set; }
         
         private Vector2 TileSize { get; set; } = new Vector2(24, 36);
         public Vector2[] BlockedTiles { get; set; } = new Vector2[8];
         public int[] ObstaclesIndexes { get; set; } = new int[8];
         
-        public Grid(Vector2 position, List<Texture2D> tiles)
+        public Grid(Vector2 position, List<Texture2D> tiles, List<Texture2D> flowers)
         {
             Tiles = tiles;
+            FlowerTextures = flowers;
             TileSize.Normalize();
             Size = Vector2.One * size;
             HeightOffsets = new int[size, size];
             TileSelected = new int[size, size];
+            FlowerTiles = new int[size, size];
             ScaleFactor = GameSettings.ScreenSize.Y / (10 * Size.Length());
             //ScaleFactor = 8;
             TileSize *= ScaleFactor;
@@ -45,6 +49,17 @@ namespace Isometric_Thingy
                 for (int j = 0; j < TileSelected.GetLength(1); j++)
                 {
                     TileSelected[i, j] = Random.Shared.Next(0, Tiles.Count);
+                }
+            }
+            for (int i = 0; i < FlowerTiles.GetLength(0); i++)
+            {
+                for (int j = 0; j < FlowerTiles.GetLength(1); j++)
+                {
+                    if (Random.Shared.Next(0, 9) == 0)
+                    {
+                        FlowerTiles[i, j] = Random.Shared.Next(0, FlowerTextures.Count);
+                    } else { FlowerTiles[i, j] = -1; }
+                    
                 }
             }
         }
@@ -75,16 +90,29 @@ namespace Isometric_Thingy
                 for (int y = 0; y < Size.Y; y++)
                 {
                     Texture2D tileTexture = Tiles[TileSelected[x, y]];
-
+                    
                     sb.Draw(tileTexture, new Rectangle((int)(Position.X + x * TileSize.X / 2 - y * TileSize.X / 2), (int)(Position.Y + y * (TileSize.Y / 6f) + x * (TileSize.Y / 6f)) + HeightOffsets[x, y], (int)TileSize.X, (int)TileSize.Y), Color.White);
+                    if (FlowerTiles[x,y] != -1)
+                    {
+                        Texture2D flowertexture = FlowerTextures[FlowerTiles[x, y]];
+                        Vector2 flowerSize = new Vector2(11, 10) * ScaleFactor;
+                        sb.Draw(flowertexture, new Rectangle((int)(Position.X + x * TileSize.X / 2 - y * TileSize.X / 2 + 6 * ScaleFactor), (int)(Position.Y + y * (TileSize.Y / 6f) + x * (TileSize.Y / 6f) + 7 * ScaleFactor) + HeightOffsets[x, y], (int)flowerSize.X, (int)flowerSize.Y), Color.White);
+                    }
                     
                 }
             }
         }
-        public Vector2 GetPlayerPosition(Vector2 index)
+
+        public Vector2 GetGridPosition(Vector2 index)
         {
             float x = (int)Position.X + index.X * TileSize.X / 2 - index.Y * TileSize.X / 2;
             float y = (int)Position.Y + index.Y * TileSize.Y / 6f + index.X * TileSize.Y / 6f + HeightOffsets[(int)index.X, (int)index.Y];
+            return new Vector2(x, y);
+        }
+        public Vector2 GetGridPositionNoHeight(Vector2 index)
+        {
+            float x = (int)Position.X + index.X * TileSize.X / 2 - index.Y * TileSize.X / 2;
+            float y = (int)Position.Y + index.Y * TileSize.Y / 6f + index.X * TileSize.Y / 6f;
             return new Vector2(x, y);
         }
         public Vector2 GetRandomBorderPos()

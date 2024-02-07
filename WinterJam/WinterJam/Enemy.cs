@@ -30,7 +30,7 @@ namespace WinterJam
             Animations = animations;
             Visualisation = Animations[0];
             CurrentPosition = SpawnPosition;
-            TopLeftPosition = GameSettings.Grid.GetPlayerPosition(CurrentPosition);
+            TopLeftPosition = GameSettings.Grid.GetGridPosition(CurrentPosition);
             _remainingDelay = _delay;
         }
 
@@ -118,7 +118,7 @@ namespace WinterJam
                     if (CurrentPosition == TargetLocation)
                     {
                         NextPosition = TargetLocation - new Vector2(0.3f, 0);
-                        TopLeftPosition = GameSettings.Grid.GetPlayerPosition(CurrentPosition);
+                        TopLeftPosition = GameSettings.Grid.GetGridPosition(CurrentPosition);
                         Visualisation = Animations[7];
                     } else
                     {
@@ -135,7 +135,7 @@ namespace WinterJam
                     _delay = 2f;
                 } else
                 {
-                    TopLeftPosition = GameSettings.Grid.GetPlayerPosition(CurrentPosition) + new Vector2(0, 6 * GameSettings.Grid.ScaleFactor);
+                    TopLeftPosition = GameSettings.Grid.GetGridPosition(CurrentPosition) + new Vector2(0, 6 * GameSettings.Grid.ScaleFactor);
                     _delay = 0.07f;
                 }
                 _remainingDelay = _delay;
