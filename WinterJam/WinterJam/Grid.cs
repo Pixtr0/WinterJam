@@ -11,7 +11,7 @@ namespace Isometric_Thingy
     public class Grid
     {
         private int size = 45;
-        private int playsize = 17;
+        public int playsize = 17;
         public int DownShift = 14;
 
         public float ScaleFactor { get; set; }
@@ -159,9 +159,6 @@ namespace Isometric_Thingy
                             sb.Draw(flowertexture, new Rectangle((int)(Position.X + x * TileSize.X / 2 - y * TileSize.X / 2 + 6 * ScaleFactor), (int)(Position.Y + y * (TileSize.Y / 6f) + x * (TileSize.Y / 6f) + 7 * ScaleFactor) + HeightOffsets[x + DownShift, y + DownShift], (int)flowerSize.X, (int)flowerSize.Y), Color.White);
                         }
                     }
-                        
-                        
-
                 }
             }
             
@@ -185,11 +182,11 @@ namespace Isometric_Thingy
             Vector2 newPos;
             do
             {
-                int x = Random.Shared.Next(0, 2) == 0 ? -1 : size;
-                int y = Random.Shared.Next(-1, size + 1);
+                int offset = 1;
+                int x = Random.Shared.Next(0, 2) == 0 ? -offset : playsize + offset;
+                int y = Random.Shared.Next(-offset, playsize + offset);
                 if (Random.Shared.Next(0, 2) == 0)
                 {
-                    
                     newPos = new Vector2(x, y);
                 } else
                 {

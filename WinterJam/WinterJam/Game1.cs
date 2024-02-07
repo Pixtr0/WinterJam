@@ -305,7 +305,7 @@ namespace WinterJam
         {
             for (int i = 0; i < _obstacles.Count; i++)
             {
-                if (_obstacles[i].TopLeftPosition == GameSettings.Grid.GetGridPosition(newPos))
+                if (_obstacles[i].indexPosition == newPos)
                 {
                     return true;
                 }

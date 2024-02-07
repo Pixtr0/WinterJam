@@ -30,7 +30,7 @@ namespace WinterJam
             Animations = animations;
             Visualisation = Animations[0];
             CurrentPosition = SpawnPosition;
-            TopLeftPosition = GameSettings.Grid.GetGridPosition(CurrentPosition);
+            TopLeftPosition = GameSettings.Grid.GetGridPositionNoHeight(CurrentPosition);
             _remainingDelay = _delay;
         }
 
