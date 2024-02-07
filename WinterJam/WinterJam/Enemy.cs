@@ -51,7 +51,7 @@ namespace WinterJam
             int shortestIndex = 0;
             for (int i = 0; i < possibilities.Count; i++)
             {
-                if (!House.HouseTiles.Contains(possibilities[i]) && !IncludesObstacles(possibilities[i]) && !IsBlockOffMap(possibilities[i]))
+                if (!House.HouseTiles.Contains(possibilities[i]) && House.SurroundingTiles[0] != possibilities[i] && !IncludesObstacles(possibilities[i]) && !IsBlockOffMap(possibilities[i]))
                 {
                     float distance = Vector2.Distance(TargetLocation, possibilities[i]);
                     if (distance < shortestDistance)
@@ -74,7 +74,15 @@ namespace WinterJam
                 {
                     return true;
                 }
-            } return false;
+            }
+            for (int i = 0; i < House.SurroundingTiles.Length - 10; i++)
+            {
+                if (House.SurroundingTiles[i] == pos)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
     private bool IsBlockOffMap(Vector2 pos)
