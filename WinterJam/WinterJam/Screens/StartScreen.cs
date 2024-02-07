@@ -20,9 +20,10 @@ namespace WinterJam.Screens
 
         private void UpdateActiveScreen(GameTime gameTime)
         {
-            if (UserInput._currentMouseState.LeftButton == ButtonState.Pressed)
+            //UserInput._currentMouseState.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Released && UserInput._previousMouseState.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed
+            if (UserInput._currentMouseState.RightButton == ButtonState.Pressed && 
+                UserInput._previousMouseState.RightButton == ButtonState.Released)
             {
-                GameSettings.PlayScreen = new PlayScreen();
                 GameSettings.ActiveScreen = GameSettings.PlayScreen;
             }
         }

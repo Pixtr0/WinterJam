@@ -90,7 +90,6 @@ namespace WinterJam.Screens
                 sliderValue = MathHelper.Clamp((Mouse.GetState().Position.X - framePosition.X - sliderPosition.X) / sliderWidth, 0f, 1f);
             }
         }
-
         private void UpdateControlKeys()
         {
             if (isButtonPressed1)
@@ -102,7 +101,6 @@ namespace WinterJam.Screens
 
             pressedKey = GetPressedKey();
         }
-
         private Keys GetPressedKey()
         {
             foreach (Keys key in Enum.GetValues(typeof(Keys)))

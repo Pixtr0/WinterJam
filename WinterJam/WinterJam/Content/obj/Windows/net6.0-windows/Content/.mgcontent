@@ -37,7 +37,14 @@
     <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Enemy/Up_Left.png</File>
     <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Enemy/Up_Right.png</File>
     <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Enemy/Up.png</File>
-    <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Fonts/File.spritefont</File>
+    <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Fonts/GameDisplay.spritefont</File>
+    <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Fonts/UI.spritefont</File>
+    <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Items/item_donut.png</File>
+    <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Items/item_keys.png</File>
+    <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Items/item_sock.png</File>
+    <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Items/item_toiletPaper.png</File>
+    <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Items/item_toothbrush.png</File>
+    <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Items/item_underwear.png</File>
     <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Player/Down.png</File>
     <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Player/Left.png</File>
     <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Player/Player.webp</File>
@@ -45,6 +52,13 @@
     <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Player/Up.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
