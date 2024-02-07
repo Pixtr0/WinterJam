@@ -177,12 +177,11 @@ namespace Isometric_Thingy
             float y = (int)Position.Y + index.Y * TileSize.Y / 6f + index.X * TileSize.Y / 6f;
             return new Vector2(x, y);
         }
-        public Vector2 GetRandomBorderPos()
+        public Vector2 GetRandomBorderPos(int offset)
         {
             Vector2 newPos;
             do
             {
-                int offset = 1;
                 int x = Random.Shared.Next(0, 2) == 0 ? -offset : playsize + offset;
                 int y = Random.Shared.Next(-offset, playsize + offset);
                 if (Random.Shared.Next(0, 2) == 0)

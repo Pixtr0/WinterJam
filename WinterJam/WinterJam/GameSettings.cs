@@ -24,7 +24,8 @@ namespace WinterJam
         public static Screen GameOverScreen { get; set; }
         public static Screen ActiveScreen { get; set; }
 
-        public static SpriteFont Font { get; set; }
+        public static SpriteFont GameFont { get; set; }
+        public static SpriteFont UiFont { get; set; }
         public static Texture2D ScreenTexture { get; set; }
         public static Texture2D Squirrel_Up { get; set; }
         public static Texture2D Squirrel_Down { get; set; }

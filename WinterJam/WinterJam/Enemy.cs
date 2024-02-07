@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using SpriteSheetClass;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,10 +13,11 @@ namespace WinterJam
 {
     internal class Enemy : GameObject
     {
-        private Vector2 SpawnPosition { get { return GameSettings.Grid.GetRandomBorderPos();} }
-        private Vector2 CurrentPosition { get; set; }
+        private Vector2 SpawnPosition { get { return GameSettings.Grid.GetRandomBorderPos(1);} }
+        public Vector2 CurrentPosition { get; set; }
         private Vector2 NextPosition { get; set; }
         private Vector2 TargetLocation { get; set; } = new Vector2(9, 7);
+        public Item helditem { get; set; }
 
         private bool InSideHouse = false;
         
@@ -29,11 +31,20 @@ namespace WinterJam
         {
             Animations = animations;
             Visualisation = Animations[0];
-            CurrentPosition = SpawnPosition;
+            CurrentPosition = GameSettings.Grid.GetRandomBorderPos(1);
             TopLeftPosition = GameSettings.Grid.GetGridPositionNoHeight(CurrentPosition);
             _remainingDelay = _delay;
+            Createitem(0);
+            helditem.IsActive = false;
         }
 
+        private void Createitem(int cost)
+        {
+            House.currentHp -= cost;
+            helditem = new Item(20, GameSettings.ScreenTexture, new Vector2(18, 19) * GameSettings.Grid.ScaleFactor, this);
+            helditem.IsActive = true;
+
+        }
         private Vector2 getNextPosition()
         {
             Vector2 newNextPos = CurrentPosition;
@@ -63,7 +74,6 @@ namespace WinterJam
             }
             newNextPos = possibilities[shortestIndex];
             Visualisation = Animations[shortestIndex];
-
             return newNextPos;
         }
         private bool IncludesObstacles(Vector2 pos)
@@ -100,16 +110,26 @@ namespace WinterJam
             var timer = (float)gt.ElapsedGameTime.TotalSeconds;
             
             _remainingDelay -= timer;
-            
+            if(helditem.IsActive)
+                helditem.Update(gt,this.anchorPoint);
             if (_remainingDelay <= 0)
             {
+                //reset insidehouse state
                 if (_delay == 2f && InSideHouse)
                     InSideHouse = false;
+
                 if (NextPosition == TargetLocation - new Vector2(0.3f, 0))
                 {
                     InSideHouse = true;
+                    TargetLocation = GameSettings.Grid.GetRandomBorderPos(0);
+                    NextPosition = CurrentPosition;
+                }
+                if (helditem.IsActive && CurrentPosition == TargetLocation)
+                {
                     CurrentPosition = SpawnPosition;
                     NextPosition = CurrentPosition;
+                    TargetLocation = new Vector2(9, 7);
+                    helditem.IsActive = false;
                 }
 
                 int index = Visualisation.CurrentSpriteIndex;
@@ -123,27 +143,29 @@ namespace WinterJam
                 }
                 else
                 {
-                    if (CurrentPosition == TargetLocation)
+                    if (!helditem.IsActive && CurrentPosition == TargetLocation)
                     {
-                        NextPosition = TargetLocation - new Vector2(0.3f, 0);
-                        TopLeftPosition = GameSettings.Grid.GetGridPosition(CurrentPosition);
-                        Visualisation = Animations[7];
-                    } else
+                        if (!InSideHouse)
+                        {
+                            NextPosition = TargetLocation - new Vector2(0.3f, 0);
+                            TopLeftPosition = GameSettings.Grid.GetGridPositionNoHeight(CurrentPosition);
+                            Visualisation = Animations[7];
+                        }
+                    }
+                    else
                     {
                         NextPosition = getNextPosition();
                     }
                     
+                    
                 }
-               
-                
-                
                 if (InSideHouse)
                 {
-                    
+                    Createitem(1);
                     _delay = 2f;
                 } else
                 {
-                    TopLeftPosition = GameSettings.Grid.GetGridPosition(CurrentPosition) + new Vector2(0, 6 * GameSettings.Grid.ScaleFactor);
+                    TopLeftPosition = GameSettings.Grid.GetGridPositionNoHeight(CurrentPosition) + new Vector2(0, 6 * GameSettings.Grid.ScaleFactor);
                     _delay = 0.07f;
                 }
                 _remainingDelay = _delay;
@@ -155,6 +177,8 @@ namespace WinterJam
             if (!InSideHouse)
             {
                 base.Draw(spriteBatch);
+                if(helditem.IsActive)
+                    helditem.Draw(spriteBatch);
             }
             
         }

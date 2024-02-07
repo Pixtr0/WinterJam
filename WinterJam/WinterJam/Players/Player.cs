@@ -35,6 +35,7 @@ namespace WinterJam.Players
             CurrentPosition = currentPosition;
             NextPosition = CurrentPosition;
             Visualisation = visualisation;
+            TopLeftPosition = GameSettings.Grid.GetGridPosition(CurrentPosition) + new Vector2(-7, -8.5f) * GameSettings.Grid.ScaleFactor;
         }
         public override void Update(GameTime gameTime)
         {
@@ -192,7 +193,7 @@ namespace WinterJam.Players
                     NextPosition = new Vector2(clampedX, clampedY);
 
             }
-            TopLeftPosition = GameSettings.Grid.GetGridPosition(CurrentPosition) + new Vector2(-6,-10.5f) * GameSettings.Grid.ScaleFactor;
+            TopLeftPosition = GameSettings.Grid.GetGridPosition(CurrentPosition) + new Vector2(-5, -12f) * GameSettings.Grid.ScaleFactor;
         }
         public override void Draw(SpriteBatch spriteBatch)
         {

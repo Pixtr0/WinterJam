@@ -62,7 +62,8 @@ namespace WinterJam
                 Content.Load<Texture2D>("Graphics/Blocks/flower_03"),
             });
             
-            GameSettings.Font = Content.Load<SpriteFont>("Graphics/Fonts/Font");
+            GameSettings.GameFont = Content.Load<SpriteFont>("Graphics/Fonts/GameDisplay");
+            GameSettings.UiFont = Content.Load<SpriteFont>("Graphics/Fonts/UI");
             _obstacleTextures = new List<Texture2D>()
             {
                 Content.Load<Texture2D>("Graphics/Blocks/bush_01"),
