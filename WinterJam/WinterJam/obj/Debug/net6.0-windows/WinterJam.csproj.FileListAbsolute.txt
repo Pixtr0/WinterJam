@@ -129,7 +129,6 @@ C:\Users\scutt\OneDrive\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug
 C:\Users\scutt\OneDrive\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Blocks\placeholder screen.xnb
 C:\Users\scutt\OneDrive\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Fonts\Font.xnb
 C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Blocks\placeholder screen.xnb
-C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Fonts\File.xnb
 C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Fonts\Font.xnb
 C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Blocks\log.xnb
 C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Player\Down.xnb
@@ -334,3 +333,21 @@ C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-w
 C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Buttons\UI_button_02.png
 C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Buttons\UI_button_pressed_01.png
 C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Buttons\UI_button_pressed_02.png
+C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Buttons\UI_button_01.xnb
+C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Buttons\UI_button_02.xnb
+C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Buttons\UI_button_pressed_01.xnb
+C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Buttons\UI_button_pressed_02.xnb
+C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Items\item_donut.xnb
+C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Items\item_keys.xnb
+C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Items\item_sock.xnb
+C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Items\item_toiletPaper.xnb
+C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Items\item_toothbrush.xnb
+C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Items\item_underwear.xnb
+C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\bin\Windows\Graphics\Buttons\UI_button_01.xnb
+C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\bin\Windows\Graphics\Buttons\UI_button_02.xnb
+C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\bin\Windows\Graphics\Buttons\UI_button_pressed_01.xnb
+C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\bin\Windows\Graphics\Buttons\UI_button_pressed_02.xnb
+C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Buttons\UI_button_01.png
+C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Buttons\UI_button_02.png
+C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Buttons\UI_button_pressed_01.png
+C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Buttons\UI_button_pressed_02.png
