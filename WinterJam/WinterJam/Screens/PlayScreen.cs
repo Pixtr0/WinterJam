@@ -13,15 +13,15 @@ namespace WinterJam.Screens
 {
     public class PlayScreen : Screen
     {
-        public static List<GameObject> _allObjects = new List<GameObject>();
-        public static List<Enemy> _enemies = new List<Enemy>();
-        public static House _house;
-        public static List<Obstacle> _obstacles = new List<Obstacle>();
-        public static List<Texture2D> _obstacleTextures = new List<Texture2D>();
-        public static Player _player;
-
+        public static List<GameObject> AllObjects { get; set; } = new List<GameObject>();
+        public static List<Enemy> Enemies { get; set; } = new List<Enemy>();
+        public static House House { get; set; }
+        public static List<Obstacle> Obstacles { get; set; } = new List<Obstacle>();
+        public static List<Texture2D> ObstacleTextures { get; set; } = new List<Texture2D>();
+        public static Player Player {  get; set; }
         public static List<Item> DroppedItems { get; set; } = new List<Item>();
-        public int _amountOfObstacles = 15;
+
+        private int _amountOfObstacles = 15;
         public PlayScreen()
         {
             GenerateRandomTiles();
@@ -46,36 +46,35 @@ namespace WinterJam.Screens
             if (UserInput._currentMouseState.RightButton == ButtonState.Pressed && UserInput._previousMouseState.RightButton == ButtonState.Released)
             {
                 GameSettings.IsCloseButtonPressed = false;
-                GameSettings.IsPauseScreenDrawn = true;
+                GameSettings.IsPauseScreenDrawn = !GameSettings.IsPauseScreenDrawn;
             }
 
-            //if (GameSettings.IsPauseScreenDrawn == true)
-            //{
-            //    GameSettings.PauseScreen.Update(gameTime);
-            //}
+            if (GameSettings.IsPauseScreenDrawn == true)
+            {
+                GameSettings.PauseScreen.Update(gameTime);
+            }
 
-            //if (GameSettings.IsSettingsScreenDrawn == true)
-            //{
-            //    GameSettings.SettingsScreen.Update(gameTime);
-            //}
+            if (GameSettings.IsSettingsScreenDrawn == true)
+            {
+                GameSettings.SettingsScreen.Update(gameTime);
+            }
 
             if (GameSettings.IsPauseScreenDrawn == false)
             {
-                if (UserInput._currentKeyboardSate.IsKeyDown(Keys.Enter) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Enter))
-                {
-                    _enemies.Add(Enemy.Spawn());
-                }
-                if (UserInput._currentKeyboardSate.IsKeyDown(Keys.Space) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Space))
-                {
-                    GenerateRandomTiles();
-                }
-                foreach (Enemy enemy in _enemies)
+                //if (UserInput._currentKeyboardSate.IsKeyDown(Keys.Enter) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Enter))
+                //{
+                //    Enemies.Add(Enemy.Spawn());
+                //}
+                //if (UserInput._currentKeyboardSate.IsKeyDown(Keys.Space) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Space))
+                //{
+                //    GenerateRandomTiles();
+                //}
+                foreach (Enemy enemy in Enemies)
                 {
                     enemy.Update(gameTime);
                 }
-                foreach (var gameObject in _allObjects)
+                foreach (var gameObject in AllObjects)
                 {
-                    
                     if (gameObject is House)
                     {
                         House house = gameObject as House;
@@ -93,7 +92,7 @@ namespace WinterJam.Screens
                     }
                 }
 
-                _allObjects = SortedObjects();
+                AllObjects = SortedObjects();
             }
 
             UpdateDroppeditems(gameTime);
@@ -113,14 +112,14 @@ namespace WinterJam.Screens
                 for (int i = 0; i < DroppedItems.Count; i++)
                 {
 
-                    if (_player.CurrentPosition == DroppedItems[i].CurrentPosition)
+                    if (Player.CurrentPosition == DroppedItems[i].CurrentPosition)
                     {
-                        Item newPlayerItem = new Item(_player )
+                        Item newPlayerItem = new Item(Player )
                         {
                             Visualisation = DroppedItems[i].Visualisation,
-                            ParentSize = _player.Size
+                            ParentSize = Player.Size
                         };
-                        _player.Inventory.Add(newPlayerItem);
+                        Player.Inventory.Add(newPlayerItem);
                         DroppedItems.Remove(DroppedItems[i]);
                     }
                 }
@@ -135,9 +134,9 @@ namespace WinterJam.Screens
 
             GameSettings.Grid.DrawGrass(spriteBatch);
 
-            for (int i = 0; i < _allObjects.Count; i++)
+            for (int i = 0; i < AllObjects.Count; i++)
             {
-                _allObjects[i].Draw(spriteBatch);
+                AllObjects[i].Draw(spriteBatch);
             }
             
 
@@ -151,25 +150,25 @@ namespace WinterJam.Screens
                 GameSettings.SettingsScreen.Draw(spriteBatch);
             }
 
-            if (DroppedItems.Count > 0)
-            {
-                foreach (Item item in DroppedItems)
-                {
-                    if (item != null)
-                        item.Draw(spriteBatch);
-                }
-            }
+            //if (DroppedItems.Count > 0)
+            //{
+            //    foreach (Item item in DroppedItems)
+            //    {
+            //        if (item != null)
+            //            item.Draw(spriteBatch);
+            //    }
+            //}
 
             base.Draw(spriteBatch);
         }
         private List<GameObject> SortedObjects()
         {
             List<GameObject> returnList = new List<GameObject>();
-            foreach (Obstacle obstacle in _obstacles)
+            foreach (Obstacle obstacle in Obstacles)
             {
                 returnList.Add(obstacle);
             }
-            foreach (Enemy enemy in _enemies)
+            foreach (Enemy enemy in Enemies)
             {
                 returnList.Add(enemy);
             }
@@ -177,8 +176,8 @@ namespace WinterJam.Screens
             {
                 returnList.Add(item);
             }
-            returnList.Add(_house);
-            returnList.Add(_player);
+            returnList.Add(House);
+            returnList.Add(Player);
 
             return SortList(returnList, 0, returnList.Count - 1);
         }
@@ -223,60 +222,60 @@ namespace WinterJam.Screens
             int rock = 2;
 
             Texture2D texture;
-            _obstacles.Clear();
+            Obstacles.Clear();
             for (int i = 0; i < _amountOfObstacles; i++)
             {
                 int value = Random.Shared.Next(0, 3);
                 if (value == 0)
                 {
-                    texture = _obstacleTextures[log];
+                    texture = ObstacleTextures[log];
                     log++;
                     if (log > 6)
                         log = 5;
                 }
                 else if (value == 1)
                 {
-                    texture = _obstacleTextures[rock];
+                    texture = ObstacleTextures[rock];
                     rock++;
                     if (rock > 4)
                         rock = 2;
                 }
                 else
                 {
-                    texture = _obstacleTextures[bush];
+                    texture = ObstacleTextures[bush];
                     bush++;
                     if (bush > 1)
                         bush = 0;
                 }
-                _obstacles.Add(new Obstacle(texture, GetRandomPositionOnGrid()));
+                Obstacles.Add(new Obstacle(texture, GetRandomPositionOnGrid()));
             }
             CheckForLogFormations();
         }
 
         private void CheckForLogFormations()
         {
-            for (int i = 0; i < _obstacles.Count; i++)
+            for (int i = 0; i < Obstacles.Count; i++)
             {
-                Vector2 topleft = _obstacles[i].indexPosition - new Vector2(1, 0);
-                Vector2 topright = _obstacles[i].indexPosition - new Vector2(0, 1);
+                Vector2 topleft = Obstacles[i].indexPosition - new Vector2(1, 0);
+                Vector2 topright = Obstacles[i].indexPosition - new Vector2(0, 1);
 
                 Obstacle obstacle = GetObstacleOn(topleft);
                 if (obstacle != null)
                 {
-                    obstacle.Visualisation.Texture = _obstacleTextures[8];
+                    obstacle.Visualisation.Texture = ObstacleTextures[8];
                     obstacle.Visualisation.IsFlipped = true;
                     obstacle.IsLog = true;
-                    _obstacles[i].Visualisation.Texture = _obstacleTextures[7];
-                    _obstacles[i].Visualisation.IsFlipped = true;
-                    _obstacles[i].IsLog = true;
+                    Obstacles[i].Visualisation.Texture = ObstacleTextures[7];
+                    Obstacles[i].Visualisation.IsFlipped = true;
+                    Obstacles[i].IsLog = true;
                 }
                 obstacle = GetObstacleOn(topright);
                 if (obstacle != null)
                 {
-                    obstacle.Visualisation.Texture = _obstacleTextures[8];
+                    obstacle.Visualisation.Texture = ObstacleTextures[8];
                     obstacle.IsLog = true;
-                    _obstacles[i].Visualisation.Texture = _obstacleTextures[7];
-                    _obstacles[i].IsLog = true;
+                    Obstacles[i].Visualisation.Texture = ObstacleTextures[7];
+                    Obstacles[i].IsLog = true;
 
                 }
                 //obstacle = GetObstacleOn(topright);
@@ -290,9 +289,9 @@ namespace WinterJam.Screens
 
         private Obstacle GetObstacleOn(Vector2 pos)
         {
-            for (int i = 0; i < _obstacles.Count; i++)
+            for (int i = 0; i < Obstacles.Count; i++)
             {
-                if (!_obstacles[i].IsLog && _obstacles[i].indexPosition == pos) { return _obstacles[i]; }
+                if (!Obstacles[i].IsLog && Obstacles[i].indexPosition == pos) { return Obstacles[i]; }
             }
             return null;
         }
@@ -310,9 +309,9 @@ namespace WinterJam.Screens
 
         private static bool ExistsInObjects(Vector2 newPos)
         {
-            for (int i = 0; i < _obstacles.Count; i++)
+            for (int i = 0; i < Obstacles.Count; i++)
             {
-                if (_obstacles[i].indexPosition == newPos)
+                if (Obstacles[i].indexPosition == newPos)
                 {
                     return true;
                 }

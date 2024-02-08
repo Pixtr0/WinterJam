@@ -94,9 +94,9 @@ namespace WinterJam
         }
         private bool IncludesObstacles(Vector2 pos)
         {
-            for (int i = 0;i < PlayScreen._obstacles.Count;i++)
+            for (int i = 0;i < PlayScreen.Obstacles.Count;i++)
             {
-                if (PlayScreen._obstacles[i].indexPosition == pos)
+                if (PlayScreen.Obstacles[i].indexPosition == pos)
                 {
                     return true;
                 }
