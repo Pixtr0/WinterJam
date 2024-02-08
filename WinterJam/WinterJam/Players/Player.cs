@@ -59,43 +59,46 @@ namespace WinterJam.Players
 
         private void SmackASquirrel()
         {
-            List<Vector2> smackedPositions = new List<Vector2>();
+            if (UserInput._currentKeyboardSate.IsKeyDown(Keys.Space) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Space))
+            {
+                List<Vector2> smackedPositions = new List<Vector2>();
 
-            if (this.Visualisation == Animations[0]) // UP
-            {
-                smackedPositions.Add(CurrentPosition + new Vector2(0, -1));
-                smackedPositions.Add(CurrentPosition + new Vector2(0, -2));
-                smackedPositions.Add(CurrentPosition + new Vector2(1, -1));
-                smackedPositions.Add(CurrentPosition + new Vector2(-1, -1));
-            }
-            if (this.Visualisation == Animations[1]) // RGHT
-            {
-                smackedPositions.Add(CurrentPosition + new Vector2(1, 0));
-                smackedPositions.Add(CurrentPosition + new Vector2(2, 0));
-                smackedPositions.Add(CurrentPosition + new Vector2(1, -1));
-                smackedPositions.Add(CurrentPosition + new Vector2(1, 1));
-            }
-            if (this.Visualisation == Animations[2]) // DOWN
-            {
-                smackedPositions.Add(CurrentPosition + new Vector2(-1, 1));
-                smackedPositions.Add(CurrentPosition + new Vector2(0, 1));
-                smackedPositions.Add(CurrentPosition + new Vector2(0, 2));
-                smackedPositions.Add(CurrentPosition + new Vector2(1, 1));
-            }
-            if (this.Visualisation == Animations[3]) // LEFT
-            {
-                smackedPositions.Add(CurrentPosition + new Vector2(-1, 0));
-                smackedPositions.Add(CurrentPosition + new Vector2(-1, -1));
-                smackedPositions.Add(CurrentPosition + new Vector2(-2, 0));
-                smackedPositions.Add(CurrentPosition + new Vector2(-1, 1));
-            }
-
-            for (int i = 0; i < PlayScreen.Enemies.Count; i++)
-            {
-                for (int j = 0; j < smackedPositions.Count; j++)
+                if (this.Visualisation == Animations[0]) // UP
                 {
-                    if (PlayScreen.Enemies[i].CurrentPosition == smackedPositions[j] || PlayScreen.Enemies[i].NextPosition == smackedPositions[j])
-                        PlayScreen.Enemies[i].IsSmacked = true;
+                    smackedPositions.Add(CurrentPosition + new Vector2(0, -1));
+                    smackedPositions.Add(CurrentPosition + new Vector2(0, -2));
+                    smackedPositions.Add(CurrentPosition + new Vector2(1, -1));
+                    smackedPositions.Add(CurrentPosition + new Vector2(-1, -1));
+                }
+                if (this.Visualisation == Animations[1]) // RGHT
+                {
+                    smackedPositions.Add(CurrentPosition + new Vector2(1, 0));
+                    smackedPositions.Add(CurrentPosition + new Vector2(2, 0));
+                    smackedPositions.Add(CurrentPosition + new Vector2(1, -1));
+                    smackedPositions.Add(CurrentPosition + new Vector2(1, 1));
+                }
+                if (this.Visualisation == Animations[2]) // DOWN
+                {
+                    smackedPositions.Add(CurrentPosition + new Vector2(-1, 1));
+                    smackedPositions.Add(CurrentPosition + new Vector2(0, 1));
+                    smackedPositions.Add(CurrentPosition + new Vector2(0, 2));
+                    smackedPositions.Add(CurrentPosition + new Vector2(1, 1));
+                }
+                if (this.Visualisation == Animations[3]) // LEFT
+                {
+                    smackedPositions.Add(CurrentPosition + new Vector2(-1, 0));
+                    smackedPositions.Add(CurrentPosition + new Vector2(-1, -1));
+                    smackedPositions.Add(CurrentPosition + new Vector2(-2, 0));
+                    smackedPositions.Add(CurrentPosition + new Vector2(-1, 1));
+                }
+
+                for (int i = 0; i < PlayScreen.Enemies.Count; i++)
+                {
+                    for (int j = 0; j < smackedPositions.Count; j++)
+                    {
+                        if (PlayScreen.Enemies[i].CurrentPosition == smackedPositions[j] || PlayScreen.Enemies[i].NextPosition == smackedPositions[j])
+                            PlayScreen.Enemies[i].IsSmacked = true;
+                    }
                 }
             }
         }
