@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using SpriteSheetClass;
 using System.Threading.Tasks;
+using System.Reflection.Metadata;
 
 namespace WinterJam
 {
@@ -20,9 +21,8 @@ namespace WinterJam
         public override Vector2 anchorPoint { get { return base.anchorPoint - new Vector2(0, 12.5f * GameSettings.Grid.ScaleFactor); } }
         public static Vector2[] SurroundingTiles { get; set; } = new Vector2[] { new Vector2(8, 6), new Vector2(8, 5),new Vector2(6, 6), new Vector2(7, 6), new Vector2(9, 6), new Vector2(6, 9), new Vector2(7, 9), new Vector2(8, 9), new Vector2(9, 9), new Vector2(6, 7), new Vector2(9, 7), new Vector2(6, 8), new Vector2(9, 8) };
         public static Vector2[] HouseTiles { get; set; } = new Vector2[] { new Vector2(7, 7), new Vector2(7, 8), new Vector2(8, 7), new Vector2(8, 8) };
-
-        public static List<Item> Inventory { get; set; }
-
+        public static Texture2D HealthBarTexture { get; set; }
+        public static Texture2D HealthBarHPTexture { get; set; }
         public House(Texture2D texture)
         {
             Vector2 size = new Vector2(58, 102) * GameSettings.Grid.ScaleFactor;

@@ -4,6 +4,7 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Blocks/basket.png</File>
     <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Blocks/bush_01.png</File>
     <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Blocks/bush_02.png</File>
     <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Blocks/flower_01.png</File>
@@ -28,6 +29,13 @@
     <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Blocks/water_flow_02.png</File>
     <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Blocks/water_flow_03.png</File>
     <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Blocks/water_turn_bottom.png</File>
+    <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Buttons/UI_button_01.png</File>
+    <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Buttons/UI_button_02.png</File>
+    <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Buttons/UI_button_pressed_01.png</File>
+    <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Buttons/UI_button_pressed_02.png</File>
+    <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Buttons/UI_health_bar_HP.png</File>
+    <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Buttons/UI_health_bar.png</File>
+    <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Buttons/UI_paused.png</File>
     <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Enemy/Directions.png</File>
     <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Enemy/Down_Left.png</File>
     <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Enemy/Down_Right.png</File>
@@ -40,8 +48,12 @@
     <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Enemy/Up.png</File>
     <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Fonts/GameDisplay.spritefont</File>
     <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Fonts/UI.spritefont</File>
+    <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Items/item_beanie.png</File>
     <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Items/item_donut.png</File>
     <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Items/item_keys.png</File>
+    <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Items/item_knife.png</File>
+    <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Items/item_mug.png</File>
+    <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Items/item_plant.png</File>
     <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Items/item_sock.png</File>
     <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Items/item_toiletPaper.png</File>
     <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Items/item_toothbrush.png</File>
@@ -57,6 +69,18 @@
     <File>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Player/Up.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

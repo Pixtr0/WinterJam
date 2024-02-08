@@ -96,6 +96,8 @@ namespace WinterJam
             GameSettings.Button_Pressed_Yellow = Content.Load<Texture2D>("Graphics/Buttons/UI_button_pressed_01");
             GameSettings.Button_Orange = Content.Load<Texture2D>("Graphics/Buttons/UI_button_02");
             GameSettings.Button_Pressed_Orange = Content.Load<Texture2D>("Graphics/Buttons/UI_button_pressed_02");
+            House.HealthBarTexture = Content.Load<Texture2D>("Graphics/Buttons/UI_health_bar");
+            House.HealthBarHPTexture = Content.Load<Texture2D>("Graphics/Buttons/UI_health_bar_HP");
 
             Item.ItemTextures.Add(Content.Load<Texture2D>("Graphics/Items/item_donut"));
             Item.ItemTextures.Add(Content.Load<Texture2D>("Graphics/Items/item_keys"));
@@ -103,9 +105,13 @@ namespace WinterJam
             Item.ItemTextures.Add(Content.Load<Texture2D>("Graphics/Items/item_toiletPaper"));
             Item.ItemTextures.Add(Content.Load<Texture2D>("Graphics/Items/item_toothbrush"));
             Item.ItemTextures.Add(Content.Load<Texture2D>("Graphics/Items/item_underwear"));
-            
-            
-            
+            Item.ItemTextures.Add(Content.Load<Texture2D>("Graphics/Items/item_beanie"));
+            Item.ItemTextures.Add(Content.Load<Texture2D>("Graphics/Items/item_knife"));
+            Item.ItemTextures.Add(Content.Load<Texture2D>("Graphics/Items/item_mug"));
+            Item.ItemTextures.Add(Content.Load<Texture2D>("Graphics/Items/item_plant"));
+
+            GameSettings.BasketTexture = Content.Load<Texture2D>("Graphics/Blocks/basket");
+
             //loading screens
             GameSettings.SettingsScreen = new SettingsScreen();
             GameSettings.PauseScreen = new PauseScreen();
