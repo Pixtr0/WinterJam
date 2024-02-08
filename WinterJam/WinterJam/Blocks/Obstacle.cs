@@ -24,7 +24,7 @@ namespace WinterJam
         public Obstacle(Texture2D texture, Vector2 position, float offsetValue)
         {
             indexPosition = position;
-            OffsetValue = offsetValue;
+            OffsetValue = offsetValue * GameSettings.Grid.ScaleFactor;
             Visualisation = new SpriteSheet(texture, IsLog ? GameSettings.Grid.GetGridPosition(indexPosition) : GameSettings.Grid.GetGridPositionNoHeight(indexPosition), new Vector2(24, 36) * GameSettings.Grid.ScaleFactor, 0, 1, 1, 0, false);
         }
 

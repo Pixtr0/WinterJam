@@ -23,12 +23,26 @@ namespace WinterJam
         public static Vector2[] HouseTiles { get; set; } = new Vector2[] { new Vector2(7, 7), new Vector2(7, 8), new Vector2(8, 7), new Vector2(8, 8) };
         private Vector2 HealthPosition { get { return new Vector2(anchorPoint.X - GameSettings.GameFont.MeasureString(currentHp.ToString()).X / 2, anchorPoint.Y - Size.Y / 3 * 2);}}
         public static Texture2D HealthBarTexture { get; set; }
-        private Point HealthBarSize { get; set; } = new Point(250, 75);
+        private Vector2 HealthBarSize { get { return new Vector2(44, 8) * GameSettings.Grid.ScaleFactor; } }
+        private Vector2 HPSize { get { return new Vector2(10, 20) * GameSettings.Grid.ScaleFactor; } }
         private Rectangle HealthBarDestinationRectangle
         {
             get
             {
-                return new Rectangle((int)(HealthPosition.X - HealthBarSize.X/2), (int)HealthPosition.Y, HealthBarSize.X, HealthBarSize.Y);
+                return new Rectangle((int)(HealthPosition.X - HealthBarSize.X/2), 
+                    (int)HealthPosition.Y, 
+                    (int)HealthBarSize.X, 
+                    (int)HealthBarSize.Y);
+            }
+        }
+        private Rectangle HPDestinationRectangle
+        {
+            get
+            {
+                return new Rectangle((int)(HealthPosition.X - HealthBarSize.X / 2 + 2 * GameSettings.Grid.ScaleFactor),
+                    (int)(HealthPosition.Y + 2 * GameSettings.Grid.ScaleFactor),
+                    (int)((HealthBarSize.X - 15) * (float)currentHp / maxHp),
+                    (int)(HealthBarSize.Y - 15));
             }
         }
         public static Texture2D HealthBarHPTexture { get; set; }
@@ -65,8 +79,7 @@ namespace WinterJam
             //spriteBatch.DrawString(GameSettings.GameFont, currentHp.ToString(), HealthPosition + new Vector2(0, -1) * GameSettings.Grid.ScaleFactor, Color.White);
             //spriteBatch.DrawString(GameSettings.GameFont, currentHp.ToString(), HealthPosition, Color.Black);
 
-            Rectangle HPDestinationRectangle = new Rectangle((int)(HealthPosition.X - HealthBarSize.X/2), (int)(HealthPosition.Y + HealthBarDestinationRectangle.Height / 4),
-                (int)((HealthBarDestinationRectangle.Width - 20)* (float)currentHp / maxHp), HealthBarDestinationRectangle.Height/2);
+            //Rectangle HPDestinationRectangle = new Rectangle((int)(HealthPosition.X - HealthBarSize.X/2), (int)(HealthPosition.Y + HealthBarDestinationRectangle.Height / 4),                (int)((HealthBarDestinationRectangle.Width - 20)* (float)currentHp / maxHp), HealthBarDestinationRectangle.Height/2);
             spriteBatch.Draw(HealthBarTexture, HealthBarDestinationRectangle, Color.White);
             spriteBatch.Draw(HealthBarHPTexture, HPDestinationRectangle, Color.White);
         }
