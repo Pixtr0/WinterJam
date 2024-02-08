@@ -27,10 +27,13 @@ namespace WinterJam.Players
         public Vector2 NextPosition { get; set; }
         public float Speed { get; set; } = 4f;
         public Vector2 NextTopLeftPosition { get; set; }
+        public bool IsSmacking { get; set; } = false;
+        public int LastAnimationIndex = -1;
         public static List<SpriteSheet> Animations { get; set; } = new List<SpriteSheet>();
-        private const float _delay = 0.2f; // seconds
         private const float _playerDelay = 0.04f; // seconds
-        private float _remainingPlayerDelay = _delay;
+        private const float _swingDelay = 0.10f; // seconds
+        private float _remainingPlayerDelay = _playerDelay;
+        private float _remainingSwingDelay = _swingDelay; // seconds
         public Player(Vector2 currentPosition, SpriteSheet visualisation)
         {
             CurrentPosition = currentPosition;
@@ -44,22 +47,49 @@ namespace WinterJam.Players
 
             UpdateItems(gameTime);
             PlaceAnItem();
-
-            SmackASquirrel(); //they're still alive PETA i swear they're just sleeping
+            if (!IsSmacking && UserInput._currentKeyboardSate.IsKeyDown(Keys.Space) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Space))
+            {
+                IsSmacking = true;
+            }
+            //they're still alive PETA i swear they're just sleeping
 
             var timer = (float)gameTime.ElapsedGameTime.TotalSeconds;
             _remainingPlayerDelay -= timer;
+            _remainingSwingDelay -= timer;
+            
 
             if (_remainingPlayerDelay <= 0)
             {
+                if (IsSmacking)
+                {
+                    SmackASquirrel();
+                    Visualisation.Update();
+                    if (Visualisation.IsFinished)
+                    {
+                        Visualisation.IsFlipped = false;
+                        Visualisation = Animations[LastAnimationIndex];
+                        IsSmacking = false;
+                        LastAnimationIndex = -1;
+                    }
+                }              
+
                 UpdatePlayerPosition();
-                _remainingPlayerDelay = _playerDelay;
+                if (IsSmacking)
+                {
+                    Visualisation.TopLeftPosition -= new Vector2(4, 10) * GameSettings.Grid.ScaleFactor;
+                    _remainingPlayerDelay = _swingDelay;
+                } else
+                {
+                    _remainingPlayerDelay = _playerDelay;
+                }
             }
         }
 
         private void SmackASquirrel()
         {
-            List<Vector2> smackedPositions = new List<Vector2>();
+            if (UserInput._currentKeyboardSate.IsKeyDown(Keys.Space) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Space))
+            {
+                List<Vector2> smackedPositions = new List<Vector2>();
 
             if (this.Visualisation == Animations[0]) // UP
             {
@@ -67,6 +97,11 @@ namespace WinterJam.Players
                 smackedPositions.Add(CurrentPosition + new Vector2(0, -2));
                 smackedPositions.Add(CurrentPosition + new Vector2(1, -1));
                 smackedPositions.Add(CurrentPosition + new Vector2(-1, -1));
+                LastAnimationIndex = 0;
+                this.Visualisation = Animations[5];
+                Visualisation.IsFlipped = true;
+                Visualisation.Play();
+
             }
             if (this.Visualisation == Animations[1]) // RGHT
             {
@@ -74,6 +109,10 @@ namespace WinterJam.Players
                 smackedPositions.Add(CurrentPosition + new Vector2(2, 0));
                 smackedPositions.Add(CurrentPosition + new Vector2(1, -1));
                 smackedPositions.Add(CurrentPosition + new Vector2(1, 1));
+                LastAnimationIndex = 1;
+                this.Visualisation = Animations[4];
+                Visualisation.IsFlipped = true;
+                Visualisation.Play();
             }
             if (this.Visualisation == Animations[2]) // DOWN
             {
@@ -81,6 +120,9 @@ namespace WinterJam.Players
                 smackedPositions.Add(CurrentPosition + new Vector2(0, 1));
                 smackedPositions.Add(CurrentPosition + new Vector2(0, 2));
                 smackedPositions.Add(CurrentPosition + new Vector2(1, 1));
+                LastAnimationIndex = 2;
+                this.Visualisation = Animations[4];
+                Visualisation.Play();
             }
             if (this.Visualisation == Animations[3]) // LEFT
             {
@@ -88,13 +130,16 @@ namespace WinterJam.Players
                 smackedPositions.Add(CurrentPosition + new Vector2(-1, -1));
                 smackedPositions.Add(CurrentPosition + new Vector2(-2, 0));
                 smackedPositions.Add(CurrentPosition + new Vector2(-1, 1));
+                LastAnimationIndex = 3;
+                this.Visualisation = Animations[5];
+                Visualisation.Play();
             }
 
             for (int i = 0; i < PlayScreen.Enemies.Count; i++)
             {
                 for (int j = 0; j < smackedPositions.Count; j++)
                 {
-                    if (PlayScreen.Enemies[i].CurrentPosition == smackedPositions[j] || PlayScreen.Enemies[i].NextPosition == smackedPositions[j])
+                    if (PlayScreen.Enemies[i].LastPosition == smackedPositions[j] || PlayScreen.Enemies[i].NextPosition == smackedPositions[j])
                         PlayScreen.Enemies[i].IsSmacked = true;
                 }
             }
@@ -157,39 +202,22 @@ namespace WinterJam.Players
 
             if (HeldItem != null)
                 HeldItem.Update(gameTime, this);
-
-            //if (Inventory.Count > 0 && Inventory.Count <= 3)
-            //{
-            //    if (UserInput._currentMouseState.ScrollWheelValue > UserInput._previousMouseState.ScrollWheelValue)
-            //    {
-            //        if (Inventory.Count - 1 > HeldItemIndex)
-            //        {
-            //            HeldItem = Inventory[HeldItemIndex + 1];
-            //            HeldItemIndex++;
-            //        }
-            //    }
-            //    if (UserInput._currentMouseState.ScrollWheelValue < UserInput._previousMouseState.ScrollWheelValue)
-            //    {
-            //        if (0 < HeldItemIndex)
-            //        {
-            //            HeldItem = Inventory[HeldItemIndex - 1];
-            //            HeldItemIndex--;
-            //        }
-            //    }
-
-            //}
         }
         private void UpdatePlayerPosition()
         {
-            //Vector2 movement = Vector2.Zero;
-            int index = Visualisation.CurrentSpriteIndex;
-            if (CurrentPosition != NextPosition)
+            if (!IsSmacking)
             {
-                CurrentPosition += (NextPosition - CurrentPosition) / (Visualisation.Cols - index);
-                Visualisation.Update();
-            }
-            else
-            {
+                //Vector2 movement = Vector2.Zero;
+                int index = Visualisation.CurrentSpriteIndex;
+            
+                if (CurrentPosition != NextPosition)
+                {
+                    CurrentPosition += (NextPosition - CurrentPosition) / (Visualisation.Cols - index);
+                    Visualisation.Update();
+                }
+                else
+                {
+                
                     //cardinal directions
                     if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.left))
                     {
@@ -232,8 +260,10 @@ namespace WinterJam.Players
                     float clampedX = MathHelper.Clamp(NextPosition.X, 1, GameSettings.Grid.playsize - 1);
                     float clampedY = MathHelper.Clamp(NextPosition.Y, 1, GameSettings.Grid.playsize - 1);
                     NextPosition = new Vector2(clampedX, clampedY);
+                }
             }
             TopLeftPosition = GameSettings.Grid.GetGridPositionNoHeight(CurrentPosition) + new Vector2(-5, -12f) * GameSettings.Grid.ScaleFactor;
+
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
