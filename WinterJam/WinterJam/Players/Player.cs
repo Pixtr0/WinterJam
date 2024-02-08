@@ -100,7 +100,9 @@ namespace WinterJam.Players
 
         private void SmackASquirrel()
         {
-            List<Vector2> smackedPositions = new List<Vector2>();
+            if (UserInput._currentKeyboardSate.IsKeyDown(Keys.Space) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Space))
+            {
+                List<Vector2> smackedPositions = new List<Vector2>();
 
             if (this.Visualisation == Animations[0]) // UP
             {

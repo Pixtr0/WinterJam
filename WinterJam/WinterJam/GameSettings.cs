@@ -38,6 +38,7 @@ namespace WinterJam
         public static Texture2D Button_Orange { get; set; }
         public static Texture2D Button_Pressed_Yellow { get; set; }
         public static Texture2D Button_Pressed_Orange { get; set; }
+        public static Texture2D PausedText { get; set; }
 
     }
 }

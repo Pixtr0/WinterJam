@@ -90,6 +90,8 @@ namespace WinterJam
             
             
             PlayScreen.House = new House(Content.Load<Texture2D>("Graphics/Blocks/spritesheet_house"));
+
+            GameSettings.PausedText = Content.Load<Texture2D>("Graphics/Buttons/UI_paused");
             GameSettings.Button_Yellow = Content.Load<Texture2D>("Graphics/Buttons/UI_button_01");
             GameSettings.Button_Pressed_Yellow = Content.Load<Texture2D>("Graphics/Buttons/UI_button_pressed_01");
             GameSettings.Button_Orange = Content.Load<Texture2D>("Graphics/Buttons/UI_button_02");
@@ -109,6 +111,7 @@ namespace WinterJam
             GameSettings.PauseScreen = new PauseScreen();
             GameSettings.StartScreen = new StartScreen();
             GameSettings.PlayScreen = new PlayScreen();
+            GameSettings.GameOverScreen = new GameOverScreen();
 
 
         }
