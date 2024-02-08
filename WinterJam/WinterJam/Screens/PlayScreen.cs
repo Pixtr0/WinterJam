@@ -44,10 +44,10 @@ namespace WinterJam.Screens
                 GameSettings.PauseScreen.Update(gameTime);
             }
 
-            /*if (GameSettings.IsSettingsScreenDrawn == true)
+            if (GameSettings.IsSettingsScreenDrawn == true)
             {
                 GameSettings.SettingsScreen.Update(gameTime);
-            }*/
+            }
 
             if (GameSettings.IsPauseScreenDrawn == false)
             {

@@ -88,6 +88,9 @@ namespace WinterJam
 
 
             GameSettings.PlayScreen = new PlayScreen();
+            GameSettings.PauseScreen = new PauseScreen();
+            GameSettings.StartScreen = new StartScreen();
+            GameSettings.SettingsScreen = new SettingsScreen();
             PlayScreen._enemies.Add(Enemy.Spawn());
 
             foreach (var Object in PlayScreen._allObjects)
