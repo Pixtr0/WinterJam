@@ -183,7 +183,7 @@ namespace Isometric_Thingy
             do
             {
                 int x = Random.Shared.Next(0, 2) == 0 ? -offset : playsize + offset;
-                int y = Random.Shared.Next(-offset, playsize + offset);
+                int y = Random.Shared.Next(-offset , playsize + offset);
                 if (Random.Shared.Next(0, 2) == 0)
                 {
                     newPos = new Vector2(x, y);

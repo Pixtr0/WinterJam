@@ -48,6 +48,7 @@ namespace WinterJam
                 Content.Load<Texture2D>("Graphics/Enemy/down_left"),
                 Content.Load<Texture2D>("Graphics/Enemy/left"),
                 Content.Load<Texture2D>("Graphics/Enemy/up_left"),
+                Content.Load<Texture2D>("Graphics/Enemy/squirrel_smacked"),
             };
             GameSettings.ScreenTexture = Content.Load<Texture2D>("Graphics/Blocks/placeholder Screen");
 
@@ -105,9 +106,6 @@ namespace WinterJam
             GameSettings.PauseScreen = new PauseScreen();
             GameSettings.StartScreen = new StartScreen();
             GameSettings.PlayScreen = new PlayScreen();
-
-
-
 
 
         }

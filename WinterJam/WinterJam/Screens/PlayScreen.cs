@@ -30,11 +30,11 @@ namespace WinterJam.Screens
 
         private void GenerateRandomItems()
         {
-            while (DroppedItems.Count < 6)
-            {
-                Item newDroppedItem = new Item();
-                DroppedItems.Add(newDroppedItem);
-            }
+            //while (DroppedItems.Count < 6)
+            //{
+            //    Item newDroppedItem = new Item();
+            //    DroppedItems.Add(newDroppedItem);
+            //}
         }
 
         public override void Update(GameTime gameTime)

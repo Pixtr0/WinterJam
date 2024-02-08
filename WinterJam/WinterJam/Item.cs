@@ -1,9 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SharpDX.Direct3D9;
 using SpriteSheetClass;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +15,7 @@ namespace WinterJam
 {
     public class Item : GameObject
     {
-        public Color Color { get; set; }
+        
         public int MaxDurability { get; set; }
         public Double ItemAngle { get; set; } = 0f;
         public float ItemOffset { get; set; } = 0f;
@@ -42,12 +44,16 @@ namespace WinterJam
 
             Visualisation = new SpriteSheet(texture, GameSettings.Grid.GetGridPosition(CurrentPosition) +  new Vector2(-size.X/2, -size.Y), size, 0, 1, 1, 1, false);
         }
-
+        public Item(Vector2 position, SpriteSheet visualisationOld)
+        {
+            CurrentPosition = position; 
+            Visualisation = new SpriteSheet(visualisationOld.Texture, GameSettings.Grid.GetGridPosition(position) + new Vector2(-visualisationOld.Size.X / 2, -visualisationOld.Size.Y), visualisationOld.Size, 0, 1, 1, 1, false);
+        }
+       
         //Bob above gameobject
         public void Update(GameTime gametime, GameObject parent)
         {
             UpdateDelay(gametime);
-
             Size = new Vector2(18, 19) * GameSettings.Grid.ScaleFactor;
             TopLeftPosition = parent.anchorPoint + new Vector2(-Size.X / 2, -ParentSize.Y - 10 - Size.Y - ItemOffset * 4);
         }

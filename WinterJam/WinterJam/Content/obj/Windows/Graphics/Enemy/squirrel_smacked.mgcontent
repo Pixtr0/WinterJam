@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/Maesm/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Buttons/UI_paused.png</SourceFile>
-  <SourceTime>2024-02-07T14:52:19.5171463+01:00</SourceTime>
-  <DestFile>C:/Users/Maesm/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/bin/Windows/Graphics/Buttons/UI_paused.xnb</DestFile>
-  <DestTime>2024-02-08T12:42:55.1256596+01:00</DestTime>
+  <SourceFile>C:/Users/matth/OneDrive/Documents/WinterJam/WinterJam/WinterJam/WinterJam/Content/Graphics/Enemy/squirrel_smacked.png</SourceFile>
+  <SourceTime>2024-02-08T13:41:14.5458032+01:00</SourceTime>
+  <DestFile>C:/Users/matth/OneDrive/Documents/WinterJam/WinterJam/WinterJam/WinterJam/Content/bin/Windows/Graphics/Enemy/squirrel_smacked.xnb</DestFile>
+  <DestTime>2024-02-08T14:10:22.7482682+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T13:44:56+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

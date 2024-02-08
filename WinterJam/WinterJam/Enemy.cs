@@ -17,13 +17,16 @@ namespace WinterJam
     {
         private Vector2 SpawnPosition { get { return GameSettings.Grid.GetRandomBorderPos(1);} }
         private Vector2 NextPosition { get; set; }
+        private Vector2 LastPosition { get; set; }
         private Vector2 TargetLocation { get; set; } = new Vector2(9, 7);
         public Item helditem { get; set; }
 
+        public override Vector2 anchorPoint => _delay == 5f ? base.anchorPoint - new Vector2(0,8 * GameSettings.Grid.ScaleFactor) : base.anchorPoint;
         public static List<Texture2D> Textures { get; set; }
 
         public bool IsHoldingItem { get; set; } = false;        
         public bool IsSmacked { get; set; } = false;        
+        public bool HasDroppeditem { get; set; } = false;
 
         private bool InSideHouse = false;
 
@@ -45,6 +48,7 @@ namespace WinterJam
                 new SpriteSheet(Textures[5], Vector2.Zero,new Vector2(21,17) * GameSettings.Grid.ScaleFactor,0,1,2,0,true),
                 new SpriteSheet(Textures[6], Vector2.Zero,new Vector2(21,17) * GameSettings.Grid.ScaleFactor,0,1,2,0,true),
                 new SpriteSheet(Textures[7], Vector2.Zero,new Vector2(21,17) * GameSettings.Grid.ScaleFactor,0,1,2,0,true),
+                new SpriteSheet(Textures[8], Vector2.Zero,new Vector2(21,17) * GameSettings.Grid.ScaleFactor,0,1,1,0,true),
             };
             Visualisation = Animations[0];
             CurrentPosition = GameSettings.Grid.GetRandomBorderPos(1);
@@ -63,6 +67,8 @@ namespace WinterJam
             IsHoldingItem = true;
 
         }
+
+        
         private Vector2 getNextPosition()
         {
             Vector2 newNextPos = CurrentPosition;
@@ -103,19 +109,17 @@ namespace WinterJam
                     return true;
                 }
             }
-            for (int i = 0; i < House.SurroundingTiles.Length - 10; i++)
+            if (House.SurroundingTiles[0] == pos)
             {
-                if (House.SurroundingTiles[i] == pos)
-                {
-                    return true;
-                }
+                return true;
             }
+            
             return false;
         }
 
-    private bool IsBlockOffMap(Vector2 pos)
+        private bool IsBlockOffMap(Vector2 pos)
         {
-            if (pos.X >= 18 || pos.Y >= 18 || pos.X < 0 || pos.Y < 0)
+            if (pos.X >= GameSettings.Grid.playsize + 1 || pos.Y >= GameSettings.Grid.playsize + 1 || pos.X < -1 || pos.Y < -1)
             {
                 return true;
             }
@@ -127,7 +131,7 @@ namespace WinterJam
         {
             var timer = (float)gt.ElapsedGameTime.TotalSeconds;
 
-            if (UserInput._currentKeyboardSate.IsKeyDown(Keys.Space) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Space))
+            if (!IsSmacked && UserInput._currentKeyboardSate.IsKeyDown(Keys.Space) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Space))
             {
                 IsSmacked = true;
             }
@@ -140,27 +144,34 @@ namespace WinterJam
                 if (_delay == 2f && InSideHouse)
                 {
                     InSideHouse = false;
+                    _delay = 0.07f;
                     Createitem(1);
                 }
+                if (_delay == 5f && IsSmacked)
+                {
+                    _delay = 0.07f;
+                } 
 
                 if (NextPosition == TargetLocation - new Vector2(0.3f, 0))
                 {
                     InSideHouse = true;
+                    _delay = 2f;
                     TargetLocation = GameSettings.Grid.GetRandomBorderPos(0);
                     NextPosition = CurrentPosition;
                 }
-                if(IsHoldingItem)
+                
+                if ( CurrentPosition == TargetLocation && TargetLocation != new Vector2(9, 7) || IsSmacked && CurrentPosition == TargetLocation)
                 {
-                    if ( CurrentPosition == TargetLocation)
-                    {
-                        CurrentPosition = SpawnPosition;
-                        NextPosition = CurrentPosition;
-                        TargetLocation = new Vector2(9, 7);
-                        IsHoldingItem = false;
-                    }
+                    CurrentPosition = SpawnPosition;
+                    NextPosition = CurrentPosition;
+                    TargetLocation = new Vector2(9, 7);
+                    IsHoldingItem = false;
+                    IsSmacked = false;
+                    HasDroppeditem = false;
                 }
                 
-
+               
+               
                 int index = Visualisation.CurrentSpriteIndex;
                 
                 if (CurrentPosition != NextPosition)
@@ -168,7 +179,6 @@ namespace WinterJam
                     //+= (NextTopLeftPosition - CurrentTopLeftPosition) / (Visualisation.Cols - index);
                     CurrentPosition += (NextPosition - CurrentPosition) / (Visualisation.Cols - index);
                     base.Update(gt);
-                    
                 }
                 else
                 {
@@ -182,20 +192,25 @@ namespace WinterJam
                     }
                     else
                     {
+                        LastPosition = CurrentPosition;
                         NextPosition = getNextPosition();
                     }
-                    
-                    
                 }
-                if (InSideHouse)
+                if (IsSmacked && !HasDroppeditem)
                 {
-                    
-                    _delay = 2f;
-                } else
-                {
-                    
-                    _delay = 0.07f;
+                    Visualisation = Animations[8];
+                    TargetLocation = GameSettings.Grid.GetRandomBorderPos(0);
+                    NextPosition = CurrentPosition;
+                    if (IsHoldingItem)
+                    {
+                        PlayScreen.DroppedItems.Add(new Item(LastPosition, helditem.Visualisation));
+                    }
+                    _delay = 5f;
+                    HasDroppeditem = true;
                 }
+
+
+
                 _remainingDelay = _delay;
                 TopLeftPosition = GameSettings.Grid.GetGridPositionNoHeight(CurrentPosition) + new Vector2(0, 6 * GameSettings.Grid.ScaleFactor);
             }
