@@ -84,11 +84,14 @@ namespace WinterJam
             Player.Animations.Add(new SpriteSheet(Content.Load<Texture2D>("Graphics/Player/Left"), Vector2.Zero, new Vector2(36, 32) * GameSettings.Grid.ScaleFactor, 0, 1, 4, 0, true));
             Player.Animations.Add(new SpriteSheet(Content.Load<Texture2D>("Graphics/Player/Swing_Down"), Vector2.Zero, new Vector2(42, 48) * GameSettings.Grid.ScaleFactor, 0, 1, 5, 0, false));
             Player.Animations.Add(new SpriteSheet(Content.Load<Texture2D>("Graphics/Player/Swing_Left"), Vector2.Zero, new Vector2(42, 48) * GameSettings.Grid.ScaleFactor, 0, 1, 5, 0, false));
+            GameSettings.SwingEffect = Content.Load<Texture2D>("Graphics/Player/ground_hit");
             Vector2 playerStart = new Vector2(8, 9);
             PlayScreen.Player = new Player(playerStart, Player.Animations[3]);
             
             
             PlayScreen.House = new House(Content.Load<Texture2D>("Graphics/Blocks/spritesheet_house"));
+
+            GameSettings.PausedText = Content.Load<Texture2D>("Graphics/Buttons/UI_paused");
             GameSettings.Button_Yellow = Content.Load<Texture2D>("Graphics/Buttons/UI_button_01");
             GameSettings.Button_Pressed_Yellow = Content.Load<Texture2D>("Graphics/Buttons/UI_button_pressed_01");
             GameSettings.Button_Orange = Content.Load<Texture2D>("Graphics/Buttons/UI_button_02");
@@ -108,6 +111,7 @@ namespace WinterJam
             GameSettings.PauseScreen = new PauseScreen();
             GameSettings.StartScreen = new StartScreen();
             GameSettings.PlayScreen = new PlayScreen();
+            GameSettings.GameOverScreen = new GameOverScreen();
 
 
         }

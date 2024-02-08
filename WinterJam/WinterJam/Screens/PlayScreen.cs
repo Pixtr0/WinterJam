@@ -132,7 +132,7 @@ namespace WinterJam.Screens
             // Your existing draw logic goes here
 
             GameSettings.Grid.DrawGrass(spriteBatch);
-
+            Player.DrawEffect(spriteBatch);
             for (int i = 0; i < AllObjects.Count; i++)
             {
                 AllObjects[i].Draw(spriteBatch);

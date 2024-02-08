@@ -2,12 +2,11 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace WinterJam.Screens
 {
-    internal class PauseScreen : Screen
+    internal class GameOverScreen : Screen
     {
         private int buttonWidth = (int)(68 * 6);
         private int buttonHeight = (int)(21 * 6);
@@ -17,35 +16,22 @@ namespace WinterJam.Screens
 
         public override void Update(GameTime gameTime)
         {
-            if (GameSettings.IsSettingsScreenDrawn == false)
-            {
-                CheckPlayButtonClick();
-                CheckQuitButtonClicked();
-                CheckSettingsButtonClick();
-            }
+            UserInput.Update();
+
+            //CheckSettingsButtonClick();
+            GameSettings.IsPauseScreenDrawn = false;
 
             if (GameSettings.IsSettingsScreenDrawn)
             {
                 GameSettings.SettingsScreen.Update(gameTime);
             }
+            if (!GameSettings.IsSettingsScreenDrawn)
+            {
+                CheckQuitButtonClicked();
+                UpdateActiveScreen(gameTime);
+            }
 
             base.Update(gameTime);
-        }
-
-        private async void CheckPlayButtonClick()
-        {
-            // Check if the play button is pressed
-            Rectangle playButtonRect = new Rectangle(((int)GameSettings.ScreenSize.X - buttonWidth) / 2, (int)GameSettings.ScreenSize.Y / 3, buttonWidth, buttonHeight);
-            if (UserInput._currentMouseState.LeftButton == ButtonState.Pressed && UserInput._previousMouseState.LeftButton == ButtonState.Released &&
-                playButtonRect.Contains(UserInput._currentMouseState.Position))
-            {
-                // Set the play button texture to pressed
-                playButtonPressed = true;
-                // Simulate a delay
-                await Task.Delay(100);
-                playButtonPressed = false;
-                GameSettings.IsPauseScreenDrawn = false;
-            }
         }
 
         private async void CheckQuitButtonClicked()
@@ -60,8 +46,7 @@ namespace WinterJam.Screens
                 await Task.Delay(100);
                 quitButtonPressed = false;
                 // Exit the program
-                //Environment.Exit(0);
-                GameSettings.ActiveScreen = GameSettings.GameOverScreen;
+                Environment.Exit(0);
             }
         }
 
@@ -80,27 +65,40 @@ namespace WinterJam.Screens
             }
         }
 
+        private async void UpdateActiveScreen(GameTime gameTime)
+        {
+            // Check if the play button is pressed
+            Rectangle playButtonRect = new Rectangle(((int)GameSettings.ScreenSize.X - buttonWidth) / 2, (int)GameSettings.ScreenSize.Y / 3, buttonWidth, buttonHeight);
+            if (!playButtonPressed && UserInput._currentMouseState.LeftButton == ButtonState.Pressed && UserInput._previousMouseState.LeftButton == ButtonState.Released &&
+                playButtonRect.Contains(UserInput._currentMouseState.Position))
+            {
+                // Set the play button texture to pressed
+                playButtonPressed = true;
+                await Task.Delay(200); // Wait for 1 second
+                GameSettings.ActiveScreen = GameSettings.StartScreen; // Switch to the play screen
+            }
+        }
+
         public override void Draw(SpriteBatch spriteBatch)
         {
-            Rectangle dr = new Rectangle(0, 0, (int)GameSettings.ScreenSize.X, (int)GameSettings.ScreenSize.Y);
-            spriteBatch.Draw(GameSettings.ScreenTexture, dr, new Color(0, 0, 0, 100));
+            GameSettings.Grid.DrawGrass(spriteBatch);
 
-            DrawPausedText(spriteBatch);
+            Rectangle dr = new Rectangle(0, 0, (int)GameSettings.ScreenSize.X, (int)GameSettings.ScreenSize.Y);
+            spriteBatch.Draw(GameSettings.ScreenTexture, dr, Color.Black);
 
             // Draw Play Button
             DrawPlayButton(spriteBatch);
 
             // Draw Settings Button
-            DrawSettingsButton(spriteBatch);
+            //DrawSettingsButton(spriteBatch);
 
             //Draw Quit Button
             DrawQuitButton(spriteBatch);
-        }
 
-        private void DrawPausedText(SpriteBatch spriteBatch)
-        {
-            Rectangle dr = new Rectangle(((int)GameSettings.ScreenSize.X - buttonWidth) / 2, (int)GameSettings.ScreenSize.Y / 4 - buttonHeight, buttonWidth, buttonHeight);
-            spriteBatch.Draw(GameSettings.PausedText, dr, Color.White);
+            if (GameSettings.IsSettingsScreenDrawn && !GameSettings.IsCloseButtonPressed)
+            {
+                GameSettings.SettingsScreen.Draw(spriteBatch);
+            }
         }
 
         private void DrawQuitButton(SpriteBatch spriteBatch)

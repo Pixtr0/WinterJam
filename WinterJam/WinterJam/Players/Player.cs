@@ -27,6 +27,11 @@ namespace WinterJam.Players
         public Vector2 NextPosition { get; set; }
         public float Speed { get; set; } = 4f;
         public Vector2 NextTopLeftPosition { get; set; }
+        private Vector2 EffectSize { get; set; } = new Vector2(48, 29) * GameSettings.Grid.ScaleFactor;
+        private Vector2 EffectPossition{ get; set; }
+
+        private bool IsFlipped { get; set; } = false;
+        
         public bool IsSmacking { get; set; } = false;
         private bool ShowSwingEffect = false;
         public int LastAnimationIndex = -1;
@@ -67,9 +72,12 @@ namespace WinterJam.Players
                 {
                     SmackASquirrel();
                     Visualisation.Update();
-                    if (Visualisation.CurrentSpriteIndex == 3 || Visualisation.CurrentSpriteIndex == 2)
+                    if(Visualisation.CurrentSpriteIndex == 3 || Visualisation.CurrentSpriteIndex == 2)
                     {
                         ShowSwingEffect = true;
+                    } else
+                    {
+                        ShowSwingEffect = false;
                     }
                     if (Visualisation.IsFinished)
                     {
@@ -106,6 +114,8 @@ namespace WinterJam.Players
                 smackedPositions.Add(CurrentPosition + new Vector2(-1, -2));
                 smackedPositions.Add(CurrentPosition + new Vector2(1, -1));
                 smackedPositions.Add(CurrentPosition + new Vector2(-1, -1));
+                EffectPossition = GameSettings.Grid.GetGridPositionNoHeight(CurrentPosition + new Vector2(0, -1)) + new Vector2(-2 * GameSettings.Grid.ScaleFactor, -2 * GameSettings.Grid.ScaleFactor + GameSettings.Grid.TileSize.Y - EffectSize.Y) ;
+                IsFlipped = true;
                 LastAnimationIndex = 0;
                 this.Visualisation = Animations[5];
                 Visualisation.IsFlipped = true;
@@ -120,6 +130,8 @@ namespace WinterJam.Players
                 smackedPositions.Add(CurrentPosition + new Vector2(2, 1));
                 smackedPositions.Add(CurrentPosition + new Vector2(1, -1));
                 smackedPositions.Add(CurrentPosition + new Vector2(1, 1));
+                EffectPossition = GameSettings.Grid.GetGridPositionNoHeight(CurrentPosition + new Vector2(1, 0)) + new Vector2(-4 * GameSettings.Grid.ScaleFactor, 4 * GameSettings.Grid.ScaleFactor + GameSettings.Grid.TileSize.Y - EffectSize.Y);
+                IsFlipped = false;
                 LastAnimationIndex = 1;
                 this.Visualisation = Animations[4];
                 Visualisation.IsFlipped = true;
@@ -133,6 +145,8 @@ namespace WinterJam.Players
                 smackedPositions.Add(CurrentPosition + new Vector2(-1, 2));
                 smackedPositions.Add(CurrentPosition + new Vector2(0, 2));
                 smackedPositions.Add(CurrentPosition + new Vector2(1, 1));
+                EffectPossition = GameSettings.Grid.GetGridPositionNoHeight(CurrentPosition + new Vector2(0, 2)) + new Vector2(-2 * GameSettings.Grid.ScaleFactor, -2 * GameSettings.Grid.ScaleFactor + GameSettings.Grid.TileSize.Y - EffectSize.Y);
+                IsFlipped = true;
                 LastAnimationIndex = 2;
                 this.Visualisation = Animations[4];
                 Visualisation.Play();
@@ -145,6 +159,8 @@ namespace WinterJam.Players
                 smackedPositions.Add(CurrentPosition + new Vector2(-2, 1));
                 smackedPositions.Add(CurrentPosition + new Vector2(-2, -1));
                 smackedPositions.Add(CurrentPosition + new Vector2(-1, 1));
+                EffectPossition = GameSettings.Grid.GetGridPositionNoHeight(CurrentPosition + new Vector2(-2, 0)) + new Vector2(-4 * GameSettings.Grid.ScaleFactor, 4 * GameSettings.Grid.ScaleFactor + GameSettings.Grid.TileSize.Y - EffectSize.Y);
+                IsFlipped = false;
                 LastAnimationIndex = 3;
                 this.Visualisation = Animations[5];
                 Visualisation.Play();
@@ -280,15 +296,25 @@ namespace WinterJam.Players
             TopLeftPosition = GameSettings.Grid.GetGridPositionNoHeight(CurrentPosition) + new Vector2(-5, -12f) * GameSettings.Grid.ScaleFactor;
 
         }
+        public void DrawEffect(SpriteBatch spriteBatch)
+        {
+            if (ShowSwingEffect)
+            {
+                spriteBatch.Draw(GameSettings.SwingEffect, new Rectangle(EffectPossition.ToPoint(), EffectSize.ToPoint()), null, Color.White, 0, Vector2.Zero, IsFlipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0);
+            }
+        }
         public override void Draw(SpriteBatch spriteBatch)
         {
+            
             base.Draw(spriteBatch);
 
             if (HeldItem != null)
             {
                 HeldItem.Draw(spriteBatch);
+                
+                //spriteBatch.DrawString(GameSettings.GameFont, $"{HeldItemIndex}", anchorPoint  -HeldItem.Size/2, Color.Black);
+            
 
-            }
             if (PlacedItems.Count > 0)
                 foreach (Item item in PlacedItems)
                     item.Draw(spriteBatch);

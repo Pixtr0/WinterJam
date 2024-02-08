@@ -26,17 +26,10 @@ namespace WinterJam
         public static Screen SettingsScreen { get; set; }
         public static Screen PauseScreen { get; set; }
 
+        public static Texture2D SwingEffect { get; set; }
         public static SpriteFont GameFont { get; set; }
         public static SpriteFont UiFont { get; set; }
         public static Texture2D ScreenTexture { get; set; }
-        public static Texture2D Squirrel_Up { get; set; }
-        public static Texture2D Squirrel_Down { get; set; }
-        public static Texture2D Squirrel_Left { get; set; }
-        public static Texture2D Squirrel_Right { get; set; }
-        public static Texture2D Squirrel_Up_Right { get; set; }
-        public static Texture2D Squirrel_Up_Left { get; set; }
-        public static Texture2D Squirrel_Down_Right { get; set; }
-        public static Texture2D Squirrel_Down_Left { get; set; }
 
         public static bool IsCloseButtonPressed { get; set; }
         public static bool IsSettingsScreenDrawn { get; set; }
@@ -45,6 +38,7 @@ namespace WinterJam
         public static Texture2D Button_Orange { get; set; }
         public static Texture2D Button_Pressed_Yellow { get; set; }
         public static Texture2D Button_Pressed_Orange { get; set; }
+        public static Texture2D PausedText { get; set; }
 
     }
 }
