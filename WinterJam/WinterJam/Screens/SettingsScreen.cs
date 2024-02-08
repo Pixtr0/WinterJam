@@ -33,24 +33,16 @@ namespace WinterJam.Screens
         private float sliderValue = 0.5f; // Initial volume level
         private bool isSliderHeld = false;
 
-        //private Rectangle closeButtonBounds;
-        //private int closeButtonSize = 40;
-
         // Store current and previous mouse states
         private MouseState _currentMouseState, _previousMouseState;
 
         public SettingsScreen()
         {
-            //_font = GameSettings.GameFont;
-
             // Calculate frame position to center it on the screen
             framePosition = new Vector2((GameSettings.ScreenSize.X - frameWidth) / 2, (GameSettings.ScreenSize.Y - frameHeight) / 2);
 
             // Calculate slider position relative to the frame
-            sliderPosition = new Vector2((frameWidth - sliderWidth) / 2, frameHeight - 150); // Adjusted slider position
-
-            // Calculate close button position relative to the frame
-            //closeButtonBounds = new Rectangle((int)framePosition.X + frameWidth - closeButtonSize - 10, (int)framePosition.Y + 10, closeButtonSize, closeButtonSize);
+            sliderPosition = new Vector2((frameWidth - sliderWidth) / 2, frameHeight - 150);
         }
 
         public override void Update(GameTime gameTime)
@@ -75,13 +67,12 @@ namespace WinterJam.Screens
                 // Enable the settings screen
                 backButtonPressed = true;
                 await Task.Delay(100);
-                backButtonPressed = false;
-            }
-            if (LeftMouseButtonPressed() && backButtonRect.Contains(Mouse.GetState().Position))
-            {
+
                 GameSettings.IsCloseButtonPressed = true;
                 GameSettings.IsSettingsScreenDrawn = false;
                 GameSettings.IsCloseButtonPressed = false;
+
+                backButtonPressed = false;
             }
         }
 
@@ -150,7 +141,6 @@ namespace WinterJam.Screens
         public override void Draw(SpriteBatch spriteBatch)
         {
             // Draw frame
-            //spriteBatch.Draw(GameSettings.Button_Pressed_Orange, new Rectangle((int)framePosition.X, (int)framePosition.Y - frameHeight / 5, frameWidth, frameHeight * 4/3), new Color(128, 128, 128, 128));
             Rectangle dr = new Rectangle(0,0, (int)GameSettings.ScreenSize.X, (int)GameSettings.ScreenSize.Y);
             spriteBatch.Draw(GameSettings.ScreenTexture, dr, new Color(0,0,0,128));
 
@@ -168,9 +158,6 @@ namespace WinterJam.Screens
 
         private void DrawCloseButton(SpriteBatch spriteBatch)
         {
-            //spriteBatch.Draw(GameSettings.Button_Orange, closeButtonBounds, Color.White);
-            //spriteBatch.DrawString(_font, "X", new Vector2(framePosition.X + frameWidth - closeButtonSize, framePosition.Y + 10), Color.White);
-
             Texture2D backButtonTexture = backButtonPressed ? GameSettings.Button_Pressed_Orange : GameSettings.Button_Orange;
             Rectangle dr = new Rectangle(((int)GameSettings.ScreenSize.X - backButtonWidth) / 2, (int)GameSettings.ScreenSize.Y * 3 / 4, backButtonWidth, backButtonHeight);
             spriteBatch.Draw(backButtonTexture, dr, Color.White);
