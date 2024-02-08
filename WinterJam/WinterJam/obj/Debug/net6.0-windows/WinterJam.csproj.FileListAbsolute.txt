@@ -274,7 +274,6 @@ C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-w
 C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Items\item_underwear.xnb
 C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Player\Down.xnb
 C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Player\Left.xnb
-C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Player\Player.xnb
 C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Player\Right.xnb
 C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Player\Up.xnb
 C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Blocks\house.xnb
@@ -324,10 +323,6 @@ C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-w
 C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Buttons\UI_button_02.xnb
 C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Buttons\UI_button_pressed_01.xnb
 C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Buttons\UI_button_pressed_02.xnb
-C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\bin\Windows\Graphics\Buttons\UI_button_01.xnb
-C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\bin\Windows\Graphics\Buttons\UI_button_02.xnb
-C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\bin\Windows\Graphics\Buttons\UI_button_pressed_01.xnb
-C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\bin\Windows\Graphics\Buttons\UI_button_pressed_02.xnb
 C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Buttons\UI_button_01.png
 C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Buttons\UI_button_02.png
 C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Buttons\UI_button_pressed_01.png
@@ -363,3 +358,10 @@ C:\Users\scutt\OneDrive\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug
 C:\Users\scutt\OneDrive\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Player\Swing_Right.xnb
 C:\Users\scutt\OneDrive\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Player\Swing_Up.xnb
 C:\Users\scutt\OneDrive\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Player\ground_hit.xnb
+C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Enemy\squirrel_smacked.xnb
+C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Buttons\UI_paused.png
+C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Player\ground_hit.xnb
+C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Player\Swing_Down.xnb
+C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Player\Swing_Left.xnb
+C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Player\Swing_Right.xnb
+C:\Users\Maesm\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Player\Swing_Up.xnb

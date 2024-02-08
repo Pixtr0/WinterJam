@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
 using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace WinterJam.Screens
 {
@@ -19,6 +20,10 @@ namespace WinterJam.Screens
         private int buttonWidth = 200; // Adjusted button width
         private int buttonHeight = 50; // Adjusted button height
 
+        private int backButtonWidth = (int)(68 * 6);
+        private int backButtonHeight = (int)(21 * 6);
+        private bool backButtonPressed = false;
+
         private SpriteFont _font = GameSettings.GameFont;
 
         // Slider parameters
@@ -28,8 +33,8 @@ namespace WinterJam.Screens
         private float sliderValue = 0.5f; // Initial volume level
         private bool isSliderHeld = false;
 
-        private Rectangle closeButtonBounds;
-        private int closeButtonSize = 40;
+        //private Rectangle closeButtonBounds;
+        //private int closeButtonSize = 40;
 
         // Store current and previous mouse states
         private MouseState _currentMouseState, _previousMouseState;
@@ -45,7 +50,7 @@ namespace WinterJam.Screens
             sliderPosition = new Vector2((frameWidth - sliderWidth) / 2, frameHeight - 150); // Adjusted slider position
 
             // Calculate close button position relative to the frame
-            closeButtonBounds = new Rectangle((int)framePosition.X + frameWidth - closeButtonSize - 10, (int)framePosition.Y + 10, closeButtonSize, closeButtonSize);
+            //closeButtonBounds = new Rectangle((int)framePosition.X + frameWidth - closeButtonSize - 10, (int)framePosition.Y + 10, closeButtonSize, closeButtonSize);
         }
 
         public override void Update(GameTime gameTime)
@@ -61,9 +66,18 @@ namespace WinterJam.Screens
             UpdateSlider();
         }
 
-        private void CheckCloseButtonPressed()
+        private async void CheckCloseButtonPressed()
         {
-            if (LeftMouseButtonPressed() && closeButtonBounds.Contains(Mouse.GetState().Position))
+            Rectangle backButtonRect = new Rectangle(((int)GameSettings.ScreenSize.X - backButtonWidth) / 2, (int)GameSettings.ScreenSize.Y * 3 / 4, backButtonWidth, backButtonHeight);
+            if (!GameSettings.IsSettingsScreenDrawn && UserInput._currentMouseState.LeftButton == ButtonState.Pressed && UserInput._previousMouseState.LeftButton == ButtonState.Released &&
+                backButtonRect.Contains(UserInput._currentMouseState.Position))
+            {
+                // Enable the settings screen
+                backButtonPressed = true;
+                await Task.Delay(100);
+                backButtonPressed = false;
+            }
+            if (LeftMouseButtonPressed() && backButtonRect.Contains(Mouse.GetState().Position))
             {
                 GameSettings.IsCloseButtonPressed = true;
                 GameSettings.IsSettingsScreenDrawn = false;
@@ -154,8 +168,24 @@ namespace WinterJam.Screens
 
         private void DrawCloseButton(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(GameSettings.Button_Orange, closeButtonBounds, Color.White);
-            spriteBatch.DrawString(_font, "X", new Vector2(framePosition.X + frameWidth - closeButtonSize, framePosition.Y + 10), Color.White);
+            //spriteBatch.Draw(GameSettings.Button_Orange, closeButtonBounds, Color.White);
+            //spriteBatch.DrawString(_font, "X", new Vector2(framePosition.X + frameWidth - closeButtonSize, framePosition.Y + 10), Color.White);
+
+            Texture2D backButtonTexture = backButtonPressed ? GameSettings.Button_Pressed_Orange : GameSettings.Button_Orange;
+            Rectangle dr = new Rectangle(((int)GameSettings.ScreenSize.X - backButtonWidth) / 2, (int)GameSettings.ScreenSize.Y * 3 / 4, backButtonWidth, backButtonHeight);
+            spriteBatch.Draw(backButtonTexture, dr, Color.White);
+
+            Vector2 textPosition = Vector2.One;
+            Vector2 textSize = GameSettings.GameFont.MeasureString("BACK");
+            if (!backButtonPressed)
+            {
+                textPosition = new Vector2(dr.X + (backButtonWidth - textSize.X) / 2, dr.Y - textSize.Y + backButtonHeight / 2);
+            }
+            else
+            {
+                textPosition = new Vector2(dr.X + (backButtonWidth - textSize.X) / 2, dr.Y - textSize.Y + backButtonHeight / 2 + 16);
+            }
+            spriteBatch.DrawString(GameSettings.GameFont, "BACK", textPosition, Color.Black);
         }
 
         private void DrawSlider(SpriteBatch spriteBatch)
