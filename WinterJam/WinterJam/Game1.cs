@@ -84,6 +84,7 @@ namespace WinterJam
             Player.Animations.Add(new SpriteSheet(Content.Load<Texture2D>("Graphics/Player/Left"), Vector2.Zero, new Vector2(36, 32) * GameSettings.Grid.ScaleFactor, 0, 1, 4, 0, true));
             Player.Animations.Add(new SpriteSheet(Content.Load<Texture2D>("Graphics/Player/Swing_Down"), Vector2.Zero, new Vector2(42, 48) * GameSettings.Grid.ScaleFactor, 0, 1, 5, 0, false));
             Player.Animations.Add(new SpriteSheet(Content.Load<Texture2D>("Graphics/Player/Swing_Left"), Vector2.Zero, new Vector2(42, 48) * GameSettings.Grid.ScaleFactor, 0, 1, 5, 0, false));
+            GameSettings.SwingEffect = Content.Load<Texture2D>("Graphics/Player/ground_hit");
             Vector2 playerStart = new Vector2(8, 9);
             PlayScreen.Player = new Player(playerStart, Player.Animations[3]);
             

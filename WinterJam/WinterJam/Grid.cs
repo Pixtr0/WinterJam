@@ -28,7 +28,7 @@ namespace Isometric_Thingy
         private List<Texture2D> Tiles { get; set; }
         private List<Texture2D> FlowerTextures { get; set; }
         
-        private Vector2 TileSize { get; set; } = new Vector2(24, 36);
+        public Vector2 TileSize { get; set; } = new Vector2(24, 36);
         public Vector2[] BlockedTiles { get; set; } = new Vector2[8];
         public int[] ObstaclesIndexes { get; set; } = new int[8];
         
