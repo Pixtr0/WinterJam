@@ -14,7 +14,7 @@ namespace WinterJam
 {
     public class Enemy : GameObject
     {
-        private Vector2 SpawnPosition { get { return GameSettings.Grid.GetRandomBorderPos(1); } }
+        private Vector2 SpawnPosition { get { return GameSettings.Grid.GetRandomBorderPos(1);} }
         private Vector2 NextPosition { get; set; }
         private Vector2 TargetLocation { get; set; } = new Vector2(9, 7);
         public Item helditem { get; set; }
@@ -57,7 +57,7 @@ namespace WinterJam
         private void Createitem(int cost)
         {
             House.currentHp -= cost;
-            helditem = new Item(20, GameSettings.ScreenTexture, new Vector2(18, 19) * GameSettings.Grid.ScaleFactor, this);
+            helditem = new Item(this);
             helditem.IsActive = true;
 
         }
@@ -127,7 +127,7 @@ namespace WinterJam
             
             _remainingDelay -= timer;
             if(helditem.IsActive)
-                helditem.Update(gt,this.anchorPoint);
+                helditem.Update(gt,this);
             if (_remainingDelay <= 0)
             {
                 //reset insidehouse state

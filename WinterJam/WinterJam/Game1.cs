@@ -91,6 +91,13 @@ namespace WinterJam
             GameSettings.Button_Pressed_Orange = Content.Load<Texture2D>("Graphics/Buttons/UI_button_pressed_02");
 
             GameSettings.SettingsScreen = new SettingsScreen();
+            Item.ItemTextures.Add(Content.Load<Texture2D>("Graphics/Items/item_donut"));
+            Item.ItemTextures.Add(Content.Load<Texture2D>("Graphics/Items/item_keys"));
+            Item.ItemTextures.Add(Content.Load<Texture2D>("Graphics/Items/item_sock"));
+            Item.ItemTextures.Add(Content.Load<Texture2D>("Graphics/Items/item_toiletPaper"));
+            Item.ItemTextures.Add(Content.Load<Texture2D>("Graphics/Items/item_toothbrush"));
+            Item.ItemTextures.Add(Content.Load<Texture2D>("Graphics/Items/item_underwear"));
+
             GameSettings.PlayScreen = new PlayScreen();
 
             foreach (var Object in PlayScreen._allObjects)
