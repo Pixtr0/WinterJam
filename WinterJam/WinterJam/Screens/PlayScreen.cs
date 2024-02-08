@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using SharpDX.Direct3D9;
 //using SharpDX.Direct2D1;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,10 @@ namespace WinterJam.Screens
         public static List<GameObject> AllObjects { get; set; } = new List<GameObject>();
         public static List<Vector2> BasketPositions { get; set; } = new List<Vector2>();
         public static List<Obstacle> Baskets { get; set; } = new List<Obstacle>();
+        public static List<Obstacle> bgObstacles { get; set; } = new List<Obstacle>();
+        public static List<Obstacle> bgObstaclesBack { get; set; } = new List<Obstacle>();
+        public static List<GameObject> Backgroundback {  get; set; } = new List<GameObject> { };
+        public static List<GameObject> Backgroundfront {  get; set; } = new List<GameObject> { };
         public static List<Enemy> Enemies { get; set; } = new List<Enemy>();
         public static List<Tree> Trees { get; set; } = new List<Tree>();
         public static List<Tree> TreesBack { get; set; } = new List<Tree>();
@@ -41,7 +46,8 @@ namespace WinterJam.Screens
                 for (int y = -GameSettings.Grid.DownShift; y < GameSettings.Grid.Size.Y - GameSettings.Grid.DownShift; y++)
                 {
                     Random rnd = new Random();
-                    if(rnd.Next(0,5) > 2)
+                    int randomValue = rnd.Next(0, 5);
+                    if(randomValue > 2)
                     {
                         if (y < 1)
                         {
@@ -60,8 +66,22 @@ namespace WinterJam.Screens
                             TreesBack.Add(new Tree(new Vector2(x, y)));
                         }
                     }
+                    
                 }
             }
+            
+            for (int i = 0; i < Trees.Count; i++)
+            {
+                Backgroundback.Add(Trees[i]);
+            }
+            for (int i = 0; i < TreesBack.Count; i++)
+            {
+                Backgroundfront.Add(TreesBack[i]);
+            }
+            
+            Backgroundback = SortList(Backgroundback, 0, Backgroundback.Count - 1);
+            Backgroundfront = SortList(Backgroundfront, 0, Backgroundfront.Count - 1);
+
         }
 
         private void GenerateBaskets()
@@ -182,18 +202,20 @@ namespace WinterJam.Screens
 
             GameSettings.Grid.DrawGrass(spriteBatch);
             Player.DrawEffect(spriteBatch);
-            for (int i = 0; i < Trees.Count; i++)
+            for (int i = 0; i < Backgroundback.Count; i++)
             {
-                Trees[i].Draw(spriteBatch);
+                Backgroundback[i].Draw(spriteBatch);
             }
+            
             for (int i = 0; i < AllObjects.Count; i++)
             {
                 AllObjects[i].Draw(spriteBatch);
             }
-            for (int i = 0; i < TreesBack.Count; i++)
+            for (int i = 0; i < Backgroundfront.Count; i++)
             {
-                TreesBack[i].Draw(spriteBatch);
+                Backgroundfront[i].Draw(spriteBatch);
             }
+            
 
             if (GameSettings.IsPauseScreenDrawn && !GameSettings.IsSettingsScreenDrawn)
             {

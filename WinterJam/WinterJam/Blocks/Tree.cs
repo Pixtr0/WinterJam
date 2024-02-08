@@ -11,6 +11,7 @@ namespace WinterJam
 {
     public class Tree : GameObject
     {
+        public override Vector2 anchorPoint { get { return base.anchorPoint - new Vector2(0, 20 * GameSettings.Grid.ScaleFactor); } }
         public static List<Texture2D> TreeTextures { get; set; } = new List<Texture2D>();
         public Tree(Vector2 Position) 
         {
