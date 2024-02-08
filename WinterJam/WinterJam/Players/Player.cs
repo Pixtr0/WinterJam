@@ -121,7 +121,6 @@ namespace WinterJam.Players
                 this.Visualisation = Animations[5];
                 Visualisation.IsFlipped = true;
                 Visualisation.Play();
-
             }
             if (this.Visualisation == Animations[1]) // RGHT
             {
@@ -166,7 +165,6 @@ namespace WinterJam.Players
                 this.Visualisation = Animations[5];
                 Visualisation.Play();
             }
-
             for (int i = 0; i < PlayScreen.Enemies.Count; i++)
             {
                 for (int j = 0; j < smackedPositions.Count; j++)
@@ -277,6 +275,13 @@ namespace WinterJam.Players
                     for (int i = 0; i < PlayScreen.Obstacles.Count; i++)
                     {
                         if (PlayScreen.Obstacles[i].indexPosition == NextPosition)
+                        {
+                            NextPosition = CurrentPosition;
+                        }
+                    }
+                    for (int i = 0; i < PlayScreen.Baskets.Count; i++)
+                    {
+                        if (PlayScreen.Baskets[i].indexPosition == NextPosition)
                         {
                             NextPosition = CurrentPosition;
                         }

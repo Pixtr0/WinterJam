@@ -16,6 +16,7 @@ namespace WinterJam.Screens
     {
         public static List<GameObject> AllObjects { get; set; } = new List<GameObject>();
         public static List<Vector2> BasketPositions { get; set; } = new List<Vector2>();
+        public static List<Obstacle> Baskets { get; set; } = new List<Obstacle>();
         public static List<Enemy> Enemies { get; set; } = new List<Enemy>();
         public static List<Tree> Trees { get; set; } = new List<Tree>();
         public static List<Tree> TreesBack { get; set; } = new List<Tree>();
@@ -26,8 +27,10 @@ namespace WinterJam.Screens
         public static List<Item> DroppedItems { get; set; } = new List<Item>();
 
         private int _amountOfObstacles = 15;
+        private int _amountOfBaskets = 4;
         public PlayScreen()
         {
+            GenerateBaskets();
             GenerateRandomTiles();
             GenerateBasketPositions ();
             GenerateTreesAndSurroundings();
@@ -64,11 +67,20 @@ namespace WinterJam.Screens
             }
         }
         private void GenerateBasketPositions()
+        }
+
+        private void GenerateBaskets()
         {
-            BasketPositions.Add(new Vector2(GameSettings.Grid.Size.X, GameSettings.Grid.Size.Y));
-            BasketPositions.Add(new Vector2(0, GameSettings.Grid.Size.Y));
-            BasketPositions.Add(new Vector2(GameSettings.Grid.Size.X, 0));
-            BasketPositions.Add(new Vector2(0, 0));
+            //BasketPositions.Add(new Vector2(GameSettings.Grid.playsize - 1, GameSettings.Grid.playsize - 1));
+            //BasketPositions.Add(new Vector2(1, GameSettings.Grid.playsize - 1));
+            //BasketPositions.Add(new Vector2(GameSettings.Grid.playsize - 1, 1));
+            //BasketPositions.Add(new Vector2(1, 1));
+            for (int i = 0; i < _amountOfBaskets; i++)
+                BasketPositions.Add(new Vector2(Random.Shared.Next(1, GameSettings.Grid.playsize - 1),
+                    Random.Shared.Next(1, GameSettings.Grid.playsize - 1)));
+
+            for (int i = 0; i < BasketPositions.Count; i++)
+                Baskets.Add(new Obstacle(GameSettings.BasketTexture, BasketPositions[i], 5));
         }
 
         public override void Update(GameTime gameTime)
@@ -208,10 +220,10 @@ namespace WinterJam.Screens
             {
                 returnList.Add(item);
             }
-            //foreach (Tree tree in Trees)
-            //{
-            //    returnList.Add(tree);
-            //}
+            foreach (Obstacle basket in Baskets)
+            {
+                returnList.Add(basket);
+            }
             returnList.Add(House);
             returnList.Add(Player);
 
@@ -249,8 +261,6 @@ namespace WinterJam.Screens
                 SortList(list, i, rightIndex);
             return list;
         }
-        
-
         public void GenerateRandomTiles()
         {
             int log = 5;
@@ -322,7 +332,6 @@ namespace WinterJam.Screens
                 //}
             }
         }
-
         private Obstacle GetObstacleOn(Vector2 pos)
         {
             for (int i = 0; i < Obstacles.Count; i++)
@@ -331,18 +340,15 @@ namespace WinterJam.Screens
             }
             return null;
         }
-
         public static Vector2 GetRandomPositionOnGrid()
         {
             Vector2 newPos;
             do
             {
                 newPos = new Vector2(Random.Shared.Next(1, (int)GameSettings.Grid.playsize), Random.Shared.Next(1, GameSettings.Grid.playsize));
-            } while (ExistsInObjects(newPos) || House.HouseTiles.Contains(newPos) || House.SurroundingTiles.Contains(newPos));
+            } while (ExistsInObjects(newPos) || House.HouseTiles.Contains(newPos) || House.SurroundingTiles.Contains(newPos) || BasketPositions.Contains(newPos));
             return newPos;
-
         }
-
         private static bool ExistsInObjects(Vector2 newPos)
         {
             for (int i = 0; i < Obstacles.Count; i++)
