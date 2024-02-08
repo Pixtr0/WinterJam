@@ -39,15 +39,15 @@ namespace WinterJam.Screens
                 GameSettings.IsPauseScreenDrawn = true;
             }
 
-            if (GameSettings.IsPauseScreenDrawn == true)
-            {
-                GameSettings.PauseScreen.Update(gameTime);
-            }
+            //if (GameSettings.IsPauseScreenDrawn == true)
+            //{
+            //    GameSettings.PauseScreen.Update(gameTime);
+            //}
 
-            /*if (GameSettings.IsSettingsScreenDrawn == true)
-            {
-                GameSettings.SettingsScreen.Update(gameTime);
-            }*/
+            //if (GameSettings.IsSettingsScreenDrawn == true)
+            //{
+            //    GameSettings.SettingsScreen.Update(gameTime);
+            //}
 
             if (GameSettings.IsPauseScreenDrawn == false)
             {
@@ -59,14 +59,13 @@ namespace WinterJam.Screens
                 {
                     GenerateRandomTiles();
                 }
-
+                foreach (Enemy enemy in _enemies)
+                {
+                    enemy.Update(gameTime);
+                }
                 foreach (var gameObject in _allObjects)
                 {
-                    if (gameObject is Enemy)
-                    {
-                        Enemy enemy = gameObject as Enemy;
-                        enemy.Update(gameTime);
-                    }
+                    
                     if (gameObject is House)
                     {
                         House house = gameObject as House;
@@ -100,6 +99,7 @@ namespace WinterJam.Screens
             {
                 _allObjects[i].Draw(spriteBatch);
             }
+            
 
             if (GameSettings.IsPauseScreenDrawn && !GameSettings.IsSettingsScreenDrawn)
             {
@@ -244,7 +244,7 @@ namespace WinterJam.Screens
             return null;
         }
 
-        private Vector2 GetRandomPositionOnGrid()
+        public Vector2 GetRandomPositionOnGrid()
         {
             Vector2 newPos;
             do

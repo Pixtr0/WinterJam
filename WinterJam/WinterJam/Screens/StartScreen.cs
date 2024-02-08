@@ -8,10 +8,12 @@ namespace WinterJam.Screens
 {
     internal class StartScreen : Screen
     {
-        private int buttonWidth = 300;
-        private int buttonHeight = 200;
+        private int buttonWidth = (int)(68 * 6);
+        private int buttonHeight = (int)(21 * 6);
         private bool playButtonPressed = false;
         private bool settingsButtonPressed = false;
+
+        
 
         public override void Update(GameTime gameTime)
         {
@@ -40,7 +42,7 @@ namespace WinterJam.Screens
             {
                 // Enable the settings screen
                 settingsButtonPressed = true;
-                await Task.Delay(1000);
+                await Task.Delay(100);
                 settingsButtonPressed = false;
                 GameSettings.IsSettingsScreenDrawn = true;
             }
@@ -55,7 +57,7 @@ namespace WinterJam.Screens
             {
                 // Set the play button texture to pressed
                 playButtonPressed = true;
-                await Task.Delay(1000); // Wait for 1 second
+                await Task.Delay(200); // Wait for 1 second
                 GameSettings.ActiveScreen = GameSettings.PlayScreen; // Switch to the play screen
             }
         }
@@ -65,7 +67,7 @@ namespace WinterJam.Screens
             GameSettings.Grid.DrawGrass(spriteBatch);
 
             Rectangle dr = new Rectangle(0, 0, (int)GameSettings.ScreenSize.X, (int)GameSettings.ScreenSize.Y);
-            spriteBatch.Draw(GameSettings.ScreenTexture, dr, new Color(0, 0, 0, 100));
+            spriteBatch.Draw(GameSettings.ScreenTexture, dr, Color.Black);
 
             // Draw Play Button
             DrawPlayButton(spriteBatch);
@@ -85,19 +87,36 @@ namespace WinterJam.Screens
             Rectangle dr = new Rectangle((int)GameSettings.ScreenSize.X * 3 / 4 - buttonWidth / 2, (int)GameSettings.ScreenSize.Y * 3 / 4, buttonWidth, buttonHeight);
             spriteBatch.Draw(settingsButtonTexture, dr, Color.White);
 
+            Vector2 textPosition = Vector2.One;
             Vector2 textSize = GameSettings.GameFont.MeasureString("SETTINGS");
-            Vector2 textPosition = new Vector2(dr.X + (buttonWidth - textSize.X) / 2, dr.Y - textSize.Y + buttonHeight / 2);
+            if (!settingsButtonPressed)
+            {
+                textPosition = new Vector2(dr.X + (buttonWidth - textSize.X) / 2, dr.Y - textSize.Y + buttonHeight / 2);
+            }
+            else
+            {
+                textPosition = new Vector2(dr.X + (buttonWidth - textSize.X) / 2, dr.Y - textSize.Y + buttonHeight / 2 + 16);
+            }
             spriteBatch.DrawString(GameSettings.GameFont, "SETTINGS", textPosition, Color.Black);
         }
 
         private void DrawPlayButton(SpriteBatch spriteBatch)
         {
+            
             Texture2D playButtonTexture = playButtonPressed ? GameSettings.Button_Pressed_Yellow : GameSettings.Button_Yellow;
             Rectangle dr = new Rectangle((int)GameSettings.ScreenSize.X / 4 - buttonWidth / 2, (int)GameSettings.ScreenSize.Y * 3 / 4, buttonWidth, buttonHeight);
             spriteBatch.Draw(playButtonTexture, dr, Color.White);
 
+            Vector2 textPosition = Vector2.One;
             Vector2 textSize = GameSettings.GameFont.MeasureString("PLAY");
-            Vector2 textPosition = new Vector2(dr.X + (buttonWidth - textSize.X) / 2, dr.Y - textSize.Y + buttonHeight / 2);
+            if (!playButtonPressed)
+            {
+                textPosition = new Vector2(dr.X + (buttonWidth - textSize.X) / 2, dr.Y - textSize.Y + buttonHeight / 2);
+            } 
+            else
+            {
+                textPosition = new Vector2(dr.X + (buttonWidth - textSize.X) / 2, dr.Y - textSize.Y + buttonHeight / 2 + 16);
+            }
             spriteBatch.DrawString(GameSettings.GameFont, "PLAY", textPosition, Color.Black);
         }
     }
