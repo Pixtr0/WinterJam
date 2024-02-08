@@ -21,7 +21,7 @@ namespace WinterJam
         private Vector2 TargetLocation { get; set; } = new Vector2(9, 7);
         private List<Vector2> UsedTiles { get; set; } = new List<Vector2>();
         public Item helditem { get; set; }
-
+        private Color Color { get; set; }
         public override Vector2 anchorPoint => _delay == 5f ? base.anchorPoint - new Vector2(0,8 * GameSettings.Grid.ScaleFactor) : base.anchorPoint;
         public static List<Texture2D> Textures { get; set; }
 
@@ -30,6 +30,14 @@ namespace WinterJam
         public bool HasDroppeditem { get; set; } = false;
 
         private bool InSideHouse = false;
+
+        private List<Color> colorOptions = new List<Color>()
+        {
+            new Color(206, 120, 70),
+            new Color(153, 92, 35),
+            new Color(228, 194, 95),
+            Color.White,
+        };
 
         public List<SpriteSheet> Animations { get; set; }
 
@@ -51,13 +59,15 @@ namespace WinterJam
                 new SpriteSheet(Textures[7], Vector2.Zero,new Vector2(21,17) * GameSettings.Grid.ScaleFactor,0,1,2,0,true),
                 new SpriteSheet(Textures[8], Vector2.Zero,new Vector2(21,17) * GameSettings.Grid.ScaleFactor,0,1,1,0,true),
             };
+            
             Visualisation = Animations[0];
             CurrentPosition = GameSettings.Grid.GetRandomBorderPos(1);
             NextPosition = CurrentPosition;
             TopLeftPosition = GameSettings.Grid.GetGridPositionNoHeight(CurrentPosition);
             _remainingDelay = _delay;
             Createitem(0);
-            IsHoldingItem = false;  
+            IsHoldingItem = false;
+            Color = colorOptions[Random.Shared.Next(0, 4)];
 
         }
 
@@ -195,17 +205,18 @@ namespace WinterJam
                     CurrentPosition = SpawnPosition;
                     NextPosition = CurrentPosition;
                     TargetLocation = new Vector2(9, 7);
+                    if (IsHoldingItem)
+                        Createitem(1);
                     IsHoldingItem = false;
                     IsSmacked = false;
                     HasDroppeditem = false;
                     _delay = 5f + Random.Shared.Next(0,4);
                     InSideHouse = true;
-                    if(IsHoldingItem)
-                        Createitem(1);
+
                 }
-                
-               
-               
+
+
+
                 int index = Visualisation.CurrentSpriteIndex;
                 
                 if (CurrentPosition != NextPosition)
@@ -248,6 +259,7 @@ namespace WinterJam
 
                 _remainingDelay = _delay;
                 TopLeftPosition = GameSettings.Grid.GetGridPositionNoHeight(CurrentPosition) + new Vector2(0, 6 * GameSettings.Grid.ScaleFactor);
+                Visualisation.Color = Color;
             }
         }
         public override void Draw(SpriteBatch spriteBatch)

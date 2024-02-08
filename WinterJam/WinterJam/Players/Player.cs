@@ -21,7 +21,7 @@ namespace WinterJam.Players
         public List<Item> PlacedItems { get; set; } = new List<Item>();
         public List<Obstacle> PlacedObstacles { get; set; }
         public List<Item> Inventory { get; set; } = new List<Item>();
-        public override Vector2 anchorPoint { get { return base.anchorPoint - new Vector2(0, 2 * GameSettings.Grid.ScaleFactor); } }
+        public override Vector2 anchorPoint { get { return base.anchorPoint - new Vector2(0, IsSmacking ? 8 * GameSettings.Grid.ScaleFactor : 2 * GameSettings.Grid.ScaleFactor); } }
         public Item HeldItem { get; set; }
         public int HeldItemIndex { get; set; } = 0;
         public Vector2 NextPosition { get; set; }
@@ -245,8 +245,8 @@ namespace WinterJam.Players
                     CurrentPosition += (NextPosition - CurrentPosition) / (Visualisation.Cols - index);
                     Visualisation.Update();
                 }
-                else
-                {
+                //else
+                //{
 
                     //cardinal directions
                     if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.left))
@@ -271,6 +271,7 @@ namespace WinterJam.Players
                     {
                         NextPosition = CurrentPosition + new Vector2(0, 1);
                         Visualisation = Animations[2];
+                        Visualisation.Play();
                     }
                     for (int i = 0; i < PlayScreen.Obstacles.Count; i++)
                     {
@@ -297,7 +298,7 @@ namespace WinterJam.Players
                     float clampedX = MathHelper.Clamp(NextPosition.X, 1, GameSettings.Grid.playsize - 1);
                     float clampedY = MathHelper.Clamp(NextPosition.Y, 1, GameSettings.Grid.playsize - 1);
                     NextPosition = new Vector2(clampedX, clampedY);
-                }
+                //}
             }
             TopLeftPosition = GameSettings.Grid.GetGridPositionNoHeight(CurrentPosition) + new Vector2(-5, -12f) * GameSettings.Grid.ScaleFactor;
 
@@ -317,9 +318,6 @@ namespace WinterJam.Players
             if (HeldItem != null)
             {
                 HeldItem.Draw(spriteBatch);
-
-                //spriteBatch.DrawString(GameSettings.GameFont, $"{HeldItemIndex}", anchorPoint  -HeldItem.Size/2, Color.Black);
-
 
                 if (PlacedItems.Count > 0)
                     foreach (Item item in PlacedItems)

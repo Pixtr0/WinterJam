@@ -29,8 +29,8 @@ namespace WinterJam
         {
             get
             {
-                return new Rectangle((int)(HealthPosition.X - HealthBarSize.X/2), 
-                    (int)HealthPosition.Y, 
+                return new Rectangle((int)(HealthPosition.X - HealthBarSize.X/2) + (int)(5 * GameSettings.Grid.ScaleFactor), 
+                    (int)HealthPosition.Y + (int)(6.5f * GameSettings.Grid.ScaleFactor), 
                     (int)HealthBarSize.X, 
                     (int)HealthBarSize.Y);
             }
@@ -39,8 +39,8 @@ namespace WinterJam
         {
             get
             {
-                return new Rectangle((int)(HealthPosition.X - HealthBarSize.X / 2 + 2 * GameSettings.Grid.ScaleFactor),
-                    (int)(HealthPosition.Y + 2 * GameSettings.Grid.ScaleFactor),
+                return new Rectangle((int)(HealthPosition.X - HealthBarSize.X / 2 + 7 * GameSettings.Grid.ScaleFactor),
+                    (int)(HealthPosition.Y + 8.5f * GameSettings.Grid.ScaleFactor),
                     (int)((HealthBarSize.X - 15) * (float)currentHp / maxHp),
                     (int)(HealthBarSize.Y - 15));
             }
