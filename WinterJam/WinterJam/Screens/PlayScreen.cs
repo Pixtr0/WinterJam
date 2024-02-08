@@ -158,9 +158,17 @@ namespace WinterJam.Screens
 
             UpdateDroppeditems(gameTime);
 
+            UpdateGameState();
             base.Update(gameTime);
         }
 
+        private void UpdateGameState()
+        {
+            if (House.currentHp <= 0)
+            {
+                GameSettings.ActiveScreen = GameSettings.GameOverScreen;
+            }
+        }
         private static void UpdateDroppeditems(GameTime gameTime)
         {
 

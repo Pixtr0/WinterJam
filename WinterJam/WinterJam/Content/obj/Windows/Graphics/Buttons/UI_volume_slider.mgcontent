@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Buttons/UI_health_bar_HP.png</SourceFile>
-  <SourceTime>2024-02-08T20:53:15.4570862+01:00</SourceTime>
-  <DestFile>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/bin/Windows/Graphics/Buttons/UI_health_bar_HP.xnb</DestFile>
-  <DestTime>2024-02-08T22:49:14.1974027+01:00</DestTime>
+  <SourceFile>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Buttons/UI_volume_slider.png</SourceFile>
+  <SourceTime>2024-02-08T22:39:20.2386504+01:00</SourceTime>
+  <DestFile>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/bin/Windows/Graphics/Buttons/UI_volume_slider.xnb</DestFile>
+  <DestTime>2024-02-08T22:49:14.2214555+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T13:44:56+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

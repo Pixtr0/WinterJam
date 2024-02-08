@@ -86,6 +86,8 @@ namespace WinterJam.Screens
             Rectangle dr = new Rectangle(0, 0, (int)GameSettings.ScreenSize.X, (int)GameSettings.ScreenSize.Y);
             spriteBatch.Draw(GameSettings.ScreenTexture, dr, Color.Black);
 
+            //DestinationRectangle for the GameOver logo
+
             // Draw Play Button
             DrawPlayButton(spriteBatch);
 
