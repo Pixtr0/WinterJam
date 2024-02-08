@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\matth\\OneDrive\\Documents\\WinterJam\\WinterJam\\WinterJam\\WinterJam\\WinterJam.csproj": {}
+    "C:\\Users\\Maesm\\Documents\\GitHub\\WinterJam\\WinterJam\\WinterJam\\WinterJam.csproj": {}
   },
   "projects": {
-    "C:\\Users\\matth\\OneDrive\\Documents\\WinterJam\\WinterJam\\WinterJam\\WinterJam\\WinterJam.csproj": {
+    "C:\\Users\\Maesm\\Documents\\GitHub\\WinterJam\\WinterJam\\WinterJam\\WinterJam.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\matth\\OneDrive\\Documents\\WinterJam\\WinterJam\\WinterJam\\WinterJam\\WinterJam.csproj",
+        "projectUniqueName": "C:\\Users\\Maesm\\Documents\\GitHub\\WinterJam\\WinterJam\\WinterJam\\WinterJam.csproj",
         "projectName": "WinterJam",
-        "projectPath": "C:\\Users\\matth\\OneDrive\\Documents\\WinterJam\\WinterJam\\WinterJam\\WinterJam\\WinterJam.csproj",
-        "packagesPath": "C:\\Users\\matth\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\matth\\OneDrive\\Documents\\WinterJam\\WinterJam\\WinterJam\\WinterJam\\obj\\",
+        "projectPath": "C:\\Users\\Maesm\\Documents\\GitHub\\WinterJam\\WinterJam\\WinterJam\\WinterJam.csproj",
+        "packagesPath": "C:\\Users\\Maesm\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Maesm\\Documents\\GitHub\\WinterJam\\WinterJam\\WinterJam\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\matth\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Maesm\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +22,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Users\\matth\\OneDrive - Hogeschool West-Vlaanderen\\Platform Dev\\MyPackages": {},
+          "C:\\Users\\Maesm\\Documents\\School\\Semester1\\Platform Dev1\\NuGetPackages": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -73,7 +69,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

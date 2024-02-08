@@ -102,6 +102,7 @@ namespace WinterJam
             
             //loading screens
             GameSettings.SettingsScreen = new SettingsScreen();
+            GameSettings.PauseScreen = new PauseScreen();
             GameSettings.StartScreen = new StartScreen();
             GameSettings.PlayScreen = new PlayScreen();
 
