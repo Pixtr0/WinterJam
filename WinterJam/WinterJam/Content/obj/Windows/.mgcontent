@@ -24,6 +24,14 @@
     <File>C:/Users/matth/OneDrive/Documents/WinterJam/WinterJam/WinterJam/WinterJam/Content/Graphics/Blocks/spritesheet_house.png</File>
     <File>C:/Users/matth/OneDrive/Documents/WinterJam/WinterJam/WinterJam/WinterJam/Content/Graphics/Blocks/stump_01.png</File>
     <File>C:/Users/matth/OneDrive/Documents/WinterJam/WinterJam/WinterJam/WinterJam/Content/Graphics/Blocks/stump_02.png</File>
+    <File>C:/Users/matth/OneDrive/Documents/WinterJam/WinterJam/WinterJam/WinterJam/Content/Graphics/Blocks/tree_01.png</File>
+    <File>C:/Users/matth/OneDrive/Documents/WinterJam/WinterJam/WinterJam/WinterJam/Content/Graphics/Blocks/tree_02.png</File>
+    <File>C:/Users/matth/OneDrive/Documents/WinterJam/WinterJam/WinterJam/WinterJam/Content/Graphics/Blocks/tree_03.png</File>
+    <File>C:/Users/matth/OneDrive/Documents/WinterJam/WinterJam/WinterJam/WinterJam/Content/Graphics/Blocks/tree_04.png</File>
+    <File>C:/Users/matth/OneDrive/Documents/WinterJam/WinterJam/WinterJam/WinterJam/Content/Graphics/Blocks/tree_05.png</File>
+    <File>C:/Users/matth/OneDrive/Documents/WinterJam/WinterJam/WinterJam/WinterJam/Content/Graphics/Blocks/tree_06.png</File>
+    <File>C:/Users/matth/OneDrive/Documents/WinterJam/WinterJam/WinterJam/WinterJam/Content/Graphics/Blocks/tree_07.png</File>
+    <File>C:/Users/matth/OneDrive/Documents/WinterJam/WinterJam/WinterJam/WinterJam/Content/Graphics/Blocks/tree_08.png</File>
     <File>C:/Users/matth/OneDrive/Documents/WinterJam/WinterJam/WinterJam/WinterJam/Content/Graphics/Blocks/water_flow_01.png</File>
     <File>C:/Users/matth/OneDrive/Documents/WinterJam/WinterJam/WinterJam/WinterJam/Content/Graphics/Blocks/water_flow_02.png</File>
     <File>C:/Users/matth/OneDrive/Documents/WinterJam/WinterJam/WinterJam/WinterJam/Content/Graphics/Blocks/water_flow_03.png</File>
@@ -57,6 +65,14 @@
     <File>C:/Users/matth/OneDrive/Documents/WinterJam/WinterJam/WinterJam/WinterJam/Content/Graphics/Player/Up.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

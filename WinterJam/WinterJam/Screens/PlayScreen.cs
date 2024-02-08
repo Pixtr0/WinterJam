@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using WinterJam.Players;
 using WinterJam.Screens;
@@ -16,6 +17,8 @@ namespace WinterJam.Screens
         public static List<GameObject> AllObjects { get; set; } = new List<GameObject>();
         public static List<Vector2> BasketPositions { get; set; } = new List<Vector2>();
         public static List<Enemy> Enemies { get; set; } = new List<Enemy>();
+        public static List<Tree> Trees { get; set; } = new List<Tree>();
+        public static List<Tree> TreesBack { get; set; } = new List<Tree>();
         public static House House { get; set; }
         public static List<Obstacle> Obstacles { get; set; } = new List<Obstacle>();
         public static List<Texture2D> ObstacleTextures { get; set; } = new List<Texture2D>();
@@ -27,8 +30,39 @@ namespace WinterJam.Screens
         {
             GenerateRandomTiles();
             GenerateBasketPositions ();
+            GenerateTreesAndSurroundings();
         }
+        private void GenerateTreesAndSurroundings()
+        {
+            for (int x = -GameSettings.Grid.DownShift; x < GameSettings.Grid.Size.X - GameSettings.Grid.DownShift; x++)
+            {
+                for (int y = -GameSettings.Grid.DownShift; y < GameSettings.Grid.Size.Y - GameSettings.Grid.DownShift; y++)
+                {
+                    Random rnd = new Random();
+                    if(rnd.Next(0,5) > 2)
+                    {
+                        if (y < 1)
+                        {
+                            Trees.Add(new Tree(new Vector2(x, y)));
+                        }
+                        if (y >= 1 && x < 1)
+                        {
+                            Trees.Add(new Tree(new Vector2(x, y)));
+                        }
+                        if (y >= 1 && x > 5 + GameSettings.Grid.playsize)
+                        {
+                            TreesBack.Add(new Tree(new Vector2(x, y)));
+                        }
+                        if (y > 5 + GameSettings.Grid.playsize && x >= 1)
+                        {
+                            TreesBack.Add(new Tree(new Vector2(x, y)));
+                        }
+                    }
+                    
 
+                }
+            }
+        }
         private void GenerateBasketPositions()
         {
             BasketPositions.Add(new Vector2(GameSettings.Grid.Size.X, GameSettings.Grid.Size.Y));
@@ -133,11 +167,18 @@ namespace WinterJam.Screens
 
             GameSettings.Grid.DrawGrass(spriteBatch);
             Player.DrawEffect(spriteBatch);
+            for (int i = 0; i < Trees.Count; i++)
+            {
+                Trees[i].Draw(spriteBatch);
+            }
             for (int i = 0; i < AllObjects.Count; i++)
             {
                 AllObjects[i].Draw(spriteBatch);
             }
-            
+            for (int i = 0; i < TreesBack.Count; i++)
+            {
+                TreesBack[i].Draw(spriteBatch);
+            }
 
             if (GameSettings.IsPauseScreenDrawn && !GameSettings.IsSettingsScreenDrawn)
             {
@@ -167,6 +208,10 @@ namespace WinterJam.Screens
             {
                 returnList.Add(item);
             }
+            //foreach (Tree tree in Trees)
+            //{
+            //    returnList.Add(tree);
+            //}
             returnList.Add(House);
             returnList.Add(Player);
 
