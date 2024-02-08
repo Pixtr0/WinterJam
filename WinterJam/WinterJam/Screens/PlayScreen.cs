@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 //using SharpDX.Direct2D1;
@@ -20,12 +20,22 @@ namespace WinterJam.Screens
         public static List<Texture2D> _obstacleTextures = new List<Texture2D>();
         public static Player _player;
 
+        public static List<Item> DroppedItems { get; set; } = new List<Item>();
         public int _amountOfObstacles = 15;
         public PlayScreen()
         {
             GenerateRandomTiles();
+            GenerateRandomItems(); // Generates a random list of 5 items dropped on the ground. Remove once squirrels drop items
         }
 
+        private void GenerateRandomItems()
+        {
+            while (DroppedItems.Count < 6)
+            {
+                Item newDroppedItem = new Item();
+                DroppedItems.Add(newDroppedItem);
+            }
+        }
 
         public override void Update(GameTime gameTime)
         {
@@ -39,10 +49,10 @@ namespace WinterJam.Screens
                 GameSettings.IsPauseScreenDrawn = true;
             }
 
-            if (GameSettings.IsPauseScreenDrawn == true)
-            {
-                GameSettings.PauseScreen.Update(gameTime);
-            }
+            //if (GameSettings.IsPauseScreenDrawn == true)
+            //{
+            //    GameSettings.PauseScreen.Update(gameTime);
+            //}
 
             if (GameSettings.IsSettingsScreenDrawn == true)
             {
@@ -59,14 +69,13 @@ namespace WinterJam.Screens
                 {
                     GenerateRandomTiles();
                 }
-
+                foreach (Enemy enemy in _enemies)
+                {
+                    enemy.Update(gameTime);
+                }
                 foreach (var gameObject in _allObjects)
                 {
-                    if (gameObject is Enemy)
-                    {
-                        Enemy enemy = gameObject as Enemy;
-                        enemy.Update(gameTime);
-                    }
+                    
                     if (gameObject is House)
                     {
                         House house = gameObject as House;
@@ -86,8 +95,38 @@ namespace WinterJam.Screens
 
                 _allObjects = SortedObjects();
             }
-            
+
+            UpdateDroppeditems(gameTime);
+
             base.Update(gameTime);
+        }
+
+        private static void UpdateDroppeditems(GameTime gameTime)
+        {
+            if (DroppedItems.Count > 0)
+            {
+                foreach (Item item in DroppedItems)
+                {
+                    if (item != null)
+                        item.Update(gameTime);
+                }
+                for (int i = 0; i < DroppedItems.Count; i++)
+                {
+
+                    if (_player.CurrentPosition == DroppedItems[i].CurrentPosition)
+                    {
+                        Item newPlayerItem = new Item(_player )
+                        {
+                            Visualisation = DroppedItems[i].Visualisation,
+                            ParentSize = _player.Size
+                        };
+                        _player.Inventory.Add(newPlayerItem);
+                        DroppedItems.Remove(DroppedItems[i]);
+                    }
+                }
+
+            }
+
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -100,6 +139,7 @@ namespace WinterJam.Screens
             {
                 _allObjects[i].Draw(spriteBatch);
             }
+            
 
             if (GameSettings.IsPauseScreenDrawn && !GameSettings.IsSettingsScreenDrawn)
             {
@@ -109,6 +149,15 @@ namespace WinterJam.Screens
             if (GameSettings.IsPauseScreenDrawn && GameSettings.IsSettingsScreenDrawn && GameSettings.IsCloseButtonPressed == false)
             {
                 GameSettings.SettingsScreen.Draw(spriteBatch);
+            }
+
+            if (DroppedItems.Count > 0)
+            {
+                foreach (Item item in DroppedItems)
+                {
+                    if (item != null)
+                        item.Draw(spriteBatch);
+                }
             }
 
             base.Draw(spriteBatch);
@@ -123,6 +172,10 @@ namespace WinterJam.Screens
             foreach (Enemy enemy in _enemies)
             {
                 returnList.Add(enemy);
+            }
+            foreach (Item item in DroppedItems)
+            {
+                returnList.Add(item);
             }
             returnList.Add(_house);
             returnList.Add(_player);
@@ -244,7 +297,7 @@ namespace WinterJam.Screens
             return null;
         }
 
-        private Vector2 GetRandomPositionOnGrid()
+        public static Vector2 GetRandomPositionOnGrid()
         {
             Vector2 newPos;
             do
@@ -255,7 +308,7 @@ namespace WinterJam.Screens
 
         }
 
-        private bool ExistsInObjects(Vector2 newPos)
+        private static bool ExistsInObjects(Vector2 newPos)
         {
             for (int i = 0; i < _obstacles.Count; i++)
             {

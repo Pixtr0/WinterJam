@@ -43,8 +43,8 @@ namespace WinterJam.Players
             //Receives the next grid position based on user input
 
             UpdateItems(gameTime);
-            AddRemoveItem();
-            PlaceAnItem();
+            //AddRemoveItem();
+            //PlaceAnItem();
 
             var timer = (float)gameTime.ElapsedGameTime.TotalSeconds;
             _remainingPlayerDelay -= timer;
@@ -56,6 +56,7 @@ namespace WinterJam.Players
             }
         }
 
+        //deprecated
         private void PlaceAnItem()
         {
             if (UserInput._currentKeyboardSate.IsKeyDown(Keys.F) && UserInput._previousKeyboardSate.IsKeyUp(Keys.F) && HeldItem.IsActive)
@@ -109,7 +110,7 @@ namespace WinterJam.Players
 
         private void UpdateItems(GameTime gameTime)
         {
-            if (Inventory.Count > 0)
+            if (Inventory.Count > 0 && Inventory.Count <= 3)
             {
                 if (UserInput._currentMouseState.ScrollWheelValue > UserInput._previousMouseState.ScrollWheelValue)
                 {
@@ -128,25 +129,30 @@ namespace WinterJam.Players
                     }
                 }
 
-                HeldItem.Update(gameTime, anchorPoint);
+                if (HeldItem != null)
+                {
+                    HeldItem = Inventory[0];
+                    HeldItem.Update(gameTime, this);
+                }
             }
 
-            if (PlacedItems.Count > 0)
-            {
-                foreach (Item item in PlacedItems)
-                    item.Update(gameTime);
-            }
         }
         private void AddRemoveItem()
         {
-            if (UserInput._currentKeyboardSate.IsKeyDown(Keys.E) && UserInput._previousKeyboardSate.IsKeyUp(Keys.E)) 
-            {
-                Item item = new Item(20, GameSettings.ScreenTexture, new Vector2(18,19)*GameSettings.Grid.ScaleFactor ,this);
-                Inventory.Add(item);
 
-                if (Inventory.Count == 1)
-                    HeldItem = Inventory[0];
-            }
+            //Player can pick up items dropped by the squirrels
+
+
+
+
+            //if (UserInput._currentKeyboardSate.IsKeyDown(Keys.E) && UserInput._previousKeyboardSate.IsKeyUp(Keys.E)) 
+            //{
+            //    Item item = new Item(20, GameSettings.ScreenTexture, new Vector2(18,19)*GameSettings.Grid.ScaleFactor ,this);
+            //    Inventory.Add(item);
+
+            //    if (Inventory.Count == 1)
+            //        HeldItem = Inventory[0];
+            //}
 
             //if (UserInput._currentKeyboardSate.IsKeyDown(Keys.F) && UserInput._previousKeyboardSate.IsKeyUp(Keys.F))
             //{

@@ -1,4 +1,4 @@
-﻿using Isometric_Thingy;
+using Isometric_Thingy;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -37,7 +37,17 @@ namespace WinterJam
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            Enemy.Textures = new List<Texture2D>()
+            {
+                Content.Load<Texture2D>("Graphics/Enemy/up"),
+                Content.Load<Texture2D>("Graphics/Enemy/up_right"),
+                Content.Load<Texture2D>("Graphics/Enemy/right"),
+                Content.Load<Texture2D>("Graphics/Enemy/down_right"),
+                Content.Load<Texture2D>("Graphics/Enemy/down"),
+                Content.Load<Texture2D>("Graphics/Enemy/down_left"),
+                Content.Load<Texture2D>("Graphics/Enemy/left"),
+                Content.Load<Texture2D>("Graphics/Enemy/up_left"),
+            };
             GameSettings.ScreenTexture = Content.Load<Texture2D>("Graphics/Blocks/placeholder Screen");
 
             GameSettings.Grid = new Grid(new Vector2(_graphics.PreferredBackBufferWidth / 2, 0)
@@ -72,26 +82,23 @@ namespace WinterJam
             Player.Animations.Add(new SpriteSheet(Content.Load<Texture2D>("Graphics/Player/Left"), Vector2.Zero, new Vector2(36, 32) * GameSettings.Grid.ScaleFactor, 0, 1, 4, 0, true));
             Vector2 playerStart = new Vector2(8, 9);
             PlayScreen._player = new Player(playerStart, Player.Animations[3]);
-            GameSettings.Squirrel_Up = Content.Load<Texture2D>("Graphics/Enemy/up");
-            GameSettings.Squirrel_Down = Content.Load<Texture2D>("Graphics/Enemy/down");
-            GameSettings.Squirrel_Left = Content.Load<Texture2D>("Graphics/Enemy/left");
-            GameSettings.Squirrel_Right = Content.Load<Texture2D>("Graphics/Enemy/right");
-            GameSettings.Squirrel_Up_Left = Content.Load<Texture2D>("Graphics/Enemy/up_left");
-            GameSettings.Squirrel_Up_Right = Content.Load<Texture2D>("Graphics/Enemy/up_right");
-            GameSettings.Squirrel_Down_Left = Content.Load<Texture2D>("Graphics/Enemy/down_left");
-            GameSettings.Squirrel_Down_Right = Content.Load<Texture2D>("Graphics/Enemy/down_right");
+            
+            
             PlayScreen._house = new House(Content.Load<Texture2D>("Graphics/Blocks/spritesheet_house"));
             GameSettings.Button_Yellow = Content.Load<Texture2D>("Graphics/Buttons/UI_button_01");
             GameSettings.Button_Pressed_Yellow = Content.Load<Texture2D>("Graphics/Buttons/UI_button_pressed_01");
             GameSettings.Button_Orange = Content.Load<Texture2D>("Graphics/Buttons/UI_button_02");
             GameSettings.Button_Pressed_Orange = Content.Load<Texture2D>("Graphics/Buttons/UI_button_pressed_02");
 
+            GameSettings.SettingsScreen = new SettingsScreen();
+            Item.ItemTextures.Add(Content.Load<Texture2D>("Graphics/Items/item_donut"));
+            Item.ItemTextures.Add(Content.Load<Texture2D>("Graphics/Items/item_keys"));
+            Item.ItemTextures.Add(Content.Load<Texture2D>("Graphics/Items/item_sock"));
+            Item.ItemTextures.Add(Content.Load<Texture2D>("Graphics/Items/item_toiletPaper"));
+            Item.ItemTextures.Add(Content.Load<Texture2D>("Graphics/Items/item_toothbrush"));
+            Item.ItemTextures.Add(Content.Load<Texture2D>("Graphics/Items/item_underwear"));
 
             GameSettings.PlayScreen = new PlayScreen();
-            GameSettings.PauseScreen = new PauseScreen();
-            GameSettings.StartScreen = new StartScreen();
-            GameSettings.SettingsScreen = new SettingsScreen();
-            PlayScreen._enemies.Add(Enemy.Spawn());
 
             foreach (var Object in PlayScreen._allObjects)
             {

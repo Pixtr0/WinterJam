@@ -15,24 +15,39 @@ namespace WinterJam
     public class Enemy : GameObject
     {
         private Vector2 SpawnPosition { get { return GameSettings.Grid.GetRandomBorderPos(1);} }
-        public Vector2 CurrentPosition { get; set; }
         private Vector2 NextPosition { get; set; }
         private Vector2 TargetLocation { get; set; } = new Vector2(9, 7);
         public Item helditem { get; set; }
 
+        public static List<Texture2D> Textures { get; set; }
+
+        private static int ID { get; set; } = 0;
+        private int thisID {  get; set; }
+
         private bool InSideHouse = false;
-        
-       
-        public static List<SpriteSheet> Animations { get; set; } = new List<SpriteSheet>();
+
+        public List<SpriteSheet> Animations { get; set; }
 
         private float _delay = 0.07f; // seconds
         private float _remainingDelay;
 
-        public Enemy(List<SpriteSheet> animations)
+        public Enemy()
         {
-            Animations = animations;
+            thisID = ID; ID++;
+            Animations = new List<SpriteSheet>()
+            {
+                new SpriteSheet(Textures[0], Vector2.Zero,new Vector2(21,17) * GameSettings.Grid.ScaleFactor,0,1,2,0,true),
+                new SpriteSheet(Textures[1], Vector2.Zero,new Vector2(21,17) * GameSettings.Grid.ScaleFactor,0,1,2,0,true),
+                new SpriteSheet(Textures[2], Vector2.Zero,new Vector2(21,17) * GameSettings.Grid.ScaleFactor,0,1,2,0,true),
+                new SpriteSheet(Textures[3], Vector2.Zero,new Vector2(21,17) * GameSettings.Grid.ScaleFactor,0,1,2,0,true),
+                new SpriteSheet(Textures[4], Vector2.Zero,new Vector2(21,17) * GameSettings.Grid.ScaleFactor,0,1,2,0,true),
+                new SpriteSheet(Textures[5], Vector2.Zero,new Vector2(21,17) * GameSettings.Grid.ScaleFactor,0,1,2,0,true),
+                new SpriteSheet(Textures[6], Vector2.Zero,new Vector2(21,17) * GameSettings.Grid.ScaleFactor,0,1,2,0,true),
+                new SpriteSheet(Textures[7], Vector2.Zero,new Vector2(21,17) * GameSettings.Grid.ScaleFactor,0,1,2,0,true),
+            };
             Visualisation = Animations[0];
             CurrentPosition = GameSettings.Grid.GetRandomBorderPos(1);
+            NextPosition = CurrentPosition;
             TopLeftPosition = GameSettings.Grid.GetGridPositionNoHeight(CurrentPosition);
             _remainingDelay = _delay;
             Createitem(0);
@@ -42,7 +57,7 @@ namespace WinterJam
         private void Createitem(int cost)
         {
             House.currentHp -= cost;
-            helditem = new Item(20, GameSettings.ScreenTexture, new Vector2(18, 19) * GameSettings.Grid.ScaleFactor, this);
+            helditem = new Item(this);
             helditem.IsActive = true;
 
         }
@@ -112,12 +127,15 @@ namespace WinterJam
             
             _remainingDelay -= timer;
             if(helditem.IsActive)
-                helditem.Update(gt,this.anchorPoint);
+                helditem.Update(gt,this);
             if (_remainingDelay <= 0)
             {
                 //reset insidehouse state
                 if (_delay == 2f && InSideHouse)
+                {
                     InSideHouse = false;
+                    Createitem(1);
+                }
 
                 if (NextPosition == TargetLocation - new Vector2(0.3f, 0))
                 {
@@ -149,7 +167,6 @@ namespace WinterJam
                         if (!InSideHouse)
                         {
                             NextPosition = TargetLocation - new Vector2(0.3f, 0);
-                            TopLeftPosition = GameSettings.Grid.GetGridPositionNoHeight(CurrentPosition);
                             Visualisation = Animations[7];
                         }
                     }
@@ -162,15 +179,15 @@ namespace WinterJam
                 }
                 if (InSideHouse)
                 {
-                    Createitem(1);
+                    
                     _delay = 2f;
                 } else
                 {
-                    TopLeftPosition = GameSettings.Grid.GetGridPositionNoHeight(CurrentPosition) + new Vector2(0, 6 * GameSettings.Grid.ScaleFactor);
+                    
                     _delay = 0.07f;
                 }
                 _remainingDelay = _delay;
-                
+                TopLeftPosition = GameSettings.Grid.GetGridPositionNoHeight(CurrentPosition) + new Vector2(0, 6 * GameSettings.Grid.ScaleFactor);
             }
         }
         public override void Draw(SpriteBatch spriteBatch)
@@ -181,21 +198,11 @@ namespace WinterJam
                 if(helditem.IsActive)
                     helditem.Draw(spriteBatch);
             }
-            
+
         }
         public static Enemy Spawn()
         {
-            return new Enemy(new List<SpriteSheet>()
-            {
-                new SpriteSheet(GameSettings.Squirrel_Up,Vector2.Zero,new Vector2(21,17) * GameSettings.Grid.ScaleFactor,0,1,2,0,true),
-                new SpriteSheet(GameSettings.Squirrel_Up_Right,Vector2.Zero,new Vector2(21,17) * GameSettings.Grid.ScaleFactor,0,1,2,0,true),
-                new SpriteSheet(GameSettings.Squirrel_Right,Vector2.Zero,new Vector2(21,17) * GameSettings.Grid.ScaleFactor,0,1,2,0,true),
-                new SpriteSheet(GameSettings.Squirrel_Down_Right,Vector2.Zero,new Vector2(21,17) * GameSettings.Grid.ScaleFactor,0,1,2,0,true),
-                new SpriteSheet(GameSettings.Squirrel_Down,Vector2.Zero,new Vector2(21,17) * GameSettings.Grid.ScaleFactor,0,1,2,0,true),
-                new SpriteSheet(GameSettings.Squirrel_Down_Left,Vector2.Zero,new Vector2(21,17) * GameSettings.Grid.ScaleFactor,0,1,2,0,true),
-                new SpriteSheet(GameSettings.Squirrel_Left,Vector2.Zero,new Vector2(21,17) * GameSettings.Grid.ScaleFactor,0,1,2,0,true),
-                new SpriteSheet(GameSettings.Squirrel_Up_Left,Vector2.Zero,new Vector2(21,17) * GameSettings.Grid.ScaleFactor,0,1,2,0,true),
-            });
+            return new Enemy();
         }
 
     }
