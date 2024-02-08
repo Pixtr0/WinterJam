@@ -61,6 +61,9 @@ namespace WinterJam
                 Content.Load<Texture2D>("Graphics/Blocks/tree_06"),
                 Content.Load<Texture2D>("Graphics/Blocks/tree_07"),
                 Content.Load<Texture2D>("Graphics/Blocks/tree_08"),
+                Content.Load<Texture2D>("Graphics/Blocks/tree_09"),
+                Content.Load<Texture2D>("Graphics/Blocks/tree_10"),
+                Content.Load<Texture2D>("Graphics/Blocks/tree_11"),
             };
             GameSettings.Grid = new Grid(new Vector2(_graphics.PreferredBackBufferWidth / 2, 0)
             , new List<Texture2D>() {

@@ -172,7 +172,7 @@ namespace WinterJam
                 {
                     InSideHouse = false;
                     _delay = 0.09f;
-                    Createitem(1);
+                    Createitem(0);
                 }
                 if (_delay >= 5f || IsSmacked)
                 {
@@ -200,6 +200,8 @@ namespace WinterJam
                     HasDroppeditem = false;
                     _delay = 5f + Random.Shared.Next(0,4);
                     InSideHouse = true;
+                    if(IsHoldingItem)
+                        Createitem(1);
                 }
                 
                
