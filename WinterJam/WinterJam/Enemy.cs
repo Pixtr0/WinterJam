@@ -1,6 +1,7 @@
 ﻿using Isometric_Thingy;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using SpriteSheetClass;
 using System;
 using System.Collections.Generic;
@@ -21,8 +22,8 @@ namespace WinterJam
 
         public static List<Texture2D> Textures { get; set; }
 
-        private static int ID { get; set; } = 0;
-        private int thisID {  get; set; }
+        public bool IsHoldingItem { get; set; } = false;        
+        public bool IsSmacked { get; set; } = false;        
 
         private bool InSideHouse = false;
 
@@ -33,7 +34,7 @@ namespace WinterJam
 
         public Enemy()
         {
-            thisID = ID; ID++;
+            
             Animations = new List<SpriteSheet>()
             {
                 new SpriteSheet(Textures[0], Vector2.Zero,new Vector2(21,17) * GameSettings.Grid.ScaleFactor,0,1,2,0,true),
@@ -51,14 +52,15 @@ namespace WinterJam
             TopLeftPosition = GameSettings.Grid.GetGridPositionNoHeight(CurrentPosition);
             _remainingDelay = _delay;
             Createitem(0);
-            helditem.IsActive = false;
+            IsHoldingItem = false;  
+
         }
 
         private void Createitem(int cost)
         {
             House.currentHp -= cost;
             helditem = new Item(this);
-            helditem.IsActive = true;
+            IsHoldingItem = true;
 
         }
         private Vector2 getNextPosition()
@@ -124,9 +126,13 @@ namespace WinterJam
         public override void Update(GameTime gt)
         {
             var timer = (float)gt.ElapsedGameTime.TotalSeconds;
-            
+
+            if (UserInput._currentKeyboardSate.IsKeyDown(Keys.Space) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Space))
+            {
+                IsSmacked = true;
+            }
             _remainingDelay -= timer;
-            if(helditem.IsActive)
+            if(IsHoldingItem && !IsSmacked)
                 helditem.Update(gt,this);
             if (_remainingDelay <= 0)
             {
@@ -143,13 +149,17 @@ namespace WinterJam
                     TargetLocation = GameSettings.Grid.GetRandomBorderPos(0);
                     NextPosition = CurrentPosition;
                 }
-                if (helditem.IsActive && CurrentPosition == TargetLocation)
+                if(IsHoldingItem)
                 {
-                    CurrentPosition = SpawnPosition;
-                    NextPosition = CurrentPosition;
-                    TargetLocation = new Vector2(9, 7);
-                    helditem.IsActive = false;
+                    if ( CurrentPosition == TargetLocation)
+                    {
+                        CurrentPosition = SpawnPosition;
+                        NextPosition = CurrentPosition;
+                        TargetLocation = new Vector2(9, 7);
+                        IsHoldingItem = false;
+                    }
                 }
+                
 
                 int index = Visualisation.CurrentSpriteIndex;
                 
@@ -162,7 +172,7 @@ namespace WinterJam
                 }
                 else
                 {
-                    if (!helditem.IsActive && CurrentPosition == TargetLocation)
+                    if (!IsHoldingItem && CurrentPosition == TargetLocation)
                     {
                         if (!InSideHouse)
                         {
@@ -195,10 +205,9 @@ namespace WinterJam
             if (!InSideHouse)
             {
                 base.Draw(spriteBatch);
-                if(helditem.IsActive)
+                if(IsHoldingItem && !IsSmacked)
                     helditem.Draw(spriteBatch);
             }
-
         }
         public static Enemy Spawn()
         {

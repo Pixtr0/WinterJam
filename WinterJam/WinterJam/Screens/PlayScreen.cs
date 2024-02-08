@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 //using SharpDX.Direct2D1;
@@ -61,10 +61,10 @@ namespace WinterJam.Screens
 
             if (GameSettings.IsPauseScreenDrawn == false)
             {
-                //if (UserInput._currentKeyboardSate.IsKeyDown(Keys.Enter) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Enter))
-                //{
-                //    Enemies.Add(Enemy.Spawn());
-                //}
+                if (UserInput._currentKeyboardSate.IsKeyDown(Keys.Enter) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Enter))
+                {
+                    Enemies.Add(Enemy.Spawn());
+                }
                 //if (UserInput._currentKeyboardSate.IsKeyDown(Keys.Space) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Space))
                 //{
                 //    GenerateRandomTiles();
