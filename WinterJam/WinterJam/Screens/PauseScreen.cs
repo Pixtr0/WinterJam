@@ -60,7 +60,8 @@ namespace WinterJam.Screens
                 await Task.Delay(100);
                 quitButtonPressed = false;
                 // Exit the program
-                Environment.Exit(0);
+                //Environment.Exit(0);
+                GameSettings.ActiveScreen = GameSettings.GameOverScreen;
             }
         }
 
@@ -84,6 +85,8 @@ namespace WinterJam.Screens
             Rectangle dr = new Rectangle(0, 0, (int)GameSettings.ScreenSize.X, (int)GameSettings.ScreenSize.Y);
             spriteBatch.Draw(GameSettings.ScreenTexture, dr, new Color(0, 0, 0, 100));
 
+            DrawPausedText(spriteBatch);
+
             // Draw Play Button
             DrawPlayButton(spriteBatch);
 
@@ -92,6 +95,12 @@ namespace WinterJam.Screens
 
             //Draw Quit Button
             DrawQuitButton(spriteBatch);
+        }
+
+        private void DrawPausedText(SpriteBatch spriteBatch)
+        {
+            Rectangle dr = new Rectangle(((int)GameSettings.ScreenSize.X - buttonWidth) / 2, (int)GameSettings.ScreenSize.Y / 4 - buttonHeight, buttonWidth, buttonHeight);
+            spriteBatch.Draw(GameSettings.PausedText, dr, Color.White);
         }
 
         private void DrawQuitButton(SpriteBatch spriteBatch)
