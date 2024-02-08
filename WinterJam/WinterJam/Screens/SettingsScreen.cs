@@ -113,17 +113,20 @@ namespace WinterJam.Screens
                 isAzertyButtonPressed = false;
                 isArrowsButtonPressed = false;
             }
-            if (CheckButtonPressed(new Vector2(framePosition.X + (frameWidth - buttonWidth) / 2, framePosition.Y + (frameHeight - buttonHeight * 4) / 2 + buttonHeight + 10), buttonWidth, buttonHeight))
+            else if (CheckButtonPressed(new Vector2(framePosition.X + (frameWidth - buttonWidth) / 2, framePosition.Y + (frameHeight - buttonHeight * 4) / 2 + buttonHeight + 10), buttonWidth, buttonHeight))
             {
                 isAzertyButtonPressed = true;
                 isQwertyButtonPressed = false;
                 isArrowsButtonPressed = false;
             }
-            if (CheckButtonPressed(new Vector2(framePosition.X + (frameWidth - buttonWidth) / 2, framePosition.Y + (frameHeight - buttonHeight * 4) / 2 + 2 * (buttonHeight + 10)), buttonWidth, buttonHeight))
+            else if (CheckButtonPressed(new Vector2(framePosition.X + (frameWidth - buttonWidth) / 2, framePosition.Y + (frameHeight - buttonHeight * 4) / 2 + 2 * (buttonHeight + 10)), buttonWidth, buttonHeight))
             {
                 isArrowsButtonPressed = true;
                 isQwertyButtonPressed = false;
                 isAzertyButtonPressed = false;
+            }else if (LeftMouseButtonPressed())
+            {
+
             }
         }
 
@@ -178,10 +181,10 @@ namespace WinterJam.Screens
         private void DrawSlider(SpriteBatch spriteBatch)
         {
             // Draw slider track
-            spriteBatch.Draw(GameSettings.ScreenTexture, new Rectangle((int)framePosition.X + (int)sliderPosition.X, (int)framePosition.Y + (int)sliderPosition.Y, sliderWidth, sliderHeight), Color.Gray);
+            spriteBatch.Draw(GameSettings.UI_Volume, new Rectangle((int)framePosition.X + (int)sliderPosition.X, (int)framePosition.Y + (int)sliderPosition.Y, sliderWidth, sliderHeight), Color.Gray);
 
             // Draw slider handle
-            spriteBatch.Draw(GameSettings.ScreenTexture, new Rectangle((int)framePosition.X + (int)(sliderPosition.X + sliderValue * sliderWidth) - 10, (int)framePosition.Y + (int)sliderPosition.Y - 5, 20, sliderHeight + 10), Color.Yellow);
+            spriteBatch.Draw(GameSettings.UI_Volume_slider, new Rectangle((int)framePosition.X + (int)(sliderPosition.X + sliderValue * sliderWidth) - 10, (int)framePosition.Y + (int)sliderPosition.Y - 5, 20, sliderHeight + 10), Color.Yellow);
         }
 
         private void DrawButton(Vector2 position, int width, int height, string buttonText, bool buttonPressed, SpriteBatch spriteBatch)

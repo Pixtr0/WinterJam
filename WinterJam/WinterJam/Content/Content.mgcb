@@ -409,6 +409,18 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Blocks/water_turn_bottom.png
 
+#begin Graphics/Buttons/UI__volume.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphics/Buttons/UI__volume.png
+
 #begin Graphics/Buttons/UI_button_01.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -492,6 +504,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Graphics/Buttons/UI_paused.png
+
+#begin Graphics/Buttons/UI_volume_slider.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphics/Buttons/UI_volume_slider.png
 
 #begin Graphics/Enemy/Directions.png
 /importer:TextureImporter
