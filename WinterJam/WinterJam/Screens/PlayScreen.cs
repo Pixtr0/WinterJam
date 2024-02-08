@@ -32,7 +32,6 @@ namespace WinterJam.Screens
         {
             GenerateBaskets();
             GenerateRandomTiles();
-            GenerateBasketPositions ();
             GenerateTreesAndSurroundings();
         }
         private void GenerateTreesAndSurroundings()
@@ -61,12 +60,8 @@ namespace WinterJam.Screens
                             TreesBack.Add(new Tree(new Vector2(x, y)));
                         }
                     }
-                    
-
                 }
             }
-        }
-        private void GenerateBasketPositions()
         }
 
         private void GenerateBaskets()
