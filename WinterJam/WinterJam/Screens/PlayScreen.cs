@@ -25,6 +25,16 @@ namespace WinterJam.Screens
         public PlayScreen()
         {
             GenerateRandomTiles();
+            GenerateRandomItems();
+        }
+
+        private void GenerateRandomItems()
+        {
+            while (DroppedItems.Count < 5)
+            {
+                Item newDroppedItem = new Item();
+                DroppedItems.Add(newDroppedItem);
+            }
         }
 
         public override void Update(GameTime gameTime)
@@ -92,13 +102,6 @@ namespace WinterJam.Screens
 
         private static void UpdateDroppeditems(GameTime gameTime)
         {
-            foreach (Enemy enemy in AllObjects)
-            {
-                if (enemy.IsSmacked)
-                {
-                    
-                }
-            }
 
             if (DroppedItems.Count > 0)
             {
@@ -109,10 +112,9 @@ namespace WinterJam.Screens
                 }
                 for (int i = 0; i < DroppedItems.Count; i++)
                 {
-
                     if (Player.CurrentPosition == DroppedItems[i].CurrentPosition)
                     {
-                        Item newPlayerItem = new Item(Player )
+                        Item newPlayerItem = new Item(Player)
                         {
                             Visualisation = DroppedItems[i].Visualisation,
                             ParentSize = Player.Size
