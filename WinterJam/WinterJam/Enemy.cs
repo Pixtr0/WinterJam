@@ -126,10 +126,6 @@ namespace WinterJam
         {
             var timer = (float)gt.ElapsedGameTime.TotalSeconds;
 
-            if ()
-            {
-                
-            }
             _remainingDelay -= timer;
             if(IsHoldingItem && !IsSmacked)
                 helditem.Update(gt,this);
