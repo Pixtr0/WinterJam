@@ -26,6 +26,7 @@ namespace WinterJam.Screens
         private int sliderWidth = 200;
         private int sliderHeight = 20;
         private float sliderValue = 0.5f; // Initial volume level
+        private bool isSliderHeld = false;
 
         private Rectangle closeButtonBounds;
         private int closeButtonSize = 40;
@@ -76,6 +77,14 @@ namespace WinterJam.Screens
 
             if (_currentMouseState.LeftButton == ButtonState.Pressed && sliderHandleRect.Contains(_currentMouseState.Position))
             {
+                isSliderHeld = true;
+            }
+            if (isSliderHeld)
+            {
+                if (_currentMouseState.LeftButton == ButtonState.Released)
+                {
+                    isSliderHeld = false;
+                }
                 // If the slider handle is clicked, adjust the slider value based on the mouse position
                 sliderValue = MathHelper.Clamp((_currentMouseState.Position.X - framePosition.X - sliderPosition.X) / sliderWidth, 0f, 1f);
             }
@@ -127,7 +136,9 @@ namespace WinterJam.Screens
         public override void Draw(SpriteBatch spriteBatch)
         {
             // Draw frame
-            spriteBatch.Draw(GameSettings.Button_Pressed_Orange, new Rectangle((int)framePosition.X, (int)framePosition.Y - frameHeight / 5, frameWidth, frameHeight * 4/3), new Color(128, 128, 128, 128));
+            //spriteBatch.Draw(GameSettings.Button_Pressed_Orange, new Rectangle((int)framePosition.X, (int)framePosition.Y - frameHeight / 5, frameWidth, frameHeight * 4/3), new Color(128, 128, 128, 128));
+            Rectangle dr = new Rectangle(0,0, (int)GameSettings.ScreenSize.X, (int)GameSettings.ScreenSize.Y);
+            spriteBatch.Draw(GameSettings.ScreenTexture, dr, new Color(0,0,0,128));
 
             // Draw buttons
             DrawButton(new Vector2(framePosition.X + (frameWidth - buttonWidth) / 2, framePosition.Y + (frameHeight - buttonHeight * 4) / 2), buttonWidth, buttonHeight, "Qwerty", isQwertyButtonPressed, spriteBatch);
