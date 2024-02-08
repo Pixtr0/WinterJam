@@ -127,7 +127,7 @@ namespace WinterJam.Screens
         public override void Draw(SpriteBatch spriteBatch)
         {
             // Draw frame
-            spriteBatch.Draw(GameSettings.Button_Pressed_Orange, new Rectangle((int)framePosition.X, (int)framePosition.Y - frameHeight / 5, frameWidth, frameHeight * 4/3), new Color(128, 128, 128, 128));
+            spriteBatch.Draw(GameSettings.Button_Pressed_Orange, new Rectangle((int)framePosition.X, (int)framePosition.Y - frameHeight / 5, frameWidth, frameHeight * 4/3), new Color(200, 200, 200, 256));
 
             // Draw buttons
             DrawButton(new Vector2(framePosition.X + (frameWidth - buttonWidth) / 2, framePosition.Y + (frameHeight - buttonHeight * 4) / 2), buttonWidth, buttonHeight, "Qwerty", isQwertyButtonPressed, spriteBatch);

@@ -123,11 +123,11 @@ namespace Isometric_Thingy
         }
         public void Update()
         {
-            if (UserInput._currentKeyboardSate.IsKeyDown(Keys.Space) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Space))
-            {
-                GenerateRandomTiles();
-                CreateHeightOffsets();
-            }
+            //if (UserInput._currentKeyboardSate.IsKeyDown(Keys.Space) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Space))
+            //{
+            //    GenerateRandomTiles();
+            //    CreateHeightOffsets();
+            //}
         }
         public void DrawGrass(SpriteBatch sb)
         {
@@ -151,7 +151,7 @@ namespace Isometric_Thingy
                     {
                         Texture2D tileTexture = Tiles[TileSelected[x + DownShift, y + DownShift]];
 
-                        sb.Draw(tileTexture, new Rectangle((int)(Position.X + x * TileSize.X / 2 - y * TileSize.X / 2), (int)(Position.Y + y * (TileSize.Y / 6f) + x * (TileSize.Y / 6f)) + HeightOffsets[x + DownShift, y + DownShift], (int)TileSize.X, (int)TileSize.Y), Color.Red);
+                        sb.Draw(tileTexture, new Rectangle((int)(Position.X + x * TileSize.X / 2 - y * TileSize.X / 2), (int)(Position.Y + y * (TileSize.Y / 6f) + x * (TileSize.Y / 6f)) + HeightOffsets[x + DownShift, y + DownShift], (int)TileSize.X, (int)TileSize.Y), Color.LightBlue);
                         if (FlowerTiles[x + DownShift, y + DownShift] != -1)
                         {
                             Texture2D flowertexture = FlowerTextures[FlowerTiles[x + DownShift, y + DownShift]];
