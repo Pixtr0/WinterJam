@@ -24,7 +24,7 @@ namespace Isometric_Thingy
         private int[,] HeightOffsets { get; set; }
         private int[,] TileSelected { get; set; }
         private int[,] FlowerTiles { get; set; }
-        private Vector2 Position { get; set; }
+        public Vector2 Position { get; set; }
         private List<Texture2D> Tiles { get; set; }
         private List<Texture2D> FlowerTextures { get; set; }
         
@@ -49,6 +49,7 @@ namespace Isometric_Thingy
             ScaleFactor = 4;
             TileSize *= ScaleFactor;
             Position = position - new Vector2(TileSize.X / 2f, TileSize.Y/6f - 13 * 3 * ScaleFactor) ;
+            //Position = position + new Vector2(0,400);
 
             GenerateRandomTiles();
             CreateHeightOffsets();

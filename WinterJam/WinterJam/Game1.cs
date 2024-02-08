@@ -51,7 +51,17 @@ namespace WinterJam
                 Content.Load<Texture2D>("Graphics/Enemy/squirrel_smacked"),
             };
             GameSettings.ScreenTexture = Content.Load<Texture2D>("Graphics/Blocks/placeholder Screen");
-
+            Tree.TreeTextures = new List<Texture2D>()
+            {
+                Content.Load<Texture2D>("Graphics/Blocks/tree_01"),
+                Content.Load<Texture2D>("Graphics/Blocks/tree_02"),
+                Content.Load<Texture2D>("Graphics/Blocks/tree_03"),
+                Content.Load<Texture2D>("Graphics/Blocks/tree_04"),
+                Content.Load<Texture2D>("Graphics/Blocks/tree_05"),
+                Content.Load<Texture2D>("Graphics/Blocks/tree_06"),
+                Content.Load<Texture2D>("Graphics/Blocks/tree_07"),
+                Content.Load<Texture2D>("Graphics/Blocks/tree_08"),
+            };
             GameSettings.Grid = new Grid(new Vector2(_graphics.PreferredBackBufferWidth / 2, 0)
             , new List<Texture2D>() {
                 Content.Load<Texture2D>("Graphics/Blocks/grass_01"),
