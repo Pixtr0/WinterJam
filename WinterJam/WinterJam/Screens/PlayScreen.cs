@@ -14,6 +14,7 @@ namespace WinterJam.Screens
     public class PlayScreen : Screen
     {
         public static List<GameObject> AllObjects { get; set; } = new List<GameObject>();
+        public static List<Vector2> BasketPositions { get; set; } = new List<Vector2>();
         public static List<Enemy> Enemies { get; set; } = new List<Enemy>();
         public static House House { get; set; }
         public static List<Obstacle> Obstacles { get; set; } = new List<Obstacle>();
@@ -25,16 +26,15 @@ namespace WinterJam.Screens
         public PlayScreen()
         {
             GenerateRandomTiles();
-            GenerateRandomItems();
+            GenerateBasketPositions ();
         }
 
-        private void GenerateRandomItems()
+        private void GenerateBasketPositions()
         {
-            //while (DroppedItems.Count < 6)
-            //{
-            //    Item newDroppedItem = new Item();
-            //    DroppedItems.Add(newDroppedItem);
-            //}
+            BasketPositions.Add(new Vector2(GameSettings.Grid.Size.X, GameSettings.Grid.Size.Y));
+            BasketPositions.Add(new Vector2(0, GameSettings.Grid.Size.Y));
+            BasketPositions.Add(new Vector2(GameSettings.Grid.Size.X, 0));
+            BasketPositions.Add(new Vector2(0, 0));
         }
 
         public override void Update(GameTime gameTime)
