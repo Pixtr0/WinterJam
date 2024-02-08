@@ -17,7 +17,7 @@ namespace WinterJam
     {
         private Vector2 SpawnPosition { get { return GameSettings.Grid.GetRandomBorderPos(1);} }
         public Vector2 NextPosition { get; set; }
-        private Vector2 LastPosition { get; set; }
+        public Vector2 LastPosition { get; set; }
         private Vector2 TargetLocation { get; set; } = new Vector2(9, 7);
         public Item helditem { get; set; }
 
@@ -32,7 +32,7 @@ namespace WinterJam
 
         public List<SpriteSheet> Animations { get; set; }
 
-        private float _delay = 0.07f; // seconds
+        private float _delay = 0.09f; // seconds
         private float _remainingDelay;
 
         public Enemy()
@@ -144,12 +144,12 @@ namespace WinterJam
                 if (_delay == 2f && InSideHouse)
                 {
                     InSideHouse = false;
-                    _delay = 0.07f;
+                    _delay = 0.09f;
                     Createitem(1);
                 }
                 if (_delay == 5f && IsSmacked)
                 {
-                    _delay = 0.07f;
+                    _delay = 0.09f;
                 } 
 
                 if (NextPosition == TargetLocation - new Vector2(0.3f, 0))
