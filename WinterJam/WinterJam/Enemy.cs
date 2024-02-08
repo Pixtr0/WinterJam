@@ -1,6 +1,7 @@
 ﻿using Isometric_Thingy;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using SpriteSheetClass;
 using System;
 using System.Collections.Generic;
@@ -126,6 +127,10 @@ namespace WinterJam
         {
             var timer = (float)gt.ElapsedGameTime.TotalSeconds;
 
+            if (UserInput._currentKeyboardSate.IsKeyDown(Keys.Space) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Space))
+            {
+                IsSmacked = true;
+            }
             _remainingDelay -= timer;
             if(IsHoldingItem && !IsSmacked)
                 helditem.Update(gt,this);
@@ -144,7 +149,7 @@ namespace WinterJam
                     TargetLocation = GameSettings.Grid.GetRandomBorderPos(0);
                     NextPosition = CurrentPosition;
                 }
-                if(IsHoldingItem || IsSmacked)
+                if(IsHoldingItem)
                 {
                     if ( CurrentPosition == TargetLocation)
                     {
@@ -200,10 +205,9 @@ namespace WinterJam
             if (!InSideHouse)
             {
                 base.Draw(spriteBatch);
-                if(IsHoldingItem)
+                if(IsHoldingItem && !IsSmacked)
                     helditem.Draw(spriteBatch);
             }
-
         }
         public static Enemy Spawn()
         {
