@@ -43,8 +43,9 @@ namespace WinterJam.Players
             //Receives the next grid position based on user input
 
             UpdateItems(gameTime);
-            //AddRemoveItem();
-            //PlaceAnItem();
+            PlaceAnItem();
+
+            SmackASquirrel(); //they're still alive PETA i swear they're just sleeping
 
             var timer = (float)gameTime.ElapsedGameTime.TotalSeconds;
             _remainingPlayerDelay -= timer;
@@ -56,35 +57,78 @@ namespace WinterJam.Players
             }
         }
 
+        private void SmackASquirrel()
+        {
+            List<Vector2> smackedPositions = new List<Vector2>();
+
+            if (this.Visualisation == Animations[0]) // UP
+            {
+                smackedPositions.Add(CurrentPosition + new Vector2(0, -1));
+                smackedPositions.Add(CurrentPosition + new Vector2(0, -2));
+                smackedPositions.Add(CurrentPosition + new Vector2(1, -1));
+                smackedPositions.Add(CurrentPosition + new Vector2(-1, -1));
+            }
+            if (this.Visualisation == Animations[1]) // RGHT
+            {
+                smackedPositions.Add(CurrentPosition + new Vector2(1, 0));
+                smackedPositions.Add(CurrentPosition + new Vector2(2, 0));
+                smackedPositions.Add(CurrentPosition + new Vector2(1, -1));
+                smackedPositions.Add(CurrentPosition + new Vector2(1, 1));
+            }
+            if (this.Visualisation == Animations[2]) // DOWN
+            {
+                smackedPositions.Add(CurrentPosition + new Vector2(-1, 1));
+                smackedPositions.Add(CurrentPosition + new Vector2(0, 1));
+                smackedPositions.Add(CurrentPosition + new Vector2(0, 2));
+                smackedPositions.Add(CurrentPosition + new Vector2(1, 1));
+            }
+            if (this.Visualisation == Animations[3]) // LEFT
+            {
+                smackedPositions.Add(CurrentPosition + new Vector2(-1, 0));
+                smackedPositions.Add(CurrentPosition + new Vector2(-1, -1));
+                smackedPositions.Add(CurrentPosition + new Vector2(-2, 0));
+                smackedPositions.Add(CurrentPosition + new Vector2(-1, 1));
+            }
+
+            for (int i = 0; i < PlayScreen.Enemies.Count; i++)
+            {
+                for (int j = 0; j < smackedPositions.Count; j++)
+                {
+                    if (PlayScreen.Enemies[i].CurrentPosition == smackedPositions[j] || PlayScreen.Enemies[i].NextPosition == smackedPositions[j])
+                        PlayScreen.Enemies[i].IsSmacked = true;
+                }
+            }
+        }
+
         //deprecated
         private void PlaceAnItem()
         {
-            if (UserInput._currentKeyboardSate.IsKeyDown(Keys.F) && UserInput._previousKeyboardSate.IsKeyUp(Keys.F) && HeldItem.IsActive)
+            if (UserInput._currentKeyboardSate.IsKeyDown(Keys.F) && UserInput._previousKeyboardSate.IsKeyUp(Keys.F) && HeldItem != null)
             {
                 if (Inventory.Count > 0 && HeldItemIndex >= 0)
                 {
-                    Item newPlacedItem = HeldItem;
-                    newPlacedItem.Size *= 0.5f;
+                    Vector2 placedPosition = Vector2.Zero;
 
                     if (this.Visualisation == Animations[0])
                     {
-                        newPlacedItem.CurrentPosition = CurrentPosition + new Vector2(0, -1);
+                        placedPosition = CurrentPosition + new Vector2(0, -1);
                     }
                     if (this.Visualisation == Animations[1])
                     {
-                        newPlacedItem.CurrentPosition = CurrentPosition + new Vector2(1, 0);
+                        placedPosition = CurrentPosition + new Vector2(1, 0);
                     }
                     if (this.Visualisation == Animations[2])
                     {
-                        newPlacedItem.CurrentPosition = CurrentPosition + new Vector2(0, 1);
+                        placedPosition = CurrentPosition + new Vector2(0, 1);
                     }
                     if (this.Visualisation == Animations[3])
                     {
-                        newPlacedItem.CurrentPosition = CurrentPosition + new Vector2(-1, 0);
+                        placedPosition = CurrentPosition + new Vector2(-1, 0);
                     }
 
-                    newPlacedItem.TopLeftPosition = GameSettings.Grid.GetGridPosition(newPlacedItem.CurrentPosition) 
-                        + new Vector2(6, 8)*GameSettings.Grid.ScaleFactor;
+                    if (House.HouseTiles.Contains(placedPosition))
+                    {
+                        House.currentHp++;
 
                         if (HeldItemIndex > 0)
                         {
@@ -92,14 +136,12 @@ namespace WinterJam.Players
                             HeldItemIndex--;
                             HeldItem = Inventory[HeldItemIndex];
                         }
-                        else
+                        if (HeldItemIndex == 0)
                         {
                             HeldItem.IsActive = false;
                             Inventory.RemoveAt(HeldItemIndex);
                         }
-                        
-                        PlacedItems.Add(newPlacedItem);
-
+                    }
                 }
                 else
                 {
@@ -110,60 +152,31 @@ namespace WinterJam.Players
 
         private void UpdateItems(GameTime gameTime)
         {
-            if (Inventory.Count > 0 && Inventory.Count <= 3)
-            {
-                if (UserInput._currentMouseState.ScrollWheelValue > UserInput._previousMouseState.ScrollWheelValue)
-                {
-                    if (Inventory.Count - 1 > HeldItemIndex)
-                    {
-                        HeldItem = Inventory[HeldItemIndex + 1];
-                        HeldItemIndex++;
-                    }
-                }
-                if (UserInput._currentMouseState.ScrollWheelValue < UserInput._previousMouseState.ScrollWheelValue)
-                {
-                    if (0 < HeldItemIndex)
-                    {
-                        HeldItem = Inventory[HeldItemIndex - 1];
-                        HeldItemIndex--;
-                    }
-                }
+            if (Inventory.Count > 0)
+                HeldItem = Inventory[HeldItemIndex];
 
-                if (HeldItem != null)
-                {
-                    HeldItem = Inventory[0];
-                    HeldItem.Update(gameTime, this);
-                }
-            }
+            if (HeldItem != null)
+                HeldItem.Update(gameTime, this);
 
-        }
-        private void AddRemoveItem()
-        {
-
-            //Player can pick up items dropped by the squirrels
-
-
-
-
-            //if (UserInput._currentKeyboardSate.IsKeyDown(Keys.E) && UserInput._previousKeyboardSate.IsKeyUp(Keys.E)) 
+            //if (Inventory.Count > 0 && Inventory.Count <= 3)
             //{
-            //    Item item = new Item(20, GameSettings.ScreenTexture, new Vector2(18,19)*GameSettings.Grid.ScaleFactor ,this);
-            //    Inventory.Add(item);
-
-            //    if (Inventory.Count == 1)
-            //        HeldItem = Inventory[0];
-            //}
-
-            //if (UserInput._currentKeyboardSate.IsKeyDown(Keys.F) && UserInput._previousKeyboardSate.IsKeyUp(Keys.F))
-            //{
-            //    if (Inventory.Count > 0)
+            //    if (UserInput._currentMouseState.ScrollWheelValue > UserInput._previousMouseState.ScrollWheelValue)
             //    {
-            //        Inventory.RemoveAt(Inventory.Count - 1);
+            //        if (Inventory.Count - 1 > HeldItemIndex)
+            //        {
+            //            HeldItem = Inventory[HeldItemIndex + 1];
+            //            HeldItemIndex++;
+            //        }
             //    }
-            //    else
+            //    if (UserInput._currentMouseState.ScrollWheelValue < UserInput._previousMouseState.ScrollWheelValue)
             //    {
-            //        Debug.WriteLine("Inventory empty!");
+            //        if (0 < HeldItemIndex)
+            //        {
+            //            HeldItem = Inventory[HeldItemIndex - 1];
+            //            HeldItemIndex--;
+            //        }
             //    }
+
             //}
         }
         private void UpdatePlayerPosition()
@@ -219,7 +232,6 @@ namespace WinterJam.Players
                     float clampedX = MathHelper.Clamp(NextPosition.X, 1, GameSettings.Grid.playsize - 1);
                     float clampedY = MathHelper.Clamp(NextPosition.Y, 1, GameSettings.Grid.playsize - 1);
                     NextPosition = new Vector2(clampedX, clampedY);
-
             }
             TopLeftPosition = GameSettings.Grid.GetGridPositionNoHeight(CurrentPosition) + new Vector2(-5, -12f) * GameSettings.Grid.ScaleFactor;
         }
@@ -230,8 +242,8 @@ namespace WinterJam.Players
             if (HeldItem != null)
             {
                 HeldItem.Draw(spriteBatch);
-                spriteBatch.DrawString(GameSettings.GameFont, $"{Inventory.Count}", HeldItem.TopLeftPosition + new Vector2(HeldItem.Size.X, 0), Color.Black);
-                spriteBatch.DrawString(GameSettings.GameFont, $"{HeldItemIndex}", anchorPoint  -HeldItem.Size/2, Color.Black);
+                //spriteBatch.DrawString(GameSettings.GameFont, $"{Inventory.Count}", HeldItem.TopLeftPosition + new Vector2(HeldItem.Size.X, 0), Color.Black);
+                //spriteBatch.DrawString(GameSettings.GameFont, $"{HeldItemIndex}", anchorPoint  -HeldItem.Size/2, Color.Black);
             }
 
             if (PlacedItems.Count > 0)

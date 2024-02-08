@@ -25,7 +25,7 @@ namespace WinterJam.Screens
         public PlayScreen()
         {
             GenerateRandomTiles();
-            GenerateRandomItems(); // Generates a random list of 5 items dropped on the ground. Remove once squirrels drop items
+            GenerateRandomItems();
         }
 
         private void GenerateRandomItems()
@@ -102,6 +102,7 @@ namespace WinterJam.Screens
 
         private static void UpdateDroppeditems(GameTime gameTime)
         {
+
             if (DroppedItems.Count > 0)
             {
                 foreach (Item item in DroppedItems)
@@ -111,10 +112,9 @@ namespace WinterJam.Screens
                 }
                 for (int i = 0; i < DroppedItems.Count; i++)
                 {
-
                     if (Player.CurrentPosition == DroppedItems[i].CurrentPosition)
                     {
-                        Item newPlayerItem = new Item(Player )
+                        Item newPlayerItem = new Item(Player)
                         {
                             Visualisation = DroppedItems[i].Visualisation,
                             ParentSize = Player.Size
@@ -123,7 +123,6 @@ namespace WinterJam.Screens
                         DroppedItems.Remove(DroppedItems[i]);
                     }
                 }
-
             }
 
         }
@@ -150,14 +149,6 @@ namespace WinterJam.Screens
                 GameSettings.SettingsScreen.Draw(spriteBatch);
             }
 
-            //if (DroppedItems.Count > 0)
-            //{
-            //    foreach (Item item in DroppedItems)
-            //    {
-            //        if (item != null)
-            //            item.Draw(spriteBatch);
-            //    }
-            //}
 
             base.Draw(spriteBatch);
         }
