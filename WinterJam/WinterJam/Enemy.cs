@@ -19,6 +19,7 @@ namespace WinterJam
         public Vector2 NextPosition { get; set; }
         public Vector2 LastPosition { get; set; }
         private Vector2 TargetLocation { get; set; } = new Vector2(9, 7);
+        private List<Vector2> UsedTiles { get; set; } = new List<Vector2>();
         public Item helditem { get; set; }
 
         public override Vector2 anchorPoint => _delay == 5f ? base.anchorPoint - new Vector2(0,8 * GameSettings.Grid.ScaleFactor) : base.anchorPoint;
@@ -84,22 +85,48 @@ namespace WinterJam
 
             float shortestDistance = 1000;
             int shortestIndex = 0;
+            
             for (int i = 0; i < possibilities.Count; i++)
             {
-                if (!House.HouseTiles.Contains(possibilities[i]) && House.SurroundingTiles[0] != possibilities[i] && !IncludesObstacles(possibilities[i]) && !IsBlockOffMap(possibilities[i]))
-                {
+                if ( !House.HouseTiles.Contains(possibilities[i]) && House.SurroundingTiles[0] != possibilities[i] && !IncludesObstacles(possibilities[i]) && !IsBlockOffMap(possibilities[i]))
+                {  
                     float distance = Vector2.Distance(TargetLocation, possibilities[i]);
                     if (distance < shortestDistance)
                     {
                         shortestDistance = distance;
                         shortestIndex = i;
                     }
-                } 
-            }
+                    //}
+                }
+            } 
+            
             newNextPos = possibilities[shortestIndex];
             Visualisation = Animations[shortestIndex];
+            UsedTiles.Add(newNextPos);
             return newNextPos;
         }
+
+        private bool ContainsBlockedTiles(List<Vector2> possibilities)
+        {
+            for (int i = 0; i < possibilities.Count; i++)
+            {
+                for (int j = 0; j < PlayScreen.Obstacles.Count; j++)
+                {
+                    if (possibilities[i] == PlayScreen.Obstacles[j].indexPosition)
+                    {
+                        return true;
+                    }
+                }
+                if(House.SurroundingTiles[0] == possibilities[i] || House.HouseTiles.Contains(possibilities[i]) || IsBlockOffMap(possibilities[i]))
+                {
+                    return true;
+                }
+            }
+            
+            return false;
+
+        }
+
         private bool IncludesObstacles(Vector2 pos)
         {
             for (int i = 0;i < PlayScreen.Obstacles.Count;i++)
@@ -147,13 +174,15 @@ namespace WinterJam
                     _delay = 0.09f;
                     Createitem(1);
                 }
-                if (_delay == 5f && IsSmacked)
+                if (_delay >= 5f || IsSmacked)
                 {
+                    InSideHouse = false;
                     _delay = 0.09f;
                 } 
 
                 if (NextPosition == TargetLocation - new Vector2(0.3f, 0))
                 {
+                    /// this code runs when squirrel does in the house
                     InSideHouse = true;
                     _delay = 2f;
                     TargetLocation = GameSettings.Grid.GetRandomBorderPos(0);
@@ -162,12 +191,15 @@ namespace WinterJam
                 
                 if ( CurrentPosition == TargetLocation && TargetLocation != new Vector2(9, 7) || IsSmacked && CurrentPosition == TargetLocation)
                 {
+                    /// this code runs when squirrel exits play area
                     CurrentPosition = SpawnPosition;
                     NextPosition = CurrentPosition;
                     TargetLocation = new Vector2(9, 7);
                     IsHoldingItem = false;
                     IsSmacked = false;
                     HasDroppeditem = false;
+                    _delay = 5f + Random.Shared.Next(0,4);
+                    InSideHouse = true;
                 }
                 
                
@@ -186,18 +218,21 @@ namespace WinterJam
                     {
                         if (!InSideHouse)
                         {
+                            /// this code runs when you are infront of the house (just makes it look more like it walks inside)
                             NextPosition = TargetLocation - new Vector2(0.3f, 0);
                             Visualisation = Animations[7];
                         }
                     }
                     else
                     {
+                        //sets last position before changing next position so you have an actual index pos (curretposition can be 0.5x for example)
                         LastPosition = CurrentPosition;
                         NextPosition = getNextPosition();
                     }
                 }
                 if (IsSmacked && !HasDroppeditem)
                 {
+                    /// this code runs when code for dropping the item
                     Visualisation = Animations[8];
                     TargetLocation = GameSettings.Grid.GetRandomBorderPos(0);
                     NextPosition = CurrentPosition;
@@ -208,8 +243,6 @@ namespace WinterJam
                     _delay = 5f;
                     HasDroppeditem = true;
                 }
-
-
 
                 _remainingDelay = _delay;
                 TopLeftPosition = GameSettings.Grid.GetGridPositionNoHeight(CurrentPosition) + new Vector2(0, 6 * GameSettings.Grid.ScaleFactor);
