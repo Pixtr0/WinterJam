@@ -670,3 +670,14 @@ C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\De
 C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Buttons\UI_player_controls.xnb
 C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Buttons\UI_settings.xnb
 C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Buttons\UI_background.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Buttons\UI_controls.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Buttons\UI_player_controls.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Buttons\UI_settings.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Sounds\GameMusic.wma
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Sounds\GameMusic.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Sounds\GameOver.wma
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Sounds\GameOver.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Sounds\Smack.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Sounds\Winterjam_jam.wma
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Sounds\Winterjam_jam.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Buttons\UI_background_title.xnb

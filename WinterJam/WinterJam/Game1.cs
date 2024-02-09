@@ -145,6 +145,8 @@ namespace WinterJam
             GameSettings.ControlsScreen = new ControlsScreen();
             GameSettings.GameOverScreen = new GameOverScreen();
 
+            GameSettings.StartScreenTexture = Content.Load<Texture2D>("Graphics/Buttons/UI_background_title");
+
             GameSettings.GameMusic = Content.Load<Song>("Sounds/Winterjam_jam");
             GameSettings.SFX_Smack = Content.Load<SoundEffect>("Sounds/Smack");
             GameSettings.SFX_GameOver = Content.Load<Song>("Sounds/GameOver");
@@ -156,7 +158,8 @@ namespace WinterJam
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Back))
                 Exit();
-
+            MediaPlayer.Volume = MathHelper.Clamp(GameSettings.VolumeValue / 2, 0f, 0.5f);
+            SoundEffect.MasterVolume = MathHelper.Clamp(GameSettings.VolumeValue * 2f,0f,1f);
             GameSettings.ActiveScreen.Update(gameTime);
 
             base.Update(gameTime);

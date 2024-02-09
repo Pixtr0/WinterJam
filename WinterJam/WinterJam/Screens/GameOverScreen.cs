@@ -13,8 +13,8 @@ namespace WinterJam.Screens
         private bool playButtonPressed = false;
         private bool settingsButtonPressed = false;
         private bool quitButtonPressed = false;
-        public int Score {  get; set; }
-        public string TimeSurvived { get; set; }
+        //public int Score {  get; set; }
+        //public string TimeSurvived { get; set; }
         public override void Update(GameTime gameTime)
         {
             UserInput.Update();
@@ -88,15 +88,7 @@ namespace WinterJam.Screens
             //GameSettings.Grid.DrawGrass(spriteBatch);
 
             //spriteBatch.Draw(GameSettings.ScreenTexture, dr, Color.Black);
-            for (int i = 0; i < PlayScreen.Backgroundback.Count; i++)
-            {
-                PlayScreen.Backgroundback[i].Draw(spriteBatch);
-            }
-
-            for (int i = 0; i < PlayScreen.Backgroundfront.Count; i++)
-            {
-                PlayScreen.Backgroundfront[i].Draw(spriteBatch);
-            }
+            
 
             //DestinationRectangle for the GameOver logo
             DrawGameOverText(spriteBatch);
