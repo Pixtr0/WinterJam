@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using SharpDX.Direct3D9;
 //using SharpDX.Direct2D1;
 using System;
@@ -58,7 +59,6 @@ namespace WinterJam.Screens
         }
         public override void Update(GameTime gameTime)
         {
-           
             // Your existing update logic goes here
             GameSettings.Grid.Update();
             UserInput.Update();
@@ -128,6 +128,8 @@ namespace WinterJam.Screens
         {
             if (House.currentHp <= 0)
             {
+                MediaPlayer.IsRepeating = false;
+                MediaPlayer.Play(GameSettings.SFX_GameOver)
                 GameSettings.ActiveScreen = GameSettings.GameOverScreen;
             }
         }

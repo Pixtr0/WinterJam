@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 
 namespace WinterJam.Screens
 {
-    internal class GameOverScreen : Screen
+    public class GameOverScreen : Screen
     {
         private int buttonWidth = 68 * 4;
         private int buttonHeight = 21 * 4;
         private bool playButtonPressed = false;
         private bool settingsButtonPressed = false;
         private bool quitButtonPressed = false;
-
+        public int Score {  get; set; }
+        public string TimeSurvived { get; set; }
         public override void Update(GameTime gameTime)
         {
             UserInput.Update();
@@ -76,16 +77,16 @@ namespace WinterJam.Screens
                 playButtonPressed = true;
                 await Task.Delay(200); // Wait for 1 second
                 playButtonPressed = false;
+
                 GameSettings.PlayScreen.Reset();
-                GameSettings.ActiveScreen = GameSettings.PlayScreen; // Switch to the play screen
+                GameSettings.ActiveScreen = GameSettings.PlayScreen ; // Switch to the play screen
             }
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            GameSettings.Grid.DrawGrass(spriteBatch);
+            //GameSettings.Grid.DrawGrass(spriteBatch);
 
-            Rectangle dr = new Rectangle(0, 0, (int)GameSettings.ScreenSize.X, (int)GameSettings.ScreenSize.Y);
             //spriteBatch.Draw(GameSettings.ScreenTexture, dr, Color.Black);
             for (int i = 0; i < PlayScreen.Backgroundback.Count; i++)
             {
@@ -110,6 +111,7 @@ namespace WinterJam.Screens
             DrawQuitButton(spriteBatch);
 
             Score.DrawResults(spriteBatch,new Vector2(GameSettings.ScreenSize.X / 4 * 3 , GameSettings.ScreenSize.Y / 5 * 2));
+            DrawCredits(spriteBatch);
 
             if (GameSettings.IsSettingsScreenDrawn && !GameSettings.IsCloseButtonPressed)
             {
@@ -117,6 +119,24 @@ namespace WinterJam.Screens
             }
         }
 
+        private void DrawCredits(SpriteBatch spriteBatch)
+        {
+            spriteBatch.DrawString(GameSettings.GameFont, "CREDITS", new Vector2(20
+                , GameSettings.ScreenSize.Y - 400), Color.Black);
+            spriteBatch.DrawString(GameSettings.GameFont, 
+                "Matthias de Vilder\n\n" +
+                "Samuel Cutts\n\n" +
+                "Matthias Maes\n\n" +
+                "Ash",
+                new Vector2(20, GameSettings.ScreenSize.Y - 300), Color.Black, 0, Vector2.Zero, 0.75f, SpriteEffects.None, 1);
+
+            spriteBatch.DrawString(GameSettings.GameFont,
+                "-  Programmer\n\n" +
+                "-  Programmer\n\n" +
+                "-  Programmer\n\n" +
+                "-  Artist",
+                new Vector2(400, GameSettings.ScreenSize.Y - 300), Color.Black, 0, Vector2.Zero, 0.75f, SpriteEffects.None, 1);
+        }
         private void DrawGameOverText(SpriteBatch spriteBatch)
         {
             Rectangle dr = new Rectangle(((int)GameSettings.ScreenSize.X - buttonWidth * 3/2) / 2, (int)GameSettings.ScreenSize.Y / 4 - buttonHeight, buttonWidth * 3/2, buttonHeight);
