@@ -13,8 +13,13 @@ namespace WinterJam.Screens
         private bool playButtonPressed = false;
         private bool settingsButtonPressed = false;
         private bool quitButtonPressed = false;
-        public int Score {  get; set; }
-        public string TimeSurvived { get; set; }
+        private Rectangle UI_Background_Rectangle
+        {
+            get
+            {
+                return new Rectangle(Point.Zero, GameSettings.ScreenSize.ToPoint());
+            }
+        }
         public override void Update(GameTime gameTime)
         {
             UserInput.Update();
@@ -42,6 +47,8 @@ namespace WinterJam.Screens
             if (!GameSettings.IsSettingsScreenDrawn && UserInput._currentMouseState.LeftButton == ButtonState.Pressed && UserInput._previousMouseState.LeftButton == ButtonState.Released &&
                 quitButtonRect.Contains(UserInput._currentMouseState.Position))
             {
+
+                GameSettings.SFX_Button.Play();
                 // Enable the settings screen
                 quitButtonPressed = true;
                 await Task.Delay(100);
@@ -58,6 +65,8 @@ namespace WinterJam.Screens
             if (!GameSettings.IsSettingsScreenDrawn && UserInput._currentMouseState.LeftButton == ButtonState.Pressed && UserInput._previousMouseState.LeftButton == ButtonState.Released &&
                 settingsButtonRect.Contains(UserInput._currentMouseState.Position))
             {
+
+                GameSettings.SFX_Button.Play();
                 // Enable the settings screen
                 settingsButtonPressed = true;
                 await Task.Delay(100);
@@ -73,6 +82,8 @@ namespace WinterJam.Screens
             if (!playButtonPressed && UserInput._currentMouseState.LeftButton == ButtonState.Pressed && UserInput._previousMouseState.LeftButton == ButtonState.Released &&
                 playButtonRect.Contains(UserInput._currentMouseState.Position))
             {
+
+                GameSettings.SFX_Button.Play();
                 // Set the play button texture to pressed
                 playButtonPressed = true;
                 await Task.Delay(200); // Wait for 1 second
@@ -98,6 +109,8 @@ namespace WinterJam.Screens
                 PlayScreen.Backgroundfront[i].Draw(spriteBatch);
             }
 
+            spriteBatch.Draw(GameSettings.UI_Background_GameOver, UI_Background_Rectangle, Color.White);
+
             //DestinationRectangle for the GameOver logo
             DrawGameOverText(spriteBatch);
 
@@ -110,7 +123,7 @@ namespace WinterJam.Screens
             //Draw Quit Button
             DrawQuitButton(spriteBatch);
 
-            Score.DrawResults(spriteBatch,new Vector2(GameSettings.ScreenSize.X / 4 * 3 , GameSettings.ScreenSize.Y / 5 * 2));
+            //Score.DrawResults(spriteBatch,new Vector2(GameSettings.ScreenSize.X / 4 * 3 , GameSettings.ScreenSize.Y / 5 * 2));
             DrawCredits(spriteBatch);
 
             if (GameSettings.IsSettingsScreenDrawn && !GameSettings.IsCloseButtonPressed)
@@ -122,7 +135,40 @@ namespace WinterJam.Screens
         private void DrawCredits(SpriteBatch spriteBatch)
         {
             spriteBatch.DrawString(GameSettings.GameFont, "CREDITS", new Vector2(20
+                , GameSettings.ScreenSize.Y - 402), Color.White);
+            spriteBatch.DrawString(GameSettings.GameFont, "CREDITS", new Vector2(20
+                , GameSettings.ScreenSize.Y - 398), Color.White);
+            spriteBatch.DrawString(GameSettings.GameFont, "CREDITS", new Vector2(18
+                , GameSettings.ScreenSize.Y - 400), Color.White);
+            spriteBatch.DrawString(GameSettings.GameFont, "CREDITS", new Vector2(22
+                , GameSettings.ScreenSize.Y - 400), Color.White);
+            spriteBatch.DrawString(GameSettings.GameFont, "CREDITS", new Vector2(20
                 , GameSettings.ScreenSize.Y - 400), Color.Black);
+
+            spriteBatch.DrawString(GameSettings.GameFont,
+              "Matthias de Vilder\n\n" +
+              "Samuel Cutts\n\n" +
+              "Matthias Maes\n\n" +
+              "Ash",
+              new Vector2(20, GameSettings.ScreenSize.Y - 298), Color.White, 0, Vector2.Zero, 0.75f, SpriteEffects.None, 1);
+            spriteBatch.DrawString(GameSettings.GameFont,
+              "Matthias de Vilder\n\n" +
+              "Samuel Cutts\n\n" +
+              "Matthias Maes\n\n" +
+              "Ash",
+              new Vector2(20, GameSettings.ScreenSize.Y - 302), Color.White, 0, Vector2.Zero, 0.75f, SpriteEffects.None, 1);
+            spriteBatch.DrawString(GameSettings.GameFont,
+              "Matthias de Vilder\n\n" +
+              "Samuel Cutts\n\n" +
+              "Matthias Maes\n\n" +
+              "Ash",
+              new Vector2(18, GameSettings.ScreenSize.Y - 300), Color.White, 0, Vector2.Zero, 0.75f, SpriteEffects.None, 1);
+            spriteBatch.DrawString(GameSettings.GameFont,
+              "Matthias de Vilder\n\n" +
+              "Samuel Cutts\n\n" +
+              "Matthias Maes\n\n" +
+              "Ash",
+              new Vector2(22, GameSettings.ScreenSize.Y - 300), Color.White, 0, Vector2.Zero, 0.75f, SpriteEffects.None, 1);
             spriteBatch.DrawString(GameSettings.GameFont, 
                 "Matthias de Vilder\n\n" +
                 "Samuel Cutts\n\n" +
@@ -130,6 +176,31 @@ namespace WinterJam.Screens
                 "Ash",
                 new Vector2(20, GameSettings.ScreenSize.Y - 300), Color.Black, 0, Vector2.Zero, 0.75f, SpriteEffects.None, 1);
 
+
+            spriteBatch.DrawString(GameSettings.GameFont,
+                "-  Programmer\n\n" +
+                "-  Programmer\n\n" +
+                "-  Programmer\n\n" +
+                "-  Artist",
+                new Vector2(400, GameSettings.ScreenSize.Y - 302), Color.White, 0, Vector2.Zero, 0.75f, SpriteEffects.None, 1);
+            spriteBatch.DrawString(GameSettings.GameFont,
+                "-  Programmer\n\n" +
+                "-  Programmer\n\n" +
+                "-  Programmer\n\n" +
+                "-  Artist",
+                new Vector2(400, GameSettings.ScreenSize.Y - 298), Color.White, 0, Vector2.Zero, 0.75f, SpriteEffects.None, 1);
+            spriteBatch.DrawString(GameSettings.GameFont,
+                "-  Programmer\n\n" +
+                "-  Programmer\n\n" +
+                "-  Programmer\n\n" +
+                "-  Artist",
+                new Vector2(398, GameSettings.ScreenSize.Y - 300), Color.White, 0, Vector2.Zero, 0.75f, SpriteEffects.None, 1);
+            spriteBatch.DrawString(GameSettings.GameFont,
+                "-  Programmer\n\n" +
+                "-  Programmer\n\n" +
+                "-  Programmer\n\n" +
+                "-  Artist",
+                new Vector2(402, GameSettings.ScreenSize.Y - 300), Color.White, 0, Vector2.Zero, 0.75f, SpriteEffects.None, 1);
             spriteBatch.DrawString(GameSettings.GameFont,
                 "-  Programmer\n\n" +
                 "-  Programmer\n\n" +

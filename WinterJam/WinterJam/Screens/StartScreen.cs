@@ -42,6 +42,7 @@ namespace WinterJam.Screens
             if (!GameSettings.IsSettingsScreenDrawn && UserInput._currentMouseState.LeftButton == ButtonState.Pressed && UserInput._previousMouseState.LeftButton == ButtonState.Released &&
                 quitButtonRect.Contains(UserInput._currentMouseState.Position))
             {
+                GameSettings.SFX_Button.Play();
                 // Enable the settings screen
                 quitButtonPressed = true;
                 await Task.Delay(100);
@@ -58,6 +59,7 @@ namespace WinterJam.Screens
             if (!GameSettings.IsSettingsScreenDrawn && UserInput._currentMouseState.LeftButton == ButtonState.Pressed && UserInput._previousMouseState.LeftButton == ButtonState.Released &&
                 settingsButtonRect.Contains(UserInput._currentMouseState.Position))
             {
+                GameSettings.SFX_Button.Play();
                 // Enable the settings screen
                 settingsButtonPressed = true;
                 await Task.Delay(100);
@@ -73,6 +75,7 @@ namespace WinterJam.Screens
             if (!playButtonPressed && UserInput._currentMouseState.LeftButton == ButtonState.Pressed && UserInput._previousMouseState.LeftButton == ButtonState.Released &&
                 playButtonRect.Contains(UserInput._currentMouseState.Position))
             {
+                GameSettings.SFX_Button.Play();
                 // Set the play button texture to pressed
                 playButtonPressed = true;
                 await Task.Delay(100); // Wait for 1 second

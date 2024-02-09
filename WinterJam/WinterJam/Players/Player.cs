@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SharpDX.Direct3D11;
@@ -73,7 +74,8 @@ namespace WinterJam.Players
                     if (Visualisation.CurrentSpriteIndex == 3 || Visualisation.CurrentSpriteIndex == 2)
                     {
                         ShowSwingEffect = true;
-
+                        if(Visualisation.CurrentSpriteIndex == 2)
+                            GameSettings.SFX_Smack.Play();
 
                     }
                     else
@@ -185,6 +187,7 @@ namespace WinterJam.Players
             {
                 if (Inventory.Count > 0 && HeldItemIndex >= 0)
                 {
+                    GameSettings.SFX_PlaceItem.Play();
                     Vector2 placedPosition = Vector2.Zero;
 
                     if (this.Visualisation == Animations[0])
@@ -228,7 +231,6 @@ namespace WinterJam.Players
                 }
             }
         }
-
         private void UpdateItems(GameTime gameTime)
         {
             if (Inventory.Count > 0)
@@ -299,11 +301,15 @@ namespace WinterJam.Players
                         }
                     }
 
+
                     float clampedX = MathHelper.Clamp(NextPosition.X, 1, GameSettings.Grid.playsize - 1);
                     float clampedY = MathHelper.Clamp(NextPosition.Y, 1, GameSettings.Grid.playsize - 1);
                     LastPosition = NextPosition;
+
                     NextPosition = new Vector2((float)Math.Ceiling(clampedX), (float)Math.Ceiling(clampedY));
 
+                    if (NextPosition != CurrentPosition)
+                        GameSettings.SFX_Run.Play();
                 }
 
             }

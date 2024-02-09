@@ -78,6 +78,7 @@ namespace WinterJam.Screens
             if (GameSettings.IsSettingsScreenDrawn && UserInput._currentMouseState.LeftButton == ButtonState.Pressed && UserInput._previousMouseState.LeftButton == ButtonState.Released &&
                 backButtonRect.Contains(UserInput._currentMouseState.Position))
             {
+                GameSettings.SFX_Button.Play();
                 // Enable the settings screen
 
                 backButtonPressed = true;
@@ -123,24 +124,24 @@ namespace WinterJam.Screens
         {
             if (CheckButtonPressed(-offset1 + new Vector2(framePosition.X + (frameWidth - buttonWidth) / 2, framePosition.Y + (frameHeight - buttonHeight * 4) / 2 - 60), buttonWidth, buttonHeight))
             {
+                GameSettings.SFX_Button.Play();
                 isQwertyButtonPressed = true;
                 isAzertyButtonPressed = false;
                 isArrowsButtonPressed = false;
             }
             else if (CheckButtonPressed(-offset1 + new Vector2(framePosition.X + (frameWidth - buttonWidth) / 2, framePosition.Y + (frameHeight - buttonHeight * 4) / 2 - 60 + buttonHeight + 10), buttonWidth, buttonHeight))
             {
+                GameSettings.SFX_Button.Play();
                 isQwertyButtonPressed = false;
                 isAzertyButtonPressed = true;
                 isArrowsButtonPressed = false;
             }
             else if (CheckButtonPressed(-offset1 + new Vector2(framePosition.X + (frameWidth - buttonWidth) / 2, framePosition.Y + (frameHeight - buttonHeight * 4) / 2 - 60 + 2 * (buttonHeight + 10)), buttonWidth, buttonHeight))
             {
+                GameSettings.SFX_Button.Play();
                 isQwertyButtonPressed = false;
                 isAzertyButtonPressed = false;
                 isArrowsButtonPressed = true;
-            }else if (LeftMouseButtonPressed())
-            {
-
             }
         }
 

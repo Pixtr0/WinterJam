@@ -50,13 +50,15 @@ namespace WinterJam
         public static Texture2D UI_Controls { get; set; }
         public static Texture2D UI_player_Controls { get; set; }
         public static Texture2D UI_Settings { get; set; }
+        public static Texture2D UI_Background_GameOver { get; set; }
         public static Texture2D BasketTexture { get; set; }
         public static Song GameMusic { get; set; }
         public static Song SFX_GameOver { get; set; }
         public static SoundEffect SFX_Smack { get; set; }
-
-
-
+        public static SoundEffect SFX_PlaceItem { get; set; }
+        public static SoundEffect SFX_Run { get; set; }
+        public static SoundEffect SFX_ItemPickup { get; set; }
+        public static SoundEffect SFX_Button { get; set; }
 
     }
 }

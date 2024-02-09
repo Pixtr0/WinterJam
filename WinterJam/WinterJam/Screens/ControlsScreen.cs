@@ -82,7 +82,7 @@ namespace WinterJam.Screens
                 backButtonRect.Contains(UserInput._currentMouseState.Position))
             {
                 // Enable the settings screen
-
+                GameSettings.SFX_Button.Play();
                 backButtonPressed = true;
                 await Task.Delay(100);
                 GameSettings.IsCloseButtonPressed = true;

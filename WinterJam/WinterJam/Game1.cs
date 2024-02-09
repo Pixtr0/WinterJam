@@ -122,6 +122,7 @@ namespace WinterJam
             GameSettings.UI_player_Controls = Content.Load<Texture2D>("Graphics/Buttons/UI_player_Controls");
             GameSettings.UI_Controls = Content.Load<Texture2D>("Graphics/Buttons/UI_Controls");
             GameSettings.UI_Settings = Content.Load<Texture2D>("Graphics/Buttons/UI_Settings");
+            GameSettings.UI_Background_GameOver = Content.Load<Texture2D>("Graphics/Buttons/UI_Background_GameOver");
             House.HealthBarTexture = Content.Load<Texture2D>("Graphics/Buttons/UI_health_bar");
             House.HealthBarHPTexture = Content.Load<Texture2D>("Graphics/Buttons/UI_health_bar_HP");
 
@@ -146,8 +147,12 @@ namespace WinterJam
             GameSettings.GameOverScreen = new GameOverScreen();
 
             GameSettings.GameMusic = Content.Load<Song>("Sounds/Winterjam_jam");
-            GameSettings.SFX_Smack = Content.Load<SoundEffect>("Sounds/Smack");
             GameSettings.SFX_GameOver = Content.Load<Song>("Sounds/GameOver");
+            GameSettings.SFX_Smack = Content.Load<SoundEffect>("Sounds/Smack");
+            GameSettings.SFX_PlaceItem = Content.Load<SoundEffect>("Sounds/SFX_PlaceItem");
+            GameSettings.SFX_Run = Content.Load<SoundEffect>("Sounds/Run");
+            GameSettings.SFX_ItemPickup = Content.Load<SoundEffect>("Sounds/item_pickup");
+            GameSettings.SFX_Button = Content.Load<SoundEffect>("Sounds/Button");
             MediaPlayer.IsRepeating = true;
             MediaPlayer.Play(GameSettings.GameMusic);
         }

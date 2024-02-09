@@ -48,14 +48,12 @@ namespace WinterJam.Screens
             GenerateRandomTiles();
             GenerateTreesAndSurroundings();
             Enemies.Clear();
-            DroppedItems.Clear();
             Score.Time = 0;
             Score.AmountOfItemsreturned = 0;
             Score.AmountOfSquirrelsSmacked = 0;
-            Player.CurrentPosition = new Vector2(3, 4);
+            Player.TopLeftPosition = GameSettings.Grid.GetGridPosition(new Vector2(8,9)) + new Vector2(-5f, -12.5f) * GameSettings.Grid.ScaleFactor;
+            Player.CurrentPosition = new Vector2(8, 9);
             Player.NextPosition = Player.CurrentPosition;
-            House.currentHp = 20;
-
         }
         public override void Update(GameTime gameTime)
         {
@@ -65,6 +63,7 @@ namespace WinterJam.Screens
 
             if (UserInput._currentKeyboardSate.IsKeyDown(Keys.Escape) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Escape))
             {
+                GameSettings.SFX_Button.Play();
                 GameSettings.IsCloseButtonPressed = false;
                 GameSettings.IsPauseScreenDrawn = !GameSettings.IsPauseScreenDrawn;
             }
@@ -78,20 +77,17 @@ namespace WinterJam.Screens
             {
                 GameSettings.SettingsScreen.Update(gameTime);
             }
-            if(GameSettings.IsControlsScreenDrawn == true)
-            {
-                GameSettings.ControlsScreen.Update(gameTime);
-            }
 
             if (GameSettings.IsPauseScreenDrawn == false)
             {
+
                 Score.Update(gameTime);
                 if (!SpawnedSquirrel && Score.Time % 15 == 0)
                 {
                     Enemies.Add(Enemy.Spawn());
                     SpawnedSquirrel = true;
                 }
-                else if(Score.Time % 15 != 0) { SpawnedSquirrel = false; }
+                else if(Score.Time % 30 != 0) { SpawnedSquirrel = false; }
                 foreach (Enemy enemy in Enemies)
                 {
                     enemy.Update(gameTime);
@@ -129,7 +125,7 @@ namespace WinterJam.Screens
             if (House.currentHp <= 0)
             {
                 MediaPlayer.IsRepeating = false;
-                MediaPlayer.Play(GameSettings.SFX_GameOver)
+                MediaPlayer.Play(GameSettings.SFX_GameOver);
                 GameSettings.ActiveScreen = GameSettings.GameOverScreen;
             }
         }
@@ -213,6 +209,7 @@ namespace WinterJam.Screens
                         };
                         Player.Inventory.Add(newPlayerItem);
                         DroppedItems.Remove(DroppedItems[i]);
+                        GameSettings.SFX_ItemPickup.Play();
                     }
                 }
             }
@@ -242,23 +239,17 @@ namespace WinterJam.Screens
             DrawEscToPause(spriteBatch);
             Score.Draw(spriteBatch, new Vector2((int)(GameSettings.ScreenSize.X / 2), 60));
 
-            if (GameSettings.IsPauseScreenDrawn && GameSettings.IsControlsScreenDrawn && !GameSettings.IsSettingsScreenDrawn && GameSettings.IsCloseButtonPressed == false)
-            {
-                GameSettings.ControlsScreen.Draw(spriteBatch);
-            }
-            if (GameSettings.IsPauseScreenDrawn && !GameSettings.IsControlsScreenDrawn && !GameSettings.IsSettingsScreenDrawn)
+            if (GameSettings.IsPauseScreenDrawn && !GameSettings.IsSettingsScreenDrawn)
             {
                 GameSettings.PauseScreen.Draw(spriteBatch);
             }
 
-            if (GameSettings.IsPauseScreenDrawn && !GameSettings.IsControlsScreenDrawn && GameSettings.IsSettingsScreenDrawn && GameSettings.IsCloseButtonPressed == false)
+            if (GameSettings.IsPauseScreenDrawn && GameSettings.IsSettingsScreenDrawn && GameSettings.IsCloseButtonPressed == false)
             {
                 GameSettings.SettingsScreen.Draw(spriteBatch);
             }
 
-
-
-
+            
             base.Draw(spriteBatch);
         }
 
@@ -275,6 +266,23 @@ namespace WinterJam.Screens
             // Draw the text with the calculated color
             spriteBatch.DrawString(GameSettings.GameFont, "Esc to pause",new Vector2( (int)(11 * GameSettings.Grid.ScaleFactor), (int)(12 * GameSettings.Grid.ScaleFactor)), Color.Black);
         }
+
+
+
+        private int FlashingTransparency()
+        {
+            // Adjust the period of the flashing effect by modifying the divisor
+            double period = 60; // Flashing period in frames (adjust as needed)
+            double alpha = Math.Sin(2 * Math.PI * escToPauseDrawCounter / period);
+            // Scale the alpha value to the range [0, 255]
+            int transparency = (int)(128 * alpha + 128); // Centered around 128
+            if (escToPauseDrawCounter == 0)
+            {
+                transparency = 0;
+            }
+            return transparency;
+        }
+
 
 
         private List<GameObject> SortedObjects()
