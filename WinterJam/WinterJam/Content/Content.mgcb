@@ -613,6 +613,18 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Buttons/UI_player_controls.png
 
+#begin Graphics/Buttons/UI_settings.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphics/Buttons/UI_settings.png
+
 #begin Graphics/Buttons/UI_volume_slider.png
 /importer:TextureImporter
 /processor:TextureProcessor
