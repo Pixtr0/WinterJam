@@ -14,7 +14,6 @@ namespace WinterJam
     {
         private const float _delay = 0.14f; // seconds
         private float _remainingDelay = _delay;
-
         private int maxHp { get; set; }
         public static int currentHp { get; set; }
 
@@ -24,13 +23,13 @@ namespace WinterJam
         private Vector2 HealthPosition { get { return new Vector2(anchorPoint.X - GameSettings.GameFont.MeasureString(currentHp.ToString()).X / 2, anchorPoint.Y - Size.Y / 3 * 2);}}
         public static Texture2D HealthBarTexture { get; set; }
         private Vector2 HealthBarSize { get { return new Vector2(44, 8) * GameSettings.Grid.ScaleFactor; } }
-        private Vector2 HPSize { get { return new Vector2(10, 20) * GameSettings.Grid.ScaleFactor; } }
+        //private Vector2 HPSize { get { return new Vector2(10, 20) * GameSettings.Grid.ScaleFactor; } }
         private Rectangle HealthBarDestinationRectangle
         {
             get
             {
-                return new Rectangle((int)(HealthPosition.X - HealthBarSize.X/2), 
-                    (int)HealthPosition.Y, 
+                return new Rectangle((int)(HealthPosition.X - HealthBarSize.X/2) + (int)(5 * GameSettings.Grid.ScaleFactor), 
+                    (int)HealthPosition.Y + (int)(6.5f * GameSettings.Grid.ScaleFactor), 
                     (int)HealthBarSize.X, 
                     (int)HealthBarSize.Y);
             }
@@ -39,8 +38,8 @@ namespace WinterJam
         {
             get
             {
-                return new Rectangle((int)(HealthPosition.X - HealthBarSize.X / 2 + 2 * GameSettings.Grid.ScaleFactor),
-                    (int)(HealthPosition.Y + 2 * GameSettings.Grid.ScaleFactor),
+                return new Rectangle((int)(HealthPosition.X - HealthBarSize.X / 2 + 7 * GameSettings.Grid.ScaleFactor),
+                    (int)(HealthPosition.Y + 8.5f * GameSettings.Grid.ScaleFactor),
                     (int)((HealthBarSize.X - 15) * (float)currentHp / maxHp),
                     (int)(HealthBarSize.Y - 15));
             }
@@ -49,7 +48,7 @@ namespace WinterJam
         public House(Texture2D texture)
         {
             Vector2 size = new Vector2(58, 102) * GameSettings.Grid.ScaleFactor;
-            Visualisation = new SpriteSheet(texture, GameSettings.Grid.GetGridPosition(HouseTiles[HouseTiles.Length - 1]) - new Vector2(16 * GameSettings.Grid.ScaleFactor,
+            Visualisation = new SpriteSheet(texture, GameSettings.Grid.GetGridPositionNoHeight(HouseTiles[HouseTiles.Length - 1]) - new Vector2(16 * GameSettings.Grid.ScaleFactor,
                size.Y - 24 * GameSettings.Grid.ScaleFactor), size, 0, 10, 10, 0, true);
 
             currentHp = maxHp = 20;

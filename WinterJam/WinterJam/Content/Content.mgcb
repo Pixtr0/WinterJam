@@ -73,6 +73,42 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Blocks/flower_03.png
 
+#begin Graphics/Blocks/flower_04.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphics/Blocks/flower_04.png
+
+#begin Graphics/Blocks/flower_05.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphics/Blocks/flower_05.png
+
+#begin Graphics/Blocks/flower_06.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphics/Blocks/flower_06.png
+
 #begin Graphics/Blocks/grass_01.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -445,11 +481,14 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Buttons/UI__volume.png
 
+<<<<<<< HEAD
 #begin Graphics/Buttons/UI__volume.xnb
 /importer:
 /processor:
 /build:Graphics/Buttons/UI__volume.xnb
 
+=======
+>>>>>>> 0a1f6f23e134bfbca1a07a0da94512f3d3e19160
 #begin Graphics/Buttons/UI_button_01.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -462,11 +501,14 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Buttons/UI_button_01.png
 
+<<<<<<< HEAD
 #begin Graphics/Buttons/UI_button_01.xnb
 /importer:
 /processor:
 /build:Graphics/Buttons/UI_button_01.xnb
 
+=======
+>>>>>>> 0a1f6f23e134bfbca1a07a0da94512f3d3e19160
 #begin Graphics/Buttons/UI_button_02.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -479,11 +521,14 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Buttons/UI_button_02.png
 
+<<<<<<< HEAD
 #begin Graphics/Buttons/UI_button_02.xnb
 /importer:
 /processor:
 /build:Graphics/Buttons/UI_button_02.xnb
 
+=======
+>>>>>>> 0a1f6f23e134bfbca1a07a0da94512f3d3e19160
 #begin Graphics/Buttons/UI_button_pressed_01.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -496,11 +541,14 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Buttons/UI_button_pressed_01.png
 
+<<<<<<< HEAD
 #begin Graphics/Buttons/UI_button_pressed_01.xnb
 /importer:
 /processor:
 /build:Graphics/Buttons/UI_button_pressed_01.xnb
 
+=======
+>>>>>>> 0a1f6f23e134bfbca1a07a0da94512f3d3e19160
 #begin Graphics/Buttons/UI_button_pressed_02.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -513,11 +561,14 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Buttons/UI_button_pressed_02.png
 
+<<<<<<< HEAD
 #begin Graphics/Buttons/UI_button_pressed_02.xnb
 /importer:
 /processor:
 /build:Graphics/Buttons/UI_button_pressed_02.xnb
 
+=======
+>>>>>>> 0a1f6f23e134bfbca1a07a0da94512f3d3e19160
 #begin Graphics/Buttons/UI_game_over.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -542,11 +593,14 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Buttons/UI_health_bar_HP.png
 
+<<<<<<< HEAD
 #begin Graphics/Buttons/UI_health_bar_HP.xnb
 /importer:
 /processor:
 /build:Graphics/Buttons/UI_health_bar_HP.xnb
 
+=======
+>>>>>>> 0a1f6f23e134bfbca1a07a0da94512f3d3e19160
 #begin Graphics/Buttons/UI_health_bar.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -559,11 +613,14 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Buttons/UI_health_bar.png
 
+<<<<<<< HEAD
 #begin Graphics/Buttons/UI_health_bar.xnb
 /importer:
 /processor:
 /build:Graphics/Buttons/UI_health_bar.xnb
 
+=======
+>>>>>>> 0a1f6f23e134bfbca1a07a0da94512f3d3e19160
 #begin Graphics/Buttons/UI_paused.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -576,11 +633,14 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Buttons/UI_paused.png
 
+<<<<<<< HEAD
 #begin Graphics/Buttons/UI_paused.xnb
 /importer:
 /processor:
 /build:Graphics/Buttons/UI_paused.xnb
 
+=======
+>>>>>>> 0a1f6f23e134bfbca1a07a0da94512f3d3e19160
 #begin Graphics/Buttons/UI_volume_slider.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -593,11 +653,14 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Buttons/UI_volume_slider.png
 
+<<<<<<< HEAD
 #begin Graphics/Buttons/UI_volume_slider.xnb
 /importer:
 /processor:
 /build:Graphics/Buttons/UI_volume_slider.xnb
 
+=======
+>>>>>>> 0a1f6f23e134bfbca1a07a0da94512f3d3e19160
 #begin Graphics/Enemy/Directions.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -816,6 +879,18 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Player/Down.png
 
+#begin Graphics/Player/Down2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphics/Player/Down2.png
+
 #begin Graphics/Player/ground_hit.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -827,6 +902,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Graphics/Player/ground_hit.png
+
+#begin Graphics/Player/ground_hit2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphics/Player/ground_hit2.png
 
 #begin Graphics/Player/Left.png
 /importer:TextureImporter
@@ -840,6 +927,18 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Player/Left.png
 
+#begin Graphics/Player/Left2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphics/Player/Left2.png
+
 #begin Graphics/Player/Right.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -851,6 +950,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Graphics/Player/Right.png
+
+#begin Graphics/Player/Right2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphics/Player/Right2.png
 
 #begin Graphics/Player/Swing_Down.png
 /importer:TextureImporter
@@ -864,6 +975,18 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Player/Swing_Down.png
 
+#begin Graphics/Player/Swing_Down2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphics/Player/Swing_Down2.png
+
 #begin Graphics/Player/Swing_Left.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -875,6 +998,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Graphics/Player/Swing_Left.png
+
+#begin Graphics/Player/Swing_Left2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphics/Player/Swing_Left2.png
 
 #begin Graphics/Player/Swing_Right.png
 /importer:TextureImporter
@@ -900,6 +1035,30 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Player/Swing_Up.png
 
+#begin Graphics/Player/Swing_Up2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphics/Player/Swing_Up2.png
+
+#begin Graphics/Player/Swing_Up2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphics/Player/Swing_Up2.png
+
 #begin Graphics/Player/Up.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -911,4 +1070,16 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Graphics/Player/Up.png
+
+#begin Graphics/Player/Up2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphics/Player/Up2.png
 

@@ -36,7 +36,7 @@ namespace WinterJam.Screens
         private async void CheckQuitButtonClicked()
         {
             // Check if the settings button is pressed
-            Rectangle quitButtonRect = new Rectangle(((int)GameSettings.ScreenSize.X - buttonWidth) / 2, (int)GameSettings.ScreenSize.Y * 3 / 4, buttonWidth, buttonHeight);
+            Rectangle quitButtonRect = new Rectangle(((int)GameSettings.ScreenSize.X - buttonWidth) / 2, (int)GameSettings.ScreenSize.Y * 4 / 5, buttonWidth, buttonHeight);
             if (!GameSettings.IsSettingsScreenDrawn && UserInput._currentMouseState.LeftButton == ButtonState.Pressed && UserInput._previousMouseState.LeftButton == ButtonState.Released &&
                 quitButtonRect.Contains(UserInput._currentMouseState.Position))
             {
@@ -52,7 +52,7 @@ namespace WinterJam.Screens
         private async void CheckSettingsButtonClick()
         {
             // Check if the settings button is pressed
-            Rectangle settingsButtonRect = new Rectangle(((int)GameSettings.ScreenSize.X - buttonWidth) / 2, (int)GameSettings.ScreenSize.Y / 2, buttonWidth, buttonHeight);
+            Rectangle settingsButtonRect = new Rectangle(((int)GameSettings.ScreenSize.X - buttonWidth) / 2, (int)GameSettings.ScreenSize.Y / 3 + 30 + buttonHeight, buttonWidth, buttonHeight);
             if (!GameSettings.IsSettingsScreenDrawn && UserInput._currentMouseState.LeftButton == ButtonState.Pressed && UserInput._previousMouseState.LeftButton == ButtonState.Released &&
                 settingsButtonRect.Contains(UserInput._currentMouseState.Position))
             {
@@ -67,14 +67,16 @@ namespace WinterJam.Screens
         private async void UpdateActiveScreen(GameTime gameTime)
         {
             // Check if the play button is pressed
-            Rectangle playButtonRect = new Rectangle(((int)GameSettings.ScreenSize.X - buttonWidth) / 2, (int)GameSettings.ScreenSize.Y / 3, buttonWidth, buttonHeight);
+            Rectangle playButtonRect = new Rectangle(((int)GameSettings.ScreenSize.X - buttonWidth) / 2, (int)GameSettings.ScreenSize.Y / 3 , buttonWidth, buttonHeight);
             if (!playButtonPressed && UserInput._currentMouseState.LeftButton == ButtonState.Pressed && UserInput._previousMouseState.LeftButton == ButtonState.Released &&
                 playButtonRect.Contains(UserInput._currentMouseState.Position))
             {
                 // Set the play button texture to pressed
                 playButtonPressed = true;
-                await Task.Delay(200); // Wait for 1 second
+                await Task.Delay(100); // Wait for 1 second
                 GameSettings.ActiveScreen = GameSettings.PlayScreen; // Switch to the play screen
+                //GameSettings.ActiveScreen = GameSettings.PlayScreen = new PlayScreen(); // optional switches to new game code above goes to old game that was already open
+                playButtonPressed = false;
             }
         }
 
@@ -83,27 +85,30 @@ namespace WinterJam.Screens
             GameSettings.Grid.DrawGrass(spriteBatch);
 
             Rectangle dr = new Rectangle(0, 0, (int)GameSettings.ScreenSize.X, (int)GameSettings.ScreenSize.Y);
-            spriteBatch.Draw(GameSettings.ScreenTexture, dr, Color.Black);
+            //spriteBatch.Draw(GameSettings.ScreenTexture, dr, Color.Black);
 
-            // Draw Play Button
-            DrawPlayButton(spriteBatch);
-
-            // Draw Settings Button
-            DrawSettingsButton(spriteBatch);
-
-            //Draw Quit Button
-            DrawQuitButton(spriteBatch);
+            
 
             if (GameSettings.IsSettingsScreenDrawn && !GameSettings.IsCloseButtonPressed)
             {
                 GameSettings.SettingsScreen.Draw(spriteBatch);
+            } else
+            {
+                // Draw Play Button
+                DrawPlayButton(spriteBatch);
+
+                // Draw Settings Button
+                DrawSettingsButton(spriteBatch);
+
+                //Draw Quit Button
+                DrawQuitButton(spriteBatch);
             }
         }
 
         private void DrawQuitButton(SpriteBatch spriteBatch)
         {
             Texture2D quitButtonTexture = quitButtonPressed ? GameSettings.Button_Pressed_Orange : GameSettings.Button_Orange;
-            Rectangle dr = new Rectangle(((int)GameSettings.ScreenSize.X - buttonWidth) / 2, (int)GameSettings.ScreenSize.Y * 3/ 4, buttonWidth, buttonHeight);
+            Rectangle dr = new Rectangle(((int)GameSettings.ScreenSize.X - buttonWidth) / 2, (int)GameSettings.ScreenSize.Y * 4 / 5, buttonWidth, buttonHeight);
             spriteBatch.Draw(quitButtonTexture, dr, Color.White);
 
             Vector2 textPosition = Vector2.One;
@@ -122,7 +127,7 @@ namespace WinterJam.Screens
         private void DrawSettingsButton(SpriteBatch spriteBatch)
         {
             Texture2D settingsButtonTexture = settingsButtonPressed ? GameSettings.Button_Pressed_Yellow : GameSettings.Button_Yellow;
-            Rectangle dr = new Rectangle(((int)GameSettings.ScreenSize.X - buttonWidth) / 2, (int)GameSettings.ScreenSize.Y / 2, buttonWidth, buttonHeight);
+            Rectangle dr = new Rectangle(((int)GameSettings.ScreenSize.X - buttonWidth) / 2, (int)GameSettings.ScreenSize.Y / 3 + 30 +buttonHeight, buttonWidth, buttonHeight);
             spriteBatch.Draw(settingsButtonTexture, dr, Color.White);
 
             Vector2 textPosition = Vector2.One;

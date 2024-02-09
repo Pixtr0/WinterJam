@@ -1,4 +1,4 @@
-using Isometric_Thingy;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -75,6 +75,9 @@ namespace WinterJam
                 Content.Load<Texture2D>("Graphics/Blocks/flower_01"),
                 Content.Load<Texture2D>("Graphics/Blocks/flower_02"),
                 Content.Load<Texture2D>("Graphics/Blocks/flower_03"),
+                Content.Load<Texture2D>("Graphics/Blocks/flower_04"),
+                Content.Load<Texture2D>("Graphics/Blocks/flower_05"),
+                Content.Load<Texture2D>("Graphics/Blocks/flower_06"),
             });
             
             GameSettings.GameFont = Content.Load<SpriteFont>("Graphics/Fonts/GameDisplay");
@@ -98,7 +101,15 @@ namespace WinterJam
             Player.Animations.Add(new SpriteSheet(Content.Load<Texture2D>("Graphics/Player/Left"), Vector2.Zero, new Vector2(36, 32) * GameSettings.Grid.ScaleFactor, 0, 1, 4, 0, true));
             Player.Animations.Add(new SpriteSheet(Content.Load<Texture2D>("Graphics/Player/Swing_Down"), Vector2.Zero, new Vector2(42, 48) * GameSettings.Grid.ScaleFactor, 0, 1, 5, 0, false));
             Player.Animations.Add(new SpriteSheet(Content.Load<Texture2D>("Graphics/Player/Swing_Left"), Vector2.Zero, new Vector2(42, 48) * GameSettings.Grid.ScaleFactor, 0, 1, 5, 0, false));
+            Player.Animations.Add(new SpriteSheet(Content.Load<Texture2D>("Graphics/Player/Up2"), Vector2.Zero, new Vector2(36, 32) * GameSettings.Grid.ScaleFactor, 0, 1, 4, 0, true));
+            Player.Animations.Add(new SpriteSheet(Content.Load<Texture2D>("Graphics/Player/Right2"), Vector2.Zero, new Vector2(36, 32) * GameSettings.Grid.ScaleFactor, 0, 1, 8, 0, true));
+            Player.Animations.Add(new SpriteSheet(Content.Load<Texture2D>("Graphics/Player/Down2"), Vector2.Zero, new Vector2(36, 32) * GameSettings.Grid.ScaleFactor, 0, 1, 4, 0, true));
+            Player.Animations.Add(new SpriteSheet(Content.Load<Texture2D>("Graphics/Player/Left2"), Vector2.Zero, new Vector2(36, 32) * GameSettings.Grid.ScaleFactor, 0, 1, 8, 0, true));
+            Player.Animations.Add(new SpriteSheet(Content.Load<Texture2D>("Graphics/Player/Swing_Left2"), Vector2.Zero, new Vector2(42, 48) * GameSettings.Grid.ScaleFactor, 0, 1, 5, 0, false));
+            Player.Animations.Add(new SpriteSheet(Content.Load<Texture2D>("Graphics/Player/Swing_Down2"), Vector2.Zero, new Vector2(42, 48) * GameSettings.Grid.ScaleFactor, 0, 1, 5, 0, false));
+            Player.Animations.Add(new SpriteSheet(Content.Load<Texture2D>("Graphics/Player/Swing_Up2"), Vector2.Zero, new Vector2(42, 48) * GameSettings.Grid.ScaleFactor, 0, 1, 5, 0, false));
             GameSettings.SwingEffect = Content.Load<Texture2D>("Graphics/Player/ground_hit");
+            GameSettings.SwingEffect2 = Content.Load<Texture2D>("Graphics/Player/ground_hit2");
             Vector2 playerStart = new Vector2(8, 9);
             PlayScreen.Player = new Player(playerStart, Player.Animations[3]);
             
@@ -141,7 +152,7 @@ namespace WinterJam
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Back))
                 Exit();
 
             GameSettings.ActiveScreen.Update(gameTime);

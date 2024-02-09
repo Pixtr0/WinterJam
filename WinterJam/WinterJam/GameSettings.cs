@@ -1,4 +1,4 @@
-﻿using Isometric_Thingy;
+﻿
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -27,6 +27,7 @@ namespace WinterJam
         public static Screen PauseScreen { get; set; }
 
         public static Texture2D SwingEffect { get; set; }
+        public static Texture2D SwingEffect2 { get; set; }
         public static SpriteFont GameFont { get; set; }
         public static SpriteFont UiFont { get; set; }
         public static Texture2D ScreenTexture { get; set; }

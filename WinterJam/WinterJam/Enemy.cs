@@ -1,4 +1,4 @@
-﻿using Isometric_Thingy;
+﻿
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -21,15 +21,23 @@ namespace WinterJam
         private Vector2 TargetLocation { get; set; } = new Vector2(9, 7);
         private List<Vector2> UsedTiles { get; set; } = new List<Vector2>();
         public Item helditem { get; set; }
-
+        private Color Color { get; set; }
         public override Vector2 anchorPoint => _delay == 5f ? base.anchorPoint - new Vector2(0,8 * GameSettings.Grid.ScaleFactor) : base.anchorPoint;
         public static List<Texture2D> Textures { get; set; }
-
+        private bool movingDiagonally { get; set; } = false;
         public bool IsHoldingItem { get; set; } = false;        
         public bool IsSmacked { get; set; } = false;        
         public bool HasDroppeditem { get; set; } = false;
 
         private bool InSideHouse = false;
+
+        private List<Color> colorOptions = new List<Color>()
+        {
+            new Color(206, 120, 70),
+            new Color(153, 92, 35),
+            new Color(228, 194, 95),
+            Color.White,
+        };
 
         public List<SpriteSheet> Animations { get; set; }
 
@@ -51,13 +59,15 @@ namespace WinterJam
                 new SpriteSheet(Textures[7], Vector2.Zero,new Vector2(21,17) * GameSettings.Grid.ScaleFactor,0,1,2,0,true),
                 new SpriteSheet(Textures[8], Vector2.Zero,new Vector2(21,17) * GameSettings.Grid.ScaleFactor,0,1,1,0,true),
             };
+            
             Visualisation = Animations[0];
             CurrentPosition = GameSettings.Grid.GetRandomBorderPos(1);
             NextPosition = CurrentPosition;
             TopLeftPosition = GameSettings.Grid.GetGridPositionNoHeight(CurrentPosition);
             _remainingDelay = _delay;
             Createitem(0);
-            IsHoldingItem = false;  
+            IsHoldingItem = false;
+            Color = colorOptions[Random.Shared.Next(0, 4)];
 
         }
 
@@ -102,6 +112,10 @@ namespace WinterJam
             
             newNextPos = possibilities[shortestIndex];
             Visualisation = Animations[shortestIndex];
+            if (shortestIndex == 2 || shortestIndex == 6)
+                movingDiagonally = true;
+            else
+                movingDiagonally = false;
             UsedTiles.Add(newNextPos);
             return newNextPos;
         }
@@ -171,13 +185,13 @@ namespace WinterJam
                 if (_delay == 2f && InSideHouse)
                 {
                     InSideHouse = false;
-                    _delay = 0.09f;
+                    _delay = movingDiagonally ? 0.16f : 0.09f;
                     Createitem(0);
                 }
                 if (_delay >= 5f || IsSmacked)
                 {
                     InSideHouse = false;
-                    _delay = 0.09f;
+                    _delay = movingDiagonally ? 0.16f : 0.09f;
                 } 
 
                 if (NextPosition == TargetLocation - new Vector2(0.3f, 0))
@@ -195,17 +209,18 @@ namespace WinterJam
                     CurrentPosition = SpawnPosition;
                     NextPosition = CurrentPosition;
                     TargetLocation = new Vector2(9, 7);
+                    if (IsHoldingItem)
+                        Createitem(1);
                     IsHoldingItem = false;
                     IsSmacked = false;
                     HasDroppeditem = false;
                     _delay = 5f + Random.Shared.Next(0,4);
                     InSideHouse = true;
-                    if(IsHoldingItem)
-                        Createitem(1);
+
                 }
-                
-               
-               
+
+
+
                 int index = Visualisation.CurrentSpriteIndex;
                 
                 if (CurrentPosition != NextPosition)
@@ -248,6 +263,7 @@ namespace WinterJam
 
                 _remainingDelay = _delay;
                 TopLeftPosition = GameSettings.Grid.GetGridPositionNoHeight(CurrentPosition) + new Vector2(0, 6 * GameSettings.Grid.ScaleFactor);
+                Visualisation.Color = Color;
             }
         }
         public override void Draw(SpriteBatch spriteBatch)

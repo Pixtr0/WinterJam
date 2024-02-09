@@ -6,7 +6,7 @@ using SharpDX.Direct3D9;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
+//using System.Drawing;
 using System.Linq;
 using WinterJam.Players;
 using WinterJam.Screens;
@@ -31,72 +31,18 @@ namespace WinterJam.Screens
         public static Player Player {  get; set; }
         public static List<Item> DroppedItems { get; set; } = new List<Item>();
 
-        private int _amountOfObstacles = 15;
-        private int _amountOfBaskets = 4;
+        private int _amountOfObstacles = 13;
+        private int _amountOfBaskets = 2;
+
+        private int escToPauseDrawCounter = 360;
+
         public PlayScreen()
         {
             GenerateBaskets();
             GenerateRandomTiles();
             GenerateTreesAndSurroundings();
         }
-        private void GenerateTreesAndSurroundings()
-        {
-            for (int x = -GameSettings.Grid.DownShift; x < GameSettings.Grid.Size.X - GameSettings.Grid.DownShift; x++)
-            {
-                for (int y = -GameSettings.Grid.DownShift; y < GameSettings.Grid.Size.Y - GameSettings.Grid.DownShift; y++)
-                {
-                    Random rnd = new Random();
-                    int randomValue = rnd.Next(0, 5);
-                    if(randomValue > 2)
-                    {
-                        if (y < 1)
-                        {
-                            Trees.Add(new Tree(new Vector2(x, y)));
-                        }
-                        if (y >= 1 && x < 1)
-                        {
-                            Trees.Add(new Tree(new Vector2(x, y)));
-                        }
-                        if (y >= 1 && x > 5 + GameSettings.Grid.playsize)
-                        {
-                            TreesBack.Add(new Tree(new Vector2(x, y)));
-                        }
-                        if (y > 5 + GameSettings.Grid.playsize && x >= 1)
-                        {
-                            TreesBack.Add(new Tree(new Vector2(x, y)));
-                        }
-                    }
-                    
-                }
-            }
-            
-            for (int i = 0; i < Trees.Count; i++)
-            {
-                Backgroundback.Add(Trees[i]);
-            }
-            for (int i = 0; i < TreesBack.Count; i++)
-            {
-                Backgroundfront.Add(TreesBack[i]);
-            }
-            
-            Backgroundback = SortList(Backgroundback, 0, Backgroundback.Count - 1);
-            Backgroundfront = SortList(Backgroundfront, 0, Backgroundfront.Count - 1);
-
-        }
-
-        private void GenerateBaskets()
-        {
-            //BasketPositions.Add(new Vector2(GameSettings.Grid.playsize - 1, GameSettings.Grid.playsize - 1));
-            //BasketPositions.Add(new Vector2(1, GameSettings.Grid.playsize - 1));
-            //BasketPositions.Add(new Vector2(GameSettings.Grid.playsize - 1, 1));
-            //BasketPositions.Add(new Vector2(1, 1));
-            for (int i = 0; i < _amountOfBaskets; i++)
-                BasketPositions.Add(new Vector2(Random.Shared.Next(1, GameSettings.Grid.playsize - 1),
-                    Random.Shared.Next(1, GameSettings.Grid.playsize - 1)));
-
-            for (int i = 0; i < BasketPositions.Count; i++)
-                Baskets.Add(new Obstacle(GameSettings.BasketTexture, BasketPositions[i], 5));
-        }
+        
 
         public override void Update(GameTime gameTime)
         {
@@ -104,7 +50,7 @@ namespace WinterJam.Screens
             GameSettings.Grid.Update();
             UserInput.Update();
 
-            if (UserInput._currentMouseState.RightButton == ButtonState.Pressed && UserInput._previousMouseState.RightButton == ButtonState.Released)
+            if (UserInput._currentKeyboardSate.IsKeyDown(Keys.Escape) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Escape))
             {
                 GameSettings.IsCloseButtonPressed = false;
                 GameSettings.IsPauseScreenDrawn = !GameSettings.IsPauseScreenDrawn;
@@ -122,6 +68,9 @@ namespace WinterJam.Screens
 
             if (GameSettings.IsPauseScreenDrawn == false)
             {
+                if (escToPauseDrawCounter > 0)
+                    escToPauseDrawCounter--;
+
                 if (UserInput._currentKeyboardSate.IsKeyDown(Keys.Enter) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Enter))
                 {
                     Enemies.Add(Enemy.Spawn());
@@ -169,6 +118,65 @@ namespace WinterJam.Screens
                 GameSettings.ActiveScreen = GameSettings.GameOverScreen;
             }
         }
+
+        private void GenerateTreesAndSurroundings()
+        {
+            for (int x = -GameSettings.Grid.DownShift; x < GameSettings.Grid.Size.X - GameSettings.Grid.DownShift; x++)
+            {
+                for (int y = -GameSettings.Grid.DownShift; y < GameSettings.Grid.Size.Y - GameSettings.Grid.DownShift; y++)
+                {
+                    Random rnd = new Random();
+                    int randomValue = rnd.Next(0, 5);
+                    if (randomValue > 2)
+                    {
+                        if (y < 1)
+                        {
+                            Trees.Add(new Tree(new Vector2(x, y)));
+                        }
+                        if (y >= 1 && x < 1)
+                        {
+                            Trees.Add(new Tree(new Vector2(x, y)));
+                        }
+                        if (y >= 1 && x > 5 + GameSettings.Grid.playsize)
+                        {
+                            TreesBack.Add(new Tree(new Vector2(x, y)));
+                        }
+                        if (y > 5 + GameSettings.Grid.playsize && x >= 1)
+                        {
+                            TreesBack.Add(new Tree(new Vector2(x, y)));
+                        }
+                    }
+
+                }
+            }
+
+            for (int i = 0; i < Trees.Count; i++)
+            {
+                Backgroundback.Add(Trees[i]);
+            }
+            for (int i = 0; i < TreesBack.Count; i++)
+            {
+                Backgroundfront.Add(TreesBack[i]);
+            }
+
+            Backgroundback = SortList(Backgroundback, 0, Backgroundback.Count - 1);
+            Backgroundfront = SortList(Backgroundfront, 0, Backgroundfront.Count - 1);
+
+        }
+
+        private void GenerateBaskets()
+        {
+            //BasketPositions.Add(new Vector2(GameSettings.Grid.playsize - 1, GameSettings.Grid.playsize - 1));
+            BasketPositions.Add(new Vector2(1, GameSettings.Grid.playsize - 1));
+            BasketPositions.Add(new Vector2(GameSettings.Grid.playsize - 1, 1));
+            //BasketPositions.Add(new Vector2(1, 1));
+            //for (int i = 0; i < _amountOfBaskets; i++)
+            //    BasketPositions.Add(new Vector2(Random.Shared.Next(1, GameSettings.Grid.playsize - 1),
+            //        Random.Shared.Next(1, GameSettings.Grid.playsize - 1)));
+
+            for (int i = 0; i < BasketPositions.Count; i++)
+                Baskets.Add(new Obstacle(GameSettings.BasketTexture, BasketPositions[i], 5));
+        }
         private static void UpdateDroppeditems(GameTime gameTime)
         {
 
@@ -215,7 +223,8 @@ namespace WinterJam.Screens
             {
                 Backgroundfront[i].Draw(spriteBatch);
             }
-            
+
+            DrawEscToPause(spriteBatch);
 
             if (GameSettings.IsPauseScreenDrawn && !GameSettings.IsSettingsScreenDrawn)
             {
@@ -230,6 +239,53 @@ namespace WinterJam.Screens
 
             base.Draw(spriteBatch);
         }
+
+        private Color FlashingColor()
+        {
+            // Calculate transparency based on the flashing effect
+            int transparency = FlashingTransparency();
+
+            // Create and return the color with the calculated transparency
+            return new Color(0, 0, 0, transparency);
+        }
+
+        private void DrawEscToPause(SpriteBatch spriteBatch)
+        {
+            // Get the color for the text
+            Color textColor = FlashingColor();
+
+            // Draw the background rectangle
+            Vector2 textSize = GameSettings.GameFont.MeasureString("Esc to pause");
+            Color buttonColor = Color.White;
+            if (escToPauseDrawCounter == 0)
+            {
+                buttonColor = new Color(0,0,0,0);
+            }
+
+            spriteBatch.Draw(GameSettings.Button_Pressed_Orange, new Rectangle(0, -5, (int)textSize.X + 15, (int)textSize.Y * 2), buttonColor);
+
+            // Draw the text with the calculated color
+            spriteBatch.DrawString(GameSettings.GameFont, "Esc to pause", new Vector2(10, 10), textColor);
+        }
+
+
+
+        private int FlashingTransparency()
+        {
+            // Adjust the period of the flashing effect by modifying the divisor
+            double period = 60; // Flashing period in frames (adjust as needed)
+            double alpha = Math.Sin(2 * Math.PI * escToPauseDrawCounter / period);
+            // Scale the alpha value to the range [0, 255]
+            int transparency = (int)(128 * alpha + 128); // Centered around 128
+            if (escToPauseDrawCounter == 0)
+            {
+                transparency = 0;
+            }
+            return transparency;
+        }
+
+
+
         private List<GameObject> SortedObjects()
         {
             List<GameObject> returnList = new List<GameObject>();
@@ -320,6 +376,17 @@ namespace WinterJam.Screens
                 }
                 Obstacles.Add(new Obstacle(texture, GetRandomPositionOnGrid()));
             }
+            List<GameObject> sortablelist = new List<GameObject>();
+            foreach(GameObject obj in Obstacles)
+            {
+                sortablelist.Add(obj);
+            }
+            sortablelist = SortList(sortablelist,0, sortablelist.Count - 1);
+            Obstacles.Clear();
+            foreach (Obstacle obj in sortablelist)
+            {
+                Obstacles.Add(obj);
+            }
             CheckForLogFormations();
         }
 
@@ -339,22 +406,19 @@ namespace WinterJam.Screens
                     Obstacles[i].Visualisation.Texture = ObstacleTextures[7];
                     Obstacles[i].Visualisation.IsFlipped = true;
                     Obstacles[i].IsLog = true;
-                }
-                obstacle = GetObstacleOn(topright);
-                if (obstacle != null)
+                } else
                 {
-                    obstacle.Visualisation.Texture = ObstacleTextures[8];
-                    obstacle.IsLog = true;
-                    Obstacles[i].Visualisation.Texture = ObstacleTextures[7];
-                    Obstacles[i].IsLog = true;
+                    obstacle = GetObstacleOn(topright);
+                    if (obstacle != null)
+                    {
+                        obstacle.Visualisation.Texture = ObstacleTextures[8];
+                        obstacle.IsLog = true;
+                        Obstacles[i].Visualisation.Texture = ObstacleTextures[7];
+                        Obstacles[i].IsLog = true;
 
+                    }
                 }
-                //obstacle = GetObstacleOn(topright);
-                //if (obstacle != new Obstacle())
-                //{
-                //    obstacle.IsActive = false;
-                //    _obstacles[i].Visualisation.Texture = _obstacleTextures[7];
-                //}
+                
             }
         }
         private Obstacle GetObstacleOn(Vector2 pos)
