@@ -153,6 +153,7 @@ namespace WinterJam
             GameSettings.SFX_Run = Content.Load<SoundEffect>("Sounds/Run");
             GameSettings.SFX_ItemPickup = Content.Load<SoundEffect>("Sounds/item_pickup");
             GameSettings.SFX_Button = Content.Load<SoundEffect>("Sounds/Button");
+            GameSettings.SFX_Squirrel_Knockout = Content.Load<SoundEffect>("Sounds/Squirrel_Knockout");
             MediaPlayer.IsRepeating = true;
             MediaPlayer.Play(GameSettings.GameMusic);
         }

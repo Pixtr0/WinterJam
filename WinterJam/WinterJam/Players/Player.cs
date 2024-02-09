@@ -57,7 +57,6 @@ namespace WinterJam.Players
             if (!IsSmacking && UserInput._currentKeyboardSate.IsKeyDown(Keys.Space) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Space))
             {
                 IsSmacking = true;
-                GameSettings.SFX_Smack.Play();
             }
             //they're still alive PETA i swear they're just sleeping
 
@@ -175,9 +174,18 @@ namespace WinterJam.Players
                 for (int j = 0; j < smackedPositions.Count; j++)
                 {
                     if (!PlayScreen.Enemies[i].InSideHouse && PlayScreen.Enemies[i].LastPosition == smackedPositions[j] || PlayScreen.Enemies[i].NextPosition == smackedPositions[j])
+                    {
                         PlayScreen.Enemies[i].IsSmacked = true;
+                        MakeSquirrelSound(250);
+                    }
                 }
             }
+        }
+
+        private async void MakeSquirrelSound(int v)
+        {
+            await Task.Delay(v);
+            GameSettings.SFX_Squirrel_Knockout.Play();
         }
 
         //deprecated

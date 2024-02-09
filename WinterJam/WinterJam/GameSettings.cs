@@ -59,6 +59,7 @@ namespace WinterJam
         public static SoundEffect SFX_Run { get; set; }
         public static SoundEffect SFX_ItemPickup { get; set; }
         public static SoundEffect SFX_Button { get; set; }
+        public static SoundEffect SFX_Squirrel_Knockout { get; set; }
 
     }
 }

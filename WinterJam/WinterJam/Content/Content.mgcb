@@ -1053,6 +1053,12 @@
 /processorParam:Quality=Best
 /build:Sounds/Smack.wav
 
+#begin Sounds/Squirrel_knockout.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Squirrel_knockout.wav
+
 #begin Sounds/Winterjam_jam.mp3
 /importer:Mp3Importer
 /processor:SongProcessor
