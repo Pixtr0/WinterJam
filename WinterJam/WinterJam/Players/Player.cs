@@ -44,7 +44,7 @@ namespace WinterJam.Players
             NextPosition = CurrentPosition;
             LastPosition = CurrentPosition;
             Visualisation = visualisation;
-            TopLeftPosition = GameSettings.Grid.GetGridPositionNoHeight(CurrentPosition) + new Vector2(-7, -8.5f) * GameSettings.Grid.ScaleFactor;
+            TopLeftPosition = GameSettings.Grid.GetGridPosition(CurrentPosition) + new Vector2(-5f, -12.5f) * GameSettings.Grid.ScaleFactor;
 
         }
         public override void Update(GameTime gameTime)

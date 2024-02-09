@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Drawing.Printing;
 using System.Threading.Tasks;
 
 namespace WinterJam.Screens
@@ -74,7 +75,8 @@ namespace WinterJam.Screens
                 // Set the play button texture to pressed
                 playButtonPressed = true;
                 await Task.Delay(100); // Wait for 1 second
-                GameSettings.ActiveScreen = GameSettings.PlayScreen; // Switch to the play screen
+                GameSettings.PlayScreen.Reset();
+                GameSettings.ActiveScreen = GameSettings.PlayScreen; // Switch to new play screen
                 //GameSettings.ActiveScreen = GameSettings.PlayScreen = new PlayScreen(); // optional switches to new game code above goes to old game that was already open
                 playButtonPressed = false;
             }

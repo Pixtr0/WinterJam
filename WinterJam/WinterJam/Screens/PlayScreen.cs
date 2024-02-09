@@ -32,7 +32,6 @@ namespace WinterJam.Screens
         public static List<Item> DroppedItems { get; set; } = new List<Item>();
 
         private int _amountOfObstacles = 13;
-        private int _amountOfBaskets = 2;
 
         private int escToPauseDrawCounter = 360;
 
@@ -43,7 +42,18 @@ namespace WinterJam.Screens
             GenerateTreesAndSurroundings();
         }
         
+        public void Reset()
+        {
+            GenerateBaskets();
+            GenerateRandomTiles();
+            GenerateTreesAndSurroundings();
+            Enemies.Clear();
+            Player.TopLeftPosition = GameSettings.Grid.GetGridPosition(new Vector2(8,9)) + new Vector2(-5f, -12.5f) * GameSettings.Grid.ScaleFactor;
+            Player.CurrentPosition = new Vector2(8, 9);
+            Player.NextPosition = Player.CurrentPosition;
+            
 
+        }
         public override void Update(GameTime gameTime)
         {
             // Your existing update logic goes here

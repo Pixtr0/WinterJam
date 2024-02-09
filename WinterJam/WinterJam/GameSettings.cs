@@ -20,7 +20,7 @@ namespace WinterJam
         public static Grid Grid { get; set; }
         public static (Keys left, Keys right, Keys up, Keys down) ControlKeys { get; set; } = (Keys.A, Keys.D, Keys.W, Keys.S);
         public static Screen StartScreen { get; set; }
-        public static Screen PlayScreen { get; set; }
+        public static PlayScreen PlayScreen { get; set; }
         public static Screen GameOverScreen { get; set; }
         public static Screen ActiveScreen { get; set; }
         public static Screen SettingsScreen { get; set; }
