@@ -62,8 +62,8 @@ namespace WinterJam.Screens
                 await Task.Delay(100);
                 quitButtonPressed = false;
                 // Exit the program
-                //Environment.Exit(0);
-                GameSettings.ActiveScreen = GameSettings.GameOverScreen;
+                Environment.Exit(0);
+                //GameSettings.ActiveScreen = GameSettings.GameOverScreen;
             }
         }
 
@@ -189,7 +189,7 @@ namespace WinterJam.Screens
             spriteBatch.Draw(playButtonTexture, dr, Color.White);
 
             Vector2 textPosition = Vector2.One;
-            Vector2 textSize = GameSettings.GameFont.MeasureString("PLAY");
+            Vector2 textSize = GameSettings.GameFont.MeasureString("RESUME");
             if (!playButtonPressed)
             {
                 textPosition = new Vector2(dr.X + (buttonWidth - textSize.X) / 2, dr.Y - textSize.Y + buttonHeight / 2);
@@ -198,7 +198,7 @@ namespace WinterJam.Screens
             {
                 textPosition = new Vector2(dr.X + (buttonWidth - textSize.X) / 2, dr.Y - textSize.Y + buttonHeight / 2 + 16);
             }
-            spriteBatch.DrawString(GameSettings.GameFont, "PLAY", textPosition, Color.Black);
+            spriteBatch.DrawString(GameSettings.GameFont, "RESUME", textPosition, Color.Black);
         }
     }
 }
