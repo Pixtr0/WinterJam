@@ -166,55 +166,55 @@ namespace WinterJam.Players
                 this.Visualisation = Animations[5];
                 Visualisation.Play();
             }
-            if (this.Visualisation == Animations[6]) // UP LEFT
-            {
-                smackedPositions.Add(CurrentPosition + new Vector2(-2, -2));
-                smackedPositions.Add(CurrentPosition + new Vector2(-1, -2));
-                smackedPositions.Add(CurrentPosition + new Vector2(-2, -1));
-                smackedPositions.Add(CurrentPosition + new Vector2(-1, -1));
-                EffectPossition = GameSettings.Grid.GetGridPositionNoHeight(CurrentPosition + new Vector2(-2, -2)) + new Vector2(-6 * GameSettings.Grid.ScaleFactor, 2 * GameSettings.Grid.ScaleFactor + GameSettings.Grid.TileSize.Y - EffectSize.Y);
-                IsFlipped = false;
-                LastAnimationIndex = 6;
-                this.Visualisation = Animations[12];
-                Visualisation.Play();
-            }
-            if (this.Visualisation == Animations[9]) // DOWN LEFT
-            {
-                smackedPositions.Add(CurrentPosition + new Vector2(-2, 2));
-                smackedPositions.Add(CurrentPosition + new Vector2(-1, 2));
-                smackedPositions.Add(CurrentPosition + new Vector2(-2, 1));
-                smackedPositions.Add(CurrentPosition + new Vector2(-1, 1));
-                EffectPossition = GameSettings.Grid.GetGridPositionNoHeight(CurrentPosition + new Vector2(-2, 1)) + new Vector2(-6 * GameSettings.Grid.ScaleFactor, 2 * GameSettings.Grid.ScaleFactor + GameSettings.Grid.TileSize.Y - EffectSize.Y);
-                IsFlipped = false;
-                LastAnimationIndex = 9;
-                this.Visualisation = Animations[10];
-                Visualisation.Play();
-            }
-            if (this.Visualisation == Animations[7]) // UP RIGHT
-            {
-                smackedPositions.Add(CurrentPosition + new Vector2(2, -2));
-                smackedPositions.Add(CurrentPosition + new Vector2(1, -2));
-                smackedPositions.Add(CurrentPosition + new Vector2(2, -1));
-                smackedPositions.Add(CurrentPosition + new Vector2(1, -1));
-                EffectPossition = GameSettings.Grid.GetGridPositionNoHeight(CurrentPosition + new Vector2(1, -2)) + new Vector2(-6 * GameSettings.Grid.ScaleFactor, 2 * GameSettings.Grid.ScaleFactor + GameSettings.Grid.TileSize.Y - EffectSize.Y);
-                IsFlipped = false;
-                LastAnimationIndex = 7;
-                this.Visualisation = Animations[10];
-                Visualisation.IsFlipped = true;
-                Visualisation.Play();
-            }
-            if (this.Visualisation == Animations[8]) // DOWN RIGHT
-            {
-                smackedPositions.Add(CurrentPosition + new Vector2(2, 2));
-                smackedPositions.Add(CurrentPosition + new Vector2(1,2));
-                smackedPositions.Add(CurrentPosition + new Vector2(2, 1));
-                smackedPositions.Add(CurrentPosition + new Vector2(1, 1));
-                EffectPossition = GameSettings.Grid.GetGridPositionNoHeight(CurrentPosition + new Vector2(1, 1)) + new Vector2(-6 * GameSettings.Grid.ScaleFactor, 2 * GameSettings.Grid.ScaleFactor + GameSettings.Grid.TileSize.Y - EffectSize.Y);
-                IsFlipped = false;
-                LastAnimationIndex = 8;
-                this.Visualisation = Animations[11];
-                Visualisation.Play();
-            }
+            //if (this.Visualisation == Animations[6]) // UP LEFT
+            //{
+            //    smackedPositions.Add(CurrentPosition + new Vector2(-2, -2));
+            //    smackedPositions.Add(CurrentPosition + new Vector2(-1, -2));
+            //    smackedPositions.Add(CurrentPosition + new Vector2(-2, -1));
+            //    smackedPositions.Add(CurrentPosition + new Vector2(-1, -1));
+            //    EffectPossition = GameSettings.Grid.GetGridPositionNoHeight(CurrentPosition + new Vector2(-2, -2)) + new Vector2(-6 * GameSettings.Grid.ScaleFactor, 2 * GameSettings.Grid.ScaleFactor + GameSettings.Grid.TileSize.Y - EffectSize.Y);
+            //    IsFlipped = false;
+            //    LastAnimationIndex = 6;
+            //    this.Visualisation = Animations[12];
+            //    Visualisation.Play();
+            //}
+            //if (this.Visualisation == Animations[9]) // DOWN LEFT
+            //{
+            //    smackedPositions.Add(CurrentPosition + new Vector2(-2, 2));
+            //    smackedPositions.Add(CurrentPosition + new Vector2(-1, 2));
+            //    smackedPositions.Add(CurrentPosition + new Vector2(-2, 1));
+            //    smackedPositions.Add(CurrentPosition + new Vector2(-1, 1));
+            //    EffectPossition = GameSettings.Grid.GetGridPositionNoHeight(CurrentPosition + new Vector2(-2, 1)) + new Vector2(-6 * GameSettings.Grid.ScaleFactor, 2 * GameSettings.Grid.ScaleFactor + GameSettings.Grid.TileSize.Y - EffectSize.Y);
+            //    IsFlipped = false;
+            //    LastAnimationIndex = 9;
+            //    this.Visualisation = Animations[10];
+            //    Visualisation.Play();
+            //}
+            //if (this.Visualisation == Animations[7]) // UP RIGHT
+            //{
+            //    smackedPositions.Add(CurrentPosition + new Vector2(2, -2));
+            //    smackedPositions.Add(CurrentPosition + new Vector2(1, -2));
+            //    smackedPositions.Add(CurrentPosition + new Vector2(2, -1));
+            //    smackedPositions.Add(CurrentPosition + new Vector2(1, -1));
+            //    EffectPossition = GameSettings.Grid.GetGridPositionNoHeight(CurrentPosition + new Vector2(1, -2)) + new Vector2(-6 * GameSettings.Grid.ScaleFactor, 2 * GameSettings.Grid.ScaleFactor + GameSettings.Grid.TileSize.Y - EffectSize.Y);
+            //    IsFlipped = false;
+            //    LastAnimationIndex = 7;
+            //    this.Visualisation = Animations[10];
+            //    Visualisation.IsFlipped = true;
+            //    Visualisation.Play();
+            //}
+            //if (this.Visualisation == Animations[8]) // DOWN RIGHT
+            //{
+            //    smackedPositions.Add(CurrentPosition + new Vector2(2, 2));
+            //    smackedPositions.Add(CurrentPosition + new Vector2(1,2));
+            //    smackedPositions.Add(CurrentPosition + new Vector2(2, 1));
+            //    smackedPositions.Add(CurrentPosition + new Vector2(1, 1));
+            //    EffectPossition = GameSettings.Grid.GetGridPositionNoHeight(CurrentPosition + new Vector2(1, 1)) + new Vector2(-6 * GameSettings.Grid.ScaleFactor, 2 * GameSettings.Grid.ScaleFactor + GameSettings.Grid.TileSize.Y - EffectSize.Y);
+            //    IsFlipped = false;
+            //    LastAnimationIndex = 8;
+            //    this.Visualisation = Animations[11];
+            //    Visualisation.Play();
+            //}
             for (int i = 0; i < PlayScreen.Enemies.Count; i++)
             {
                 for (int j = 0; j < smackedPositions.Count; j++)
@@ -250,22 +250,22 @@ namespace WinterJam.Players
                     {
                         placedPosition = CurrentPosition + new Vector2(-1, 0);
                     }
-                    if (this.Visualisation == Animations[6])
-                    {
-                        placedPosition = CurrentPosition + new Vector2(-1, -1);
-                    }
-                    if (this.Visualisation == Animations[7])
-                    {
-                        placedPosition = CurrentPosition + new Vector2(1, -1);
-                    }
-                    if (this.Visualisation == Animations[8])
-                    {
-                        placedPosition = CurrentPosition + new Vector2(1, 1);
-                    }
-                    if (this.Visualisation == Animations[9])
-                    {
-                        placedPosition = CurrentPosition + new Vector2(-1, 1);
-                    }
+                    //if (this.Visualisation == Animations[6])
+                    //{
+                    //    placedPosition = CurrentPosition + new Vector2(-1, -1);
+                    //}
+                    //if (this.Visualisation == Animations[7])
+                    //{
+                    //    placedPosition = CurrentPosition + new Vector2(1, -1);
+                    //}
+                    //if (this.Visualisation == Animations[8])
+                    //{
+                    //    placedPosition = CurrentPosition + new Vector2(1, 1);
+                    //}
+                    //if (this.Visualisation == Animations[9])
+                    //{
+                    //    placedPosition = CurrentPosition + new Vector2(-1, 1);
+                    //}
 
                     if (PlayScreen.BasketPositions.Contains(placedPosition))
                     {
@@ -315,57 +315,55 @@ namespace WinterJam.Players
                 {
                     if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.up))
                     {
-                        NextPosition = CurrentPosition + new Vector2(-1, -1);
-                        Visualisation = Animations[6];
-                        Visualisation.Play();
-                    }
-                    if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.down))
-                    {
-                        NextPosition = CurrentPosition + new Vector2(1, 1);
-                        Visualisation = Animations[8];
-                        Visualisation.Play();
-                    }
-                    if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.left))
-                    {
-                        NextPosition = CurrentPosition + new Vector2(-1, 1);
-                        Visualisation = Animations[9];
-                        Visualisation.Play();
-                    }
-                    if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.right))
-                    {
-                        NextPosition = CurrentPosition + new Vector2(1, -1);
-                        Visualisation = Animations[7];
-                        Visualisation.Play();
-                    }
-                    if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.up) && UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.right))
-                    {
                         NextPosition = CurrentPosition + new Vector2(0, -1);
                         Visualisation = Animations[0];
                         Visualisation.Play();
                     }
-                    if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.up) && UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.left))
-                    {
-                        NextPosition = CurrentPosition + new Vector2(-1, 0);
-                        Visualisation = Animations[3];
-                        Visualisation.Play();
-                    }
-                    if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.down) && UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.right))
-                    {
-                        NextPosition = CurrentPosition + new Vector2(1, 0);
-                        Visualisation = Animations[1];
-                        Visualisation.Play();
-                    }
-                    if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.down) && UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.left))
+                    if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.down))
                     {
                         NextPosition = CurrentPosition + new Vector2(0, 1);
                         Visualisation = Animations[2];
                         Visualisation.Play();
                     }
+                    if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.left))
+                    {
+                        NextPosition = CurrentPosition + new Vector2(-1, 0);
+                        Visualisation = Animations[3];
+                        Visualisation.Play();
+                    }
+                    if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.right))
+                    {
+                        NextPosition = CurrentPosition + new Vector2(1, 0);
+                        Visualisation = Animations[1];
+                        Visualisation.Play();
+                    }
                     
-                    float clampedX = MathHelper.Clamp(NextPosition.X, 1, GameSettings.Grid.playsize - 1);
-                    float clampedY = MathHelper.Clamp(NextPosition.Y, 1, GameSettings.Grid.playsize - 1);
-                    LastPosition = NextPosition;
-                    NextPosition = new Vector2((float)Math.Ceiling(clampedX), (float)Math.Ceiling(clampedY));
+                
+                    //if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.up) && UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.right)) // up
+                    //{
+                    //    NextPosition = CurrentPosition + new Vector2(0, -1);
+                    //    Visualisation = Animations[0];
+                    //    Visualisation.Play();
+                    //}
+                    //if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.up) && UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.left)) // left
+                    //{
+                    //    NextPosition = CurrentPosition + new Vector2(-1, 0);
+                    //    Visualisation = Animations[3];
+                    //    Visualisation.Play();
+                    //}
+                    //if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.down) && UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.right)) // down
+                    //{
+                    //    NextPosition = CurrentPosition + new Vector2(1, 0);
+                    //    Visualisation = Animations[1];
+                    //    Visualisation.Play();
+                    //}
+                    //if (UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.down) && UserInput._currentKeyboardSate.IsKeyDown(GameSettings.ControlKeys.left)) //right
+                    //{
+                    //    NextPosition = CurrentPosition + new Vector2(0, 1);
+                    //    Visualisation = Animations[2];
+                    //    Visualisation.Play();
+                    //}
+                    
                     
                     for (int i = 0; i < PlayScreen.Obstacles.Count; i++)
                     {
@@ -389,8 +387,12 @@ namespace WinterJam.Players
                         }
                     }
 
+                    float clampedX = MathHelper.Clamp(NextPosition.X, 1, GameSettings.Grid.playsize - 1);
+                    float clampedY = MathHelper.Clamp(NextPosition.Y, 1, GameSettings.Grid.playsize - 1);
+                    LastPosition = NextPosition;
+                    NextPosition = new Vector2((float)Math.Ceiling(clampedX), (float)Math.Ceiling(clampedY));
 
-                }
+               }
 
             }
             TopLeftPosition = GameSettings.Grid.GetGridPositionNoHeight(CurrentPosition) + new Vector2(-5, -12f) * GameSettings.Grid.ScaleFactor;
