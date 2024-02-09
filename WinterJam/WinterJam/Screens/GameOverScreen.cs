@@ -43,7 +43,7 @@ namespace WinterJam.Screens
         private async void CheckQuitButtonClicked()
         {
             // Check if the settings button is pressed
-            Rectangle quitButtonRect = new Rectangle(((int)GameSettings.ScreenSize.X - buttonWidth) / 2, (int)GameSettings.ScreenSize.Y * 3 / 4, buttonWidth, buttonHeight);
+            Rectangle quitButtonRect = new Rectangle(((int)GameSettings.ScreenSize.X - buttonWidth) / 2, (int)GameSettings.ScreenSize.Y * 4 / 5, buttonWidth, buttonHeight);
             if (!GameSettings.IsSettingsScreenDrawn && UserInput._currentMouseState.LeftButton == ButtonState.Pressed && UserInput._previousMouseState.LeftButton == ButtonState.Released &&
                 quitButtonRect.Contains(UserInput._currentMouseState.Position))
             {

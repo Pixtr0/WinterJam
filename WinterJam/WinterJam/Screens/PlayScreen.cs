@@ -53,6 +53,7 @@ namespace WinterJam.Screens
             Player.TopLeftPosition = GameSettings.Grid.GetGridPosition(new Vector2(8,9)) + new Vector2(-5f, -12.5f) * GameSettings.Grid.ScaleFactor;
             Player.CurrentPosition = new Vector2(8, 9);
             Player.NextPosition = Player.CurrentPosition;
+            House.currentHp = 20;
         }
         public override void Update(GameTime gameTime)
         {
@@ -267,24 +268,6 @@ namespace WinterJam.Screens
             // Draw the text with the calculated color
             spriteBatch.DrawString(GameSettings.GameFont, "Esc to pause",new Vector2( (int)(11 * GameSettings.Grid.ScaleFactor), (int)(12 * GameSettings.Grid.ScaleFactor)), Color.Black);
         }
-
-
-
-        private int FlashingTransparency()
-        {
-            // Adjust the period of the flashing effect by modifying the divisor
-            double period = 60; // Flashing period in frames (adjust as needed)
-            double alpha = Math.Sin(2 * Math.PI * escToPauseDrawCounter / period);
-            // Scale the alpha value to the range [0, 255]
-            int transparency = (int)(128 * alpha + 128); // Centered around 128
-            if (escToPauseDrawCounter == 0)
-            {
-                transparency = 0;
-            }
-            return transparency;
-        }
-
-
 
         private List<GameObject> SortedObjects()
         {
