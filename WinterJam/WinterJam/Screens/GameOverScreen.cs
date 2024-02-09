@@ -84,7 +84,7 @@ namespace WinterJam.Screens
             GameSettings.Grid.DrawGrass(spriteBatch);
 
             Rectangle dr = new Rectangle(0, 0, (int)GameSettings.ScreenSize.X, (int)GameSettings.ScreenSize.Y);
-            spriteBatch.Draw(GameSettings.ScreenTexture, dr, Color.Black);
+            //spriteBatch.Draw(GameSettings.ScreenTexture, dr, Color.Black);
 
             //DestinationRectangle for the GameOver logo
             DrawGameOverText(spriteBatch);
