@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.Linq;
 using WinterJam.Players;
 using WinterJam.Screens;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace WinterJam.Screens
 {
@@ -32,14 +33,12 @@ namespace WinterJam.Screens
         public static List<Item> DroppedItems { get; set; } = new List<Item>();
 
         private int _amountOfObstacles = 13;
-
         private int escToPauseDrawCounter = 360;
+        private bool SpawnedSquirrel = false;
 
         public PlayScreen()
         {
-            GenerateBaskets();
-            GenerateRandomTiles();
-            GenerateTreesAndSurroundings();
+            Reset();
         }
         
         public void Reset()
@@ -48,6 +47,9 @@ namespace WinterJam.Screens
             GenerateRandomTiles();
             GenerateTreesAndSurroundings();
             Enemies.Clear();
+            Score.Time = 0;
+            Score.AmountOfItemsreturned = 0;
+            Score.AmountOfSquirrelsSmacked = 0;
             Player.TopLeftPosition = GameSettings.Grid.GetGridPosition(new Vector2(8,9)) + new Vector2(-5f, -12.5f) * GameSettings.Grid.ScaleFactor;
             Player.CurrentPosition = new Vector2(8, 9);
             Player.NextPosition = Player.CurrentPosition;
@@ -56,6 +58,7 @@ namespace WinterJam.Screens
         }
         public override void Update(GameTime gameTime)
         {
+           
             // Your existing update logic goes here
             GameSettings.Grid.Update();
             UserInput.Update();
@@ -78,17 +81,14 @@ namespace WinterJam.Screens
 
             if (GameSettings.IsPauseScreenDrawn == false)
             {
-                if (escToPauseDrawCounter > 0)
-                    escToPauseDrawCounter--;
 
-                if (UserInput._currentKeyboardSate.IsKeyDown(Keys.Enter) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Enter))
+                Score.Update(gameTime);
+                if (!SpawnedSquirrel && Score.Time % 30 == 0)
                 {
                     Enemies.Add(Enemy.Spawn());
+                    SpawnedSquirrel = true;
                 }
-                //if (UserInput._currentKeyboardSate.IsKeyDown(Keys.Space) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Space))
-                //{
-                //    GenerateRandomTiles();
-                //}
+                else if(Score.Time % 30 != 0) { SpawnedSquirrel = false; }
                 foreach (Enemy enemy in Enemies)
                 {
                     enemy.Update(gameTime);
@@ -217,7 +217,7 @@ namespace WinterJam.Screens
         public override void Draw(SpriteBatch spriteBatch)
         {
             // Your existing draw logic goes here
-
+            
             GameSettings.Grid.DrawGrass(spriteBatch);
             Player.DrawEffect(spriteBatch);
             for (int i = 0; i < Backgroundback.Count; i++)
@@ -235,6 +235,7 @@ namespace WinterJam.Screens
             }
 
             DrawEscToPause(spriteBatch);
+            Score.Draw(spriteBatch, new Vector2((int)(GameSettings.ScreenSize.X / 2), 60));
 
             if (GameSettings.IsPauseScreenDrawn && !GameSettings.IsSettingsScreenDrawn)
             {
@@ -246,36 +247,22 @@ namespace WinterJam.Screens
                 GameSettings.SettingsScreen.Draw(spriteBatch);
             }
 
-
+            
             base.Draw(spriteBatch);
-        }
-
-        private Color FlashingColor()
-        {
-            // Calculate transparency based on the flashing effect
-            int transparency = FlashingTransparency();
-
-            // Create and return the color with the calculated transparency
-            return new Color(0, 0, 0, transparency);
         }
 
         private void DrawEscToPause(SpriteBatch spriteBatch)
         {
             // Get the color for the text
-            Color textColor = FlashingColor();
 
             // Draw the background rectangle
             Vector2 textSize = GameSettings.GameFont.MeasureString("Esc to pause");
             Color buttonColor = Color.White;
-            if (escToPauseDrawCounter == 0)
-            {
-                buttonColor = new Color(0,0,0,0);
-            }
 
-            spriteBatch.Draw(GameSettings.Button_Pressed_Orange, new Rectangle(0, -5, (int)textSize.X + 15, (int)textSize.Y * 2), buttonColor);
+            spriteBatch.Draw(GameSettings.Button_Pressed_Orange, new Rectangle((int)(4 * GameSettings.Grid.ScaleFactor), (int)(4 * GameSettings.Grid.ScaleFactor), (int)textSize.X + 50, (int)textSize.Y * 2 + 30), buttonColor);
 
             // Draw the text with the calculated color
-            spriteBatch.DrawString(GameSettings.GameFont, "Esc to pause", new Vector2(10, 10), textColor);
+            spriteBatch.DrawString(GameSettings.GameFont, "Esc to pause",new Vector2( (int)(11 * GameSettings.Grid.ScaleFactor), (int)(12 * GameSettings.Grid.ScaleFactor)), Color.Black);
         }
 
 

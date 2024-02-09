@@ -57,6 +57,8 @@ namespace WinterJam
 
         public override void Update(GameTime gameTime)
         {
+            if (currentHp >= maxHp)
+                currentHp = maxHp;
             var timer = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             _remainingDelay -= timer;
@@ -66,6 +68,7 @@ namespace WinterJam
                 base.Update(gameTime);
                 _remainingDelay = _delay;
             }
+            
 
         }
         public override void Draw(SpriteBatch spriteBatch)
@@ -73,12 +76,7 @@ namespace WinterJam
             base.Draw(spriteBatch);
             //HealthPosition = new Vector2(anchorPoint.X - GameSettings.GameFont.MeasureString(currentHp.ToString()).X / 2, anchorPoint.Y - Size.Y / 3 * 2);
             
-            //spriteBatch.DrawString(GameSettings.GameFont, currentHp.ToString(), HealthPosition + new Vector2(1, 0) * GameSettings.Grid.ScaleFactor, Color.White);
-            //spriteBatch.DrawString(GameSettings.GameFont, currentHp.ToString(), HealthPosition + new Vector2(-1, 0) * GameSettings.Grid.ScaleFactor, Color.White);
-            //spriteBatch.DrawString(GameSettings.GameFont, currentHp.ToString(), HealthPosition + new Vector2(0, 1) * GameSettings.Grid.ScaleFactor, Color.White);
-            //spriteBatch.DrawString(GameSettings.GameFont, currentHp.ToString(), HealthPosition + new Vector2(0, -1) * GameSettings.Grid.ScaleFactor, Color.White);
-            //spriteBatch.DrawString(GameSettings.GameFont, currentHp.ToString(), HealthPosition, Color.Black);
-
+            
             //Rectangle HPDestinationRectangle = new Rectangle((int)(HealthPosition.X - HealthBarSize.X/2), (int)(HealthPosition.Y + HealthBarDestinationRectangle.Height / 4),                (int)((HealthBarDestinationRectangle.Width - 20)* (float)currentHp / maxHp), HealthBarDestinationRectangle.Height/2);
             spriteBatch.Draw(HealthBarTexture, HealthBarDestinationRectangle, Color.White);
             spriteBatch.Draw(HealthBarHPTexture, HPDestinationRectangle, Color.White);
