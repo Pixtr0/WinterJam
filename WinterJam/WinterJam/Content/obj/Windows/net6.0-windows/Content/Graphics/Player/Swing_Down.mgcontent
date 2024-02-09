@@ -3,7 +3,11 @@
   <SourceFile>C:/Users/Maesm/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Player/Swing_Down.png</SourceFile>
   <SourceTime>2024-02-08T16:40:44.7549925+01:00</SourceTime>
   <DestFile>C:/Users/Maesm/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/bin/Windows/Content/Graphics/Player/Swing_Down.xnb</DestFile>
+<<<<<<< Updated upstream
   <DestTime>2024-02-08T18:09:04.1008703+01:00</DestTime>
+=======
+  <DestTime>2024-02-08T16:42:23.3901576+01:00</DestTime>
+>>>>>>> Stashed changes
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T13:44:56+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
