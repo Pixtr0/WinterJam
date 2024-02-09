@@ -14,8 +14,8 @@ namespace WinterJam.Screens
             //79 x 15
             get
             {
-                return new Rectangle((int)(GameSettings.ScreenSize.X / 2 - 79 * GameSettings.Grid.ScaleFactor / 2 * 1.5f),
-                                     (int)(GameSettings.ScreenSize.Y / 4 - buttonHeight * 1.5f),
+                return new Rectangle((int)(GameSettings.ScreenSize.X / 2 - 79 * GameSettings.Grid.ScaleFactor / 2 ),
+                                     (int)(GameSettings.ScreenSize.Y / 4 - buttonHeight),
                                      (int)(79 * 4),
                                      (int)(15 * 4));
             }
@@ -28,8 +28,8 @@ namespace WinterJam.Screens
         private bool isAzertyButtonPressed;
         private bool isArrowsButtonPressed;
 
-        private Vector2 offset1 = new Vector2(GameSettings.ScreenSize.X / 6, -90);
-        private Vector2 offset2 = new Vector2(GameSettings.ScreenSize.X / 6, -150);
+        private Vector2 offset1 = new Vector2(GameSettings.ScreenSize.X / 6, -50);
+        private Vector2 offset2 = new Vector2(GameSettings.ScreenSize.X / 7, -150);
 
         private int buttonWidth = (int)(68 * 4)  ; // Adjusted button width
         private int buttonHeight = (int)(21 * 4) ; // Adjusted button height
@@ -108,6 +108,7 @@ namespace WinterJam.Screens
                 // If the slider handle is clicked, adjust the slider value based on the mouse position
                 sliderValue = MathHelper.Clamp((_currentMouseState.Position.X - framePosition.X - offset2.X - sliderPosition.X) / sliderWidth, 0f, 1f);
             }
+            GameSettings.VolumeValue = sliderValue;
         }
 
         private void UpdateControlKeys()
@@ -122,21 +123,21 @@ namespace WinterJam.Screens
 
         private void CheckButtonPresses()
         {
-            if (CheckButtonPressed(-offset1 + new Vector2(framePosition.X + (frameWidth - buttonWidth) / 2, framePosition.Y + (frameHeight - buttonHeight * 4) / 2 - 60), buttonWidth, buttonHeight))
+            if (CheckButtonPressed(-offset1 + new Vector2(framePosition.X + (frameWidth - buttonWidth) / 2 + 65, framePosition.Y + (frameHeight - buttonHeight * 4) / 2 - 60), buttonWidth, buttonHeight))
             {
                 GameSettings.SFX_Button.Play();
                 isQwertyButtonPressed = true;
                 isAzertyButtonPressed = false;
                 isArrowsButtonPressed = false;
             }
-            else if (CheckButtonPressed(-offset1 + new Vector2(framePosition.X + (frameWidth - buttonWidth) / 2, framePosition.Y + (frameHeight - buttonHeight * 4) / 2 - 60 + buttonHeight + 10), buttonWidth, buttonHeight))
+            else if (CheckButtonPressed(-offset1 + new Vector2(framePosition.X + (frameWidth - buttonWidth) / 2 + 65, framePosition.Y + (frameHeight - buttonHeight * 4) / 2 - 60 + buttonHeight + 10), buttonWidth, buttonHeight))
             {
                 GameSettings.SFX_Button.Play();
                 isQwertyButtonPressed = false;
                 isAzertyButtonPressed = true;
                 isArrowsButtonPressed = false;
             }
-            else if (CheckButtonPressed(-offset1 + new Vector2(framePosition.X + (frameWidth - buttonWidth) / 2, framePosition.Y + (frameHeight - buttonHeight * 4) / 2 - 60 + 2 * (buttonHeight + 10)), buttonWidth, buttonHeight))
+            else if (CheckButtonPressed(-offset1 + new Vector2(framePosition.X + (frameWidth - buttonWidth) / 2 + 70, framePosition.Y + (frameHeight - buttonHeight * 4) / 2 - 60 + 2 * (buttonHeight + 10)), buttonWidth, buttonHeight))
             {
                 GameSettings.SFX_Button.Play();
                 isQwertyButtonPressed = false;
@@ -172,16 +173,16 @@ namespace WinterJam.Screens
             spriteBatch.DrawString(GameSettings.GameFont, "Keybinds", -offset1 + new Vector2(framePosition.X + (frameWidth - buttonWidth) / 2 + 100, framePosition.Y + (frameHeight - buttonHeight * 4) / 2 - 130), Color.Black);
 
             //draw slider text
-            spriteBatch.DrawString(GameSettings.GameFont, "Audio", new Vector2(offset2.X + framePosition.X + (frameWidth - buttonWidth) / 2 + 96, -offset2.Y + framePosition.Y + (frameHeight - buttonHeight * 4) / 2 + 20), Color.White);
-            spriteBatch.DrawString(GameSettings.GameFont, "Audio", new Vector2(offset2.X + framePosition.X + (frameWidth - buttonWidth) / 2 + 104, -offset2.Y + framePosition.Y + (frameHeight - buttonHeight * 4) / 2 + 20), Color.White);
-            spriteBatch.DrawString(GameSettings.GameFont, "Audio", new Vector2(offset2.X + framePosition.X + (frameWidth - buttonWidth) / 2 + 100, -offset2.Y + framePosition.Y + (frameHeight - buttonHeight * 4) / 2 + 16), Color.White);
-            spriteBatch.DrawString(GameSettings.GameFont, "Audio", new Vector2(offset2.X + framePosition.X + (frameWidth - buttonWidth) / 2 + 100, -offset2.Y + framePosition.Y + (frameHeight - buttonHeight * 4) / 2 + 24), Color.White);
-            spriteBatch.DrawString(GameSettings.GameFont, "Audio", new Vector2(offset2.X + framePosition.X + (frameWidth - buttonWidth) / 2 + 100, -offset2.Y + framePosition.Y + (frameHeight - buttonHeight * 4) / 2 + 20), Color.Black);
+            spriteBatch.DrawString(GameSettings.GameFont, "Audio", new Vector2(offset2.X - 25 +  framePosition.X + (frameWidth - buttonWidth) / 2 + 96, -offset2.Y - 80 + framePosition.Y + (frameHeight - buttonHeight * 4) / 2 + 20), Color.White);
+            spriteBatch.DrawString(GameSettings.GameFont, "Audio", new Vector2(offset2.X - 25 + framePosition.X + (frameWidth - buttonWidth) / 2 + 104, -offset2.Y - 80 + framePosition.Y + (frameHeight - buttonHeight * 4) / 2 + 20), Color.White);
+            spriteBatch.DrawString(GameSettings.GameFont, "Audio", new Vector2(offset2.X - 25+ framePosition.X + (frameWidth - buttonWidth) / 2 + 100, -offset2.Y - 80 + framePosition.Y + (frameHeight - buttonHeight * 4) / 2 + 16), Color.White);
+            spriteBatch.DrawString(GameSettings.GameFont, "Audio", new Vector2(offset2.X - 25 + framePosition.X + (frameWidth - buttonWidth) / 2 + 100, -offset2.Y - 80 + framePosition.Y + (frameHeight - buttonHeight * 4) / 2 + 24), Color.White);
+            spriteBatch.DrawString(GameSettings.GameFont, "Audio", new Vector2(offset2.X - 25 + framePosition.X + (frameWidth - buttonWidth) / 2 + 100, -offset2.Y - 80 + framePosition.Y + (frameHeight - buttonHeight * 4) / 2 + 20), Color.Black);
 
             // Draw buttons
-            DrawButton(-offset1 + new Vector2(framePosition.X + (frameWidth - buttonWidth) / 2, framePosition.Y + (frameHeight - buttonHeight * 4) / 2 - 60), buttonWidth, buttonHeight, "Qwerty", isQwertyButtonPressed, spriteBatch);
-            DrawButton(-offset1 + new Vector2(framePosition.X + (frameWidth - buttonWidth) / 2, framePosition.Y + (frameHeight - buttonHeight * 4) / 2 - 60 + buttonHeight + 10), buttonWidth, buttonHeight, "Azerty", isAzertyButtonPressed, spriteBatch);
-            DrawButton(-offset1 + new Vector2(framePosition.X + (frameWidth - buttonWidth) / 2, framePosition.Y + (frameHeight - buttonHeight * 4) / 2 - 60 + 2 * (buttonHeight + 10)), buttonWidth, buttonHeight, "Arrows", isArrowsButtonPressed, spriteBatch);
+            DrawButton(-offset1 + new Vector2(framePosition.X + (frameWidth - buttonWidth) / 2 + 65, framePosition.Y + (frameHeight - buttonHeight * 4) / 2 - 60), buttonWidth, buttonHeight, "Qwerty", isQwertyButtonPressed, spriteBatch);
+            DrawButton(-offset1 + new Vector2(framePosition.X + (frameWidth - buttonWidth) / 2 + 65, framePosition.Y + (frameHeight - buttonHeight * 4) / 2 - 60 + buttonHeight + 10), buttonWidth, buttonHeight, "Azerty", isAzertyButtonPressed, spriteBatch);
+            DrawButton(-offset1 + new Vector2(framePosition.X + (frameWidth - buttonWidth) / 2 + 65, framePosition.Y + (frameHeight - buttonHeight * 4) / 2 - 60 + 2 * (buttonHeight + 10)), buttonWidth, buttonHeight, "Arrows", isArrowsButtonPressed, spriteBatch);
 
             // Draw the slider
             DrawSlider(spriteBatch, offset2);
@@ -223,9 +224,9 @@ namespace WinterJam.Screens
             // Draw slider handle
             spriteBatch.Draw(GameSettings.UI_Volume_slider, new Rectangle(
                 (int)offset.X + (int)framePosition.X + (int)(sliderPosition.X + sliderValue * (sliderWidth - (int)(4 * GameSettings.Grid.ScaleFactor))),
-                (int)offset.Y + (int)framePosition.Y + (int)sliderPosition.Y + (int)(10 * GameSettings.Grid.ScaleFactor), 
-                (int)(6f * GameSettings.Grid.ScaleFactor), 
-                (int)(23f * GameSettings.Grid.ScaleFactor))
+                (int)offset.Y + (int)framePosition.Y + (int)sliderPosition.Y + (int)(7 * GameSettings.Grid.ScaleFactor), 
+                (int)(4f * GameSettings.Grid.ScaleFactor), 
+                (int)(15f * GameSettings.Grid.ScaleFactor))
                 , Color.Yellow);
         }
 

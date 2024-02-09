@@ -34,7 +34,6 @@ namespace WinterJam.Screens
         public static List<Item> DroppedItems { get; set; } = new List<Item>();
 
         private int _amountOfObstacles = 13;
-        private int escToPauseDrawCounter = 360;
         private bool SpawnedSquirrel = false;
 
         public PlayScreen()
@@ -66,6 +65,8 @@ namespace WinterJam.Screens
                 GameSettings.SFX_Button.Play();
                 GameSettings.IsCloseButtonPressed = false;
                 GameSettings.IsPauseScreenDrawn = !GameSettings.IsPauseScreenDrawn;
+                GameSettings.IsControlsScreenDrawn = false;
+                GameSettings.IsSettingsScreenDrawn = false;
             }
 
             if (GameSettings.IsPauseScreenDrawn == true)
@@ -82,12 +83,12 @@ namespace WinterJam.Screens
             {
 
                 Score.Update(gameTime);
-                if (!SpawnedSquirrel && Score.Time % 15 == 0)
+                if (!SpawnedSquirrel && Score.Time % 20 == 0)
                 {
                     Enemies.Add(Enemy.Spawn());
                     SpawnedSquirrel = true;
                 }
-                else if(Score.Time % 30 != 0) { SpawnedSquirrel = false; }
+                else if(Score.Time % 20 != 0) { SpawnedSquirrel = false; }
                 foreach (Enemy enemy in Enemies)
                 {
                     enemy.Update(gameTime);

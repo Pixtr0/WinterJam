@@ -99,15 +99,7 @@ namespace WinterJam.Screens
             //GameSettings.Grid.DrawGrass(spriteBatch);
 
             //spriteBatch.Draw(GameSettings.ScreenTexture, dr, Color.Black);
-            for (int i = 0; i < PlayScreen.Backgroundback.Count; i++)
-            {
-                PlayScreen.Backgroundback[i].Draw(spriteBatch);
-            }
-
-            for (int i = 0; i < PlayScreen.Backgroundfront.Count; i++)
-            {
-                PlayScreen.Backgroundfront[i].Draw(spriteBatch);
-            }
+            
 
             spriteBatch.Draw(GameSettings.UI_Background_GameOver, UI_Background_Rectangle, Color.White);
 
@@ -123,7 +115,7 @@ namespace WinterJam.Screens
             //Draw Quit Button
             DrawQuitButton(spriteBatch);
 
-            //Score.DrawResults(spriteBatch,new Vector2(GameSettings.ScreenSize.X / 4 * 3 , GameSettings.ScreenSize.Y / 5 * 2));
+            Score.DrawResults(spriteBatch,new Vector2(GameSettings.ScreenSize.X / 4 * 3 , GameSettings.ScreenSize.Y / 5 * 2));
             DrawCredits(spriteBatch);
 
             if (GameSettings.IsSettingsScreenDrawn && !GameSettings.IsCloseButtonPressed)
