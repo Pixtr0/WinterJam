@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 
 namespace WinterJam.Screens
 {
-    internal class GameOverScreen : Screen
+    public class GameOverScreen : Screen
     {
         private int buttonWidth = 68 * 6;
         private int buttonHeight = 21 * 6;
         private bool playButtonPressed = false;
         private bool settingsButtonPressed = false;
         private bool quitButtonPressed = false;
-
+        public int Score {  get; set; }
+        public string TimeSurvived { get; set; }
         public override void Update(GameTime gameTime)
         {
             UserInput.Update();
@@ -75,15 +76,17 @@ namespace WinterJam.Screens
                 // Set the play button texture to pressed
                 playButtonPressed = true;
                 await Task.Delay(200); // Wait for 1 second
-                GameSettings.ActiveScreen = GameSettings.StartScreen; // Switch to the play screen
+                playButtonPressed = false;
+
+                GameSettings.PlayScreen.Reset();
+                GameSettings.ActiveScreen = GameSettings.PlayScreen ; // Switch to the play screen
             }
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            GameSettings.Grid.DrawGrass(spriteBatch);
+            //GameSettings.Grid.DrawGrass(spriteBatch);
 
-            Rectangle dr = new Rectangle(0, 0, (int)GameSettings.ScreenSize.X, (int)GameSettings.ScreenSize.Y);
             //spriteBatch.Draw(GameSettings.ScreenTexture, dr, Color.Black);
 
             //DestinationRectangle for the GameOver logo
@@ -98,12 +101,32 @@ namespace WinterJam.Screens
             //Draw Quit Button
             DrawQuitButton(spriteBatch);
 
+            DrawCredits(spriteBatch);
+
             if (GameSettings.IsSettingsScreenDrawn && !GameSettings.IsCloseButtonPressed)
             {
                 GameSettings.SettingsScreen.Draw(spriteBatch);
             }
         }
 
+        private void DrawCredits(SpriteBatch spriteBatch)
+        {
+            spriteBatch.DrawString(GameSettings.GameFont, "CREDITS", new Vector2(20
+                , GameSettings.ScreenSize.Y - 400), Color.Black);
+            spriteBatch.DrawString(GameSettings.GameFont, 
+                "Matthias de Vilder\n\n" +
+                "Samuel Cutts\n\n" +
+                "Matthias Maes\n\n" +
+                "Ash",
+                new Vector2(20, GameSettings.ScreenSize.Y - 300), Color.Black, 0, Vector2.Zero, 0.75f, SpriteEffects.None, 1);
+
+            spriteBatch.DrawString(GameSettings.GameFont,
+                "-  Programmer\n\n" +
+                "-  Programmer\n\n" +
+                "-  Programmer\n\n" +
+                "-  Artist",
+                new Vector2(400, GameSettings.ScreenSize.Y - 300), Color.Black, 0, Vector2.Zero, 0.75f, SpriteEffects.None, 1);
+        }
         private void DrawGameOverText(SpriteBatch spriteBatch)
         {
             Rectangle dr = new Rectangle(((int)GameSettings.ScreenSize.X - buttonWidth * 3/2) / 2, (int)GameSettings.ScreenSize.Y / 4 - buttonHeight, buttonWidth * 3/2, buttonHeight);
@@ -156,7 +179,7 @@ namespace WinterJam.Screens
             spriteBatch.Draw(playButtonTexture, dr, Color.White);
 
             Vector2 textPosition = Vector2.One;
-            Vector2 textSize = GameSettings.GameFont.MeasureString("PLAY");
+            Vector2 textSize = GameSettings.GameFont.MeasureString("TRY AGAIN");
             if (!playButtonPressed)
             {
                 textPosition = new Vector2(dr.X + (buttonWidth - textSize.X) / 2, dr.Y - textSize.Y + buttonHeight / 2);
@@ -165,7 +188,7 @@ namespace WinterJam.Screens
             {
                 textPosition = new Vector2(dr.X + (buttonWidth - textSize.X) / 2, dr.Y - textSize.Y + buttonHeight / 2 + 16);
             }
-            spriteBatch.DrawString(GameSettings.GameFont, "PLAY", textPosition, Color.Black);
+            spriteBatch.DrawString(GameSettings.GameFont, "TRY AGAIN", textPosition, Color.Black);
         }
     }
 }

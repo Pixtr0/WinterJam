@@ -1,7 +1,9 @@
 ﻿
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,6 +49,12 @@ namespace WinterJam
         public static Texture2D UI_player_Controls { get; set; }
         public static Texture2D UI_Settings { get; set; }
         public static Texture2D BasketTexture { get; set; }
+        public static Song GameMusic { get; set; }
+        public static Song SFX_GameOver { get; set; }
+        public static SoundEffect SFX_Smack { get; set; }
+
+
+
 
     }
 }

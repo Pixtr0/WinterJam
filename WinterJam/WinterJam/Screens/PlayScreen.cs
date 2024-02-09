@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using SharpDX.Direct3D9;
 //using SharpDX.Direct2D1;
 using System;
@@ -53,12 +54,9 @@ namespace WinterJam.Screens
             Player.TopLeftPosition = GameSettings.Grid.GetGridPosition(new Vector2(8,9)) + new Vector2(-5f, -12.5f) * GameSettings.Grid.ScaleFactor;
             Player.CurrentPosition = new Vector2(8, 9);
             Player.NextPosition = Player.CurrentPosition;
-            
-
         }
         public override void Update(GameTime gameTime)
         {
-           
             // Your existing update logic goes here
             GameSettings.Grid.Update();
             UserInput.Update();
@@ -83,7 +81,7 @@ namespace WinterJam.Screens
             {
 
                 Score.Update(gameTime);
-                if (!SpawnedSquirrel && Score.Time % 30 == 0)
+                if (!SpawnedSquirrel && Score.Time % 1 == 0)
                 {
                     Enemies.Add(Enemy.Spawn());
                     SpawnedSquirrel = true;
@@ -125,6 +123,8 @@ namespace WinterJam.Screens
         {
             if (House.currentHp <= 0)
             {
+                MediaPlayer.IsRepeating = false;
+                MediaPlayer.Play(GameSettings.SFX_GameOver)
                 GameSettings.ActiveScreen = GameSettings.GameOverScreen;
             }
         }

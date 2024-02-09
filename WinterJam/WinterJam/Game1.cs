@@ -1,7 +1,9 @@
 
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using SpriteSheetClass;
 using System;
 using System.Collections.Generic;
@@ -30,8 +32,9 @@ namespace WinterJam
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            
-            GameSettings.ActiveScreen = new StartScreen();
+
+            GameSettings.StartScreen = new StartScreen();
+            GameSettings.ActiveScreen = GameSettings.StartScreen;
             base.Initialize();
         }
 
@@ -138,11 +141,14 @@ namespace WinterJam
             //loading screens
             GameSettings.SettingsScreen = new SettingsScreen();
             GameSettings.PauseScreen = new PauseScreen();
-            GameSettings.StartScreen = new StartScreen();
             GameSettings.PlayScreen = new PlayScreen();
             GameSettings.GameOverScreen = new GameOverScreen();
 
-
+            GameSettings.GameMusic = Content.Load<Song>("Sounds/Winterjam_jam");
+            GameSettings.SFX_Smack = Content.Load<SoundEffect>("Sounds/Smack");
+            GameSettings.SFX_GameOver = Content.Load<Song>("Sounds/GameOver");
+            MediaPlayer.IsRepeating = true;
+            MediaPlayer.Play(GameSettings.GameMusic);
         }
 
         protected override void Update(GameTime gameTime)
