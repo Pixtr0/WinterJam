@@ -8,8 +8,8 @@ namespace WinterJam.Screens
 {
     internal class GameOverScreen : Screen
     {
-        private int buttonWidth = (int)(68 * 6);
-        private int buttonHeight = (int)(21 * 6);
+        private int buttonWidth = 68 * 6;
+        private int buttonHeight = 21 * 6;
         private bool playButtonPressed = false;
         private bool settingsButtonPressed = false;
         private bool quitButtonPressed = false;
@@ -113,7 +113,7 @@ namespace WinterJam.Screens
         private void DrawQuitButton(SpriteBatch spriteBatch)
         {
             Texture2D quitButtonTexture = quitButtonPressed ? GameSettings.Button_Pressed_Orange : GameSettings.Button_Orange;
-            Rectangle dr = new Rectangle(((int)GameSettings.ScreenSize.X - buttonWidth) / 2, (int)GameSettings.ScreenSize.Y * 3 / 4, buttonWidth, buttonHeight);
+            Rectangle dr = new Rectangle(((int)GameSettings.ScreenSize.X - buttonWidth) / 2, (int)GameSettings.ScreenSize.Y * 4 / 5, buttonWidth, buttonHeight);
             spriteBatch.Draw(quitButtonTexture, dr, Color.White);
 
             Vector2 textPosition = Vector2.One;

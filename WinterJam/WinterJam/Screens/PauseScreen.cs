@@ -62,8 +62,8 @@ namespace WinterJam.Screens
                 await Task.Delay(100);
                 quitButtonPressed = false;
                 // Exit the program
-                //Environment.Exit(0);
-                GameSettings.ActiveScreen = GameSettings.GameOverScreen;
+                Environment.Exit(0);
+                //GameSettings.ActiveScreen = GameSettings.GameOverScreen;
             }
         }
 
@@ -94,6 +94,7 @@ namespace WinterJam.Screens
                 await Task.Delay(100);
                 menuButtonPressed = false;
                 GameSettings.IsPauseScreenDrawn = false;
+                GameSettings.PlayScreen = new PlayScreen();
                 GameSettings.ActiveScreen = GameSettings.StartScreen;
             }
         }

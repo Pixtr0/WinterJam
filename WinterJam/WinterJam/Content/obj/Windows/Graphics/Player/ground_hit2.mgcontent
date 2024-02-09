@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>F:/WinterJam/WinterJam/WinterJam/WinterJam/Content/Graphics/Player/ground_hit2.png</SourceFile>
-  <SourceTime>2024-02-09T06:11:30.2430271+01:00</SourceTime>
-  <DestFile>F:/WinterJam/WinterJam/WinterJam/WinterJam/Content/bin/Windows/Graphics/Player/ground_hit2.xnb</DestFile>
-  <DestTime>2024-02-09T10:46:20.0664708+01:00</DestTime>
+  <SourceFile>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Player/ground_hit2.png</SourceFile>
+  <SourceTime>2024-02-09T10:44:48.6907528+01:00</SourceTime>
+  <DestFile>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/bin/Windows/Graphics/Player/ground_hit2.xnb</DestFile>
+  <DestTime>2024-02-09T13:32:39.2723601+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T13:44:56+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

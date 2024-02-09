@@ -43,6 +43,8 @@ namespace WinterJam
         public static Texture2D UI_Volume { get; set; }
         public static Texture2D UI_Volume_slider { get; set; }
         public static Texture2D UI_game_over { get; set; }
+        public static Texture2D UI_Controls { get; set; }
+        public static Texture2D UI_player_Controls { get; set; }
         public static Texture2D BasketTexture { get; set; }
 
     }
