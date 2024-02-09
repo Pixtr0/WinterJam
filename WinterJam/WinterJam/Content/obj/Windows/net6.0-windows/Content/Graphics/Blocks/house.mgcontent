@@ -3,7 +3,11 @@
   <SourceFile>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/Graphics/Blocks/house.png</SourceFile>
   <SourceTime>2024-02-06T16:09:03.5261495+01:00</SourceTime>
   <DestFile>C:/Users/scutt/OneDrive/Documents/GitHub/WinterJam/WinterJam/WinterJam/Content/bin/Windows/Content/Graphics/Blocks/house.xnb</DestFile>
+<<<<<<< HEAD
   <DestTime>2024-02-09T12:38:21.5816553+01:00</DestTime>
+=======
+  <DestTime>2024-02-08T17:25:19.6696606+01:00</DestTime>
+>>>>>>> parent of 0a1f6f2 (Merge branch 'main' of https://github.com/Pixtr0/WinterJam)
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T13:44:56+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
