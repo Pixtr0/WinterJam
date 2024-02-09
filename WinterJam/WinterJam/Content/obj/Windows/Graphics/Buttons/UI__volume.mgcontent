@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<<<<<<< HEAD
+  <SourceFile>C:/Users/matth/OneDrive/Documents/WinterJam/WinterJam/WinterJam/WinterJam/Content/Graphics/Buttons/UI__volume.png</SourceFile>
+  <SourceTime>2024-02-08T23:11:32.955745+01:00</SourceTime>
+  <DestFile>C:/Users/matth/OneDrive/Documents/WinterJam/WinterJam/WinterJam/WinterJam/Content/bin/Windows/Graphics/Buttons/UI__volume.xnb</DestFile>
+  <DestTime>2024-02-08T23:14:51.6930075+01:00</DestTime>
+=======
   <SourceFile>F:/WinterJam/WinterJam/WinterJam/WinterJam/Content/Graphics/Buttons/UI__volume.png</SourceFile>
   <SourceTime>2024-02-09T02:18:27.8538463+01:00</SourceTime>
   <DestFile>F:/WinterJam/WinterJam/WinterJam/WinterJam/Content/bin/Windows/Graphics/Buttons/UI__volume.xnb</DestFile>
   <DestTime>2024-02-09T10:46:19.8232696+01:00</DestTime>
+>>>>>>> 0a1f6f23e134bfbca1a07a0da94512f3d3e19160
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T13:44:56+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
