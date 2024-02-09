@@ -8,8 +8,8 @@ namespace WinterJam.Screens
 {
     internal class GameOverScreen : Screen
     {
-        private int buttonWidth = 68 * 6;
-        private int buttonHeight = 21 * 6;
+        private int buttonWidth = 68 * 4;
+        private int buttonHeight = 21 * 4;
         private bool playButtonPressed = false;
         private bool settingsButtonPressed = false;
         private bool quitButtonPressed = false;
@@ -53,7 +53,7 @@ namespace WinterJam.Screens
         private async void CheckSettingsButtonClick()
         {
             // Check if the settings button is pressed
-            Rectangle settingsButtonRect = new Rectangle(((int)GameSettings.ScreenSize.X - buttonWidth) / 2, (int)GameSettings.ScreenSize.Y / 2, buttonWidth, buttonHeight);
+            Rectangle settingsButtonRect = new Rectangle(((int)GameSettings.ScreenSize.X - buttonWidth) / 2, buttonHeight + (int)GameSettings.ScreenSize.Y / 2, buttonWidth, buttonHeight);
             if (!GameSettings.IsSettingsScreenDrawn && UserInput._currentMouseState.LeftButton == ButtonState.Pressed && UserInput._previousMouseState.LeftButton == ButtonState.Released &&
                 settingsButtonRect.Contains(UserInput._currentMouseState.Position))
             {
@@ -68,14 +68,16 @@ namespace WinterJam.Screens
         private async void UpdateActiveScreen(GameTime gameTime)
         {
             // Check if the play button is pressed
-            Rectangle playButtonRect = new Rectangle(((int)GameSettings.ScreenSize.X - buttonWidth) / 2, (int)GameSettings.ScreenSize.Y / 3, buttonWidth, buttonHeight);
+            Rectangle playButtonRect = new Rectangle(((int)GameSettings.ScreenSize.X - buttonWidth) / 2, buttonHeight + (int)GameSettings.ScreenSize.Y / 3, buttonWidth, buttonHeight);
             if (!playButtonPressed && UserInput._currentMouseState.LeftButton == ButtonState.Pressed && UserInput._previousMouseState.LeftButton == ButtonState.Released &&
                 playButtonRect.Contains(UserInput._currentMouseState.Position))
             {
                 // Set the play button texture to pressed
                 playButtonPressed = true;
                 await Task.Delay(200); // Wait for 1 second
-                GameSettings.ActiveScreen = GameSettings.StartScreen; // Switch to the play screen
+                playButtonPressed = false;
+                GameSettings.PlayScreen.Reset();
+                GameSettings.ActiveScreen = GameSettings.PlayScreen; // Switch to the play screen
             }
         }
 
@@ -85,6 +87,15 @@ namespace WinterJam.Screens
 
             Rectangle dr = new Rectangle(0, 0, (int)GameSettings.ScreenSize.X, (int)GameSettings.ScreenSize.Y);
             //spriteBatch.Draw(GameSettings.ScreenTexture, dr, Color.Black);
+            for (int i = 0; i < PlayScreen.Backgroundback.Count; i++)
+            {
+                PlayScreen.Backgroundback[i].Draw(spriteBatch);
+            }
+
+            for (int i = 0; i < PlayScreen.Backgroundfront.Count; i++)
+            {
+                PlayScreen.Backgroundfront[i].Draw(spriteBatch);
+            }
 
             //DestinationRectangle for the GameOver logo
             DrawGameOverText(spriteBatch);
@@ -97,6 +108,8 @@ namespace WinterJam.Screens
 
             //Draw Quit Button
             DrawQuitButton(spriteBatch);
+
+            Score.DrawResults(spriteBatch,new Vector2(GameSettings.ScreenSize.X / 4 * 3 , GameSettings.ScreenSize.Y / 5 * 2));
 
             if (GameSettings.IsSettingsScreenDrawn && !GameSettings.IsCloseButtonPressed)
             {
@@ -120,7 +133,7 @@ namespace WinterJam.Screens
             Vector2 textSize = GameSettings.GameFont.MeasureString("QUIT");
             if (!quitButtonPressed)
             {
-                textPosition = new Vector2(dr.X + (buttonWidth - textSize.X) / 2, dr.Y - textSize.Y + buttonHeight / 2);
+                textPosition = new Vector2(dr.X + (buttonWidth - textSize.X) / 2, dr.Y - textSize.Y + buttonHeight / 2 + 4);
             }
             else
             {
@@ -132,14 +145,14 @@ namespace WinterJam.Screens
         private void DrawSettingsButton(SpriteBatch spriteBatch)
         {
             Texture2D settingsButtonTexture = settingsButtonPressed ? GameSettings.Button_Pressed_Yellow : GameSettings.Button_Yellow;
-            Rectangle dr = new Rectangle(((int)GameSettings.ScreenSize.X - buttonWidth) / 2, (int)GameSettings.ScreenSize.Y / 2, buttonWidth, buttonHeight);
+            Rectangle dr = new Rectangle(((int)GameSettings.ScreenSize.X - buttonWidth) / 2, buttonHeight + (int)GameSettings.ScreenSize.Y / 2, buttonWidth, buttonHeight);
             spriteBatch.Draw(settingsButtonTexture, dr, Color.White);
 
             Vector2 textPosition = Vector2.One;
             Vector2 textSize = GameSettings.GameFont.MeasureString("SETTINGS");
             if (!settingsButtonPressed)
             {
-                textPosition = new Vector2(dr.X + (buttonWidth - textSize.X) / 2, dr.Y - textSize.Y + buttonHeight / 2);
+                textPosition = new Vector2(dr.X + (buttonWidth - textSize.X) / 2, dr.Y - textSize.Y + buttonHeight / 2 + 4);
             }
             else
             {
@@ -152,20 +165,20 @@ namespace WinterJam.Screens
         {
 
             Texture2D playButtonTexture = playButtonPressed ? GameSettings.Button_Pressed_Yellow : GameSettings.Button_Yellow;
-            Rectangle dr = new Rectangle(((int)GameSettings.ScreenSize.X - buttonWidth) / 2, (int)GameSettings.ScreenSize.Y / 3, buttonWidth, buttonHeight);
+            Rectangle dr = new Rectangle(((int)GameSettings.ScreenSize.X - buttonWidth) / 2, buttonHeight + (int)GameSettings.ScreenSize.Y / 3, buttonWidth, buttonHeight);
             spriteBatch.Draw(playButtonTexture, dr, Color.White);
 
             Vector2 textPosition = Vector2.One;
-            Vector2 textSize = GameSettings.GameFont.MeasureString("PLAY");
+            Vector2 textSize = GameSettings.GameFont.MeasureString("TRY AGAIN");
             if (!playButtonPressed)
             {
-                textPosition = new Vector2(dr.X + (buttonWidth - textSize.X) / 2, dr.Y - textSize.Y + buttonHeight / 2);
+                textPosition = new Vector2(dr.X + (buttonWidth - textSize.X) / 2, dr.Y - textSize.Y + buttonHeight / 2 + 4);
             }
             else
             {
                 textPosition = new Vector2(dr.X + (buttonWidth - textSize.X) / 2, dr.Y - textSize.Y + buttonHeight / 2 + 16);
             }
-            spriteBatch.DrawString(GameSettings.GameFont, "PLAY", textPosition, Color.Black);
+            spriteBatch.DrawString(GameSettings.GameFont, "TRY AGAIN", textPosition, Color.Black);
         }
     }
 }

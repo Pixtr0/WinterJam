@@ -21,6 +21,7 @@ namespace WinterJam
         public static (Keys left, Keys right, Keys up, Keys down) ControlKeys { get; set; } = (Keys.A, Keys.D, Keys.W, Keys.S);
         public static Screen StartScreen { get; set; }
         public static PlayScreen PlayScreen { get; set; }
+        public static Screen ControlsScreen { get; set; }
         public static Screen GameOverScreen { get; set; }
         public static Screen ActiveScreen { get; set; }
         public static Screen SettingsScreen { get; set; }
@@ -35,6 +36,7 @@ namespace WinterJam
         public static bool IsCloseButtonPressed { get; set; }
         public static bool IsSettingsScreenDrawn { get; set; }
         public static bool IsPauseScreenDrawn { get; set; }
+        public static bool IsControlsScreenDrawn { get; set; }
         public static Texture2D Button_Yellow { get; set; }
         public static Texture2D Button_Orange { get; set; }
         public static Texture2D Button_Pressed_Yellow { get; set; }

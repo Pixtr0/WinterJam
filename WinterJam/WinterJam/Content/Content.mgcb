@@ -13,18 +13,6 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin Graphics/Blocks/basket.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Graphics/Blocks/basket.png
-
 #begin Graphics/Blocks/bush_01.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -493,6 +481,18 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Buttons/UI__volume.png
 
+#begin Graphics/Buttons/UI_background.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphics/Buttons/UI_background.png
+
 #begin Graphics/Buttons/UI_button_01.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -541,18 +541,6 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Buttons/UI_button_pressed_02.png
 
-#begin Graphics/Buttons/UI_controls.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Graphics/Buttons/UI_controls.png
-
 #begin Graphics/Buttons/UI_game_over.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -600,30 +588,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Graphics/Buttons/UI_paused.png
-
-#begin Graphics/Buttons/UI_player_controls.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Graphics/Buttons/UI_player_controls.png
-
-#begin Graphics/Buttons/UI_settings.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Graphics/Buttons/UI_settings.png
 
 #begin Graphics/Buttons/UI_volume_slider.png
 /importer:TextureImporter

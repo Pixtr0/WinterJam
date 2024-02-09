@@ -16,8 +16,8 @@ namespace WinterJam.Screens
             {
                 return new Rectangle((int)(GameSettings.ScreenSize.X / 2 - 79 * GameSettings.Grid.ScaleFactor / 2 * 1.5f),
                                      (int)(GameSettings.ScreenSize.Y / 4 - buttonHeight * 1.5f),
-                                     (int)(79 * GameSettings.Grid.ScaleFactor * 1.5f),
-                                     (int)(15 * GameSettings.Grid.ScaleFactor * 1.5f));
+                                     (int)(79 * 4),
+                                     (int)(15 * 4));
             }
         }
         private Vector2 framePosition;
@@ -31,19 +31,19 @@ namespace WinterJam.Screens
         private Vector2 offset1 = new Vector2(GameSettings.ScreenSize.X / 6, -90);
         private Vector2 offset2 = new Vector2(GameSettings.ScreenSize.X / 6, -150);
 
-        private int buttonWidth = (int)(68 * GameSettings.Grid.ScaleFactor * 1.5f)  ; // Adjusted button width
-        private int buttonHeight = (int)(21 * GameSettings.Grid.ScaleFactor * 1.5f) ; // Adjusted button height
+        private int buttonWidth = (int)(68 * 4)  ; // Adjusted button width
+        private int buttonHeight = (int)(21 * 4) ; // Adjusted button height
 
-        private int backButtonWidth = (int)(69 * GameSettings.Grid.ScaleFactor * 1.5f);
-        private int backButtonHeight = (int)(21 * GameSettings.Grid.ScaleFactor * 1.5f);
+        private int backButtonWidth = (int)(69 * 4);
+        private int backButtonHeight = (int)(21 * 4);
         private bool backButtonPressed = false;
 
         private SpriteFont _font = GameSettings.GameFont;
 
         // Slider parameters
         private Vector2 sliderPosition;
-        private int sliderWidth = (int)(68 * GameSettings.Grid.ScaleFactor * 1.5f);
-        private int sliderHeight = (int)(21 * GameSettings.Grid.ScaleFactor * 1.5f);
+        private int sliderWidth = (int)(68 * 4);
+        private int sliderHeight = (int)(21 * 4);
         private float sliderValue = 0.5f; // Initial volume level
         private bool isSliderHeld = false;
 
@@ -79,9 +79,9 @@ namespace WinterJam.Screens
                 backButtonRect.Contains(UserInput._currentMouseState.Position))
             {
                 // Enable the settings screen
+
                 backButtonPressed = true;
                 await Task.Delay(100);
-
                 GameSettings.IsCloseButtonPressed = true;
                 GameSettings.IsSettingsScreenDrawn = false;
                 GameSettings.IsCloseButtonPressed = false;
