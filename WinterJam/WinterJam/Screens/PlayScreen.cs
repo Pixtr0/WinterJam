@@ -35,8 +35,8 @@ namespace WinterJam.Screens
         private int _amountOfBaskets = 2;
         public PlayScreen()
         {
-            GenerateRandomTiles();
             GenerateBaskets();
+            GenerateRandomTiles();
             GenerateTreesAndSurroundings();
         }
         
@@ -69,10 +69,10 @@ namespace WinterJam.Screens
                 {
                     Enemies.Add(Enemy.Spawn());
                 }
-                if (UserInput._currentKeyboardSate.IsKeyDown(Keys.Space) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Space))
-                {
-                    GenerateRandomTiles();
-                }
+                //if (UserInput._currentKeyboardSate.IsKeyDown(Keys.Space) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Space))
+                //{
+                //    GenerateRandomTiles();
+                //}
                 foreach (Enemy enemy in Enemies)
                 {
                     enemy.Update(gameTime);

@@ -18,7 +18,7 @@ namespace WinterJam.Screens
         {
             UserInput.Update();
 
-            //CheckSettingsButtonClick();
+            CheckSettingsButtonClick();
             GameSettings.IsPauseScreenDrawn = false;
 
             if (GameSettings.IsSettingsScreenDrawn)
@@ -92,7 +92,7 @@ namespace WinterJam.Screens
             DrawPlayButton(spriteBatch);
 
             // Draw Settings Button
-            //DrawSettingsButton(spriteBatch);
+            DrawSettingsButton(spriteBatch);
 
             //Draw Quit Button
             DrawQuitButton(spriteBatch);

@@ -570,3 +570,14 @@ F:\WinterJam\WinterJam\WinterJam\WinterJam\obj\Debug\net6.0-windows\WinterJam.pd
 F:\WinterJam\WinterJam\WinterJam\WinterJam\obj\Debug\net6.0-windows\WinterJam.genruntimeconfig.cache
 F:\WinterJam\WinterJam\WinterJam\WinterJam\obj\Debug\net6.0-windows\ref\WinterJam.dll
 F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Buttons\UI_game_over.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Blocks\flower_04.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Blocks\flower_05.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Blocks\flower_06.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Player\Down2.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Player\Left2.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Player\Up2.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Player\Right2.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Player\Swing_Down2.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Player\Swing_Left2.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Player\Swing_Up2.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Player\ground_hit2.xnb

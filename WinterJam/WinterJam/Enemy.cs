@@ -1,4 +1,4 @@
-﻿using Isometric_Thingy;
+﻿
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -24,7 +24,7 @@ namespace WinterJam
         private Color Color { get; set; }
         public override Vector2 anchorPoint => _delay == 5f ? base.anchorPoint - new Vector2(0,8 * GameSettings.Grid.ScaleFactor) : base.anchorPoint;
         public static List<Texture2D> Textures { get; set; }
-
+        private bool movingDiagonally { get; set; } = false;
         public bool IsHoldingItem { get; set; } = false;        
         public bool IsSmacked { get; set; } = false;        
         public bool HasDroppeditem { get; set; } = false;
@@ -112,6 +112,10 @@ namespace WinterJam
             
             newNextPos = possibilities[shortestIndex];
             Visualisation = Animations[shortestIndex];
+            if (shortestIndex == 2 || shortestIndex == 6)
+                movingDiagonally = true;
+            else
+                movingDiagonally = false;
             UsedTiles.Add(newNextPos);
             return newNextPos;
         }
@@ -181,13 +185,13 @@ namespace WinterJam
                 if (_delay == 2f && InSideHouse)
                 {
                     InSideHouse = false;
-                    _delay = 0.09f;
+                    _delay = movingDiagonally ? 0.16f : 0.09f;
                     Createitem(0);
                 }
                 if (_delay >= 5f || IsSmacked)
                 {
                     InSideHouse = false;
-                    _delay = 0.09f;
+                    _delay = movingDiagonally ? 0.16f : 0.09f;
                 } 
 
                 if (NextPosition == TargetLocation - new Vector2(0.3f, 0))
