@@ -164,11 +164,12 @@ namespace WinterJam.Players
                 this.Visualisation = Animations[5];
                 Visualisation.Play();
             }
+            smackedPositions.Add(CurrentPosition);
             for (int i = 0; i < PlayScreen.Enemies.Count; i++)
             {
                 for (int j = 0; j < smackedPositions.Count; j++)
                 {
-                    if (PlayScreen.Enemies[i].LastPosition == smackedPositions[j] || PlayScreen.Enemies[i].NextPosition == smackedPositions[j])
+                    if (!PlayScreen.Enemies[i].InSideHouse && PlayScreen.Enemies[i].LastPosition == smackedPositions[j] || PlayScreen.Enemies[i].NextPosition == smackedPositions[j])
                         PlayScreen.Enemies[i].IsSmacked = true;
                 }
             }
@@ -215,6 +216,7 @@ namespace WinterJam.Players
                             HeldItem.IsActive = false;
                             Inventory.RemoveAt(HeldItemIndex);
                         }
+                        Score.AmountOfItemsreturned++;
                     }
                 }
                 else

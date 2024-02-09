@@ -29,7 +29,7 @@ namespace WinterJam
         public bool IsSmacked { get; set; } = false;        
         public bool HasDroppeditem { get; set; } = false;
 
-        private bool InSideHouse = false;
+        public bool InSideHouse { get; set; } = false;
 
         private List<Color> colorOptions = new List<Color>()
         {
@@ -196,7 +196,7 @@ namespace WinterJam
 
                 if (NextPosition == TargetLocation - new Vector2(0.3f, 0))
                 {
-                    /// this code runs when squirrel does in the house
+                    /// this code runs when squirrel goes in the house
                     InSideHouse = true;
                     _delay = 2f;
                     TargetLocation = GameSettings.Grid.GetRandomBorderPos(0);
@@ -209,8 +209,10 @@ namespace WinterJam
                     CurrentPosition = SpawnPosition;
                     NextPosition = CurrentPosition;
                     TargetLocation = new Vector2(9, 7);
-                    if (IsHoldingItem)
+                    if (IsHoldingItem && !IsSmacked)
+                    {
                         Createitem(1);
+                    }
                     IsHoldingItem = false;
                     IsSmacked = false;
                     HasDroppeditem = false;
@@ -250,6 +252,7 @@ namespace WinterJam
                 if (IsSmacked && !HasDroppeditem)
                 {
                     /// this code runs when code for dropping the item
+                    Score.AmountOfSquirrelsSmacked++;
                     Visualisation = Animations[8];
                     TargetLocation = GameSettings.Grid.GetRandomBorderPos(0);
                     NextPosition = CurrentPosition;
