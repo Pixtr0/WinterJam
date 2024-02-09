@@ -14,6 +14,7 @@ namespace WinterJam.Screens
         private bool playButtonPressed = false;
         private bool settingsButtonPressed = false;
         private bool quitButtonPressed = false;
+        private bool menuButtonPressed = false;
 
         public override void Update(GameTime gameTime)
         {
@@ -22,6 +23,7 @@ namespace WinterJam.Screens
                 CheckPlayButtonClick();
                 CheckQuitButtonClicked();
                 CheckSettingsButtonClick();
+                CheckMenuButtonClick();
             }
 
             if (GameSettings.IsSettingsScreenDrawn)
@@ -51,7 +53,7 @@ namespace WinterJam.Screens
         private async void CheckQuitButtonClicked()
         {
             // Check if the settings button is pressed
-            Rectangle quitButtonRect = new Rectangle(((int)GameSettings.ScreenSize.X - buttonWidth) / 2, (int)GameSettings.ScreenSize.Y * 3 / 4, buttonWidth, buttonHeight);
+            Rectangle quitButtonRect = new Rectangle(((int)GameSettings.ScreenSize.X - buttonWidth) / 2, (int)GameSettings.ScreenSize.Y * 4 / 5, buttonWidth, buttonHeight);
             if (!GameSettings.IsSettingsScreenDrawn && UserInput._currentMouseState.LeftButton == ButtonState.Pressed && UserInput._previousMouseState.LeftButton == ButtonState.Released &&
                 quitButtonRect.Contains(UserInput._currentMouseState.Position))
             {
@@ -68,7 +70,7 @@ namespace WinterJam.Screens
         private async void CheckSettingsButtonClick()
         {
             // Check if the settings button is pressed
-            Rectangle settingsButtonRect = new Rectangle(((int)GameSettings.ScreenSize.X - buttonWidth) / 2, (int)GameSettings.ScreenSize.Y / 2, buttonWidth, buttonHeight);
+            Rectangle settingsButtonRect = new Rectangle(((int)GameSettings.ScreenSize.X - buttonWidth) / 2, (int)GameSettings.ScreenSize.Y / 3 + 30 + buttonHeight, buttonWidth, buttonHeight);
             if (!GameSettings.IsSettingsScreenDrawn && UserInput._currentMouseState.LeftButton == ButtonState.Pressed && UserInput._previousMouseState.LeftButton == ButtonState.Released &&
                 settingsButtonRect.Contains(UserInput._currentMouseState.Position))
             {
@@ -77,6 +79,21 @@ namespace WinterJam.Screens
                 await Task.Delay(100);
                 settingsButtonPressed = false;
                 GameSettings.IsSettingsScreenDrawn = true;
+            }
+        }
+
+        private async void CheckMenuButtonClick()
+        {
+            // Check if the settings button is pressed
+            Rectangle settingsButtonRect = new Rectangle(((int)GameSettings.ScreenSize.X - buttonWidth) / 2, (int)GameSettings.ScreenSize.Y / 3 + (30 + buttonHeight) * 2, buttonWidth, buttonHeight);
+            if (!GameSettings.IsSettingsScreenDrawn && UserInput._currentMouseState.LeftButton == ButtonState.Pressed && UserInput._previousMouseState.LeftButton == ButtonState.Released &&
+                settingsButtonRect.Contains(UserInput._currentMouseState.Position))
+            {
+                // Enable the settings screen
+                menuButtonPressed = true;
+                await Task.Delay(100);
+                menuButtonPressed = false;
+                GameSettings.ActiveScreen = GameSettings.StartScreen;
             }
         }
 
@@ -93,6 +110,9 @@ namespace WinterJam.Screens
             // Draw Settings Button
             DrawSettingsButton(spriteBatch);
 
+            // Draw Menu Button
+            DrawMenuButton(spriteBatch);
+
             //Draw Quit Button
             DrawQuitButton(spriteBatch);
         }
@@ -106,7 +126,7 @@ namespace WinterJam.Screens
         private void DrawQuitButton(SpriteBatch spriteBatch)
         {
             Texture2D quitButtonTexture = quitButtonPressed ? GameSettings.Button_Pressed_Orange : GameSettings.Button_Orange;
-            Rectangle dr = new Rectangle(((int)GameSettings.ScreenSize.X - buttonWidth) / 2, (int)GameSettings.ScreenSize.Y * 3 / 4, buttonWidth, buttonHeight);
+            Rectangle dr = new Rectangle(((int)GameSettings.ScreenSize.X - buttonWidth) / 2, (int)GameSettings.ScreenSize.Y * 4 / 5, buttonWidth, buttonHeight);
             spriteBatch.Draw(quitButtonTexture, dr, Color.White);
 
             Vector2 textPosition = Vector2.One;
@@ -122,10 +142,29 @@ namespace WinterJam.Screens
             spriteBatch.DrawString(GameSettings.GameFont, "QUIT", textPosition, Color.Black);
         }
 
+        private void DrawMenuButton(SpriteBatch spriteBatch)
+        {
+            Texture2D settingsButtonTexture = settingsButtonPressed ? GameSettings.Button_Pressed_Yellow : GameSettings.Button_Yellow;
+            Rectangle dr = new Rectangle(((int)GameSettings.ScreenSize.X - buttonWidth) / 2, (int)GameSettings.ScreenSize.Y / 3 + (30 + buttonHeight) * 2, buttonWidth, buttonHeight);
+            spriteBatch.Draw(settingsButtonTexture, dr, Color.White);
+
+            Vector2 textPosition = Vector2.One;
+            Vector2 textSize = GameSettings.GameFont.MeasureString("MAIN MENU");
+            if (!settingsButtonPressed)
+            {
+                textPosition = new Vector2(dr.X + (buttonWidth - textSize.X) / 2, dr.Y - textSize.Y + buttonHeight / 2);
+            }
+            else
+            {
+                textPosition = new Vector2(dr.X + (buttonWidth - textSize.X) / 2, dr.Y - textSize.Y + buttonHeight / 2 + 16);
+            }
+            spriteBatch.DrawString(GameSettings.GameFont, "MAIN MENU", textPosition, Color.Black);
+        }
+
         private void DrawSettingsButton(SpriteBatch spriteBatch)
         {
             Texture2D settingsButtonTexture = settingsButtonPressed ? GameSettings.Button_Pressed_Yellow : GameSettings.Button_Yellow;
-            Rectangle dr = new Rectangle(((int)GameSettings.ScreenSize.X - buttonWidth) / 2, (int)GameSettings.ScreenSize.Y / 2, buttonWidth, buttonHeight);
+            Rectangle dr = new Rectangle(((int)GameSettings.ScreenSize.X - buttonWidth) / 2, (int)GameSettings.ScreenSize.Y / 3 + 30 + buttonHeight, buttonWidth, buttonHeight);
             spriteBatch.Draw(settingsButtonTexture, dr, Color.White);
 
             Vector2 textPosition = Vector2.One;

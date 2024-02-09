@@ -48,7 +48,7 @@ namespace WinterJam
             {
                 Visualisation.Draw(spriteBatch);
 
-                spriteBatch.Draw(GameSettings.ScreenTexture, new Rectangle((int)anchorPoint.X - 3, (int)anchorPoint.Y - 1, 9, 9), Color.Red);
+               //spriteBatch.Draw(GameSettings.ScreenTexture, new Rectangle((int)anchorPoint.X - 3, (int)anchorPoint.Y - 1, 9, 9), Color.Red);
             }
         }
     }

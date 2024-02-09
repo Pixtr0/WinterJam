@@ -12,7 +12,7 @@ namespace SpriteSheetClass
         public Texture2D Texture { get; set; }
         public Vector2 TopLeftPosition { get; set; }
 
-        public bool IsFlipped { get; set; } = false;
+        public virtual bool IsFlipped { get; set; } = false;
         public Vector2 Size { get; set; }
         public float Rotation { get; set; }
         public Color Color { get; set; } = Color.White;
