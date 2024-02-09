@@ -32,7 +32,6 @@ namespace WinterJam.Players
 
         public bool IsSmacking { get; set; } = false;
         private bool ShowSwingEffect = false;
-        private bool ShowSwingEffect2 = false;
         public int LastAnimationIndex = -1;
         public static List<SpriteSheet> Animations { get; set; } = new List<SpriteSheet>();
         private const float _playerDelay = 0.07f; // seconds

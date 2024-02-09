@@ -32,7 +32,6 @@ namespace WinterJam.Screens
         public static List<Item> DroppedItems { get; set; } = new List<Item>();
 
         private int _amountOfObstacles = 13;
-        private int _amountOfBaskets = 2;
 
         private int escToPauseDrawCounter = 360;
 

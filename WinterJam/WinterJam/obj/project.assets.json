@@ -2,19 +2,6 @@
   "version": 3,
   "targets": {
     "net6.0-windows7.0": {
-      "Dapper/2.1.28": {
-        "type": "package",
-        "compile": {
-          "lib/net5.0/Dapper.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net5.0/Dapper.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "Libuv/1.9.1": {
         "type": "package",
         "dependencies": {
@@ -2502,27 +2489,6 @@
     }
   },
   "libraries": {
-    "Dapper/2.1.28": {
-      "sha512": "ha49pzOEDmCPkMxwfPSR/wxa/6RD3r42TESIgpzpi7FXq/gNVUuJVEO+wtUzntNRhtmq3BKCl0s0aAlSZLkBUA==",
-      "type": "package",
-      "path": "dapper/2.1.28",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Dapper.png",
-        "dapper.2.1.28.nupkg.sha512",
-        "dapper.nuspec",
-        "lib/net461/Dapper.dll",
-        "lib/net461/Dapper.xml",
-        "lib/net5.0/Dapper.dll",
-        "lib/net5.0/Dapper.xml",
-        "lib/net7.0/Dapper.dll",
-        "lib/net7.0/Dapper.xml",
-        "lib/netstandard2.0/Dapper.dll",
-        "lib/netstandard2.0/Dapper.xml",
-        "readme.md"
-      ]
-    },
     "Libuv/1.9.1": {
       "sha512": "uqX2Frwf9PW8MaY7PRNY6HM5BpW1D8oj1EdqzrmbEFD5nH63Yat3aEjN/tws6Tw6Fk7LwmLBvtUh32tTeTaHiA==",
       "type": "package",
@@ -7553,29 +7519,28 @@
   },
   "projectFileDependencyGroups": {
     "net6.0-windows7.0": [
-      "Dapper >= 2.1.28",
       "MonoGame.Content.Builder.Task >= 3.8.1.303",
       "MonoGame.Framework.WindowsDX >= 3.8.1.303"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\scutt\\.nuget\\packages\\": {},
+    "C:\\Users\\matth\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\scutt\\OneDrive\\Documents\\GitHub\\WinterJam\\WinterJam\\WinterJam\\WinterJam.csproj",
+      "projectUniqueName": "C:\\Users\\matth\\OneDrive\\Documents\\WinterJam\\WinterJam\\WinterJam\\WinterJam\\WinterJam.csproj",
       "projectName": "WinterJam",
-      "projectPath": "C:\\Users\\scutt\\OneDrive\\Documents\\GitHub\\WinterJam\\WinterJam\\WinterJam\\WinterJam.csproj",
-      "packagesPath": "C:\\Users\\scutt\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\scutt\\OneDrive\\Documents\\GitHub\\WinterJam\\WinterJam\\WinterJam\\obj\\",
+      "projectPath": "C:\\Users\\matth\\OneDrive\\Documents\\WinterJam\\WinterJam\\WinterJam\\WinterJam\\WinterJam.csproj",
+      "packagesPath": "C:\\Users\\matth\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\matth\\OneDrive\\Documents\\WinterJam\\WinterJam\\WinterJam\\WinterJam\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\scutt\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\matth\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -7584,7 +7549,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Users\\scutt\\Google Drive Laptop\\Schoolwork\\Platform Development 1\\My NuGet Packages": {},
+        "C:\\Users\\matth\\OneDrive - Hogeschool West-Vlaanderen\\Platform Dev\\MyPackages": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -7603,10 +7568,6 @@
       "net6.0-windows7.0": {
         "targetAlias": "net6.0-windows",
         "dependencies": {
-          "Dapper": {
-            "target": "Package",
-            "version": "[2.1.28, )"
-          },
           "MonoGame.Content.Builder.Task": {
             "target": "Package",
             "version": "[3.8.1.303, )"
@@ -7635,7 +7596,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }
