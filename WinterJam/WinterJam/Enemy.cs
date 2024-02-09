@@ -18,7 +18,7 @@ namespace WinterJam
         private Vector2 SpawnPosition { get { return GameSettings.Grid.GetRandomBorderPos(1);} }
         public Vector2 NextPosition { get; set; }
         public Vector2 LastPosition { get; set; }
-        private Vector2 TargetLocation { get; set; } = new Vector2(9, 7);
+        private Vector2 TargetLocation { get; set; } = new Vector2(4, 2);
         private List<Vector2> UsedTiles { get; set; } = new List<Vector2>();
         public Item helditem { get; set; }
         private Color Color { get; set; }
@@ -203,12 +203,12 @@ namespace WinterJam
                     NextPosition = CurrentPosition;
                 }
                 
-                if ( CurrentPosition == TargetLocation && TargetLocation != new Vector2(9, 7) || IsSmacked && CurrentPosition == TargetLocation)
+                if ( CurrentPosition == TargetLocation && TargetLocation != new Vector2(4, 2) || IsSmacked && CurrentPosition == TargetLocation)
                 {
                     /// this code runs when squirrel exits play area
                     CurrentPosition = SpawnPosition;
                     NextPosition = CurrentPosition;
-                    TargetLocation = new Vector2(9, 7);
+                    TargetLocation = new Vector2(4, 2);
                     if (IsHoldingItem && !IsSmacked)
                     {
                         Createitem(1);

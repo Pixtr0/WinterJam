@@ -19,6 +19,7 @@ namespace WinterJam
         public static int currentHp { get; set; }
 
         public override Vector2 anchorPoint { get { return base.anchorPoint - new Vector2(0, 12.5f * GameSettings.Grid.ScaleFactor); } }
+        private Vector2 offset = new Vector2(5, 5);
         public static Vector2[] SurroundingTiles { get; set; } = new Vector2[] { new Vector2(8, 6), new Vector2(8, 5), new Vector2(6, 6), new Vector2(7, 6), new Vector2(9, 6), new Vector2(6, 9), new Vector2(7, 9), new Vector2(8, 9), new Vector2(9, 9), new Vector2(6, 7), new Vector2(9, 7), new Vector2(6, 8), new Vector2(9, 8) };
         public static Vector2[] HouseTiles { get; set; } = new Vector2[] { new Vector2(7, 7), new Vector2(7, 8), new Vector2(8, 7), new Vector2(8, 8) };
         private Vector2 HealthPosition { get { return new Vector2(anchorPoint.X - GameSettings.GameFont.MeasureString(currentHp.ToString()).X / 2, anchorPoint.Y - Size.Y / 3 * 2);}}
@@ -30,7 +31,7 @@ namespace WinterJam
             get
             {
                 return new Rectangle((int)(HealthPosition.X - HealthBarSize.X/2) + (int)(5 * GameSettings.Grid.ScaleFactor), 
-                    (int)HealthPosition.Y + (int)(6.5f * GameSettings.Grid.ScaleFactor), 
+                    (int)HealthPosition.Y + (int)(2.5f * GameSettings.Grid.ScaleFactor), 
                     (int)HealthBarSize.X, 
                     (int)HealthBarSize.Y);
             }
@@ -40,7 +41,7 @@ namespace WinterJam
             get
             {
                 return new Rectangle((int)(HealthPosition.X - HealthBarSize.X / 2 + 7 * GameSettings.Grid.ScaleFactor),
-                    (int)(HealthPosition.Y + 8.5f * GameSettings.Grid.ScaleFactor),
+                    (int)(HealthPosition.Y + 4.5f * GameSettings.Grid.ScaleFactor),
                     (int)((HealthBarSize.X - 15) * (float)currentHp / maxHp),
                     (int)(HealthBarSize.Y - 15));
             }
@@ -48,6 +49,14 @@ namespace WinterJam
         public static Texture2D HealthBarHPTexture { get; set; }
         public House(Texture2D texture)
         {
+            for (int i = 0; i < HouseTiles.Length; i++)
+            {
+                HouseTiles[i] -= offset;
+            }
+            for (int i = 0; i < SurroundingTiles.Length; i++)
+            {
+                SurroundingTiles[i] -= offset;
+            }
             Vector2 size = new Vector2(58, 102) * GameSettings.Grid.ScaleFactor;
             Visualisation = new SpriteSheet(texture, GameSettings.Grid.GetGridPositionNoHeight(HouseTiles[HouseTiles.Length - 1]) - new Vector2(16 * GameSettings.Grid.ScaleFactor,
                size.Y - 24 * GameSettings.Grid.ScaleFactor), size, 0, 10, 10, 0, true);

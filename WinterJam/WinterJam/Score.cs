@@ -32,22 +32,29 @@ namespace WinterJam
         }
         public static void Draw(SpriteBatch spriteBatch, Vector2 position)
         {
+            DrawScore(spriteBatch, position);
+            position -= new Vector2(200, 0);
             Vector2 textOffset = new Vector2(GameSettings.GameFont.MeasureString(ToString(0)).X / 2, 0);
             spriteBatch.DrawString(GameSettings.GameFont, ToString(Time), position + new Vector2(1, 0) * GameSettings.Grid.ScaleFactor - textOffset, Color.White);
             spriteBatch.DrawString(GameSettings.GameFont, ToString(Time), position + new Vector2(-1, 0) * GameSettings.Grid.ScaleFactor - textOffset, Color.White);
             spriteBatch.DrawString(GameSettings.GameFont, ToString(Time), position + new Vector2(0, 1) * GameSettings.Grid.ScaleFactor - textOffset, Color.White);
             spriteBatch.DrawString(GameSettings.GameFont, ToString(Time), position + new Vector2(0, -1) * GameSettings.Grid.ScaleFactor - textOffset, Color.White);
             spriteBatch.DrawString(GameSettings.GameFont, ToString(Time), position - textOffset, Color.Black);
+            
 
-            textOffset = new Vector2(GameSettings.GameFont.MeasureString("Score: " + 10000).X / 2 - 35, -70);
+        }
+        public static void DrawScore(SpriteBatch spriteBatch, Vector2 position)
+        {
+
+            position += new Vector2(240, 0);
+            Vector2 textOffset = new Vector2(GameSettings.GameFont.MeasureString("Score: " + 10000).X / 2 - 35, 0);
             spriteBatch.DrawString(GameSettings.GameFont, "Score: " + Scorevalue, position + new Vector2(1, 0) * GameSettings.Grid.ScaleFactor - textOffset, Color.White);
             spriteBatch.DrawString(GameSettings.GameFont, "Score: " + Scorevalue, position + new Vector2(-1, 0) * GameSettings.Grid.ScaleFactor - textOffset, Color.White);
             spriteBatch.DrawString(GameSettings.GameFont, "Score: " + Scorevalue, position + new Vector2(0, 1) * GameSettings.Grid.ScaleFactor - textOffset, Color.White);
             spriteBatch.DrawString(GameSettings.GameFont, "Score: " + Scorevalue, position + new Vector2(0, -1) * GameSettings.Grid.ScaleFactor - textOffset, Color.White);
             spriteBatch.DrawString(GameSettings.GameFont, "Score: " + Scorevalue, position - textOffset, Color.Black);
-
         }
-        
+
         public static string ToString(int time)
         {
             return (time / 60).ToString("D2") + " : " + (time % 60).ToString("D2");
