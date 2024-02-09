@@ -1011,3 +1011,27 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Player/Up2.png
 
+#begin Sounds/GameMusic.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/GameMusic.mp3
+
+#begin Sounds/GameOver.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/GameOver.mp3
+
+#begin Sounds/Smack.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Smack.wav
+
+#begin Sounds/Winterjam_jam.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/Winterjam_jam.mp3
+

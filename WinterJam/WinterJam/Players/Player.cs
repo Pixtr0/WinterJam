@@ -56,6 +56,7 @@ namespace WinterJam.Players
             if (!IsSmacking && UserInput._currentKeyboardSate.IsKeyDown(Keys.Space) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Space))
             {
                 IsSmacking = true;
+                GameSettings.SFX_Smack.Play();
             }
             //they're still alive PETA i swear they're just sleeping
 
@@ -165,6 +166,8 @@ namespace WinterJam.Players
                 Visualisation.Play();
             }
             smackedPositions.Add(CurrentPosition);
+
+
             for (int i = 0; i < PlayScreen.Enemies.Count; i++)
             {
                 for (int j = 0; j < smackedPositions.Count; j++)
@@ -178,7 +181,7 @@ namespace WinterJam.Players
         //deprecated
         private void PlaceAnItem()
         {
-            if (UserInput._currentKeyboardSate.IsKeyDown(Keys.F) && UserInput._previousKeyboardSate.IsKeyUp(Keys.F) && HeldItem != null)
+            if (UserInput._currentKeyboardSate.IsKeyDown(Keys.E) && UserInput._previousKeyboardSate.IsKeyUp(Keys.E) && HeldItem != null)
             {
                 if (Inventory.Count > 0 && HeldItemIndex >= 0)
                 {
