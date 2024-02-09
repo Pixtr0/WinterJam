@@ -14,7 +14,6 @@ namespace WinterJam
     {
         private const float _delay = 0.14f; // seconds
         private float _remainingDelay = _delay;
-
         private int maxHp { get; set; }
         public static int currentHp { get; set; }
 
@@ -24,7 +23,7 @@ namespace WinterJam
         private Vector2 HealthPosition { get { return new Vector2(anchorPoint.X - GameSettings.GameFont.MeasureString(currentHp.ToString()).X / 2, anchorPoint.Y - Size.Y / 3 * 2);}}
         public static Texture2D HealthBarTexture { get; set; }
         private Vector2 HealthBarSize { get { return new Vector2(44, 8) * GameSettings.Grid.ScaleFactor; } }
-        private Vector2 HPSize { get { return new Vector2(10, 20) * GameSettings.Grid.ScaleFactor; } }
+        //private Vector2 HPSize { get { return new Vector2(10, 20) * GameSettings.Grid.ScaleFactor; } }
         private Rectangle HealthBarDestinationRectangle
         {
             get

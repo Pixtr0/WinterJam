@@ -251,6 +251,22 @@ namespace WinterJam.Players
                     {
                         placedPosition = CurrentPosition + new Vector2(-1, 0);
                     }
+                    if (this.Visualisation == Animations[6])
+                    {
+                        placedPosition = CurrentPosition + new Vector2(-1, -1);
+                    }
+                    if (this.Visualisation == Animations[7])
+                    {
+                        placedPosition = CurrentPosition + new Vector2(1, -1);
+                    }
+                    if (this.Visualisation == Animations[8])
+                    {
+                        placedPosition = CurrentPosition + new Vector2(1, 1);
+                    }
+                    if (this.Visualisation == Animations[9])
+                    {
+                        placedPosition = CurrentPosition + new Vector2(-1, 1);
+                    }
 
                     if (PlayScreen.BasketPositions.Contains(placedPosition))
                     {
@@ -347,6 +363,10 @@ namespace WinterJam.Players
                         Visualisation.Play();
                     }
                     
+                    float clampedX = MathHelper.Clamp(NextPosition.X, 1, GameSettings.Grid.playsize - 1);
+                    float clampedY = MathHelper.Clamp(NextPosition.Y, 1, GameSettings.Grid.playsize - 1);
+                    LastPosition = NextPosition;
+                    NextPosition = new Vector2((float)Math.Ceiling(clampedX), (float)Math.Ceiling(clampedY));
                     
                     for (int i = 0; i < PlayScreen.Obstacles.Count; i++)
                     {
@@ -370,10 +390,6 @@ namespace WinterJam.Players
                         }
                     }
 
-                    float clampedX = MathHelper.Clamp(NextPosition.X, 1, GameSettings.Grid.playsize - 1);
-                    float clampedY = MathHelper.Clamp(NextPosition.Y, 1, GameSettings.Grid.playsize - 1);
-                    LastPosition = NextPosition;
-                    NextPosition = new Vector2((float)Math.Ceiling(clampedX), (float)Math.Ceiling(clampedY));
 
                 }
 

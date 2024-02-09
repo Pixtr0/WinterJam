@@ -149,7 +149,7 @@ namespace WinterJam.Screens
             spriteBatch.Draw(playButtonTexture, dr, Color.White);
 
             Vector2 textPosition = Vector2.One;
-            Vector2 textSize = GameSettings.GameFont.MeasureString("PLAY");
+            Vector2 textSize = GameSettings.GameFont.MeasureString("PLAY AGAIN");
             if (!playButtonPressed)
             {
                 textPosition = new Vector2(dr.X + (buttonWidth - textSize.X) / 2, dr.Y - textSize.Y + buttonHeight / 2);
@@ -158,7 +158,7 @@ namespace WinterJam.Screens
             {
                 textPosition = new Vector2(dr.X + (buttonWidth - textSize.X) / 2, dr.Y - textSize.Y + buttonHeight / 2 + 16);
             }
-            spriteBatch.DrawString(GameSettings.GameFont, "PLAY", textPosition, Color.Black);
+            spriteBatch.DrawString(GameSettings.GameFont, "PLAY AGAIN", textPosition, Color.Black);
         }
     }
 }
