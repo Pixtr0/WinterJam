@@ -93,6 +93,7 @@ namespace WinterJam.Screens
                 menuButtonPressed = true;
                 await Task.Delay(100);
                 menuButtonPressed = false;
+                GameSettings.IsPauseScreenDrawn = false;
                 GameSettings.ActiveScreen = GameSettings.StartScreen;
             }
         }
@@ -144,13 +145,13 @@ namespace WinterJam.Screens
 
         private void DrawMenuButton(SpriteBatch spriteBatch)
         {
-            Texture2D settingsButtonTexture = settingsButtonPressed ? GameSettings.Button_Pressed_Yellow : GameSettings.Button_Yellow;
+            Texture2D settingsButtonTexture = menuButtonPressed ? GameSettings.Button_Pressed_Yellow : GameSettings.Button_Yellow;
             Rectangle dr = new Rectangle(((int)GameSettings.ScreenSize.X - buttonWidth) / 2, (int)GameSettings.ScreenSize.Y / 3 + (30 + buttonHeight) * 2, buttonWidth, buttonHeight);
             spriteBatch.Draw(settingsButtonTexture, dr, Color.White);
 
             Vector2 textPosition = Vector2.One;
             Vector2 textSize = GameSettings.GameFont.MeasureString("MAIN MENU");
-            if (!settingsButtonPressed)
+            if (!menuButtonPressed)
             {
                 textPosition = new Vector2(dr.X + (buttonWidth - textSize.X) / 2, dr.Y - textSize.Y + buttonHeight / 2);
             }
