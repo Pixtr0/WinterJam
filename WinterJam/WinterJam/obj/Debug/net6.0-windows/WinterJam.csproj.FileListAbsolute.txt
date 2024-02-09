@@ -434,3 +434,6 @@ C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\De
 C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Blocks\tree_10.xnb
 C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Blocks\tree_11.png
 C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Blocks\tree_11.xnb
+C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Buttons\UI_volume_slider.xnb
+C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Buttons\UI__volume.xnb
+C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Buttons\UI_game_over.xnb
