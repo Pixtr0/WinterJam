@@ -481,6 +481,14 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Buttons/UI__volume.png
 
+<<<<<<< HEAD
+#begin Graphics/Buttons/UI__volume.xnb
+/importer:
+/processor:
+/build:Graphics/Buttons/UI__volume.xnb
+
+=======
+>>>>>>> 0a1f6f23e134bfbca1a07a0da94512f3d3e19160
 #begin Graphics/Buttons/UI_button_01.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -493,6 +501,14 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Buttons/UI_button_01.png
 
+<<<<<<< HEAD
+#begin Graphics/Buttons/UI_button_01.xnb
+/importer:
+/processor:
+/build:Graphics/Buttons/UI_button_01.xnb
+
+=======
+>>>>>>> 0a1f6f23e134bfbca1a07a0da94512f3d3e19160
 #begin Graphics/Buttons/UI_button_02.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -505,6 +521,14 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Buttons/UI_button_02.png
 
+<<<<<<< HEAD
+#begin Graphics/Buttons/UI_button_02.xnb
+/importer:
+/processor:
+/build:Graphics/Buttons/UI_button_02.xnb
+
+=======
+>>>>>>> 0a1f6f23e134bfbca1a07a0da94512f3d3e19160
 #begin Graphics/Buttons/UI_button_pressed_01.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -517,6 +541,14 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Buttons/UI_button_pressed_01.png
 
+<<<<<<< HEAD
+#begin Graphics/Buttons/UI_button_pressed_01.xnb
+/importer:
+/processor:
+/build:Graphics/Buttons/UI_button_pressed_01.xnb
+
+=======
+>>>>>>> 0a1f6f23e134bfbca1a07a0da94512f3d3e19160
 #begin Graphics/Buttons/UI_button_pressed_02.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -529,6 +561,14 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Buttons/UI_button_pressed_02.png
 
+<<<<<<< HEAD
+#begin Graphics/Buttons/UI_button_pressed_02.xnb
+/importer:
+/processor:
+/build:Graphics/Buttons/UI_button_pressed_02.xnb
+
+=======
+>>>>>>> 0a1f6f23e134bfbca1a07a0da94512f3d3e19160
 #begin Graphics/Buttons/UI_game_over.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -553,6 +593,14 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Buttons/UI_health_bar_HP.png
 
+<<<<<<< HEAD
+#begin Graphics/Buttons/UI_health_bar_HP.xnb
+/importer:
+/processor:
+/build:Graphics/Buttons/UI_health_bar_HP.xnb
+
+=======
+>>>>>>> 0a1f6f23e134bfbca1a07a0da94512f3d3e19160
 #begin Graphics/Buttons/UI_health_bar.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -565,6 +613,14 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Buttons/UI_health_bar.png
 
+<<<<<<< HEAD
+#begin Graphics/Buttons/UI_health_bar.xnb
+/importer:
+/processor:
+/build:Graphics/Buttons/UI_health_bar.xnb
+
+=======
+>>>>>>> 0a1f6f23e134bfbca1a07a0da94512f3d3e19160
 #begin Graphics/Buttons/UI_paused.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -577,6 +633,14 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Buttons/UI_paused.png
 
+<<<<<<< HEAD
+#begin Graphics/Buttons/UI_paused.xnb
+/importer:
+/processor:
+/build:Graphics/Buttons/UI_paused.xnb
+
+=======
+>>>>>>> 0a1f6f23e134bfbca1a07a0da94512f3d3e19160
 #begin Graphics/Buttons/UI_volume_slider.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -589,6 +653,14 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Buttons/UI_volume_slider.png
 
+<<<<<<< HEAD
+#begin Graphics/Buttons/UI_volume_slider.xnb
+/importer:
+/processor:
+/build:Graphics/Buttons/UI_volume_slider.xnb
+
+=======
+>>>>>>> 0a1f6f23e134bfbca1a07a0da94512f3d3e19160
 #begin Graphics/Enemy/Directions.png
 /importer:TextureImporter
 /processor:TextureProcessor

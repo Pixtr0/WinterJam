@@ -6,7 +6,7 @@ using SharpDX.Direct3D9;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-//using System.Drawing;
+using System.Drawing;
 using System.Linq;
 using WinterJam.Players;
 using WinterJam.Screens;
@@ -32,10 +32,13 @@ namespace WinterJam.Screens
         public static List<Item> DroppedItems { get; set; } = new List<Item>();
 
         private int _amountOfObstacles = 13;
-        private int _amountOfBaskets = 2;
+<<<<<<< HEAD
 
         private int escToPauseDrawCounter = 360;
 
+=======
+        private int _amountOfBaskets = 2;
+>>>>>>> parent of 0a1f6f2 (Merge branch 'main' of https://github.com/Pixtr0/WinterJam)
         public PlayScreen()
         {
             GenerateBaskets();
@@ -50,7 +53,7 @@ namespace WinterJam.Screens
             GameSettings.Grid.Update();
             UserInput.Update();
 
-            if (UserInput._currentKeyboardSate.IsKeyDown(Keys.Escape) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Escape))
+            if (UserInput._currentMouseState.RightButton == ButtonState.Pressed && UserInput._previousMouseState.RightButton == ButtonState.Released)
             {
                 GameSettings.IsCloseButtonPressed = false;
                 GameSettings.IsPauseScreenDrawn = !GameSettings.IsPauseScreenDrawn;
@@ -68,9 +71,6 @@ namespace WinterJam.Screens
 
             if (GameSettings.IsPauseScreenDrawn == false)
             {
-                if (escToPauseDrawCounter > 0)
-                    escToPauseDrawCounter--;
-
                 if (UserInput._currentKeyboardSate.IsKeyDown(Keys.Enter) && UserInput._previousKeyboardSate.IsKeyUp(Keys.Enter))
                 {
                     Enemies.Add(Enemy.Spawn());
@@ -223,8 +223,7 @@ namespace WinterJam.Screens
             {
                 Backgroundfront[i].Draw(spriteBatch);
             }
-
-            DrawEscToPause(spriteBatch);
+            
 
             if (GameSettings.IsPauseScreenDrawn && !GameSettings.IsSettingsScreenDrawn)
             {
@@ -239,53 +238,6 @@ namespace WinterJam.Screens
 
             base.Draw(spriteBatch);
         }
-
-        private Color FlashingColor()
-        {
-            // Calculate transparency based on the flashing effect
-            int transparency = FlashingTransparency();
-
-            // Create and return the color with the calculated transparency
-            return new Color(0, 0, 0, transparency);
-        }
-
-        private void DrawEscToPause(SpriteBatch spriteBatch)
-        {
-            // Get the color for the text
-            Color textColor = FlashingColor();
-
-            // Draw the background rectangle
-            Vector2 textSize = GameSettings.GameFont.MeasureString("Esc to pause");
-            Color buttonColor = Color.White;
-            if (escToPauseDrawCounter == 0)
-            {
-                buttonColor = new Color(0,0,0,0);
-            }
-
-            spriteBatch.Draw(GameSettings.Button_Pressed_Orange, new Rectangle(0, -5, (int)textSize.X + 15, (int)textSize.Y * 2), buttonColor);
-
-            // Draw the text with the calculated color
-            spriteBatch.DrawString(GameSettings.GameFont, "Esc to pause", new Vector2(10, 10), textColor);
-        }
-
-
-
-        private int FlashingTransparency()
-        {
-            // Adjust the period of the flashing effect by modifying the divisor
-            double period = 60; // Flashing period in frames (adjust as needed)
-            double alpha = Math.Sin(2 * Math.PI * escToPauseDrawCounter / period);
-            // Scale the alpha value to the range [0, 255]
-            int transparency = (int)(128 * alpha + 128); // Centered around 128
-            if (escToPauseDrawCounter == 0)
-            {
-                transparency = 0;
-            }
-            return transparency;
-        }
-
-
-
         private List<GameObject> SortedObjects()
         {
             List<GameObject> returnList = new List<GameObject>();

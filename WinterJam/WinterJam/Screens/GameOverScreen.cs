@@ -84,10 +84,9 @@ namespace WinterJam.Screens
             GameSettings.Grid.DrawGrass(spriteBatch);
 
             Rectangle dr = new Rectangle(0, 0, (int)GameSettings.ScreenSize.X, (int)GameSettings.ScreenSize.Y);
-            //spriteBatch.Draw(GameSettings.ScreenTexture, dr, Color.Black);
+            spriteBatch.Draw(GameSettings.ScreenTexture, dr, Color.Black);
 
             //DestinationRectangle for the GameOver logo
-            DrawGameOverText(spriteBatch);
 
             // Draw Play Button
             DrawPlayButton(spriteBatch);
@@ -102,12 +101,6 @@ namespace WinterJam.Screens
             {
                 GameSettings.SettingsScreen.Draw(spriteBatch);
             }
-        }
-
-        private void DrawGameOverText(SpriteBatch spriteBatch)
-        {
-            Rectangle dr = new Rectangle(((int)GameSettings.ScreenSize.X - buttonWidth * 3/2) / 2, (int)GameSettings.ScreenSize.Y / 4 - buttonHeight, buttonWidth * 3/2, buttonHeight);
-            spriteBatch.Draw(GameSettings.UI_game_over, dr, Color.White);
         }
 
         private void DrawQuitButton(SpriteBatch spriteBatch)
@@ -156,7 +149,7 @@ namespace WinterJam.Screens
             spriteBatch.Draw(playButtonTexture, dr, Color.White);
 
             Vector2 textPosition = Vector2.One;
-            Vector2 textSize = GameSettings.GameFont.MeasureString("PLAY");
+            Vector2 textSize = GameSettings.GameFont.MeasureString("PLAY AGAIN");
             if (!playButtonPressed)
             {
                 textPosition = new Vector2(dr.X + (buttonWidth - textSize.X) / 2, dr.Y - textSize.Y + buttonHeight / 2);
@@ -165,7 +158,7 @@ namespace WinterJam.Screens
             {
                 textPosition = new Vector2(dr.X + (buttonWidth - textSize.X) / 2, dr.Y - textSize.Y + buttonHeight / 2 + 16);
             }
-            spriteBatch.DrawString(GameSettings.GameFont, "PLAY", textPosition, Color.Black);
+            spriteBatch.DrawString(GameSettings.GameFont, "PLAY AGAIN", textPosition, Color.Black);
         }
     }
 }
