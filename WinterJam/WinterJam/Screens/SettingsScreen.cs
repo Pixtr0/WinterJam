@@ -9,6 +9,17 @@ namespace WinterJam.Screens
 {
     public class SettingsScreen : Screen
     {
+        private Rectangle SettingsTitleRectangle
+        {
+            //79 x 15
+            get
+            {
+                return new Rectangle((int)(GameSettings.ScreenSize.X / 2 - 79 * GameSettings.Grid.ScaleFactor / 2 * 1.5f),
+                                     (int)(GameSettings.ScreenSize.Y / 4 - buttonHeight * 1.5f),
+                                     (int)(79 * GameSettings.Grid.ScaleFactor * 1.5f),
+                                     (int)(15 * GameSettings.Grid.ScaleFactor * 1.5f));
+            }
+        }
         private Vector2 framePosition;
         private int frameWidth = 500;
         private int frameHeight = 500;
@@ -150,6 +161,7 @@ namespace WinterJam.Screens
             Rectangle dr = new Rectangle(0,0, (int)GameSettings.ScreenSize.X, (int)GameSettings.ScreenSize.Y);
             spriteBatch.Draw(GameSettings.ScreenTexture, dr, new Color(0,0,0,128));
 
+            spriteBatch.Draw(GameSettings.UI_Settings, SettingsTitleRectangle, Color.White);
 
             // Draw Buttons Text
             spriteBatch.DrawString(GameSettings.GameFont, "Keybinds", -offset1 + new Vector2(framePosition.X + (frameWidth - buttonWidth) / 2 + 96, framePosition.Y + (frameHeight - buttonHeight * 4) / 2 - 130), Color.White);

@@ -16,6 +16,30 @@ namespace WinterJam.Screens
         private bool quitButtonPressed = false;
         private bool menuButtonPressed = false;
 
+        private float _controlsScaleFactor = 18f;
+
+        private Rectangle UI_Controls_Rectangle
+        {
+            //86 x 15
+            get
+            {
+                return new Rectangle((int)((GameSettings.ScreenSize.X * 3 / 4) - 86 * GameSettings.Grid.ScaleFactor / 8 * 3f),
+                                    (int)((GameSettings.ScreenSize.Y / 4) - 15 * GameSettings.Grid.ScaleFactor / 2 * 3f),
+                                    (int)(86 * GameSettings.Grid.ScaleFactor / 2 * 3f),
+                                    (int)(15 * GameSettings.Grid.ScaleFactor / 2 * 3f));
+            }
+        }
+        private Rectangle UI_Player_Controls_Rectangle
+        {
+            //1130 x 370
+            get
+            {
+                return new Rectangle((int)((GameSettings.ScreenSize.X * 3f / 4) - 1130 * GameSettings.Grid.ScaleFactor / (3 * _controlsScaleFactor) * 3f),
+                                    (int)((GameSettings.ScreenSize.Y * (2f / 5)) - 370 * GameSettings.Grid.ScaleFactor / (2 * _controlsScaleFactor) * 3f),
+                                    (int)(1130 * GameSettings.Grid.ScaleFactor / _controlsScaleFactor * 3f),
+                                    (int)(370 * GameSettings.Grid.ScaleFactor / _controlsScaleFactor * 3f));
+            }
+        }
         public override void Update(GameTime gameTime)
         {
             if (GameSettings.IsSettingsScreenDrawn == false)
@@ -94,7 +118,7 @@ namespace WinterJam.Screens
                 await Task.Delay(100);
                 menuButtonPressed = false;
                 GameSettings.IsPauseScreenDrawn = false;
-                GameSettings.PlayScreen = new PlayScreen();
+                GameSettings.PlayScreen.Reset();
                 GameSettings.ActiveScreen = GameSettings.StartScreen;
             }
         }
@@ -103,6 +127,9 @@ namespace WinterJam.Screens
         {
             Rectangle dr = new Rectangle(0, 0, (int)GameSettings.ScreenSize.X, (int)GameSettings.ScreenSize.Y);
             spriteBatch.Draw(GameSettings.ScreenTexture, dr, new Color(0, 0, 0, 100));
+
+            spriteBatch.Draw(GameSettings.UI_Controls, UI_Controls_Rectangle, Color.White);
+            spriteBatch.Draw(GameSettings.UI_player_Controls, UI_Player_Controls_Rectangle, Color.White);
 
             DrawPausedText(spriteBatch);
 

@@ -118,6 +118,7 @@ namespace WinterJam
             GameSettings.UI_game_over = Content.Load<Texture2D>("Graphics/Buttons/UI_game_over");
             GameSettings.UI_player_Controls = Content.Load<Texture2D>("Graphics/Buttons/UI_player_Controls");
             GameSettings.UI_Controls = Content.Load<Texture2D>("Graphics/Buttons/UI_Controls");
+            GameSettings.UI_Settings = Content.Load<Texture2D>("Graphics/Buttons/UI_Settings");
             House.HealthBarTexture = Content.Load<Texture2D>("Graphics/Buttons/UI_health_bar");
             House.HealthBarHPTexture = Content.Load<Texture2D>("Graphics/Buttons/UI_health_bar_HP");
 

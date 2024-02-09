@@ -665,5 +665,4 @@ C:\Users\scutt\OneDrive\Documents\GitHub\WinterJam\WinterJam\WinterJam\obj\Debug
 C:\Users\scutt\OneDrive\Documents\GitHub\WinterJam\WinterJam\WinterJam\obj\Debug\net6.0-windows\WinterJam.pdb
 C:\Users\scutt\OneDrive\Documents\GitHub\WinterJam\WinterJam\WinterJam\obj\Debug\net6.0-windows\WinterJam.genruntimeconfig.cache
 C:\Users\scutt\OneDrive\Documents\GitHub\WinterJam\WinterJam\WinterJam\obj\Debug\net6.0-windows\ref\WinterJam.dll
-C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Buttons\UI_controls.xnb
-C:\Users\matth\OneDrive\Documents\WinterJam\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Buttons\UI_player_controls.xnb
+C:\Users\scutt\OneDrive\Documents\GitHub\WinterJam\WinterJam\WinterJam\bin\Debug\net6.0-windows\Content\Graphics\Buttons\UI_settings.xnb
