@@ -53,7 +53,7 @@ namespace WinterJam.Screens
             Player.TopLeftPosition = GameSettings.Grid.GetGridPosition(new Vector2(8,9)) + new Vector2(-5f, -12.5f) * GameSettings.Grid.ScaleFactor;
             Player.CurrentPosition = new Vector2(8, 9);
             Player.NextPosition = Player.CurrentPosition;
-            
+            House.currentHp = 20;
 
         }
         public override void Update(GameTime gameTime)
@@ -81,14 +81,13 @@ namespace WinterJam.Screens
 
             if (GameSettings.IsPauseScreenDrawn == false)
             {
-
                 Score.Update(gameTime);
-                if (!SpawnedSquirrel && Score.Time % 30 == 0)
+                if (!SpawnedSquirrel && Score.Time % 1 == 0)
                 {
                     Enemies.Add(Enemy.Spawn());
                     SpawnedSquirrel = true;
                 }
-                else if(Score.Time % 30 != 0) { SpawnedSquirrel = false; }
+                else if(Score.Time % 15 != 0) { SpawnedSquirrel = false; }
                 foreach (Enemy enemy in Enemies)
                 {
                     enemy.Update(gameTime);

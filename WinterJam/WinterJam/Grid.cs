@@ -179,12 +179,31 @@ namespace WinterJam
             float y = (int)Position.Y + index.Y * TileSize.Y / 6f + index.X * TileSize.Y / 6f;
             return new Vector2(x, y);
         }
+        //public Vector2 GetRandomBorderPos(int offset)
+        //{
+        //    Vector2 newPos;
+        //    do
+        //    {
+        //        int x = Random.Shared.Next(0, 2) == 0 ? -offset : playsize + offset;
+        //        int y = Random.Shared.Next(-offset, playsize + offset);
+        //        if (Random.Shared.Next(0, 2) == 0)
+        //        {
+        //            newPos = new Vector2(x, y);
+        //        }
+        //        else
+        //        {
+        //            newPos = new Vector2(y, x);
+        //        }
+        //    } while (IsIn3x3Range(newPos) || BlockedTiles.Contains(newPos));
+
+        //    return newPos;
+        //}
         public Vector2 GetRandomBorderPos(int offset)
         {
             Vector2 newPos;
             do
             {
-                int x = Random.Shared.Next(0, 2) == 0 ? -offset : playsize + offset;
+                int x = playsize + offset;
                 int y = Random.Shared.Next(-offset, playsize + offset);
                 if (Random.Shared.Next(0, 2) == 0)
                 {
@@ -198,7 +217,6 @@ namespace WinterJam
 
             return newPos;
         }
-
         private bool IsIn3x3Range(Vector2 newPos)
         {
             List<Vector2> possibilities = new List<Vector2>();
