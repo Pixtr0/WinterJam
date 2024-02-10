@@ -1011,12 +1011,6 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Player/Up2.png
 
-#begin Sounds/Button.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Sounds/Button.wav
-
 #begin Sounds/GameMusic.mp3
 /importer:Mp3Importer
 /processor:SongProcessor
@@ -1029,35 +1023,11 @@
 /processorParam:Quality=Best
 /build:Sounds/GameOver.mp3
 
-#begin Sounds/item_pickup.mp3
-/importer:Mp3Importer
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Sounds/item_pickup.mp3
-
-#begin Sounds/Run.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Sounds/Run.wav
-
-#begin Sounds/SFX_PlaceItem.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Sounds/SFX_PlaceItem.wav
-
 #begin Sounds/Smack.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Sounds/Smack.wav
-
-#begin Sounds/Squirrel_knockout.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Sounds/Squirrel_knockout.wav
 
 #begin Sounds/Winterjam_jam.mp3
 /importer:Mp3Importer

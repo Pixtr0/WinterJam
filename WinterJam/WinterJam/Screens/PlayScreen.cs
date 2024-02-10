@@ -47,13 +47,18 @@ namespace WinterJam.Screens
             GenerateRandomTiles();
             GenerateTreesAndSurroundings();
             Enemies.Clear();
+            DroppedItems.Clear();
             Score.Time = 0;
             Score.AmountOfItemsreturned = 0;
             Score.AmountOfSquirrelsSmacked = 0;
-            Player.TopLeftPosition = GameSettings.Grid.GetGridPosition(new Vector2(8,9)) + new Vector2(-5f, -12.5f) * GameSettings.Grid.ScaleFactor;
-            Player.CurrentPosition = new Vector2(8, 9);
+            Player.TopLeftPosition = GameSettings.Grid.GetGridPosition(new Vector2(3,4)) + new Vector2(-5f, -12.5f) * GameSettings.Grid.ScaleFactor;
+            Player.CurrentPosition = new Vector2(3, 4);
             Player.NextPosition = Player.CurrentPosition;
             House.currentHp = 20;
+            
+            MediaPlayer.IsRepeating = true;
+            MediaPlayer.Play(GameSettings.GameMusic);
+            
         }
         public override void Update(GameTime gameTime)
         {
@@ -78,6 +83,11 @@ namespace WinterJam.Screens
             if (GameSettings.IsSettingsScreenDrawn == true)
             {
                 GameSettings.SettingsScreen.Update(gameTime);
+            }
+
+            if (GameSettings.IsControlsScreenDrawn == true)
+            {
+                GameSettings.ControlsScreen.Update(gameTime);
             }
 
             if (GameSettings.IsPauseScreenDrawn == false)
@@ -128,6 +138,7 @@ namespace WinterJam.Screens
             {
                 MediaPlayer.IsRepeating = false;
                 MediaPlayer.Play(GameSettings.SFX_GameOver);
+
                 GameSettings.ActiveScreen = GameSettings.GameOverScreen;
             }
         }
@@ -241,7 +252,7 @@ namespace WinterJam.Screens
             DrawEscToPause(spriteBatch);
             Score.Draw(spriteBatch, new Vector2((int)(GameSettings.ScreenSize.X / 2), 60));
 
-            if (GameSettings.IsPauseScreenDrawn && !GameSettings.IsSettingsScreenDrawn)
+            if (GameSettings.IsPauseScreenDrawn && !GameSettings.IsSettingsScreenDrawn && !GameSettings.IsControlsScreenDrawn)
             {
                 GameSettings.PauseScreen.Draw(spriteBatch);
             }
@@ -250,8 +261,12 @@ namespace WinterJam.Screens
             {
                 GameSettings.SettingsScreen.Draw(spriteBatch);
             }
+            if (GameSettings.IsPauseScreenDrawn && GameSettings.IsControlsScreenDrawn && GameSettings.IsCloseButtonPressed == false)
+            {
+                GameSettings.ControlsScreen.Draw(spriteBatch);
+            }
 
-            
+
             base.Draw(spriteBatch);
         }
 

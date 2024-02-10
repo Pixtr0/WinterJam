@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Threading.Tasks;
 
@@ -23,6 +24,7 @@ namespace WinterJam.Screens
         public override void Update(GameTime gameTime)
         {
             UserInput.Update();
+            
 
             CheckSettingsButtonClick();
             GameSettings.IsPauseScreenDrawn = false;
@@ -171,33 +173,33 @@ namespace WinterJam.Screens
 
             spriteBatch.DrawString(GameSettings.GameFont,
                 "-  Programmer\n\n" +
+                "-  Programmer - Sound\n\n" +
                 "-  Programmer\n\n" +
-                "-  Programmer\n\n" +
-                "-  Artist",
+                "-  Artist - Sound",
                 new Vector2(400, GameSettings.ScreenSize.Y - 302), Color.White, 0, Vector2.Zero, 0.75f, SpriteEffects.None, 1);
             spriteBatch.DrawString(GameSettings.GameFont,
                 "-  Programmer\n\n" +
+                "-  Programmer - Sound\n\n" +
                 "-  Programmer\n\n" +
-                "-  Programmer\n\n" +
-                "-  Artist",
+                "-  Artist - Sound",
                 new Vector2(400, GameSettings.ScreenSize.Y - 298), Color.White, 0, Vector2.Zero, 0.75f, SpriteEffects.None, 1);
             spriteBatch.DrawString(GameSettings.GameFont,
                 "-  Programmer\n\n" +
+                "-  Programmer - Sound\n\n" +
                 "-  Programmer\n\n" +
-                "-  Programmer\n\n" +
-                "-  Artist",
+                "-  Artist - Sound",
                 new Vector2(398, GameSettings.ScreenSize.Y - 300), Color.White, 0, Vector2.Zero, 0.75f, SpriteEffects.None, 1);
             spriteBatch.DrawString(GameSettings.GameFont,
                 "-  Programmer\n\n" +
+                "-  Programmer - Sound\n\n" +
                 "-  Programmer\n\n" +
-                "-  Programmer\n\n" +
-                "-  Artist",
+                "-  Artist - Sound",
                 new Vector2(402, GameSettings.ScreenSize.Y - 300), Color.White, 0, Vector2.Zero, 0.75f, SpriteEffects.None, 1);
             spriteBatch.DrawString(GameSettings.GameFont,
                 "-  Programmer\n\n" +
+                "-  Programmer - Sound\n\n" +
                 "-  Programmer\n\n" +
-                "-  Programmer\n\n" +
-                "-  Artist",
+                "-  Artist - Sound",
                 new Vector2(400, GameSettings.ScreenSize.Y - 300), Color.Black, 0, Vector2.Zero, 0.75f, SpriteEffects.None, 1);
         }
         private void DrawGameOverText(SpriteBatch spriteBatch)

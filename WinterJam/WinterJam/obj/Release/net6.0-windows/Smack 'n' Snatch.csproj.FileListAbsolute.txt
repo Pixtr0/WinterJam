@@ -1,0 +1,167 @@
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\bush_01.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\bush_02.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\flower_01.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\flower_02.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\flower_03.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\flower_04.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\flower_05.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\flower_06.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\grass_01.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\grass_02.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\grass_03.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\grass_04.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\house.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\log.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\log_01.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\log_02.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\placeholder screen.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\rocks_01.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\rocks_02.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\rocks_03.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\spritesheet_house.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\stump_01.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\stump_02.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\tree_01.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\tree_02.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\tree_03.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\tree_04.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\tree_05.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\tree_06.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\tree_07.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\tree_08.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\tree_09.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\tree_10.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\tree_11.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\water_flow_01.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\water_flow_02.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\water_flow_03.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\water_turn_bottom.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Buttons\UI_background.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Buttons\UI_background_title.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Buttons\UI_button_01.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Buttons\UI_button_02.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Buttons\UI_button_pressed_01.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Buttons\UI_button_pressed_02.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Buttons\UI_game_over.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Buttons\UI_health_bar.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Buttons\UI_health_bar_HP.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Buttons\UI_paused.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Buttons\UI_volume_slider.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Buttons\UI__volume.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Enemy\Directions.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Enemy\Down.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Enemy\Down_Left.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Enemy\Down_Right.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Enemy\Left.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Enemy\Right.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Enemy\squirrel_smacked.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Enemy\Up.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Enemy\Up_Left.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Enemy\Up_Right.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Fonts\GameDisplay.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Fonts\UI.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Items\item_beanie.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Items\item_donut.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Items\item_keys.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Items\item_knife.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Items\item_mug.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Items\item_plant.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Items\item_sock.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Items\item_toiletPaper.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Items\item_toothbrush.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Items\item_underwear.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Player\Down.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Player\Down2.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Player\ground_hit.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Player\ground_hit2.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Player\Left.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Player\Left2.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Player\Right.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Player\Right2.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Player\Swing_Down.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Player\Swing_Down2.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Player\Swing_Left.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Player\Swing_Left2.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Player\Swing_Right.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Player\Swing_Up.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Player\Swing_Up2.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Player\Up.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Player\Up2.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Sounds\Button.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Sounds\GameMusic.wma
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Sounds\GameMusic.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Sounds\GameOver.wma
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Sounds\GameOver.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Sounds\item_pickup.wma
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Sounds\item_pickup.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Sounds\Run.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Sounds\SFX_PlaceItem.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Sounds\Smack.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Sounds\Squirrel_knockout.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Sounds\Winterjam_jam.wma
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Sounds\Winterjam_jam.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\bin\Windows\Content\Graphics\Buttons\UI_paused.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\bin\Windows\Graphics\Buttons\UI_button_01.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\bin\Windows\Graphics\Buttons\UI_button_02.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\bin\Windows\Graphics\Buttons\UI_button_pressed_01.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\bin\Windows\Graphics\Buttons\UI_button_pressed_02.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\basket.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\tree_01.png
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\tree_02.png
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\tree_03.png
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\tree_04.png
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\tree_05.png
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\tree_06.png
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\tree_07.png
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\tree_08.png
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\tree_09.png
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\tree_10.png
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Blocks\tree_11.png
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Buttons\UI_Background_GameOver.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Buttons\UI_button_01.png
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Buttons\UI_button_02.png
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Buttons\UI_button_pressed_01.png
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Buttons\UI_button_pressed_02.png
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Buttons\UI_controls.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Buttons\UI_paused.png
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Buttons\UI_player_controls.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Buttons\UI_settings.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Fonts\Font.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Icon.ico
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Smack 'n' Snatch.exe
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Smack 'n' Snatch.deps.json
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Smack 'n' Snatch.runtimeconfig.json
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Smack 'n' Snatch.dll
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Smack 'n' Snatch.pdb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Microsoft.CodeAnalysis.dll
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Microsoft.CodeAnalysis.CSharp.dll
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Microsoft.CodeAnalysis.VisualBasic.dll
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\MonoGame.Framework.dll
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\SharpDX.dll
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\SharpDX.Direct2D1.dll
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\SharpDX.Direct3D11.dll
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\SharpDX.Direct3D9.dll
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\SharpDX.DXGI.dll
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\SharpDX.Mathematics.dll
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\SharpDX.MediaFoundation.dll
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\SharpDX.XAudio2.dll
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\SharpDX.XInput.dll
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\runtimes\debian-x64\native\libuv.so
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\runtimes\fedora-x64\native\libuv.so
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\runtimes\opensuse-x64\native\libuv.so
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\runtimes\osx\native\libuv.dylib
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\runtimes\rhel-x64\native\libuv.so
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\runtimes\win7-arm\native\libuv.dll
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\runtimes\win7-x64\native\libuv.dll
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\runtimes\win7-x86\native\libuv.dll
+F:\WinterJam\WinterJam\WinterJam\WinterJam\obj\Release\net6.0-windows\Smack 'n' Snatch.csproj.AssemblyReference.cache
+F:\WinterJam\WinterJam\WinterJam\WinterJam\obj\Release\net6.0-windows\Smack 'n' Snatch.GeneratedMSBuildEditorConfig.editorconfig
+F:\WinterJam\WinterJam\WinterJam\WinterJam\obj\Release\net6.0-windows\Smack 'n' Snatch.AssemblyInfoInputs.cache
+F:\WinterJam\WinterJam\WinterJam\WinterJam\obj\Release\net6.0-windows\Smack 'n' Snatch.AssemblyInfo.cs
+F:\WinterJam\WinterJam\WinterJam\WinterJam\obj\Release\net6.0-windows\Smack 'n' Snatch.csproj.CoreCompileInputs.cache
+F:\WinterJam\WinterJam\WinterJam\WinterJam\obj\Release\net6.0-windows\Smack 'n' Snatch.csproj.CopyComplete
+F:\WinterJam\WinterJam\WinterJam\WinterJam\obj\Release\net6.0-windows\Smack 'n' Snatch.dll
+F:\WinterJam\WinterJam\WinterJam\WinterJam\obj\Release\net6.0-windows\refint\Smack 'n' Snatch.dll
+F:\WinterJam\WinterJam\WinterJam\WinterJam\obj\Release\net6.0-windows\Smack 'n' Snatch.pdb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\obj\Release\net6.0-windows\Smack 'n' Snatch.genruntimeconfig.cache
+F:\WinterJam\WinterJam\WinterJam\WinterJam\obj\Release\net6.0-windows\ref\Smack 'n' Snatch.dll

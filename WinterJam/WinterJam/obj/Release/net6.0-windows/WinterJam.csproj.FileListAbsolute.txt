@@ -306,3 +306,12 @@ F:\WinterJam\WinterJam\WinterJam\WinterJam\obj\Release\net6.0-windows\refint\Win
 F:\WinterJam\WinterJam\WinterJam\WinterJam\obj\Release\net6.0-windows\WinterJam.pdb
 F:\WinterJam\WinterJam\WinterJam\WinterJam\obj\Release\net6.0-windows\WinterJam.genruntimeconfig.cache
 F:\WinterJam\WinterJam\WinterJam\WinterJam\obj\Release\net6.0-windows\ref\WinterJam.dll
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Buttons\UI_background_title.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Sounds\Button.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Sounds\item_pickup.wma
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Sounds\item_pickup.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Sounds\Run.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Sounds\SFX_PlaceItem.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Sounds\Squirrel_knockout.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Content\Graphics\Buttons\UI_Background_GameOver.xnb
+F:\WinterJam\WinterJam\WinterJam\WinterJam\bin\Release\net6.0-windows\Icon.ico

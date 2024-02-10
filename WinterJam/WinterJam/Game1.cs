@@ -139,12 +139,7 @@ namespace WinterJam
 
             GameSettings.BasketTexture = Content.Load<Texture2D>("Graphics/Blocks/basket");
 
-            //loading screens
-            GameSettings.SettingsScreen = new SettingsScreen();
-            GameSettings.PauseScreen = new PauseScreen();
-            GameSettings.PlayScreen = new PlayScreen();
-            GameSettings.ControlsScreen = new ControlsScreen();
-            GameSettings.GameOverScreen = new GameOverScreen();
+            
 
             GameSettings.StartScreenTexture = Content.Load<Texture2D>("Graphics/Buttons/UI_background_title");
 
@@ -158,6 +153,13 @@ namespace WinterJam
             GameSettings.SFX_Squirrel_Knockout = Content.Load<SoundEffect>("Sounds/Squirrel_Knockout");
             MediaPlayer.IsRepeating = true;
             MediaPlayer.Play(GameSettings.GameMusic);
+            //loading screens
+            GameSettings.SettingsScreen = new SettingsScreen();
+            GameSettings.PauseScreen = new PauseScreen();
+            GameSettings.PlayScreen = new PlayScreen();
+            GameSettings.ControlsScreen = new ControlsScreen();
+            GameSettings.GameOverScreen = new GameOverScreen();
+
         }
 
         protected override void Update(GameTime gameTime)

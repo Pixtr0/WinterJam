@@ -31,11 +31,6 @@ namespace WinterJam.Screens
                 CheckControlsButtonClick();
             }
 
-            if (GameSettings.IsSettingsScreenDrawn)
-            {
-                GameSettings.SettingsScreen.Update(gameTime);
-            }
-
             base.Update(gameTime);
         }
 
